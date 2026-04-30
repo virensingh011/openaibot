@@ -1,2 +1,0 @@
-# openaibot
-openaibot
