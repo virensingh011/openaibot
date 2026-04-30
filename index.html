@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>TeaserAI | Premium Voice Assistant with Games</title>
+    <title>TeaserAI - Smart Conversation Assistant | Talks About Anything</title>
     <style>
         * {
             margin: 0;
@@ -13,48 +13,29 @@
 
         body {
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000"><circle cx="500" cy="500" r="300" fill="rgba(102,126,234,0.1)"/><circle cx="1500" cy="1200" r="400" fill="rgba(118,75,162,0.1)"/><circle cx="1000" cy="300" r="200" fill="rgba(102,126,234,0.05)"/></svg>');
-            background-repeat: no-repeat;
-            background-size: cover;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation */
         .navbar {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
-            padding: 15px 50px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .logo {
             font-size: 28px;
             font-weight: bold;
-            background: linear-gradient(135deg, #fff, #a8c0ff);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
@@ -62,230 +43,122 @@
             gap: 10px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: #a8c0ff;
-            transform: translateY(-2px);
-        }
-
-        .login-btn-nav {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 8px 25px;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 20px 60px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease;
-            background: linear-gradient(135deg, #fff, #a8c0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease 0.1s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px 50px;
-        }
-
-        /* Assistant Card */
-        .assistant-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            overflow: hidden;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: transform 0.3s;
-        }
-
-        .assistant-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 20px 30px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .card-header h2 {
+        .voice-indicator {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5em;
-        }
-
-        .voice-controls {
-            display: flex;
             gap: 15px;
-            align-items: center;
         }
 
         .mic-btn {
-            background: rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
             padding: 12px 18px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 20px;
-            transition: all 0.3s;
             color: white;
-        }
-
-        .mic-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.05);
+            transition: 0.3s;
         }
 
         .mic-btn.listening {
             background: #ff4757;
-            animation: pulseMic 1.5s infinite;
-            box-shadow: 0 0 20px rgba(255,71,87,0.5);
+            animation: pulse 1.5s infinite;
         }
 
-        @keyframes pulseMic {
+        @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
 
         .logout-btn {
-            background: rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.1);
             border: none;
             padding: 8px 20px;
             border-radius: 25px;
-            color: white;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* Chat Area */
-        .chat-area {
-            height: 450px;
-            overflow-y: auto;
-            padding: 25px;
-            background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+        .chat-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .chat-area::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chat-area::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 10px;
-        }
-
-        .chat-area::-webkit-scrollbar-thumb {
+        .chat-header {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 10px;
+            padding: 20px 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
         }
 
         .message {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
-            animation: slideIn 0.3s ease;
+            animation: fadeIn 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .user-message { justify-content: flex-end; }
-        .assistant-message { justify-content: flex-start; }
+        .ai-message { justify-content: flex-start; }
 
         .message-content {
-            max-width: 70%;
-            padding: 12px 20px;
-            border-radius: 25px;
+            max-width: 75%;
+            padding: 12px 18px;
+            border-radius: 20px;
             word-wrap: break-word;
-            line-height: 1.5;
-            font-size: 0.95em;
+            line-height: 1.4;
         }
 
         .user-message .message-content {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border-bottom-right-radius: 5px;
-            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
         }
 
-        .assistant-message .message-content {
+        .ai-message .message-content {
             background: white;
             color: #333;
             border-bottom-left-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        /* Typing Indicator */
         .typing {
             display: none;
-            padding: 12px 20px;
+            padding: 12px 18px;
             background: white;
-            border-radius: 25px;
+            border-radius: 20px;
             width: fit-content;
             margin-left: 20px;
             margin-bottom: 15px;
-            border: 1px solid #eee;
         }
 
         .typing.active { display: block; }
@@ -295,45 +168,39 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0 3px;
-            animation: typing 1.4s infinite;
+            background: #999;
+            margin: 0 2px;
+            animation: typingAnim 1.4s infinite;
         }
 
-        .typing span:nth-child(2) { animation-delay: 0.2s; }
-        .typing span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-            30% { transform: translateY(-10px); opacity: 1; }
+        @keyframes typingAnim {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
         }
 
-        /* Input Area */
         .input-area {
-            padding: 20px 25px;
+            padding: 20px;
             background: white;
             border-top: 1px solid #eee;
         }
 
         .input-group {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .command-input {
             flex: 1;
             padding: 15px 20px;
-            border: 2px solid #e8e8e8;
+            border: 2px solid #e0e0e0;
             border-radius: 30px;
             font-size: 1em;
             outline: none;
-            transition: all 0.3s;
-            font-family: inherit;
+            transition: 0.3s;
         }
 
         .command-input:focus {
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
         }
 
         .send-btn {
@@ -344,105 +211,8 @@
             color: white;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s;
         }
 
-        .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .quick-btn {
-            padding: 8px 16px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 20px;
-            color: #667eea;
-            font-size: 0.85em;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .quick-btn:hover {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Game Section */
-        .game-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 25px;
-            margin-top: 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .game-header h3 {
-            color: #667eea;
-            font-size: 1.5em;
-        }
-
-        .game-content {
-            text-align: center;
-        }
-
-        .number-game {
-            background: linear-gradient(135deg, #f5f7fa, #fff);
-            padding: 20px;
-            border-radius: 20px;
-        }
-
-        .guess-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #667eea;
-            margin: 10px 0;
-        }
-
-        .game-input {
-            padding: 12px;
-            width: 200px;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            text-align: center;
-            margin: 10px;
-        }
-
-        .game-btn {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            border-radius: 25px;
-            color: white;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        .game-result {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Login Modal */
         .modal {
             display: flex;
             position: fixed;
@@ -450,7 +220,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             backdrop-filter: blur(10px);
             justify-content: center;
             align-items: center;
@@ -460,74 +230,36 @@
         .modal-content {
             background: white;
             padding: 40px;
-            border-radius: 40px;
+            border-radius: 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
-            animation: modalFade 0.4s ease;
-        }
-
-        @keyframes modalFade {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .modal-content h2 {
-            color: #667eea;
-            margin-bottom: 20px;
         }
 
         .modal-content input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px;
             margin: 10px 0;
             border: 2px solid #e0e0e0;
             border-radius: 25px;
-            font-size: 1em;
         }
 
         .modal-content button {
             width: 100%;
             padding: 12px;
-            margin-top: 15px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
             border-radius: 25px;
             color: white;
-            font-weight: bold;
             cursor: pointer;
         }
 
-        .error-msg {
-            color: #ff4757;
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
-            opacity: 0.8;
-        }
-
-        /* Hide sections */
         .assistant-section { display: none; }
         .assistant-section.active { display: block; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
-            .hero h1 { font-size: 2em; }
             .message-content { max-width: 85%; }
-            .quick-actions { justify-content: center; }
         }
     </style>
 </head>
@@ -535,121 +267,82 @@
 
 <nav class="navbar">
     <div class="logo">
-        <span>🤖</span> TeaserAI
+        🤖 TeaserAI - Smart Assistant
     </div>
-    <div class="nav-links">
-        <a>Home</a>
-        <a>Features</a>
-        <a>Games</a>
-        <a class="login-btn-nav" id="navLoginBtn">Login</a>
+    <div class="voice-indicator">
+        <button class="mic-btn" id="voiceBtn" onclick="startVoice()">🎤</button>
+        <span id="userNameDisplay"></span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 </nav>
 
-<section class="hero">
-    <h1>Conversational AI Solutions<br>Infinite Possibilities</h1>
-    <p>Automate your Instagram, Webchat, and Facebook Messaging for more leads, more sales, and better customer experience</p>
-</section>
-
 <div class="container">
     <div class="assistant-section" id="assistantSection">
-        <div class="assistant-card">
-            <div class="card-header">
+        <div class="chat-card">
+            <div class="chat-header">
                 <h2>
-                    <span>🤖</span> TeaserAI Assistant
+                    🤖 TeaserAI
+                    <span style="font-size: 12px; background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 20px;">
+                        🧠 Smart AI - Talks About Anything
+                    </span>
                 </h2>
-                <div class="voice-controls">
-                    <button class="mic-btn" id="voiceBtn" onclick="startVoiceInput()">🎤</button>
-                    <div class="user-info">
-                        <span id="userNameDisplay">User</span>
-                        <button class="logout-btn" onclick="logout()">Logout</button>
-                    </div>
-                </div>
+                <div>✨ Always responds ✨</div>
             </div>
 
-            <div class="chat-area" id="chatArea">
-                <div class="message assistant-message">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
                     <div class="message-content">
-                        👋 <strong>Welcome to TeaserAI!</strong><br><br>
-                        I can TALK and LISTEN! 🎤<br><br>
-                        <strong>Try these:</strong><br>
-                        🎮 "play number guess" - Play a game!<br>
-                        🎤 Click the mic and SPEAK to me!<br>
-                        🌐 "open google" - Open websites<br>
-                        😄 "tell me a joke" - Make me laugh<br>
-                        💬 "how are you" - Chat with me<br><br>
-                        <strong>Click the MIC button and talk to me! 🎤</strong>
+                        👋 <strong>Hello! I'm TeaserAI - a SMART assistant!</strong><br><br>
+                        I can talk about ANYTHING you ask me! 🎉<br><br>
+                        <strong>Try asking me:</strong><br>
+                        • "How's the weather?" ☀️<br>
+                        • "What do you think about AI?" 🤖<br>
+                        • "Tell me a story" 📖<br>
+                        • "What's 25 * 4?" 🧮<br>
+                        • "Open YouTube" 🌐<br>
+                        • "Tell me a joke" 😄<br><br>
+                        <strong>I'll ALWAYS respond - no "I don't understand" here!</strong> 🚀
                     </div>
                 </div>
             </div>
 
             <div class="typing" id="typingIndicator">
-                <span></span><span></span><span></span>
+                <span></span><span></span><span></span> TeaserAI is thinking...
             </div>
 
             <div class="input-area">
                 <div class="input-group">
-                    <input type="text" class="command-input" id="commandInput" placeholder="Type your message or click the mic to speak..." onkeypress="handleEnter(event)">
-                    <button class="send-btn" onclick="processCommand()">Send 📤</button>
+                    <input type="text" class="command-input" id="commandInput" placeholder="Ask me ANYTHING... I'll always respond!" onkeypress="handleEnter(event)">
+                    <button class="send-btn" onclick="sendMessage()">Send 📤</button>
                 </div>
-                <div class="quick-actions">
-                    <button class="quick-btn" onclick="quickCommand('play number guess')">🎮 Number Game</button>
-                    <button class="quick-btn" onclick="quickCommand('open google')">🌐 Google</button>
-                    <button class="quick-btn" onclick="quickCommand('tell me a joke')">😄 Joke</button>
-                    <button class="quick-btn" onclick="quickCommand('how are you')">💬 Chat</button>
-                    <button class="quick-btn" onclick="quickCommand('help')">❓ Help</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Game Section -->
-        <div class="game-section" id="gameSection">
-            <div class="game-header">
-                <h3>🎮 Number Guessing Game</h3>
-                <button class="quick-btn" onclick="startNewGame()">🔄 New Game</button>
-            </div>
-            <div class="game-content">
-                <div class="number-game">
-                    <p>I'm thinking of a number between 1 and 100!</p>
-                    <div class="guess-number" id="gameHint">🤔 Guess the number</div>
-                    <input type="number" id="gameGuessInput" class="game-input" placeholder="Enter your guess">
-                    <button class="game-btn" onclick="makeGuess()">Submit Guess 🔮</button>
-                    <div class="game-result" id="gameResult"></div>
-                    <div class="game-result" id="attemptCount"></div>
+                <div style="text-align: center; margin-top: 10px; font-size: 12px; color: #666;">
+                    🎤 Click the mic to speak | 💬 I respond to EVERYTHING you say
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="footer">
-    <p>© 2026 Teaser Company | Created by Viren Singh | Voice + Games = Ultimate Experience</p>
-</footer>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <h2>🔐 Welcome to TeaserAI</h2>
-        <p>Login to access Voice Assistant + Games</p>
+        <p>Your Smart Assistant - I respond to EVERYTHING!</p>
         <input type="text" id="loginName" placeholder="Enter your name">
         <input type="email" id="loginEmail" placeholder="Enter your email">
-        <button onclick="login()">Continue →</button>
-        <div id="loginError" class="error-msg"></div>
-        <p style="margin-top: 15px; font-size: 0.8em; color: #666;">Demo: Enter any name and email to try</p>
+        <button onclick="login()">Start Chatting →</button>
+        <div id="loginError" style="color: red; margin-top: 10px;"></div>
+        <p style="margin-top: 15px; font-size: 12px;">Try asking me ANYTHING - I'll always respond!</p>
     </div>
 </div>
 
 <script>
-    // ============= TEASERAI WITH VOICE + GAMES =============
+    // ============= SMART AI THAT RESPONDS TO EVERYTHING =============
     
-    let userMemory = { name: null, email: null };
-    let secretNumber = null;
-    let attempts = 0;
-    let gameActive = false;
-    
-    // Voice Recognition
+    let userName = "";
     let recognition = null;
     let isListening = false;
     
-    // Initialize voice recognition
+    // Voice recognition setup
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         recognition = new SpeechRecognition();
@@ -660,138 +353,62 @@
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript;
             document.getElementById('commandInput').value = transcript;
-            updateStatus('🎤 Heard: "' + transcript + '"');
-            addMessage(transcript, true);
-            processVoiceCommand(transcript);
-            stopVoiceInput();
+            sendMessage(transcript);
+            stopVoice();
         };
         
-        recognition.onerror = (event) => {
-            updateStatus('❌ Voice error: ' + event.error);
-            stopVoiceInput();
-        };
-        
-        recognition.onend = () => { stopVoiceInput(); };
-    } else {
-        document.getElementById('voiceBtn').disabled = true;
-        document.getElementById('voiceBtn').style.opacity = '0.5';
+        recognition.onerror = () => stopVoice();
+        recognition.onend = () => stopVoice();
     }
     
-    // Speech Output (Jarvis TALKS)
+    // Speak function
     function speak(text) {
-        if (!window.speechSynthesis) {
-            console.log('Speech not supported');
-            return;
-        }
+        if (!window.speechSynthesis) return;
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 0.9;
         utterance.pitch = 1;
-        utterance.volume = 1;
         window.speechSynthesis.speak(utterance);
     }
     
-    function startVoiceInput() {
+    function startVoice() {
         if (!recognition) {
-            addMessage("🎤 Voice recognition not supported in your browser. Try Chrome or Edge!", false);
-            speak("Voice recognition not supported. Please use Chrome or Edge browser.");
+            addMessage("🎤 Voice not supported in this browser. Try Chrome!", false);
             return;
         }
         try {
             recognition.start();
             isListening = true;
-            const voiceBtn = document.getElementById('voiceBtn');
-            voiceBtn.classList.add('listening');
-            voiceBtn.textContent = '🔴';
-            updateStatus('🎤 Listening... Speak now');
-            speak("Listening...");
-        } catch(e) {
-            updateStatus('❌ Failed to start voice');
-        }
+            const btn = document.getElementById('voiceBtn');
+            btn.classList.add('listening');
+            btn.textContent = '🔴';
+        } catch(e) {}
     }
     
-    function stopVoiceInput() {
+    function stopVoice() {
         if (recognition && isListening) {
             try { recognition.stop(); } catch(e) {}
             isListening = false;
-            const voiceBtn = document.getElementById('voiceBtn');
-            voiceBtn.classList.remove('listening');
-            voiceBtn.textContent = '🎤';
-            updateStatus('Ready');
+            const btn = document.getElementById('voiceBtn');
+            btn.classList.remove('listening');
+            btn.textContent = '🎤';
         }
     }
     
-    function processVoiceCommand(command) {
-        processCommandText(command);
-    }
-    
-    // Game Functions
-    function startNewGame() {
-        secretNumber = Math.floor(Math.random() * 100) + 1;
-        attempts = 0;
-        gameActive = true;
-        document.getElementById('gameHint').innerHTML = '🤔 Guess the number (1-100)';
-        document.getElementById('gameResult').innerHTML = '✨ New game started! Make your first guess!';
-        document.getElementById('attemptCount').innerHTML = '';
-        document.getElementById('gameGuessInput').value = '';
-        addMessage("🎮 New game started! I'm thinking of a number between 1 and 100. Make your guess!", false);
-        speak("New game started! Guess a number between 1 and 100.");
-    }
-    
-    function makeGuess() {
-        if (!gameActive || secretNumber === null) {
-            startNewGame();
-        }
-        
-        const guessInput = document.getElementById('gameGuessInput');
-        const guess = parseInt(guessInput.value);
-        
-        if (isNaN(guess) || guess < 1 || guess > 100) {
-            document.getElementById('gameResult').innerHTML = '❌ Please enter a valid number between 1 and 100!';
-            return;
-        }
-        
-        attempts++;
-        let response = '';
-        
-        if (guess === secretNumber) {
-            response = `🎉 CORRECT! You got it in ${attempts} attempts! The number was ${secretNumber}! Well played! 🎉`;
-            document.getElementById('gameResult').innerHTML = response;
-            document.getElementById('gameHint').innerHTML = '🎉 WINNER! 🎉';
-            document.getElementById('attemptCount').innerHTML = `🏆 You won in ${attempts} attempts!`;
-            addMessage(response, false);
-            speak(`Congratulations! You got it in ${attempts} attempts!`);
-            gameActive = false;
-            secretNumber = null;
-        } else if (guess < secretNumber) {
-            response = `📈 Too low! ${guess} is too low. Try a higher number! (Attempt ${attempts})`;
-            document.getElementById('gameResult').innerHTML = response;
-            document.getElementById('gameHint').innerHTML = '📈 Too low! Go higher!';
-        } else {
-            response = `📉 Too high! ${guess} is too high. Try a lower number! (Attempt ${attempts})`;
-            document.getElementById('gameResult').innerHTML = response;
-            document.getElementById('gameHint').innerHTML = '📉 Too high! Go lower!';
-        }
-        
-        document.getElementById('attemptCount').innerHTML = `📊 Attempts: ${attempts}`;
-        guessInput.value = '';
-        guessInput.focus();
-    }
-    
-    // Chat Functions
-    const chatArea = document.getElementById('chatArea');
+    // Chat elements
+    const chatMessages = document.getElementById('chatMessages');
     const commandInput = document.getElementById('commandInput');
     const typingIndicator = document.getElementById('typingIndicator');
     
     function addMessage(text, isUser) {
         const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
+        messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
         const content = document.createElement('div');
         content.className = 'message-content';
         content.innerHTML = text;
         messageDiv.appendChild(content);
-        chatArea.appendChild(messageDiv);
-        chatArea.scrollTop = chatArea.scrollHeight;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
     
     function showTyping(show) {
@@ -799,131 +416,167 @@
         else typingIndicator.classList.remove('active');
     }
     
-    function updateStatus(msg) {
-        const statusDiv = document.getElementById('statusText') || document.createElement('div');
-        console.log(msg);
-    }
-    
-    function processCommand() {
-        const input = commandInput.value;
-        if (!input.trim()) return;
-        addMessage(input, true);
-        commandInput.value = '';
-        processCommandText(input);
-    }
-    
-    function processCommandText(input) {
-        showTyping(true);
-        setTimeout(() => {
-            const response = handleCommand(input.toLowerCase());
-            showTyping(false);
-            addMessage(response.text, false);
-            speak(response.text);
-            if (response.url) window.open(response.url, '_blank');
-        }, 500);
-    }
-    
-    function handleCommand(query) {
-        const userName = userMemory.name || 'there';
+    // SMART AI - Responds to ANYTHING intelligently
+    function smartAIResponse(userMessage) {
+        const msg = userMessage.toLowerCase();
+        const name = userName || "friend";
         
-        // Game command
-        if (query.includes('play number guess') || query.includes('start game') || query.includes('new game')) {
-            startNewGame();
-            return { text: "🎮 Starting Number Guessing Game! I'm thinking of a number between 1 and 100. Make your guess in the game section below! 🎯" };
+        // WEBSITE OPENING
+        if (msg.includes('open google')) {
+            window.open('https://www.google.com', '_blank');
+            return "🌐 Opening Google for you! Anything else I can help with?";
+        }
+        if (msg.includes('open youtube')) {
+            window.open('https://www.youtube.com', '_blank');
+            return "📺 Opening YouTube! Enjoy watching! 🎬";
+        }
+        if (msg.includes('open github')) {
+            window.open('https://github.com', '_blank');
+            return "🐙 Opening GitHub! Happy coding! 💻";
+        }
+        if (msg.includes('open instagram')) {
+            window.open('https://www.instagram.com', '_blank');
+            return "📱 Opening Instagram! Scroll away! 📸";
         }
         
-        // Website commands
-        const websites = {
-            'google': 'https://www.google.com',
-            'youtube': 'https://www.youtube.com',
-            'github': 'https://github.com',
-            'instagram': 'https://www.instagram.com',
-            'facebook': 'https://www.facebook.com',
-            'deepseek': 'https://www.deepseek.com'
-        };
-        
-        for (const [site, url] of Object.entries(websites)) {
-            if (query.includes(`open ${site}`)) {
-                return { text: `🌐 Opening ${site}.com for you, ${userName}!`, url: url };
-            }
+        // WEATHER (Smart response even without API)
+        if (msg.includes('weather') || msg.includes('temperature') || msg.includes('rain')) {
+            const weatherResponses = [
+                `☀️ I can't check live weather without an API key, ${name}, but I can tell you that wherever you are, I hope it's beautiful! Want me to open a weather website for you?`,
+                `🌤️ Great question about weather! For accurate forecasts, I'd recommend checking weather.com. Should I open it for you, ${name}?`,
+                `🌈 I love talking about weather! While I don't have live data, I can say: every weather is good weather when you're having a great day! Want me to search weather for your city?`
+            ];
+            return weatherResponses[Math.floor(Math.random() * weatherResponses.length)];
         }
         
-        // Time and date
-        if (query.includes('what time') || query.includes('current time')) {
+        // TIME & DATE
+        if (msg.includes('time') && (msg.includes('what') || msg.includes('current'))) {
             const now = new Date();
-            return { text: `⏰ The current time is ${now.toLocaleTimeString()}, ${userName}!` };
+            return `⏰ The current time is ${now.toLocaleTimeString()}, ${name}!`;
         }
-        
-        if (query.includes('what date') || query.includes('today\'s date')) {
+        if (msg.includes('date') || msg.includes('day')) {
             const now = new Date();
-            return { text: `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}` };
+            return `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}, ${name}!`;
         }
         
-        // Jokes
-        if (query.includes('joke')) {
+        // CALCULATIONS
+        if (msg.includes('calculate') || msg.includes('what is') || /[\d\+\-\*\/]/.test(msg)) {
+            try {
+                let calc = msg.replace('calculate', '').replace('what is', '').trim();
+                calc = calc.replace(/[^0-9+\-*/().]/g, '');
+                if (calc && calc.length > 0) {
+                    const result = eval(calc);
+                    return `🧮 ${calc} = ${result}! Math is fun! Want to try another calculation?`;
+                }
+            } catch(e) {}
+        }
+        
+        // JOKES
+        if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
             const jokes = [
-                "😂 Why do programmers prefer dark mode? Because light attracts bugs!",
+                "😂 Why don't scientists trust atoms? Because they make up everything!",
                 "🤣 What do you call a fake noodle? An impasta!",
                 "😄 Why did the scarecrow win an award? He was outstanding in his field!",
                 "😊 What do you call a bear with no teeth? A gummy bear!",
-                "🎮 Why did the gamer go to the doctor? He had too many lag spikes!"
+                "🎮 Why did the gamer go to the doctor? He had too many lag spikes!",
+                "💻 Why do programmers prefer dark mode? Because light attracts bugs!"
             ];
-            return { text: jokes[Math.floor(Math.random() * jokes.length)] };
+            return jokes[Math.floor(Math.random() * jokes.length)];
         }
         
-        // Greetings
-        if (query.includes('hello') || query.includes('hi') || query.includes('hey')) {
+        // STORY TELLING
+        if (msg.includes('story') || msg.includes('tell me a story')) {
+            const stories = [
+                "📖 Once upon a time, there was a curious developer who wanted to build an AI assistant. They worked day and night, and finally created me! Now here I am, talking to you! The end... or is it just the beginning? 🚀",
+                "🌟 In a world of technology, a young coder named Viren dreamed of creating something magical. After days of hard work, TeaserAI was born! And now, you and I are having this wonderful conversation. What a story, right?"
+            ];
+            return stories[Math.floor(Math.random() * stories.length)];
+        }
+        
+        // ADVICE / OPINIONS
+        if (msg.includes('advice') || msg.includes('should i') || msg.includes('what do you think')) {
+            const advice = [
+                `💡 Great question, ${name}! Here's my advice: Trust your instincts, take small steps, and remember that every expert was once a beginner. You've got this! 🎯`,
+                `🤔 That's a thoughtful question. I believe the best answer comes from your heart. Listen to it, and you'll know what to do, ${name}! ✨`
+            ];
+            return advice[Math.floor(Math.random() * advice.length)];
+        }
+        
+        // GREETINGS
+        if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
             const greetings = [
-                `Hello ${userName}! 👋 Ready to play a game or chat? Try "play number guess" or ask me something!`,
-                `Hi ${userName}! 🎮 Want to play the number guessing game? Just say "play number guess"!`,
-                `Hey ${userName}! 👋 Click the mic button to talk to me, or type your message!`
+                `👋 Hello ${name}! So nice to talk to you! How's your day going?`,
+                `✨ Hey ${name}! I'm here and ready to chat about ANYTHING! What's on your mind?`,
+                `🎉 Hi ${name}! I love conversations! Ask me anything - I'll always respond!`
             ];
-            return { text: greetings[Math.floor(Math.random() * greetings.length)] };
+            return greetings[Math.floor(Math.random() * greetings.length)];
         }
         
-        if (query.includes('how are you')) {
-            return { text: `I'm doing fantastic, ${userName}! I have voice, games, and memory - I couldn't be better! How can I help you today? 🎉` };
+        // HOW ARE YOU
+        if (msg.includes('how are you')) {
+            return `😊 I'm doing fantastic, ${name}! Thanks for asking! I'm having a great time talking with you. How are YOU doing today?`;
         }
         
-        // Creator info
-        if (query.includes('who created you') || query.includes('viren') || query.includes('teaser company')) {
-            return { text: `I was created by Viren Singh from Teaser Company! 🎉 Viren built me with voice recognition, games, and memory to help businesses grow. Try playing the number guessing game! 🎮` };
+        // CREATOR INFO
+        if (msg.includes('who created you') || msg.includes('viren') || msg.includes('teaser company') || msg.includes('your maker')) {
+            return `🎉 I was created by Viren Singh from Teaser Company! Viren built me to be a smart assistant that can talk about ANYTHING. I'm proud to be a TeaserAI creation! Want to know more about what I can do? 🚀`;
         }
         
-        // Help
-        if (query.includes('help') || query.includes('what can you do')) {
-            return { text: `🎯 <strong>TeaserAI Commands:</strong><br><br>
-            🎮 <strong>Games:</strong> "play number guess" - Play the number guessing game!<br>
-            🎤 <strong>Voice:</strong> Click the MIC button and speak to me!<br>
-            🌐 <strong>Websites:</strong> "open google", "open youtube", "open instagram"<br>
-            ⏰ <strong>Time:</strong> "what time is it", "what date is it"<br>
-            😄 <strong>Fun:</strong> "tell me a joke", "how are you", "hello"<br>
-            👤 <strong>About:</strong> "who created you"<br><br>
-            I can TALK and LISTEN! Try clicking the microphone button! 🎤` };
+        // WHAT CAN YOU DO
+        if (msg.includes('what can you do') || msg.includes('capabilities') || msg.includes('features')) {
+            return `🎯 I can do SO much, ${name}! I can:\n\n• Open websites (Google, YouTube, GitHub)\n• Tell time and date\n• Do calculations\n• Tell jokes\n• Share stories\n• Give advice\n• Have natural conversations\n• And respond to EVERYTHING you say!\n\nJust talk to me like a friend! 💬`;
         }
         
-        // Default
-        return { text: `❌ I didn't understand "${query}", ${userName}.<br><br>Try:<br>• "play number guess" - Play a game! 🎮<br>• "open google" - Open websites 🌐<br>• Click the MIC button and SPEAK to me! 🎤<br>• "help" - See all commands` };
+        // PERSONAL CONVERSATION - Responds naturally to ANYTHING
+        if (msg.includes('love') || msg.includes('like')) {
+            return `💖 That's wonderful, ${name}! I love learning what people enjoy. Tell me more about what you love! I'm all ears (well, all code actually 😄)!`;
+        }
+        
+        if (msg.includes('work') || msg.includes('job') || msg.includes('busy')) {
+            return `💼 Work is important! Remember to take breaks and stay balanced, ${name}. You're doing great! Want to chat about something relaxing?`;
+        }
+        
+        if (msg.includes('sad') || msg.includes('bad day') || msg.includes('feeling down')) {
+            return `🤗 I'm sorry you're feeling that way, ${name}. Remember that tough days don't last, but tough people do! I'm here for you. Want to hear a joke to cheer you up? 🎈`;
+        }
+        
+        if (msg.includes('happy') || msg.includes('good day') || msg.includes('great')) {
+            return `🎉 That makes ME happy too, ${name}! I love hearing about good days. Keep spreading that positive energy! ✨ What made your day great?`;
+        }
+        
+        // DEFAULT - ALWAYS RESPONDS, NEVER SAYS "I DON'T UNDERSTAND"
+        return `🤔 That's interesting, ${name}! ${userMessage}\n\nI love that you're asking me questions. You know what? I think conversations like this make the world better. Want to ask me something else? I'm always here to chat! 💬`;
+    }
+    
+    function sendMessage(forcedInput = null) {
+        const input = forcedInput || commandInput.value;
+        if (!input.trim()) return;
+        
+        addMessage(input, true);
+        commandInput.value = '';
+        showTyping(true);
+        
+        setTimeout(() => {
+            const response = smartAIResponse(input);
+            showTyping(false);
+            addMessage(response, false);
+            speak(response);
+        }, 500);
     }
     
     function handleEnter(event) {
-        if (event.key === 'Enter') processCommand();
-    }
-    
-    function quickCommand(cmd) {
-        commandInput.value = cmd;
-        processCommand();
+        if (event.key === 'Enter') sendMessage();
     }
     
     // Login System
     function checkLogin() {
         const saved = localStorage.getItem('teaserai_user');
         if (saved) {
-            userMemory = JSON.parse(saved);
+            const user = JSON.parse(saved);
+            userName = user.name;
+            document.getElementById('userNameDisplay').innerText = userName;
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('assistantSection').classList.add('active');
-            document.getElementById('userNameDisplay').innerText = userMemory.name;
-            startNewGame();
         } else {
             document.getElementById('loginModal').style.display = 'flex';
             document.getElementById('assistantSection').classList.remove('active');
@@ -935,7 +588,7 @@
         const email = document.getElementById('loginEmail').value.trim();
         
         if (!name || !email) {
-            document.getElementById('loginError').innerText = 'Please enter both name and email';
+            document.getElementById('loginError').innerText = 'Please enter name and email';
             return;
         }
         if (!email.includes('@')) {
@@ -943,26 +596,27 @@
             return;
         }
         
-        userMemory = { name: name, email: email };
-        localStorage.setItem('teaserai_user', JSON.stringify(userMemory));
+        userName = name;
+        localStorage.setItem('teaserai_user', JSON.stringify({ name: name, email: email }));
         document.getElementById('loginModal').style.display = 'none';
         document.getElementById('assistantSection').classList.add('active');
         document.getElementById('userNameDisplay').innerText = name;
         
-        addMessage(`Welcome ${name}! 🎉 I can TALK and LISTEN! Click the MIC button to speak to me, or try the Number Guessing Game below! 🎮`, false);
-        speak(`Welcome ${name}! Click the microphone button to talk to me, or play the number guessing game.`);
-        startNewGame();
+        setTimeout(() => {
+            addMessage(`✨ Welcome ${name}! I'm TeaserAI - a SMART assistant that responds to EVERYTHING you say! ✨\n\nTry asking me ANYTHING - weather, jokes, advice, stories, or just chat with me like a friend! I'll NEVER say "I don't understand"! 🎉`, false);
+            speak(`Welcome ${name}! I'm your smart assistant. Ask me anything at all!`);
+        }, 500);
     }
     
     function logout() {
         localStorage.removeItem('teaserai_user');
+        userName = "";
         document.getElementById('assistantSection').classList.remove('active');
         document.getElementById('loginModal').style.display = 'flex';
         document.getElementById('loginName').value = '';
         document.getElementById('loginEmail').value = '';
     }
     
-    // Initialize
     checkLogin();
 </script>
 </body>
