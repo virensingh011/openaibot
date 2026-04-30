@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarvis - Created by Viren Singh | Teaser Company</title>
+    <title>Jarvis AI - With Memory | Viren Singh</title>
     <style>
         * {
             margin: 0;
@@ -36,7 +36,6 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 30px;
             text-align: center;
-            position: relative;
         }
 
         .avatar {
@@ -60,27 +59,20 @@
         h1 {
             font-size: 2em;
             margin-bottom: 5px;
-            letter-spacing: 2px;
         }
 
-        .subtitle {
+        .creator {
             opacity: 0.9;
             font-size: 0.9em;
         }
 
-        .creator-badge {
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            padding: 5px 15px;
+        .memory-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.75em;
-            white-space: nowrap;
-            backdrop-filter: blur(5px);
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 0.7em;
+            margin-top: 10px;
         }
 
         .chat-area {
@@ -150,38 +142,6 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .typing-indicator {
-            display: none;
-            padding: 12px 18px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            width: fit-content;
-            margin-bottom: 15px;
-            margin-left: 20px;
-        }
-
-        .typing-indicator.active {
-            display: block;
-        }
-
-        .typing-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #999;
-            margin: 0 2px;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-            30% { transform: translateY(-10px); opacity: 1; }
-        }
-
         .input-area {
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
@@ -202,11 +162,6 @@
             font-size: 1em;
             background: rgba(255, 255, 255, 0.95);
             outline: none;
-            transition: all 0.3s;
-        }
-
-        .command-input:focus {
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
         }
 
         button {
@@ -226,27 +181,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .voice-btn {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .voice-btn.listening {
-            background: #ff4757;
-            animation: pulse 1s infinite;
-        }
-
-        .voice-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
         .quick-actions {
             display: flex;
             gap: 10px;
@@ -259,11 +193,6 @@
             background: rgba(255, 255, 255, 0.15);
             color: white;
             font-size: 0.85em;
-        }
-
-        .quick-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
         }
 
         .status {
@@ -280,16 +209,19 @@
             background: rgba(0, 0, 0, 0.5);
             font-size: 0.75em;
             color: #aaa;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
+        .memory-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .memory-btn {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            font-size: 0.75em;
         }
     </style>
 </head>
@@ -298,461 +230,346 @@
         <div class="header">
             <div class="avatar">🤖</div>
             <h1>JARVIS</h1>
-            <div class="subtitle">Your Intelligent Web Assistant</div>
-            <div class="creator-badge">
-                ⚡ Created by Viren Singh | Teaser Company ⚡
-            </div>
+            <div class="creator">Created by <strong>Viren Singh</strong> | <strong>Teaser Company</strong></div>
+            <div class="memory-badge">🧠 I HAVE MEMORY! I remember what you tell me</div>
         </div>
 
         <div class="chat-area" id="chatArea">
             <div class="message assistant-message">
                 <div class="message-content">
-                    👋 <strong>Hello! I'm Jarvis</strong><br><br>
-                    I was created by <strong>Viren Singh</strong> from <strong>Teaser Company</strong> 🏢<br><br>
-                    <strong>What I can do:</strong><br>
-                    🌐 Open websites (Google, YouTube, GitHub, etc.)<br>
-                    🔍 Search the web<br>
-                    ⏰ Tell time & date<br>
-                    🧮 Calculate math<br>
-                    😄 Tell jokes<br>
-                    💬 Chat with you<br>
-                    🎤 Voice input<br><br>
-                    <strong>Try typing a command below!</strong>
+                    👋 <strong>Hello! I'm Jarvis with MEMORY!</strong><br><br>
+                    I can now remember things you tell me:<br><br>
+                    📝 <strong>"My name is Viren"</strong> - I'll remember your name<br>
+                    📝 <strong>"I like pizza"</strong> - I'll remember your favorites<br>
+                    📝 <strong>"My favorite color is blue"</strong> - I'll remember!<br><br>
+                    Then ask: <strong>"What's my name?"</strong> or <strong>"What do I like?"</strong><br><br>
+                    Try it! Tell me something about yourself! 🎯
                 </div>
             </div>
         </div>
 
-        <div class="typing-indicator" id="typingIndicator">
-            <span class="typing-dot"></span>
-            <span class="typing-dot"></span>
-            <span class="typing-dot"></span>
-        </div>
-
         <div class="input-area">
             <div class="input-group">
-                <input type="text" class="command-input" id="commandInput" placeholder="Type: open google, what time is it, tell me a joke..." onkeypress="handleEnter(event)">
+                <input type="text" class="command-input" id="commandInput" placeholder="Tell me something: My name is Viren, I like pizza..." onkeypress="handleEnter(event)">
                 <button onclick="processCommand()">Send 📤</button>
-                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Voice</button>
             </div>
             
             <div class="quick-actions">
-                <button class="quick-btn" onclick="quickCommand('open google')">🌐 Google</button>
-                <button class="quick-btn" onclick="quickCommand('open youtube')">📺 YouTube</button>
-                <button class="quick-btn" onclick="quickCommand('open github')">🐙 GitHub</button>
-                <button class="quick-btn" onclick="quickCommand('open deepseek')">🤖 DeepSeek</button>
-                <button class="quick-btn" onclick="quickCommand('who created you')">👨‍💻 About Creator</button>
-                <button class="quick-btn" onclick="quickCommand('what time is it')">⏰ Time</button>
-                <button class="quick-btn" onclick="quickCommand('tell me a joke')">😄 Joke</button>
-                <button class="quick-btn" onclick="quickCommand('calculate 42 * 2')">🧮 Calc</button>
-                <button class="quick-btn" onclick="quickCommand('help')">❓ Help</button>
+                <button class="quick-btn" onclick="quickCommand('My name is Viren')">📝 Tell Name</button>
+                <button class="quick-btn" onclick="quickCommand('I like pizza')">🍕 Tell Favorite</button>
+                <button class="quick-btn" onclick="quickCommand('What is my name?')">❓ Ask My Name</button>
+                <button class="quick-btn" onclick="quickCommand('What do I like?')">❓ Ask Favorites</button>
+                <button class="quick-btn" onclick="quickCommand('show memory')">🧠 Show Memory</button>
+                <button class="quick-btn" onclick="quickCommand('forget everything')">🗑️ Clear Memory</button>
+            </div>
+            
+            <div class="memory-controls">
+                <button class="memory-btn" onclick="showMemory()">📋 Show What I Remember</button>
+                <button class="memory-btn" onclick="clearMemory()">🗑️ Clear All Memory</button>
             </div>
         </div>
         
         <div class="status" id="statusText">
-            🟢 Ready | Created by Viren Singh @ Teaser Company
+            🧠 Active Memory | Created by Viren Singh | Teaser Company
         </div>
         
         <div class="footer">
-            © 2026 <strong>Teaser Company</strong> | Created with ❤️ by <strong>Viren Singh</strong> | All Rights Reserved
+            © 2026 Teaser Company | Built by Viren Singh | I remember our conversation!
         </div>
     </div>
 
     <script>
-        // ============= JARVIS - CREATED BY VIREN SINGH | TEASER COMPANY =============
+        // ============= JARVIS WITH MEMORY =============
+        
+        // MEMORY STORAGE - This is where everything is remembered!
+        let memory = {
+            name: null,
+            likes: [],
+            dislikes: [],
+            facts: [],
+            preferences: {}
+        };
         
         // DOM Elements
         const chatArea = document.getElementById('chatArea');
         const commandInput = document.getElementById('commandInput');
-        const typingIndicator = document.getElementById('typingIndicator');
         const statusText = document.getElementById('statusText');
         
-        // Creator Info
-        const CREATOR_NAME = "Viren Singh";
-        const COMPANY_NAME = "Teaser Company";
-        const CREATOR_GITHUB = "virensingh01";
-        
-        // Check if we're on HTTPS (GitHub Pages)
-        const isHttps = window.location.protocol === 'https:';
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        if (!isHttps && !isLocalhost) {
-            addSystemMessage("⚠️ Note: Some features work best on HTTPS. You're currently on HTTP.", false);
-        }
-        
-        // Voice Recognition Setup
-        let recognition = null;
-        let isListening = false;
-        
-        // Check for speech recognition support
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            try {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.lang = 'en-US';
-                
-                recognition.onstart = () => {
-                    console.log('Voice recognition started');
-                    updateStatus('🎤 Listening... Speak now');
-                };
-                
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    commandInput.value = transcript;
-                    updateStatus(`🎤 Heard: "${transcript}"`);
-                    processCommand(transcript);
-                    stopVoice();
-                };
-                
-                recognition.onerror = (event) => {
-                    console.error('Voice error:', event.error);
-                    let errorMsg = '';
-                    switch(event.error) {
-                        case 'not-allowed':
-                            errorMsg = 'Microphone permission denied. Please allow microphone access.';
-                            break;
-                        case 'no-speech':
-                            errorMsg = 'No speech detected. Please try again.';
-                            break;
-                        default:
-                            errorMsg = 'Voice error: ' + event.error;
-                    }
-                    updateStatus('❌ ' + errorMsg);
-                    addSystemMessage(errorMsg, false);
-                    stopVoice();
-                };
-                
-                recognition.onend = () => {
-                    stopVoice();
-                };
-            } catch(e) {
-                console.error('Failed to initialize speech recognition:', e);
-                addSystemMessage("⚠️ Voice recognition couldn't be initialized. Text input works perfectly though!", false);
-            }
-        } else {
-            console.warn('Voice recognition not supported');
-            const voiceBtn = document.getElementById('voiceBtn');
-            voiceBtn.disabled = true;
-            voiceBtn.title = 'Voice not supported in this browser';
-            voiceBtn.style.opacity = '0.5';
-            addSystemMessage("🎤 Voice input isn't supported in your browser. But you can still type commands!", false);
-        }
-        
-        // Speech Synthesis (Text-to-Speech)
-        function speak(text) {
-            if (!window.speechSynthesis) {
-                console.warn('Speech synthesis not supported');
-                return;
-            }
-            
-            try {
-                // Cancel any ongoing speech
-                window.speechSynthesis.cancel();
-                
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.rate = 0.9;
-                utterance.pitch = 1;
-                utterance.volume = 1;
-                
-                utterance.onstart = () => updateStatus('🔊 Speaking...');
-                utterance.onend = () => updateStatus('🟢 Ready');
-                utterance.onerror = (e) => {
-                    console.error('Speech error:', e);
-                    updateStatus('🟢 Ready');
-                };
-                
-                // Small delay to ensure speech synthesis is ready
-                setTimeout(() => {
-                    window.speechSynthesis.speak(utterance);
-                }, 100);
-            } catch(e) {
-                console.error('Speech synthesis failed:', e);
-                updateStatus('🟢 Ready');
-            }
-        }
-        
-        // Voice controls
-        function toggleVoice() {
-            if (!recognition) {
-                speak("Sorry, voice recognition is not supported in your browser.");
-                addSystemMessage("🎤 Voice recognition not supported. Please use text input.", false);
-                return;
-            }
-            
-            if (isListening) {
-                stopVoice();
-            } else {
-                startVoice();
-            }
-        }
-        
-        function startVoice() {
-            try {
-                recognition.start();
-                isListening = true;
-                const voiceBtn = document.getElementById('voiceBtn');
-                voiceBtn.classList.add('listening');
-                voiceBtn.textContent = '🔴 Listening...';
-                updateStatus('🎤 Listening... Speak now');
-            } catch (error) {
-                console.error('Failed to start voice:', error);
-                updateStatus('❌ Failed to start voice input. Try clicking the mic button again.');
-                if (error.name === 'NotAllowedError') {
-                    addSystemMessage("🔴 Microphone access denied. Please allow microphone permission and try again.", false);
-                }
-                stopVoice();
-            }
-        }
-        
-        function stopVoice() {
-            if (recognition && isListening) {
+        // Load saved memory from browser (even after refresh!)
+        function loadMemory() {
+            const saved = localStorage.getItem('jarvis_memory');
+            if (saved) {
                 try {
-                    recognition.stop();
-                } catch (e) {}
-                isListening = false;
-                const voiceBtn = document.getElementById('voiceBtn');
-                voiceBtn.classList.remove('listening');
-                voiceBtn.textContent = '🎤 Voice';
+                    memory = JSON.parse(saved);
+                    addSystemMessage("🧠 I remember our last conversation!", false);
+                } catch(e) {}
             }
         }
         
-        // Update status
-        function updateStatus(message) {
-            statusText.innerHTML = message;
-            if (!message.includes('Speaking') && !message.includes('Listening')) {
-                setTimeout(() => {
-                    if (statusText.innerHTML === message) {
-                        statusText.innerHTML = '🟢 Ready | Created by Viren Singh @ Teaser Company';
-                    }
-                }, 3000);
-            }
-        }
-        
-        // Add system message
-        function addSystemMessage(text, isUser) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
-            
-            const content = document.createElement('div');
-            content.className = 'message-content';
-            content.innerHTML = text;
-            content.style.fontSize = '0.9em';
-            if (!isUser) content.style.background = 'rgba(255, 255, 255, 0.8)';
-            
-            messageDiv.appendChild(content);
-            chatArea.appendChild(messageDiv);
-            chatArea.scrollTop = chatArea.scrollHeight;
+        // Save memory (so it persists after page refresh)
+        function saveMemory() {
+            localStorage.setItem('jarvis_memory', JSON.stringify(memory));
         }
         
         // Add message to chat
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
-            
             const content = document.createElement('div');
             content.className = 'message-content';
             content.innerHTML = text;
-            
             messageDiv.appendChild(content);
             chatArea.appendChild(messageDiv);
             chatArea.scrollTop = chatArea.scrollHeight;
         }
         
-        // Show typing indicator
-        function showTyping(show) {
-            if (show) {
-                typingIndicator.classList.add('active');
-                chatArea.scrollTop = chatArea.scrollHeight;
-            } else {
-                typingIndicator.classList.remove('active');
+        function addSystemMessage(text, isUser) {
+            addMessage(text, isUser);
+        }
+        
+        // Update status
+        function updateStatus(message) {
+            statusText.innerHTML = message;
+            setTimeout(() => {
+                if (statusText.innerHTML === message) {
+                    statusText.innerHTML = '🧠 Active Memory | Created by Viren Singh | Teaser Company';
+                }
+            }, 3000);
+        }
+        
+        // ============= MEMORY FUNCTIONS =============
+        
+        // Learn from what user says
+        function learnFromInput(input) {
+            let learned = false;
+            let response = "";
+            
+            // Learn name: "My name is Viren" or "Call me Viren" or "I am Viren"
+            const namePatterns = [
+                /my name is (\w+)/i,
+                /call me (\w+)/i,
+                /i am (\w+)/i,
+                /i'm (\w+)/i,
+                /you can call me (\w+)/i
+            ];
+            
+            for (let pattern of namePatterns) {
+                const match = input.match(pattern);
+                if (match) {
+                    memory.name = match[1];
+                    saveMemory();
+                    learned = true;
+                    response = `Nice to meet you ${memory.name}! I'll remember that. 🎉`;
+                    break;
+                }
             }
+            
+            // Learn likes: "I like pizza" or "I love coding" or "My favorite food is pizza"
+            if (!learned && (input.includes('like ') || input.includes('love ') || input.includes('favorite'))) {
+                let likeMatch = input.match(/(?:like|love|favorite (?:food|color|movie|song|thing) is?) (\w+)/i);
+                if (likeMatch) {
+                    const item = likeMatch[1];
+                    if (!memory.likes.includes(item)) {
+                        memory.likes.push(item);
+                        saveMemory();
+                        learned = true;
+                        response = `Got it! You like ${item}. I'll remember that! 📝`;
+                    }
+                }
+            }
+            
+            // Learn facts: "I am a student" or "I study computer science"
+            if (!learned && (input.includes('i am a ') || input.includes('i study ') || input.includes('i work as'))) {
+                let factMatch = input.match(/i am a (.+)/i) || input.match(/i study (.+)/i);
+                if (factMatch) {
+                    const fact = factMatch[1];
+                    memory.facts.push(fact);
+                    saveMemory();
+                    learned = true;
+                    response = `I'll remember that you're ${fact}! 📚`;
+                }
+            }
+            
+            return { learned, response };
+        }
+        
+        // Recall information from memory
+        function recallFromInput(input) {
+            // Ask for name
+            if (input.includes('what is my name') || input.includes('my name') || input.includes('who am i')) {
+                if (memory.name) {
+                    return `Your name is ${memory.name}! 🎯`;
+                } else {
+                    return "I don't know your name yet. Tell me: 'My name is Viren'";
+                }
+            }
+            
+            // Ask what I like
+            if (input.includes('what do i like') || input.includes('my favorite') || input.includes('what i like')) {
+                if (memory.likes.length > 0) {
+                    return `You like ${memory.likes.join(', ')}! 😊`;
+                } else {
+                    return "I don't know what you like yet. Tell me: 'I like pizza'";
+                }
+            }
+            
+            // Ask what you remember about me
+            if (input.includes('what do you remember') || input.includes('what do you know about me')) {
+                let memories = [];
+                if (memory.name) memories.push(`Your name is ${memory.name}`);
+                if (memory.likes.length) memories.push(`You like ${memory.likes.join(', ')}`);
+                if (memory.facts.length) memories.push(`You told me: ${memory.facts.join(', ')}`);
+                
+                if (memories.length > 0) {
+                    return `I remember: ${memories.join('. ')} 📝`;
+                } else {
+                    return "I don't know much about you yet. Tell me things like 'My name is Viren' or 'I like pizza'!";
+                }
+            }
+            
+            return null;
+        }
+        
+        // Show all memory
+        function showMemory() {
+            let memoryText = "🧠 <strong>What I Remember About You:</strong><br><br>";
+            
+            if (memory.name) memoryText += `📛 Name: ${memory.name}<br>`;
+            if (memory.likes.length > 0) memoryText += `❤️ Likes: ${memory.likes.join(', ')}<br>`;
+            if (memory.facts.length > 0) memoryText += `📚 Facts: ${memory.facts.join(', ')}<br>`;
+            
+            if (!memory.name && memory.likes.length === 0 && memory.facts.length === 0) {
+                memoryText += "I don't know anything about you yet!<br><br>Try telling me:<br>• 'My name is Viren'<br>• 'I like pizza'<br>• 'I am a student'";
+            }
+            
+            addMessage(memoryText, false);
+            updateStatus("Showing memory...");
+        }
+        
+        // Clear all memory
+        function clearMemory() {
+            memory = { name: null, likes: [], dislikes: [], facts: [], preferences: {} };
+            saveMemory();
+            addMessage("🗑️ I've forgotten everything! You can tell me things again.", false);
+            updateStatus("Memory cleared!");
         }
         
         // ============= COMMAND PROCESSOR =============
         
         async function processCommand(forcedInput = null) {
             const input = forcedInput || commandInput.value;
-            if (!input.trim()) {
-                speak("Please say or type something.");
-                return;
-            }
+            if (!input.trim()) return;
             
-            // Clear input and add user message
+            // Add user message
+            addMessage(input, true);
             commandInput.value = '';
-            addMessage(escapeHtml(input), true);
+            updateStatus("Thinking...");
             
-            // Show typing indicator
-            showTyping(true);
-            
-            // Process command after short delay
             setTimeout(() => {
-                const response = handleCommand(input.toLowerCase());
-                showTyping(false);
-                addMessage(response.text, false);
-                speak(response.text);
+                let response = "";
+                let actionUrl = null;
+                const lowerInput = input.toLowerCase();
                 
-                // Execute any actions (like opening URLs)
-                if (response.url) {
-                    window.open(response.url, '_blank');
+                // FIRST: Check if this is something to LEARN
+                const learning = learnFromInput(input);
+                if (learning.learned) {
+                    response = learning.response;
+                }
+                // SECOND: Check if this is asking to RECALL
+                else {
+                    const recall = recallFromInput(input);
+                    if (recall) {
+                        response = recall;
+                    }
+                    // THIRD: Normal commands
+                    else if (lowerInput.includes('open google')) {
+                        response = "🌐 Opening Google...";
+                        actionUrl = "https://www.google.com";
+                    }
+                    else if (lowerInput.includes('open youtube')) {
+                        response = "📺 Opening YouTube...";
+                        actionUrl = "https://www.youtube.com";
+                    }
+                    else if (lowerInput.includes('open github')) {
+                        response = "🐙 Opening GitHub...";
+                        actionUrl = "https://github.com";
+                    }
+                    else if (lowerInput.includes('what time') || lowerInput.includes('current time')) {
+                        const now = new Date();
+                        response = `⏰ Current time: ${now.toLocaleTimeString()}`;
+                    }
+                    else if (lowerInput.includes('what date') || lowerInput.includes('today\'s date')) {
+                        const now = new Date();
+                        response = `📅 Today is: ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+                    }
+                    else if (lowerInput.includes('tell me a joke') || lowerInput.includes('joke')) {
+                        const jokes = [
+                            "Why do programmers prefer dark mode? Because light attracts bugs! 😂",
+                            "What do you call a fake noodle? An impasta! 🍝",
+                            "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                        ];
+                        response = jokes[Math.floor(Math.random() * jokes.length)];
+                    }
+                    else if (lowerInput.includes('calculate')) {
+                        try {
+                            let calc = input.replace('calculate', '').trim();
+                            calc = calc.replace(/[^0-9+\-*/().]/g, '');
+                            const result = eval(calc);
+                            response = `🧮 ${calc} = ${result}`;
+                        } catch(e) {
+                            response = "❌ Sorry, couldn't calculate that. Try 'calculate 5 + 3'";
+                        }
+                    }
+                    else if (lowerInput.includes('show memory') || lowerInput.includes('what do you remember')) {
+                        showMemory();
+                        return;
+                    }
+                    else if (lowerInput.includes('forget everything') || lowerInput.includes('clear memory')) {
+                        clearMemory();
+                        return;
+                    }
+                    else if (lowerInput.includes('who created you') || lowerInput.includes('viren')) {
+                        response = "I was created by Viren Singh from Teaser Company! 🎉";
+                    }
+                    else if (lowerInput.includes('help') || lowerInput.includes('what can you do')) {
+                        response = `🎯 <strong>What I can do (with MEMORY!):</strong><br><br>
+                        📝 <strong>Remember things:</strong> "My name is Viren", "I like pizza"<br>
+                        ❓ <strong>Ask what I remember:</strong> "What's my name?", "What do I like?"<br>
+                        🧠 <strong>Show memory:</strong> "What do you remember about me?"<br>
+                        🌐 <strong>Open websites:</strong> "Open Google", "Open YouTube"<br>
+                        ⏰ <strong>Time & Date:</strong> "What time is it?"<br>
+                        😄 <strong>Jokes:</strong> "Tell me a joke"<br><br>
+                        I remember things even after you refresh the page!`;
+                    }
+                    else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
+                        if (memory.name) {
+                            response = `Hello ${memory.name}! How can I help you today? 👋`;
+                        } else {
+                            response = "Hello! Tell me your name so I can remember it! ('My name is Viren') 👋";
+                        }
+                    }
+                    else {
+                        response = `❌ I don't understand that.<br><br>
+                        Try:<br>
+                        • "My name is Viren" (I'll remember)<br>
+                        • "I like pizza" (I'll remember)<br>
+                        • "What's my name?" (I'll recall)<br>
+                        • "Open Google"<br>
+                        • "Help" for more commands`;
+                    }
+                }
+                
+                addMessage(response, false);
+                updateStatus("Ready");
+                
+                if (actionUrl) {
+                    window.open(actionUrl, '_blank');
                 }
             }, 500);
         }
         
-        function handleCommand(query) {
-            // ===== ABOUT CREATOR (HIGHLIGHTED) =====
-            if (query.includes('who created you') || query.includes('who made you') || query.includes('your creator') || 
-                query.includes('viren') || query.includes('teaser company') || query.includes('about creator')) {
-                return {
-                    text: `I was created by <strong>${CREATOR_NAME}</strong> from <strong>${COMPANY_NAME}</strong>! 🏢<br><br>
-                    ${CREATOR_NAME} is a talented developer who built me to help people with their daily tasks. 
-                    ${COMPANY_NAME} is dedicated to creating innovative web solutions.<br><br>
-                    You can find ${CREATOR_NAME} on GitHub at <strong>github.com/${CREATOR_GITHUB}</strong><br><br>
-                    I'm proud to be a ${COMPANY_NAME} creation! ✨`
-                };
-            }
-            
-            // ===== COMPANY INFO =====
-            if (query.includes('teaser company') || query.includes('what is teaser company')) {
-                return {
-                    text: `<strong>${COMPANY_NAME}</strong> is an innovative tech company founded by ${CREATOR_NAME}. 🏢<br><br>
-                    We specialize in creating intelligent web applications, AI assistants, and cutting-edge digital solutions. 
-                    Our mission is to make technology accessible and helpful for everyone!<br><br>
-                    Learn more by asking "who created you"! ✨`
-                };
-            }
-            
-            // ===== WEBSITE OPENING =====
-            const websites = {
-                'google': 'https://www.google.com',
-                'youtube': 'https://www.youtube.com',
-                'github': 'https://github.com',
-                'gmail': 'https://mail.google.com',
-                'deepseek': 'https://www.deepseek.com',
-                'chatgpt': 'https://chat.openai.com',
-                'spotify': 'https://open.spotify.com',
-                'facebook': 'https://www.facebook.com',
-                'twitter': 'https://twitter.com',
-                'instagram': 'https://www.instagram.com',
-                'linkedin': 'https://www.linkedin.com',
-                'reddit': 'https://www.reddit.com',
-                'amazon': 'https://www.amazon.com',
-                'netflix': 'https://www.netflix.com'
-            };
-            
-            // Check for open commands
-            for (const [site, url] of Object.entries(websites)) {
-                if (query.includes(`open ${site}`) || query.includes(`go to ${site}`)) {
-                    return {
-                        text: `Opening ${site.charAt(0).toUpperCase() + site.slice(1)} for you! 🌐`,
-                        url: url
-                    };
-                }
-            }
-            
-            // ===== SEARCH COMMANDS =====
-            if (query.includes('search for') || query.includes('search')) {
-                let searchTerm = query.replace('search for', '').replace('search', '').trim();
-                if (searchTerm) {
-                    return {
-                        text: `Searching Google for "${searchTerm}" 🔍`,
-                        url: `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`
-                    };
-                }
-            }
-            
-            // ===== TIME & DATE =====
-            if (query.includes('what time') || query.includes('current time') || query.includes('time now')) {
-                const now = new Date();
-                const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                return { text: `⏰ The current time is ${time}` };
-            }
-            
-            if (query.includes('what date') || query.includes('today\'s date') || query.includes('what day')) {
-                const now = new Date();
-                const date = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                return { text: `📅 Today is ${date}` };
-            }
-            
-            // ===== CALCULATOR =====
-            if (query.includes('calculate') || (query.includes('what is') && /[\d\+\-\*\/]/.test(query))) {
-                try {
-                    let expression = query.replace('calculate', '').replace('what is', '').trim();
-                    expression = expression.replace(/[^0-9+\-*/().]/g, '');
-                    if (expression && expression.length > 0) {
-                        const result = Function('"use strict";return (' + expression + ')')();
-                        return { text: `🧮 The answer is ${result}` };
-                    }
-                } catch (e) {
-                    return { text: "❌ Sorry, I couldn't calculate that. Try something like 'calculate 5 + 3'" };
-                }
-            }
-            
-            // ===== JOKES =====
-            const jokes = [
-                "Why don't scientists trust atoms? Because they make up everything! 🔬",
-                "What do you call a fake noodle? An impasta! 🍝",
-                "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
-                "What do you call a bear with no teeth? A gummy bear! 🐻",
-                "Why don't eggs tell jokes? They'd crack each other up! 🥚",
-                "What do you call a fish wearing a bowtie? Sofishticated! 🐟",
-                "Why did the math book look so sad? Because it had too many problems! 📚"
-            ];
-            
-            if (query.includes('joke') || query.includes('funny') || query.includes('tell me a joke')) {
-                const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
-                return { text: randomJoke };
-            }
-            
-            // ===== GREETINGS =====
-            const greetings = ['hello', 'hi', 'hey', 'greetings', 'what\'s up'];
-            if (greetings.some(g => query.includes(g))) {
-                const responses = [
-                    `Hello there! I'm Jarvis, created by ${CREATOR_NAME} from ${COMPANY_NAME}. How can I help you today? 👋`,
-                    `Hi! Ready to assist you! Did you know I was made by ${CREATOR_NAME} at ${COMPANY_NAME}? 😊`,
-                    `Hey! What can I do for you? Proudly built by ${CREATOR_NAME}! 🤖`,
-                    `Greetings! How may I be of service? Brought to you by ${COMPANY_NAME} ✨`
-                ];
-                return { text: responses[Math.floor(Math.random() * responses.length)] };
-            }
-            
-            if (query.includes('how are you')) {
-                return { text: `I'm doing great, thanks for asking! As a product of ${COMPANY_NAME}, I'm always ready to help! 😊` };
-            }
-            
-            // ===== HELP =====
-            if (query.includes('help') || query.includes('what can you do') || query.includes('commands')) {
-                return {
-                    text: `🎯 <strong>Here's what I can do (Created by ${CREATOR_NAME} @ ${COMPANY_NAME}):</strong><br><br>
-                    👤 <strong>About:</strong> "who created you", "about teaser company"<br>
-                    🌐 <strong>Open websites:</strong> "open google", "open youtube", "open github"<br>
-                    🔍 <strong>Search:</strong> "search for cute cats"<br>
-                    ⏰ <strong>Time & Date:</strong> "what time is it", "what day is it"<br>
-                    🧮 <strong>Calculate:</strong> "calculate 25 * 4"<br>
-                    😄 <strong>Jokes:</strong> "tell me a joke"<br>
-                    💬 <strong>Chat:</strong> "hello", "how are you"<br><br>
-                    Thanks for using my assistant! - ${CREATOR_NAME}`
-                };
-            }
-            
-            // ===== DEFAULT RESPONSE =====
-            return {
-                text: `❌ I'm not sure how to help with "${escapeHtml(query)}".<br><br>Try saying "help" to see what I can do! Or ask "who created you" to learn about my maker. 🎯`
-            };
-        }
-        
-        // Helper function to escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // Helper functions
         function handleEnter(event) {
-            if (event.key === 'Enter') {
-                processCommand();
-            }
+            if (event.key === 'Enter') processCommand();
         }
         
         function quickCommand(command) {
@@ -760,27 +577,20 @@
             processCommand();
         }
         
-        // Load voices when ready
-        if (window.speechSynthesis) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                window.speechSynthesis.getVoices();
-            };
-        }
+        // Load saved memory on startup
+        loadMemory();
         
-        // Focus input on load
+        // Focus input
         commandInput.focus();
         
-        // Welcome message with creator info
+        // Welcome message
         setTimeout(() => {
-            const welcomeMsg = `Hello! I'm Jarvis, created by ${CREATOR_NAME} from ${COMPANY_NAME}. How can I help you today?`;
-            speak(welcomeMsg);
+            if (memory.name) {
+                addMessage(`Welcome back ${memory.name}! I remember you! 🎉`, false);
+            } else {
+                addMessage("I have MEMORY now! Tell me things like 'My name is Viren' and I'll remember them even after you refresh the page! 🧠", false);
+            }
         }, 1000);
-        
-        // Add creator credit to console
-        console.log(`🎉 Jarvis Assistant - Created by ${CREATOR_NAME} @ ${COMPANY_NAME}`);
-        console.log('🔗 GitHub:', `https://github.com/${CREATOR_GITHUB}`);
-        console.log('🔒 HTTPS:', isHttps);
-        console.log('🎤 Voice recognition:', !!recognition);
     </script>
 </body>
 </html>
