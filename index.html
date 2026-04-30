@@ -228,7 +228,7 @@
 <body>
     <div class="assistant">
         <div class="header">
-            <div class="avatar">✈️</div>
+            <div class="avatar">🤖</div>
             <h1>JARVIS</h1>
             <div class="creator">Created by <strong>Viren Singh</strong> | <strong>Teaser Company</strong></div>
             <div class="memory-badge">🧠 I HAVE MEMORY! I remember what you tell me</div>
@@ -237,8 +237,8 @@
         <div class="chat-area" id="chatArea">
             <div class="message assistant-message">
                 <div class="message-content">
-                    👋 <strong>Hello! I'm Jarvis with MEMORY!</strong><br><br>
-                    I can now remember things you tell me:<br><br>
+                    👋 <strong>Hello! I'm Jarvis !</strong><br><br>
+                    latest update I can now remember things you tell me:<br><br>
                     📝 <strong>"My name is Viren"</strong> - I'll remember your name<br>
                     📝 <strong>"I like pizza"</strong> - I'll remember your favorites<br>
                     📝 <strong>"My favorite color is blue"</strong> - I'll remember!<br><br>
@@ -494,6 +494,12 @@
                         response = "🐙 Opening GitHub...";
                         actionUrl = "https://github.com";
                     }
+                         }
+                    else if (lowerInput.includes('open cousera')) {
+                        response = "🐙 Opening cousera...";
+                        actionUrl = " https://www.coursera.org/";
+                    }
+                        
                     else if (lowerInput.includes('what time') || lowerInput.includes('current time')) {
                         const now = new Date();
                         response = `⏰ Current time: ${now.toLocaleTimeString()}`;
@@ -507,6 +513,8 @@
                             "Why do programmers prefer dark mode? Because light attracts bugs! 😂",
                             "What do you call a fake noodle? An impasta! 🍝",
                             "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                            "Why did the computer go to the doctor? It had a virus."
+                            "Why was the math book sad? It had too many problems"
                         ];
                         response = jokes[Math.floor(Math.random() * jokes.length)];
                     }
