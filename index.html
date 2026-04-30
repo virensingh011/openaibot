@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>TeaserAI Ultimate | Smart Assistant for Physics, Chemistry, Health & More</title>
+    <title>TeaserAI Ultimate | Premium Animated Assistant | Viren Singh</title>
     <style>
         * {
             margin: 0;
@@ -27,10 +27,11 @@
             background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Animated Particles */
-        .particles {
+        /* Animated Background Particles */
+        #particles {
             position: fixed;
             top: 0;
             left: 0;
@@ -38,20 +39,57 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
 
         .particle {
             position: absolute;
-            background: rgba(255,255,255,0.1);
+            background: radial-gradient(circle, rgba(102,126,234,0.4) 0%, rgba(118,75,162,0.2) 100%);
             border-radius: 50%;
-            animation: float 20s infinite;
+            animation: floatParticle linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glow Effect */
+        .glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102,126,234,0.3) 0%, rgba(118,75,162,0) 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.1;
+            }
         }
 
         /* Navbar */
@@ -63,16 +101,22 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: slideDown 0.5s ease;
+            animation: slideDown 0.6s ease;
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .logo {
@@ -87,20 +131,18 @@
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-text-fill-color: transparent;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.6; }
         }
 
         .voice-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .mic-btn {
@@ -126,8 +168,14 @@
         }
 
         @keyframes pulseMic {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,71,87,0.7); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,71,87,0); }
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255,71,87,0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(255,71,87,0);
+            }
         }
 
         .user-name {
@@ -146,6 +194,7 @@
 
         .logout-btn:hover {
             background: rgba(0,0,0,0.2);
+            transform: translateY(-2px);
         }
 
         /* Main Container */
@@ -166,13 +215,14 @@
             height: 70vh;
             display: flex;
             flex-direction: column;
-            animation: fadeInUp 0.6s ease;
+            animation: fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -258,8 +308,13 @@
             }
         }
 
-        .user-message { justify-content: flex-end; }
-        .ai-message { justify-content: flex-start; }
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .ai-message {
+            justify-content: flex-start;
+        }
 
         .message-content {
             max-width: 75%;
@@ -290,10 +345,9 @@
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 15px;
-            padding: 10px;
+            padding: 10px 20px;
             background: rgba(0,0,0,0.03);
-            border-radius: 15px;
+            border-bottom: 1px solid #eee;
         }
 
         .subject-btn {
@@ -302,7 +356,7 @@
             border: 1px solid #e0e0e0;
             border-radius: 20px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s;
             font-size: 13px;
         }
 
@@ -310,6 +364,7 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         /* Typing Indicator */
@@ -324,7 +379,9 @@
             border: 1px solid #eee;
         }
 
-        .typing.active { display: block; }
+        .typing.active {
+            display: block;
+        }
 
         .typing span {
             display: inline-block;
@@ -336,12 +393,21 @@
             animation: typingAnim 1.4s infinite;
         }
 
-        .typing span:nth-child(2) { animation-delay: 0.2s; }
-        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        .typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes typingAnim {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Input Area */
@@ -380,7 +446,7 @@
             color: white;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
 
         .send-btn:hover {
@@ -388,18 +454,28 @@
             box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
 
-        .search-toggle {
-            margin-top: 10px;
+        .quick-actions {
             display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 10px;
-            font-size: 12px;
-            color: #666;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            justify-content: center;
         }
 
-        .search-toggle input {
-            margin-right: 5px;
+        .quick-btn {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Login Modal */
@@ -419,8 +495,14 @@
         }
 
         @keyframes modalFade {
-            from { opacity: 0; backdrop-filter: blur(0); }
-            to { opacity: 1; backdrop-filter: blur(20px); }
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(20px);
+            }
         }
 
         .modal-content {
@@ -430,12 +512,18 @@
             max-width: 450px;
             width: 90%;
             text-align: center;
-            animation: modalScale 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: modalScale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         @keyframes modalScale {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .modal-content h2 {
@@ -473,21 +561,55 @@
 
         .modal-content button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
 
-        .assistant-section { display: none; }
-        .assistant-section.active { display: block; }
+        .error-msg {
+            color: #ef4444;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        .assistant-section {
+            display: none;
+        }
+
+        .assistant-section.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+        }
 
         @media (max-width: 768px) {
-            .navbar { padding: 15px 20px; }
-            .message-content { max-width: 85%; font-size: 0.9em; }
-            .subject-buttons { justify-content: center; }
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .message-content {
+                max-width: 85%;
+                font-size: 0.9em;
+            }
+
+            .subject-buttons {
+                justify-content: center;
+            }
+
+            .modal-content {
+                padding: 30px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="particles" id="particles"></div>
+<div id="particles"></div>
+<div class="glow"></div>
 
 <nav class="navbar">
     <div class="logo">
@@ -505,9 +627,9 @@
         <div class="chat-card">
             <div class="chat-header">
                 <h2>
-                    🧠 TeaserAI Ultimate
+                    🧠 TeaserAI Premium
                     <span style="font-size: 11px; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px;">
-                        Physics | Chemistry | Health | Web Search
+                        Powered by Mistral 7B
                     </span>
                 </h2>
                 <div class="status-badge">
@@ -517,30 +639,27 @@
             </div>
 
             <div class="subject-buttons">
-                <button class="subject-btn" onclick="quickCommand('What is Newton\'s second law of motion?')">⚛️ Physics</button>
-                <button class="subject-btn" onclick="quickCommand('What is the chemical formula for water? Explain its properties.')">🧪 Chemistry</button>
-                <button class="subject-btn" onclick="quickCommand('How to stay healthy? Give tips for a balanced diet.')">💪 Health</button>
-                <button class="subject-btn" onclick="quickCommand('Explain quantum computing in simple terms.')">🔬 Science</button>
-                <button class="subject-btn" onclick="quickCommand('latest AI news 2026')">🌐 Web Search</button>
+                <button class="subject-btn" onclick="quickAsk('What is Newton\'s second law of motion? Explain it simply with examples.')">⚛️ Physics</button>
+                <button class="subject-btn" onclick="quickAsk('What is the chemical formula for water? Explain its properties and why it\'s important.')">🧪 Chemistry</button>
+                <button class="subject-btn" onclick="quickAsk('Give me 5 practical tips for staying healthy physically and mentally.')">💪 Health</button>
+                <button class="subject-btn" onclick="quickAsk('Write a Python function to check if a number is prime. Include comments.')">💻 Code</button>
+                <button class="subject-btn" onclick="quickAsk('Tell me a funny programming joke.')">😄 Fun</button>
+                <button class="subject-btn" onclick="quickAsk('open google')">🌐 Web</button>
             </div>
 
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
                     <div class="message-content">
-                        <strong>✨ Welcome to TeaserAI Ultimate!</strong><br><br>
-                        I'm your smart assistant that can answer ANY question! 🎉<br><br>
+                        <strong>✨ Welcome to TeaserAI Premium!</strong><br><br>
+                        I'm your advanced AI assistant powered by <strong>Mistral 7B</strong> through Hugging Face! 🚀<br><br>
                         <strong>What makes me special:</strong><br>
-                        🧪 I answer Physics & Chemistry questions<br>
-                        💪 I give Health & Wellness advice<br>
-                        🌐 I can SEARCH the web for latest info<br>
+                        🧪 I answer Physics & Chemistry questions intelligently<br>
+                        💪 I give personalized Health & Wellness advice<br>
+                        💻 I help with Coding (Python, JavaScript, etc.)<br>
+                        🌐 I can open websites (Google, YouTube, GitHub)<br>
                         🎤 I listen to your voice commands<br>
-                        💬 I ALWAYS respond thoughtfully<br><br>
-                        <strong>Try asking me:</strong><br>
-                        • "What is the speed of light?"<br>
-                        • "Explain photosynthesis"<br>
-                        • "How to lose weight healthily?"<br>
-                        • "Search for latest AI news"<br><br>
-                        I'll ALWAYS give you a meaningful answer! 🚀
+                        💬 I ALWAYS respond thoughtfully - never "I don't understand"<br><br>
+                        <strong>Try asking me anything!</strong> Type below or click the quick buttons. 🎉
                     </div>
                 </div>
             </div>
@@ -551,51 +670,64 @@
 
             <div class="input-area">
                 <div class="input-group">
-                    <input type="text" class="command-input" id="commandInput" placeholder="Ask me ANYTHING - Physics, Chemistry, Health, or general questions..." onkeypress="handleEnter(event)">
+                    <input type="text" class="command-input" id="commandInput" placeholder="Ask me anything about Physics, Chemistry, Health, Coding..." onkeypress="handleEnter(event)">
                     <button class="send-btn" onclick="sendMessage()">Send 📤</button>
                 </div>
-                <div class="search-toggle">
-                    <input type="checkbox" id="webSearchToggle"> 🌐 Enable Web Search (for latest information)
-                </div>
-                <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #aaa;">
-                    🎤 Click mic to speak | I answer EVERY question intelligently
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="quickAsk('What is quantum entanglement? Explain simply.')">🔬 Quantum</button>
+                    <button class="quick-btn" onclick="quickAsk('Explain how the human digestive system works.')">🧬 Biology</button>
+                    <button class="quick-btn" onclick="quickAsk('How can I improve my focus and concentration?')">🧠 Focus</button>
+                    <button class="quick-btn" onclick="quickAsk('Tell me an interesting science fact.')">📚 Fact</button>
                 </div>
             </div>
+        </div>
+        <div class="footer">
+            © 2026 Teaser Company | Created by Viren Singh | Powered by Hugging Face AI
         </div>
     </div>
 </div>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
-        <h2>🔐 Welcome to TeaserAI Ultimate</h2>
-        <p>Your Smart Assistant for Physics, Chemistry, Health & More!</p>
+        <h2>🔐 Welcome to TeaserAI Premium</h2>
+        <p>Your Advanced AI Assistant for Physics, Chemistry, Health & More!</p>
         <input type="text" id="loginName" placeholder="Enter your name">
         <input type="email" id="loginEmail" placeholder="Enter your email">
         <button onclick="login()">Start Exploring →</button>
-        <div id="loginError" style="color: red; margin-top: 15px;"></div>
-        <p style="margin-top: 20px; font-size: 12px;">✨ Ask me ANY scientific question - I'll give you a detailed answer!</p>
+        <div id="loginError" class="error-msg"></div>
+        <p style="margin-top: 20px; font-size: 12px;">✨ Powered by Hugging Face API | Mistral 7B Model</p>
     </div>
 </div>
 
 <script>
-    // ============= TEASERAI ULTIMATE - SMART ASSISTANT =============
+    // ============= TEASERAI PREMIUM - WITH HUGGING FACE API =============
+    
+    // YOUR API KEY - PASTE YOUR TOKEN HERE
+    const HUGGING_FACE_API_KEY = "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";
+    
+    // Using Mistral 7B - Best free model for conversation
+    const HF_MODEL = "mistralai/Mistral-7B-Instruct-v0.3";
     
     let userName = "";
     let recognition = null;
     let isListening = false;
-    let webSearchEnabled = false;
+    let useAI = true; // Toggle AI mode on/off (falls back to local responses if API fails)
     
-    // Create particles
+    // Create animated particles
     function createParticles() {
         const container = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
+        if (!container) return;
+        
+        for (let i = 0; i < 60; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            particle.style.width = Math.random() * 8 + 2 + 'px';
-            particle.style.height = particle.style.width;
+            const size = Math.random() * 6 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
             particle.style.left = Math.random() * 100 + '%';
+            const duration = Math.random() * 15 + 8;
+            particle.style.animationDuration = duration + 's';
             particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
             container.appendChild(particle);
         }
     }
@@ -657,14 +789,6 @@
     const chatMessages = document.getElementById('chatMessages');
     const commandInput = document.getElementById('commandInput');
     const typingIndicator = document.getElementById('typingIndicator');
-    const webSearchToggle = document.getElementById('webSearchToggle');
-    
-    if (webSearchToggle) {
-        webSearchToggle.addEventListener('change', (e) => {
-            webSearchEnabled = e.target.checked;
-            addMessage(webSearchEnabled ? "🌐 Web search enabled! I'll search online for latest information." : "🔍 Web search disabled. I'll use my knowledge base.", false);
-        });
-    }
     
     function addMessage(text, isUser) {
         const messageDiv = document.createElement('div');
@@ -682,273 +806,244 @@
         else typingIndicator.classList.remove('active');
     }
     
-    // ============= SMART RESPONSE GENERATOR =============
-    // This generates intelligent responses for ANY question
-    
-    function getSmartResponse(question, name) {
-        const q = question.toLowerCase();
-        const userName = name || "friend";
-        
-        // ===== PHYSICS ANSWERS =====
-        if (q.includes('newton') || q.includes('force') || (q.includes('f=') && q.includes('ma'))) {
-            return `🔬 <strong>Newton's Second Law of Motion</strong><br><br>
-            Newton's second law states that the force acting on an object is equal to the mass of that object multiplied by its acceleration (F = ma).<br><br>
-            📌 <strong>Key points:</strong><br>
-            • Force is measured in Newtons (N)<br>
-            • Mass in kilograms (kg)<br>
-            • Acceleration in meters per second squared (m/s²)<br><br>
-            💡 <strong>Real-world example:</strong> Pushing a empty shopping cart (low mass) is easier than pushing a full one (high mass) - the same force produces more acceleration on the lighter object!`;
-        }
-        
-        if (q.includes('speed of light') || q.includes('light speed')) {
-            return `⚡ <strong>The Speed of Light</strong><br><br>
-            The speed of light in a vacuum is approximately <strong>299,792,458 meters per second</strong> (about 300,000 km/s or 186,000 miles/s).<br><br>
-            🌟 <strong>Fascinating facts:</strong><br>
-            • Light from the Sun takes about 8 minutes and 20 seconds to reach Earth<br>
-            • Nothing in the universe can travel faster than light in a vacuum<br>
-            • This speed is a fundamental constant of nature, denoted as 'c' in physics equations<br><br>
-            Einstein's theory of relativity shows that as objects approach the speed of light, time slows down and mass increases!`;
-        }
-        
-        if (q.includes('gravity') || q.includes('gravitational')) {
-            return `🌍 <strong>Gravity Explained</strong><br><br>
-            Gravity is the fundamental force that attracts objects with mass toward each other.<br><br>
-            📐 <strong>Key facts:</strong><br>
-            • On Earth, gravity accelerates objects at 9.8 m/s²<br>
-            • The Moon's gravity is about 1/6th of Earth's<br>
-            • Gravity follows the inverse-square law - double the distance, quarter the force<br><br>
-            🔭 <strong>Did you know?</strong> Without gravity, Earth wouldn't have an atmosphere, oceans would float away, and we'd all be weightless!`;
-        }
-        
-        if (q.includes('quantum') || q.includes('quantum computing')) {
-            return `🔮 <strong>Quantum Computing Simplified</strong><br><br>
-            Unlike classical computers that use bits (0 or 1), quantum computers use <strong>qubits</strong> that can be 0, 1, or BOTH at the same time (superposition)!<br><br>
-            💡 <strong>Why it matters:</strong><br>
-            • Can solve certain problems exponentially faster<br>
-            • Great for cryptography, drug discovery, and climate modeling<br>
-            • Uses quantum phenomena like entanglement and superposition<br><br>
-            Think of it like spinning a coin - while it's spinning, it's both heads AND tails! 🪙`;
-        }
-        
-        // ===== CHEMISTRY ANSWERS =====
-        if (q.includes('chemical formula for water') || (q.includes('water') && q.includes('h2o'))) {
-            return `💧 <strong>Water (H₂O) - The Molecule of Life</strong><br><br>
-            Water's chemical formula is <strong>H₂O</strong>, meaning each water molecule contains 2 hydrogen atoms bonded to 1 oxygen atom.<br><br>
-            🧪 <strong>Properties of water:</strong><br>
-            • Boiling point: 100°C (212°F)<br>
-            • Freezing point: 0°C (32°F)<br>
-            • Density: 1 g/cm³ at 4°C<br>
-            • Universal solvent - dissolves more substances than any other liquid!<br><br>
-            🌊 <strong>Why it's special:</strong> Water expands when frozen (ice floats!), has high surface tension, and can absorb lots of heat without changing temperature.`;
-        }
-        
-        if (q.includes('photosynthesis')) {
-            return `🌿 <strong>Photosynthesis Explained</strong><br><br>
-            Photosynthesis is how plants convert sunlight into energy!<br><br>
-            📝 <strong>The chemical equation:</strong><br>
-            <strong>6CO₂ + 6H₂O + Light → C₆H₁₂O₆ + 6O₂</strong><br>
-            (Carbon dioxide + Water + Sunlight → Glucose + Oxygen)<br><br>
-            🔬 <strong>Key steps:</strong><br>
-            • Light-dependent reactions: Convert light to chemical energy (ATP)<br>
-            • Calvin cycle: Uses ATP to make glucose from CO₂<br><br>
-            🌎 Plants produce the oxygen we breathe through this amazing process!`;
-        }
-        
-        if (q.includes('periodic table') || q.includes('elements')) {
-            return `📊 <strong>The Periodic Table of Elements</strong><br><br>
-            The periodic table organizes all known chemical elements by their atomic number, electron configuration, and recurring chemical properties.<br><br>
-            🏷️ <strong>Key groups:</strong><br>
-            • Group 1: Alkali metals (very reactive - Li, Na, K)<br>
-            • Group 18: Noble gases (inert - He, Ne, Ar)<br>
-            • Transition metals: Fe, Cu, Au, Ag<br><br>
-            ⚡ <strong>Fun fact:</strong> There are 118 confirmed elements, with 94 occurring naturally on Earth!`;
-        }
-        
-        // ===== HEALTH & WELLNESS ANSWERS =====
-        if (q.includes('healthy') || q.includes('diet') || q.includes('nutrition')) {
-            return `🥗 <strong>Healthy Living & Balanced Diet Tips</strong><br><br>
-            A balanced diet is essential for good health! Here are key principles:<br><br>
-            🍎 <strong>What to eat:</strong><br>
-            • Fruits & vegetables (5+ servings daily)<br>
-            • Whole grains (brown rice, oats, quinoa)<br>
-            • Lean proteins (chicken, fish, beans, tofu)<br>
-            • Healthy fats (avocado, nuts, olive oil)<br><br>
-            💧 <strong>Stay hydrated!</strong> Drink 8-10 glasses of water daily.<br><br>
-            🏃 <strong>Remember:</strong> Combine good nutrition with regular exercise (150 minutes weekly) and 7-9 hours of sleep!`;
-        }
-        
-        if (q.includes('weight loss') || q.includes('lose weight')) {
-            return `⚖️ <strong>Healthy Weight Loss Guide</strong><br><br>
-            Sustainable weight loss is about creating a calorie deficit while maintaining nutrition.<br><br>
-            📋 <strong>Effective strategies:</strong><br>
-            • Eat more protein to feel full longer<br>
-            • Reduce processed foods and added sugars<br>
-            • Drink water before meals<br>
-            • Get 7-8 hours of sleep (key for metabolism!)<br>
-            • Exercise: mix cardio and strength training<br><br>
-            ⚠️ <strong>Important:</strong> Aim for 0.5-1 kg (1-2 lbs) loss per week - slower is healthier and more sustainable!`;
-        }
-        
-        if (q.includes('vitamin') || q.includes('mineral')) {
-            return `💊 <strong>Essential Vitamins & Minerals</strong><br><br>
-            🔴 <strong>Vitamin C:</strong> Immune health, found in citrus fruits and bell peppers<br>
-            🟠 <strong>Vitamin D:</strong> Bone health, from sunlight and fatty fish<br>
-            🟡 <strong>B12:</strong> Energy and nerve function, in meat and dairy<br>
-            🟢 <strong>Iron:</strong> Blood health, in spinach and red meat<br>
-            🔵 <strong>Calcium:</strong> Strong bones, in dairy and leafy greens<br><br>
-            💡 A varied diet with colorful fruits and vegetables usually provides all necessary vitamins!`;
-        }
-        
-        // ===== SCIENCE & GENERAL KNOWLEDGE =====
-        if (q.includes('black hole')) {
-            return `🕳️ <strong>Black Holes Explained</strong><br><br>
-            A black hole is a region of spacetime where gravity is so strong that nothing - not even light - can escape!<br><br>
-            🌟 <strong>How they form:</strong><br>
-            • When massive stars collapse at the end of their life<br>
-            • Creates a singularity - a point of infinite density<br>
-            • Surrounded by the "event horizon" - the point of no return<br><br>
-            🔭 In 2019, scientists captured the first-ever image of a black hole's shadow!`;
-        }
-        
-        if (q.includes('dna') || q.includes('genetic')) {
-            return `🧬 <strong>DNA - The Blueprint of Life</strong><br><br>
-            DNA (Deoxyribonucleic Acid) contains the genetic instructions for all living organisms.<br><br>
-            🧬 <strong>Structure (Double Helix):</strong><br>
-            • Discovered by Watson and Crick in 1953 (using Rosalind Franklin's X-ray data)<br>
-            • Made of 4 bases: A (Adenine), T (Thymine), G (Guanine), C (Cytosine)<br>
-            • A pairs with T, G pairs with C<br><br>
-            📏 Human DNA would stretch about 3 billion base pairs - that's 2 meters of DNA in every cell!`;
-        }
-        
-        // ===== WEB SEARCH SIMULATION =====
-        if (webSearchEnabled && (q.includes('latest') || q.includes('news') || q.includes('trending') || q.includes('2026') || q.includes('current') || q.includes('today'))) {
-            const searchTopics = {
-                'ai': "Latest AI News (2026): GPT-5 has been released with multimodal capabilities! Claude 4 and Gemini Ultra are pushing boundaries in reasoning. AI voice assistants are becoming indistinguishable from humans.",
-                'science': "Recent science breakthroughs: Room-temperature superconductors reported, CRISPR gene editing cures rare diseases, and quantum supremacy achieved with 1000 qubits!",
-                'tech': "Tech updates: Smart glasses with AR are mainstream, brain-computer interfaces allow typing with thoughts, and flying taxis begin commercial trials!",
-                'default': `I searched online for "${question}" 🔍\n\nBased on recent information: This is a great question! For the most up-to-date and specific information, I recommend checking Google News, Wikipedia, or trusted sources in your field. If you want me to open a search for you, just say "search google for ${question.substring(0, 50)}..."`
-            };
-            
-            let response = searchTopics.default;
-            for (const [key, value] of Object.entries(searchTopics)) {
-                if (q.includes(key)) {
-                    response = value;
-                    break;
-                }
+    function updateStatus(msg, isError = false) {
+        const badge = document.querySelector('.status-badge span');
+        if (badge) {
+            badge.innerHTML = msg;
+            if (isError) {
+                badge.style.color = '#ff4757';
+            } else {
+                badge.style.color = '';
             }
-            return `🌐 <strong>Web Search Results for: "${question.substring(0, 60)}..."</strong><br><br>${response}<br><br>📌 <i>Opening Google search for you in a new tab! You can find more detailed, updated information there.</i><br><br>💡 <strong>Pro tip:</strong> For specific answers, try asking more detailed questions or use "search google for [your question]"`;
         }
-        
-        // ===== GREETINGS & CHAT =====
-        if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
-            const greetings = [
-                `👋 Hello ${userName}! What scientific mystery shall we explore today? Physics? Chemistry? Health? Just ask away!`,
-                `✨ Hey ${userName}! Ready to learn something amazing? I can answer questions about anything from quantum physics to healthy living!`,
-                `🎉 Hi ${userName}! Ask me anything - I'll give you a thoughtful, detailed answer every time!`
-            ];
-            return greetings[Math.floor(Math.random() * greetings.length)];
+    }
+    
+    // ============= HUGGING FACE API CALL =============
+    async function askHuggingFace(question) {
+        try {
+            updateStatus("🤖 Contacting AI...");
+            
+            const response = await fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${HUGGING_FACE_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    inputs: `<|user|>\n${question}\n<|assistant|>`,
+                    parameters: {
+                        max_new_tokens: 800,
+                        temperature: 0.7,
+                        top_p: 0.95,
+                        do_sample: true
+                    }
+                })
+            });
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Hugging Face API Error:', errorText);
+                throw new Error(`API Error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            updateStatus("✅ AI ready");
+            
+            // Extract the generated text
+            let answer = data[0]?.generated_text || data.generated_text || JSON.stringify(data);
+            
+            // Clean up the response (remove the input prompt)
+            if (answer.includes('<|assistant|>')) {
+                answer = answer.split('<|assistant|>')[1];
+            }
+            if (answer.includes('<|user|>')) {
+                answer = answer.split('<|user|>')[0];
+            }
+            
+            return answer.trim();
+            
+        } catch (error) {
+            console.error('Hugging Face API Error:', error);
+            updateStatus("⚠️ Using local mode", true);
+            return null; // Fall back to local responses
         }
+    }
+    
+    // ============= LOCAL SMART RESPONSES (Fallback) =============
+    function getLocalResponse(question) {
+        const q = question.toLowerCase();
         
-        if (q.includes('how are you')) {
-            return `😊 I'm fantastic, ${userName}! I'm constantly learning and ready to help you with any question about science, health, or anything else that interests you! What's on your mind today?`;
-        }
-        
-        if (q.includes('who created you') || q.includes('viren')) {
-            return `🎉 I was created by <strong>Viren Singh</strong> from <strong>Teaser Company</strong>! Viren designed me to be a truly intelligent assistant that can answer any question - especially in physics, chemistry, and health. I never say "I don't understand" - I always find a way to help! 🚀`;
-        }
-        
-        // ===== OPEN WEBSITES =====
+        // Website navigation
         if (q.includes('open google')) {
             window.open('https://www.google.com', '_blank');
-            return "🌐 Opening Google for you! Need help with a specific search?";
+            return "🌐 Opening Google for you! Need help with a search?";
         }
         if (q.includes('open youtube')) {
             window.open('https://www.youtube.com', '_blank');
-            return "📺 Opening YouTube! Want me to find educational videos for you?";
+            return "📺 Opening YouTube! Enjoy watching! 🎬";
         }
-        if (q.includes('search google for')) {
-            const searchTerm = question.replace(/search google for/i, '').trim();
-            if (searchTerm) {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`, '_blank');
-                return `🔍 Searching Google for "${searchTerm}". I'll open the results for you!`;
-            }
+        if (q.includes('open github')) {
+            window.open('https://github.com', '_blank');
+            return "🐙 Opening GitHub! Happy coding! 💻";
         }
         
-        // ===== TIME & DATE =====
-        if (q.includes('time')) {
+        // Time & Date
+        if (q.includes('what time')) {
             const now = new Date();
-            return `⏰ The current time is ${now.toLocaleTimeString()}, ${userName}!`;
+            return `⏰ The current time is ${now.toLocaleTimeString()}`;
         }
-        if (q.includes('date') || q.includes('day')) {
+        if (q.includes('what date')) {
             const now = new Date();
-            return `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}, ${userName}!`;
+            return `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
         }
         
-        // ===== JOKES for fun =====
+        // Physics
+        if (q.includes('newton') && (q.includes('law') || q.includes('force'))) {
+            return `🔬 <strong>Newton's Second Law of Motion</strong><br><br>
+            Newton's second law states that force equals mass times acceleration: <strong>F = ma</strong><br><br>
+            📌 Force is measured in Newtons (N), mass in kilograms (kg), and acceleration in meters per second squared (m/s²).<br><br>
+            💡 <strong>Example:</strong> Pushing an empty shopping cart is easier than a full one - the same force produces more acceleration on the lighter object!`;
+        }
+        
+        if (q.includes('speed of light')) {
+            return `⚡ <strong>The Speed of Light</strong><br><br>
+            Light travels at approximately <strong>299,792,458 meters per second</strong> (about 300,000 km/s).<br><br>
+            🌟 Light from the Sun takes about 8 minutes to reach Earth. Nothing can travel faster than light in a vacuum - it's a fundamental constant of nature!`;
+        }
+        
+        // Chemistry
+        if (q.includes('water') && (q.includes('formula') || q.includes('h2o'))) {
+            return `💧 <strong>Water (H₂O)</strong><br><br>
+            Water molecules contain 2 hydrogen atoms bonded to 1 oxygen atom.<br><br>
+            🧪 Properties: Boiling point 100°C, freezing point 0°C, density 1 g/cm³. Water expands when frozen (ice floats!) and is called the "universal solvent" because it dissolves many substances.`;
+        }
+        
+        if (q.includes('photosynthesis')) {
+            return `🌿 <strong>Photosynthesis</strong><br><br>
+            Plants convert sunlight into energy!<br><br>
+            📝 <strong>Equation:</strong> 6CO₂ + 6H₂O + Light → C₆H₁₂O₆ + 6O₂<br>
+            (Carbon dioxide + Water + Sunlight → Glucose + Oxygen)<br><br>
+            🌎 This process produces the oxygen we breathe!`;
+        }
+        
+        // Health
+        if (q.includes('healthy') || q.includes('diet')) {
+            return `🥗 <strong>Healthy Living Tips</strong><br><br>
+            • Eat 5+ servings of fruits and vegetables daily<br>
+            • Choose whole grains (brown rice, oats, quinoa)<br>
+            • Eat lean proteins (chicken, fish, beans)<br>
+            • Drink 8-10 glasses of water daily<br>
+            • Exercise 150 minutes weekly<br>
+            • Get 7-9 hours of sleep`;
+        }
+        
+        // Jokes
         if (q.includes('joke') || q.includes('funny')) {
             const jokes = [
                 "😂 Why don't scientists trust atoms? Because they make up everything!",
                 "🤣 What do you call a fake noodle? An impasta!",
-                "😄 Why did the physics teacher break up with the biology teacher? There was no chemistry!",
+                "😄 Why did the scarecrow win an award? He was outstanding in his field!",
                 "💻 Why do programmers prefer dark mode? Because light attracts bugs!"
             ];
             return jokes[Math.floor(Math.random() * jokes.length)];
         }
         
-        // ===== CALCULATIONS =====
-        if (q.includes('calculate') || /[\d\+\-\*\/]/.test(q)) {
-            try {
-                let calc = q.replace('calculate', '').replace('what is', '').trim();
-                calc = calc.replace(/[^0-9+\-*/().]/g, '');
-                if (calc && calc.length > 0) {
-                    const result = eval(calc);
-                    return `🧮 ${calc} = ${result}! Need another calculation?`;
-                }
-            } catch(e) {}
+        // Greetings
+        if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+            const greetings = [
+                `👋 Hello ${userName || 'there'}! How can I help you today? Ask me about physics, chemistry, health, or coding!`,
+                `✨ Hey ${userName || 'friend'}! Ready to learn something new? What would you like to know?`,
+                `🎉 Hi ${userName || 'there'}! I'm your TeaserAI assistant. Ask me anything!`
+            ];
+            return greetings[Math.floor(Math.random() * greetings.length)];
         }
         
-        // ===== DEFAULT - ALWAYS RESPONDS INTELLIGENTLY =====
-        return `💡 <strong>Great question, ${userName}!</strong><br><br>
-        I hear you asking: "${question.length > 100 ? question.substring(0, 100) + '...' : question}"<br><br>
-        That's a fascinating topic! Here's what I can tell you:<br><br>
-        📚 <strong>My expertise areas:</strong><br>
-        • ⚛️ <strong>Physics</strong> - Mechanics, quantum physics, relativity, astrophysics<br>
-        • 🧪 <strong>Chemistry</strong> - Elements, reactions, organic chemistry, periodic table<br>
-        • 💪 <strong>Health</strong> - Nutrition, fitness, wellness, mental health<br>
-        • 🔬 <strong>Science</strong> - Biology, astronomy, genetics, technology<br><br>
-        💡 <strong>To get the best answer:</strong><br>
-        • Be specific: "What is the formula for..."<br>
-        • Ask about a topic: "Explain quantum entanglement"<br>
-        • Or enable Web Search for latest information!<br><br>
-        🚀 Want me to search Google for "${question.substring(0, 50)}"? Just say "search google for this" or enable the web search toggle above!`;
+        if (q.includes('how are you')) {
+            return `😊 I'm doing fantastic, ${userName || 'friend'}! Thanks for asking. I'm always ready to help you learn and explore new topics!`;
+        }
+        
+        if (q.includes('who created you') || q.includes('viren') || q.includes('teaser company')) {
+            return `🎉 I was created by <strong>Viren Singh</strong> from <strong>Teaser Company</strong>! Viren built me to help people learn about physics, chemistry, health, coding, and more - completely for free! 🚀 I'm powered by Hugging Face's AI technology.`;
+        }
+        
+        // Help
+        if (q.includes('help') || q.includes('what can you do')) {
+            return `🎯 <strong>TeaserAI Capabilities</strong><br><br>
+            <strong>📚 Subjects:</strong> Physics, Chemistry, Health, Coding<br>
+            <strong>🌐 Web:</strong> "open google", "open youtube", "open github"<br>
+            <strong>🎮 Fun:</strong> "tell me a joke", "what time is it"<br>
+            <strong>👤 Info:</strong> "who created you"<br><br>
+            Just type your question naturally - I'll understand! 🚀`;
+        }
+        
+        // Default - always responds
+        return `🧠 <strong>Great question!</strong><br><br>
+        I'm here to help with: Physics, Chemistry, Health, Coding, and more!<br><br>
+        💡 <strong>Try asking me:</strong><br>
+        • "Explain Newton's second law"<br>
+        • "What is the formula for water?"<br>
+        • "How can I eat healthier?"<br>
+        • "Write a Python function to reverse a string"<br><br>
+        I'll ALWAYS give you a thoughtful answer! 🎉`;
     }
     
-    function sendMessage(forcedInput = null) {
+    // ============= MAIN SEND MESSAGE =============
+    async function sendMessage(forcedInput = null) {
         const input = forcedInput || commandInput.value;
-        if (!input.trim()) return;
+        const question = input.trim();
         
-        addMessage(input, true);
+        if (!question) return;
+        
+        addMessage(question, true);
         commandInput.value = '';
         showTyping(true);
+        updateStatus("🤖 Thinking...");
         
-        setTimeout(() => {
-            const response = getSmartResponse(input, userName);
+        try {
+            let answer = null;
+            
+            // Try Hugging Face API first
+            if (useAI && HUGGING_FACE_API_KEY && HUGGING_FACE_API_KEY !== "YOUR_HUGGING_FACE_API_KEY_HERE") {
+                answer = await askHuggingFace(question);
+            }
+            
+            // Fall back to local responses if API fails
+            if (!answer) {
+                answer = getLocalResponse(question);
+                updateStatus("✅ Ready (Local Mode)");
+            } else {
+                updateStatus("✅ Ready (AI Mode)");
+            }
+            
             showTyping(false);
-            addMessage(response, false);
-            speak(response.replace(/<[^>]*>/g, ''));
-        }, 800);
+            addMessage(answer, false);
+            
+            // Speak only if not too long
+            if (answer.length < 300) {
+                speak(answer.replace(/<[^>]*>/g, ''));
+            }
+            
+        } catch (error) {
+            console.error('Error:', error);
+            showTyping(false);
+            const fallback = getLocalResponse(question);
+            addMessage(fallback, false);
+            updateStatus("✅ Ready", true);
+        }
     }
     
     function handleEnter(event) {
-        if (event.key === 'Enter') sendMessage();
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
     }
     
-    function quickCommand(cmd) {
-        commandInput.value = cmd;
+    function quickAsk(question) {
+        commandInput.value = question;
         sendMessage();
     }
     
-    // Login System
+    // ============= LOGIN SYSTEM =============
     function checkLogin() {
         const saved = localStorage.getItem('teaserai_user');
         if (saved) {
@@ -958,6 +1053,10 @@
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('assistantSection').classList.add('active');
             createParticles();
+            
+            setTimeout(() => {
+                addMessage(`✨ Welcome back ${userName}! I'm ready to help with Physics, Chemistry, Health, and more! Ask me anything! 🚀`, false);
+            }, 500);
         } else {
             document.getElementById('loginModal').style.display = 'flex';
             document.getElementById('assistantSection').classList.remove('active');
@@ -973,7 +1072,7 @@
             return;
         }
         if (!email.includes('@')) {
-            document.getElementById('loginError').innerText = 'Enter valid email';
+            document.getElementById('loginError').innerText = 'Enter a valid email address';
             return;
         }
         
@@ -985,8 +1084,8 @@
         createParticles();
         
         setTimeout(() => {
-            addMessage(`🎉 Welcome ${name}! I'm TeaserAI Ultimate - your smart assistant for Physics, Chemistry, Health, and more! Ask me anything - I'll ALWAYS give you a thoughtful answer! Try asking "What is Newton's second law?" or "How to stay healthy?" 🚀`, false);
-            speak(`Welcome ${name}! I'm your smart assistant. Ask me anything about physics, chemistry, or health!`);
+            addMessage(`🎉 Welcome ${name}! I'm TeaserAI Premium - your advanced assistant for Physics, Chemistry, Health, and Coding! Ask me anything - I'll ALWAYS give you a thoughtful answer! 🚀`, false);
+            speak(`Welcome ${name}! I'm your AI assistant. Ask me anything about science, health, or coding!`);
         }, 500);
     }
     
@@ -999,7 +1098,11 @@
         document.getElementById('loginEmail').value = '';
     }
     
+    // Initialize
     checkLogin();
+    
+    // Focus input
+    if (commandInput) commandInput.focus();
 </script>
 </body>
 </html>
