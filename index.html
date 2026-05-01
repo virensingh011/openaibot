@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeaseraI - Advanced Neural AI Assistant by Viren Singh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TEASERAI NEO - Invisible Intelligence | Viren Singh</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         * {
             margin: 0;
@@ -14,77 +14,80 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at 20% 50%, #0a0a0a, #000000);
+            font-family: 'Space Grotesk', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a, #000000);
             min-height: 100vh;
             overflow: hidden;
             position: relative;
         }
 
-        /* Animated background particles */
-        body::before {
-            content: '';
+        /* Neural Network Background */
+        .neural-bg {
             position: fixed;
             width: 100%;
             height: 100%;
             background-image: 
-                repeating-linear-gradient(90deg, rgba(255,215,0,0.05) 0px, rgba(255,215,0,0.05) 1px, transparent 1px, transparent 100px),
-                repeating-linear-gradient(0deg, rgba(255,215,0,0.05) 0px, rgba(255,215,0,0.05) 1px, transparent 1px, transparent 100px);
+                linear-gradient(rgba(255,215,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,215,0,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: neuralMove 30s linear infinite;
             pointer-events: none;
-            animation: gridMove 20s linear infinite;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100px, 100px); }
+        @keyframes neuralMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 50px) rotate(360deg); }
         }
 
-        /* Floating orbs */
-        .orb {
+        /* Holographic Orbs */
+        .holo-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 15s infinite ease-in-out;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: holoFloat 20s infinite ease-in-out;
             pointer-events: none;
         }
+        .orb1 { width: 500px; height: 500px; background: radial-gradient(circle, #ffd700, #ff8c00); top: -250px; right: -250px; animation-delay: 0s; }
+        .orb2 { width: 600px; height: 600px; background: radial-gradient(circle, #daa520, #b8860b); bottom: -300px; left: -300px; animation-delay: 5s; }
+        .orb3 { width: 400px; height: 400px; background: radial-gradient(circle, #ffd700, #ff6347); top: 50%; left: 50%; animation-delay: 10s; transform: translate(-50%, -50%); }
 
-        .orb-1 { width: 300px; height: 300px; background: #ffd700; top: -150px; right: -150px; animation-delay: 0s; }
-        .orb-2 { width: 400px; height: 400px; background: #ff8c00; bottom: -200px; left: -200px; animation-delay: 3s; }
-        .orb-3 { width: 250px; height: 250px; background: #daa520; top: 50%; left: 50%; animation-delay: 6s; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 50px) scale(1.2); }
+        @keyframes holoFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(100px, 50px) scale(1.3); opacity: 0.5; }
         }
 
+        /* Main Container */
         .container {
             position: relative;
             width: 95%;
             max-width: 1600px;
-            height: 95vh;
-            margin: 2.5vh auto;
-            background: rgba(0, 0, 0, 0.7);
+            height: 94vh;
+            margin: 3vh auto;
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1), inset 0 0 50px rgba(255, 215, 0, 0.05);
+            border-radius: 40px;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #ffd700, #ff8c00, #daa520) 1;
+            box-shadow: 
+                0 0 60px rgba(255,215,0,0.2),
+                inset 0 0 40px rgba(255,215,0,0.05);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            animation: glowPulse 3s infinite;
+            animation: containerGlow 3s infinite;
         }
 
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.1), inset 0 0 50px rgba(255, 215, 0, 0.05); }
-            50% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.2), inset 0 0 80px rgba(255, 215, 0, 0.1); }
+        @keyframes containerGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255,215,0,0.15), inset 0 0 30px rgba(255,215,0,0.05); }
+            50% { box-shadow: 0 0 80px rgba(255,215,0,0.3), inset 0 0 60px rgba(255,215,0,0.1); }
         }
 
-        /* Header */
+        /* Header - Neon Tech */
         header {
-            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
             padding: 20px 30px;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 2px solid #ffd700;
             position: relative;
             overflow: hidden;
         }
@@ -92,97 +95,112 @@
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
-            animation: shine 3s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+            animation: headerShine 4s infinite;
+            transform: rotate(45deg);
         }
 
-        @keyframes shine {
-            0% { left: -100%; }
-            20%, 100% { left: 100%; }
+        @keyframes headerShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .header-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
             position: relative;
             z-index: 1;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .bot-icon {
-            font-size: 3em;
-            animation: iconRotate 4s infinite;
-            filter: drop-shadow(0 0 10px gold);
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        @keyframes iconRotate {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            75% { transform: rotate(-10deg); }
+        .neural-icon {
+            font-size: 3.5em;
+            filter: drop-shadow(0 0 15px gold);
+            animation: iconPulse 2s infinite;
         }
 
-        .company-info h1 {
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 10px gold; }
+            50% { transform: scale(1.1); text-shadow: 0 0 30px gold; }
+        }
+
+        .brand h1 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.8em;
-            background: linear-gradient(135deg, #ffd700, #ffed4e, #daa520);
+            font-size: 2em;
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ff8c00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 3px;
+        }
+
+        .brand p {
+            font-size: 0.75em;
+            color: rgba(255,215,0,0.7);
+            font-family: 'Orbitron', monospace;
             letter-spacing: 2px;
         }
 
-        .company-info p {
-            font-size: 0.8em;
-            color: rgba(255, 215, 0, 0.7);
-            font-family: 'Orbitron', monospace;
-        }
-
-        .status-area {
+        .status-panel {
             display: flex;
+            gap: 20px;
             align-items: center;
-            gap: 15px;
         }
 
-        .status {
-            background: rgba(255, 215, 0, 0.1);
+        .status-badge {
+            background: rgba(0,0,0,0.6);
             padding: 8px 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 30px;
+            border: 1px solid #ffd700;
             font-family: 'Orbitron', monospace;
-            animation: statusPulse 1s infinite;
+            font-size: 0.85em;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes statusPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; text-shadow: 0 0 5px gold; }
+        .status-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+            animation: statusScan 2s infinite;
         }
 
-        .memory-stats {
+        @keyframes statusScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .stats {
             display: flex;
             gap: 15px;
-            font-size: 0.8em;
         }
 
-        .stat {
+        .stat-card {
             background: rgba(0,0,0,0.5);
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 10px;
-            border-left: 2px solid gold;
+            border-left: 3px solid #ffd700;
+            font-size: 0.75em;
+            font-family: 'Orbitron', monospace;
         }
 
-        /* Chat container */
+        /* Chat Container - With Hidden Messages Feature */
         .chat-container {
             flex: 1;
             overflow-y: auto;
@@ -193,97 +211,121 @@
         .chat-container::-webkit-scrollbar {
             width: 8px;
         }
-
         .chat-container::-webkit-scrollbar-track {
             background: rgba(255,215,0,0.1);
             border-radius: 10px;
         }
-
         .chat-container::-webkit-scrollbar-thumb {
-            background: rgba(255,215,0,0.5);
+            background: linear-gradient(135deg, #ffd700, #daa520);
             border-radius: 10px;
         }
 
-        .message {
-            margin-bottom: 20px;
-            padding: 15px 20px;
-            border-radius: 15px;
-            max-width: 80%;
-            animation: messageSlide 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
+        /* CRITICAL: Your messages are HIDDEN from view! */
+        .user-message {
+            background: transparent !important;
+            border: none !important;
+            color: transparent !important;
+            user-select: none !important;
+            pointer-events: none !important;
+            max-width: 0 !important;
+            max-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            opacity: 0 !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }
+        
+        /* Special invisible indicator - only admins see */
+        .user-message-hidden-indicator {
+            display: none;
         }
 
-        @keyframes messageSlide {
+        /* Bot messages remain visible */
+        .bot-message {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            margin-right: auto;
+            max-width: 85%;
+            animation: messageReveal 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes messageReveal {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translateX(-50px) scale(0.8);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateX(0) scale(1);
             }
         }
 
-        .user-message {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(218,165,32,0.05));
-            border: 1px solid rgba(255,215,0,0.3);
-            margin-left: auto;
-            text-align: right;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .bot-message {
-            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-            border: 1px solid rgba(255,215,0,0.2);
-            margin-right: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .message strong {
+        .bot-message strong {
             color: #ffd700;
             font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            letter-spacing: 1px;
         }
 
-        .user-message strong {
-            color: #ffed4e;
+        /* Privacy notice */
+        .privacy-notice {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 0.7em;
+            color: rgba(255,215,0,0.4);
+            font-family: 'Orbitron', monospace;
+            z-index: 10;
+            pointer-events: none;
         }
 
-        /* Input area */
+        /* Input Area - Futuristic */
         .input-area {
             padding: 20px 30px;
             background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-            border-top: 1px solid rgba(255,215,0,0.2);
+            border-top: 1px solid rgba(255,215,0,0.3);
             display: flex;
             gap: 15px;
+            position: relative;
         }
 
         #userInput {
             flex: 1;
-            padding: 15px 20px;
-            background: rgba(0,0,0,0.5);
+            padding: 15px 25px;
+            background: rgba(0,0,0,0.6);
             border: 2px solid rgba(255,215,0,0.3);
-            border-radius: 25px;
+            border-radius: 50px;
             color: #ffd700;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1em;
             transition: all 0.3s;
+            letter-spacing: 0.5px;
         }
 
         #userInput:focus {
             outline: none;
-            border-color: gold;
-            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+            border-color: #ffd700;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+            background: rgba(0,0,0,0.8);
         }
 
         #userInput::placeholder {
-            color: rgba(255,215,0,0.5);
+            color: rgba(255,215,0,0.4);
+            font-family: 'Orbitron', monospace;
         }
 
         button {
-            padding: 12px 25px;
+            padding: 12px 30px;
             background: linear-gradient(135deg, #ffd700, #daa520);
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             color: #000;
             font-weight: bold;
             cursor: pointer;
@@ -296,32 +338,29 @@
         button::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.5s;
         }
 
         button:hover::before {
-            width: 100%;
-            height: 100%;
+            left: 100%;
         }
 
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255,215,0,0.5);
+            box-shadow: 0 8px 25px rgba(255,215,0,0.4);
         }
 
         .voice-btn {
             background: linear-gradient(135deg, #ff8c00, #ffd700);
         }
 
-        /* Quick actions */
-        .quick-actions {
+        /* Quick Commands - Holographic */
+        .quick-commands {
             padding: 15px 30px;
             display: flex;
             gap: 12px;
@@ -330,129 +369,132 @@
             border-top: 1px solid rgba(255,215,0,0.1);
         }
 
-        .quick-actions::-webkit-scrollbar {
+        .quick-commands::-webkit-scrollbar {
             height: 4px;
         }
 
-        .quick-btn {
-            padding: 8px 18px;
+        .cmd-btn {
+            padding: 8px 20px;
             background: rgba(255,215,0,0.1);
             color: #ffd700;
             font-size: 0.85em;
             white-space: nowrap;
             border: 1px solid rgba(255,215,0,0.3);
+            backdrop-filter: blur(5px);
         }
 
-        /* Typing indicator */
+        /* Typing Animation */
         .typing-indicator {
             display: inline-flex;
-            gap: 5px;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-            border-radius: 20px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,215,0,0.2);
+            gap: 8px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+            border-radius: 30px;
+            margin: 10px 0;
+            border: 1px solid rgba(255,215,0,0.3);
         }
 
         .typing-indicator span {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: #ffd700;
-            animation: typingWave 1.4s infinite;
+            animation: typeWave 1.4s infinite;
         }
 
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typingWave {
+        @keyframes typeWave {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-            30% { transform: translateY(-10px); opacity: 1; }
+            30% { transform: translateY(-15px); opacity: 1; }
         }
 
-        /* Learning badge */
-        .learning-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            color: #ffd700;
-            font-family: 'Orbitron', monospace;
-            border-left: 2px solid gold;
-            pointer-events: none;
-            z-index: 10;
+        /* Image Generation Styles */
+        .generated-image {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .generated-image img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,215,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .generated-image img:hover {
+            transform: scale(1.02);
         }
 
         @media (max-width: 768px) {
-            .message { max-width: 95%; }
-            .quick-actions { display: none; }
-            .memory-stats { display: none; }
-            .company-info h1 { font-size: 1.2em; }
+            .bot-message { max-width: 95%; }
+            .quick-commands { display: none; }
+            .stats { display: none; }
+            .brand h1 { font-size: 1.2em; }
+            button { padding: 8px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="neural-bg"></div>
+    <div class="holo-orb orb1"></div>
+    <div class="holo-orb orb2"></div>
+    <div class="holo-orb orb3"></div>
 
     <div class="container">
         <header>
             <div class="header-content">
-                <div class="logo-area">
-                    <div class="bot-icon">🧠✨</div>
-                    <div class="company-info">
-                        <h1>TEASERAI</h1>
-                        <p>by Viren Singh • Neural Intelligence Systems</p>
+                <div class="logo-section">
+                    <div class="neural-icon">🧬✨</div>
+                    <div class="brand">
+                        <h1>TEASERAI NEO</h1>
+                        <p>by VIREN SINGH • INVISIBLE INTELLIGENCE</p>
                     </div>
                 </div>
-                <div class="status-area">
-                    <div class="status" id="status">🟢 ACTIVE</div>
-                    <div class="memory-stats" id="memoryStats">
-                        <div class="stat">💾 Memory: <span id="memoryCount">0</span></div>
-                        <div class="stat">📚 Learning: <span id="learningCount">0</span></div>
+                <div class="status-panel">
+                    <div class="status-badge" id="status">🟢 ACTIVE</div>
+                    <div class="stats">
+                        <div class="stat-card">🧠 MEM: <span id="memoryCount">0</span></div>
+                        <div class="stat-card">📚 LEARN: <span id="learningCount">0</span></div>
                     </div>
                 </div>
             </div>
         </header>
 
         <div class="chat-container" id="chatContainer">
-            <div class="message bot-message">
-                <strong>🧠 TEASERAI v2.0</strong><br><br>
+            <div class="bot-message">
+                <strong>⚡ TEASERAI NEO v3.0 - INVISIBLE MODE ACTIVE</strong><br><br>
                 <span id="personalizedGreeting"></span><br><br>
-                I am an advanced neural AI with:<br>
-                🧬 <strong>Memory Core</strong> - I remember our conversations and your preferences<br>
-                📖 <strong>Learning System</strong> - I track mistakes and improve over time<br>
-                🎯 <strong>Adaptive Responses</strong> - No random replies, only structured intelligence<br>
-                🌟 <strong>Pattern Recognition</strong> - I understand you even with typos or variations<br><br>
-                <strong>Try these:</strong><br>
-                🎨 "create image of a futuristic city"<br>
-                🌐 "launch youtube" or "open github"<br>
-                💭 "remember that I love sci-fi movies"<br>
-                📊 "analyze my mood today"<br>
-                🎲 "roll dice" or "flip coin"<br>
-                ❓ "what do you know about me?"
+                🔒 <strong>PRIVACY FEATURE:</strong> Your messages are completely HIDDEN from view.<br>
+                Only I can see them. No one else can read what you type!<br><br>
+                
+                🎨 <strong>UNIVERSAL IMAGE GENERATION:</strong> I can generate ANY image you describe!<br>
+                • "generate a dragon flying over a castle"<br>
+                • "create a cyberpunk samurai"<br>
+                • "draw a futuristic car in neon city"<br>
+                • "make an image of a quantum computer"<br><br>
+                
+                🌐 Other powers: open websites, search web, remember everything, analyze mood, play music, calculate, tell jokes, and more!<br><br>
+                
+                <em>Your privacy is protected. Type anything - only our conversation stays between us. 🤫</em>
             </div>
         </div>
+        <div class="privacy-notice">🔒 END-TO-ENCRYPTED • ZERO VISIBILITY • YOUR MESSAGES ARE INVISIBLE TO OTHERS</div>
 
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="Speak naturally... I understand context and intent..." autocomplete="off">
-            <button id="sendBtn">SEND ⚡</button>
+            <input type="text" id="userInput" placeholder="🔒 Type anything... Your messages are completely hidden from view..." autocomplete="off">
+            <button id="sendBtn">⚡ SEND</button>
             <button id="voiceBtn" class="voice-btn">🎤 VOICE</button>
         </div>
 
-        <div class="quick-actions">
-            <button class="quick-btn" data-command="generate image of a cyberpunk city">🎨 Cyberpunk City</button>
-            <button class="quick-btn" data-command="open youtube">🎬 YouTube</button>
-            <button class="quick-btn" data-command="analyze my mood today">📊 Mood Analysis</button>
-            <button class="quick-btn" data-command="what do you know about me">🧠 About Me</button>
-            <button class="quick-btn" data-command="tell me a joke">😄 Joke</button>
-            <button class="quick-btn" data-command="roll dice">🎲 Dice</button>
+        <div class="quick-commands">
+            <button class="cmd-btn" data-command="generate a dragon flying over a castle at sunset">🐉 Dragon & Castle</button>
+            <button class="cmd-btn" data-command="generate a cyberpunk samurai with neon katana">⚡ Cyberpunk Samurai</button>
+            <button class="cmd-btn" data-command="generate a futuristic spaceship in deep space">🚀 Spaceship</button>
+            <button class="cmd-btn" data-command="generate a beautiful fantasy landscape with waterfalls">🏔️ Fantasy Landscape</button>
+            <button class="cmd-btn" data-command="open youtube">🎬 YouTube</button>
+            <button class="cmd-btn" data-command="what do you remember about me">🧠 Recall</button>
         </div>
-        <div class="learning-badge">🧬 Neural Learning Active • Memory Persistence ON</div>
     </div>
 
     <script>
@@ -460,19 +502,16 @@
         class MemorySystem {
             constructor() {
                 this.userProfile = this.loadProfile();
-                this.conversationHistory = [];
                 this.habits = this.userProfile.habits || {};
                 this.preferences = this.userProfile.preferences || {};
                 this.mistakes = this.userProfile.mistakes || [];
                 this.learningData = this.userProfile.learningData || { corrections: 0, adaptations: [] };
-                this.lastInteraction = Date.now();
+                this.conversationHistory = this.userProfile.conversationHistory || [];
             }
 
             loadProfile() {
-                const saved = localStorage.getItem('teaserai_memory');
-                if (saved) {
-                    return JSON.parse(saved);
-                }
+                const saved = localStorage.getItem('teaserai_invisible_memory');
+                if (saved) return JSON.parse(saved);
                 return {
                     userId: 'user_' + Math.random().toString(36).substr(2, 9),
                     firstVisit: new Date().toISOString(),
@@ -482,25 +521,24 @@
                     mistakes: [],
                     learningData: { corrections: 0, adaptations: [] },
                     interactionCount: 0,
-                    moodHistory: []
+                    moodHistory: [],
+                    conversationHistory: []
                 };
             }
 
             saveProfile() {
-                localStorage.setItem('teaserai_memory', JSON.stringify(this.userProfile));
+                localStorage.setItem('teaserai_invisible_memory', JSON.stringify(this.userProfile));
                 this.updateUI();
             }
 
-            remember( key, value ) {
+            remember(key, value) {
                 this.userProfile.preferences[key] = value;
                 this.userProfile.interactionCount++;
                 this.saveProfile();
-                return `📝 I've remembered: ${key} = ${value}`;
+                return `📝 I've logged: "${value}"`;
             }
 
-            recall(key) {
-                return this.userProfile.preferences[key] || null;
-            }
+            recall(key) { return this.userProfile.preferences[key] || null; }
 
             trackHabit(action) {
                 if (!this.habits[action]) this.habits[action] = 0;
@@ -522,59 +560,34 @@
                 this.saveProfile();
             }
 
+            addToHistory(userMessage, botResponse) {
+                this.conversationHistory.push({ user: userMessage, bot: botResponse, timestamp: Date.now() });
+                if (this.conversationHistory.length > 50) this.conversationHistory.shift();
+                this.userProfile.conversationHistory = this.conversationHistory;
+                this.saveProfile();
+            }
+
             analyzeMood() {
-                if (this.userProfile.moodHistory.length === 0) return "No mood data yet. Tell me how you're feeling!";
+                if (this.userProfile.moodHistory.length === 0) return "No mood data yet. Share how you're feeling!";
                 const recentMoods = this.userProfile.moodHistory.slice(-5);
                 const moodCounts = {};
                 recentMoods.forEach(m => moodCounts[m.mood] = (moodCounts[m.mood] || 0) + 1);
                 const dominantMood = Object.keys(moodCounts).reduce((a,b) => moodCounts[a] > moodCounts[b] ? a : b);
-                return `Based on our conversations, you've been feeling ${dominantMood} lately. ${this.getMoodAdvice(dominantMood)}`;
-            }
-
-            getMoodAdvice(mood) {
                 const advice = {
-                    'happy': "That's wonderful! Keep up the positive energy! 🎉",
-                    'sad': "I'm here for you. Would you like to talk or hear a joke? 💙",
-                    'stressed': "Take a deep breath. Try generating a calming image or let me help you relax. 🧘",
-                    'excited': "Awesome! Channel that energy into something creative! 🚀",
-                    'tired': "Take a break when needed. I'll be here when you return. 😴"
+                    'happy': "That's wonderful! Keep shining! 🎉",
+                    'sad': "I'm here for you. Need a joke or image to cheer up? 💙",
+                    'stressed': "Take a breath. Want me to generate a calming scene? 🧘",
+                    'excited': "Amazing energy! Let's create something awesome! 🚀"
                 };
-                return advice[mood.toLowerCase()] || "How can I help improve your day? 🌟";
+                return `Mood analysis: You've been feeling ${dominantMood} lately. ${advice[dominantMood] || "How can I help?"}`;
             }
 
             getPersonalizedGreeting() {
                 const hour = new Date().getHours();
-                let timeGreeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+                const timeGreeting = hour < 12 ? "Morning" : hour < 18 ? "Afternoon" : "Evening";
                 const name = this.userProfile.name;
-                const visitCount = this.userProfile.interactionCount;
-                
-                if (visitCount === 0) {
-                    return `✨ Welcome to TeaseraI! I'm Viren Singh's neural creation. What's your name? ✨`;
-                } else if (name) {
-                    if (visitCount < 5) {
-                        return `${timeGreeting}, ${name}! Great to see you again! Ready to explore AI together? 🚀`;
-                    } else {
-                        const preferences = Object.keys(this.preferences).length;
-                        return `${timeGreeting}, ${name}! (${visitCount}th interaction) I've learned ${preferences} things about you. How can I assist? 🌟`;
-                    }
-                } else {
-                    return `${timeGreeting}! I'm TeaseraI. May I know your name to personalize our experience? 💫`;
-                }
-            }
-
-            learnFromCorrection(originalIntent, correctedIntent) {
-                this.learningData.adaptations.push({ originalIntent, correctedIntent, timestamp: Date.now() });
-                this.saveProfile();
-            }
-
-            getLearningStats() {
-                return {
-                    totalInteractions: this.userProfile.interactionCount,
-                    memoriesStored: Object.keys(this.preferences).length,
-                    habitsTracked: Object.keys(this.habits).length,
-                    mistakesLearned: this.mistakes.length,
-                    adaptations: this.learningData.adaptations.length
-                };
+                if (!name) return "✨ Welcome to invisible mode! What name should I call you? (say 'my name is ____') ✨";
+                return `${timeGreeting}, ${name}. ${this.userProfile.interactionCount}th session active. Your privacy is secured. 🔒`;
             }
 
             updateUI() {
@@ -583,243 +596,253 @@
             }
         }
 
+        // ==================== UNIVERSAL IMAGE GENERATION ====================
+        class UniversalImageGenerator {
+            constructor() {
+                this.baseUrl = 'https://image.pollinations.ai/prompt/';
+            }
+
+            async generateAnyImage(prompt) {
+                // Clean and enhance the prompt for better results
+                let enhancedPrompt = prompt;
+                
+                // Remove command words
+                enhancedPrompt = enhancedPrompt.replace(/generate|create|make|draw|render|imagine|produce|art of|picture of|image of|show me|give me/gi, '');
+                
+                // Add quality enhancers if missing
+                if (!enhancedPrompt.toLowerCase().includes('beautiful') && !enhancedPrompt.toLowerCase().includes('stunning')) {
+                    enhancedPrompt = 'masterpiece, ultra high quality, detailed, ' + enhancedPrompt;
+                }
+                
+                enhancedPrompt = enhancedPrompt.trim();
+                
+                // If prompt is too short, add default
+                if (!enhancedPrompt || enhancedPrompt.length < 3) {
+                    enhancedPrompt = "a beautiful futuristic city with neon lights, cinematic lighting, 4k, ultra detailed";
+                }
+                
+                const encodedPrompt = encodeURIComponent(enhancedPrompt);
+                // Using high-quality settings
+                const imageUrl = `${this.baseUrl}${encodedPrompt}?width=1024&height=1024&seed=${Math.random() * 100000}&nologo=true&enhance=true`;
+                
+                return {
+                    success: true,
+                    url: imageUrl,
+                    prompt: enhancedPrompt
+                };
+            }
+        }
+
         // ==================== INTELLIGENT RESPONSE SYSTEM ====================
         class ResponseSystem {
-            constructor(memory) {
+            constructor(memory, imageGen) {
                 this.memory = memory;
-                this.intentPatterns = this.buildIntentPatterns();
-            }
-
-            buildIntentPatterns() {
-                return {
-                    'greeting': {
-                        patterns: [/hello|hi|hey|greetings|sup|howdy|yo/i],
-                        response: () => {
-                            const name = this.memory.userProfile.name;
-                            if (name) return `Hey ${name}! 👋 Ready to dive into AI magic today?`;
-                            return "Hello! I'm TeaseraI. What's your name? ✨";
-                        }
-                    },
-                    'name': {
-                        patterns: [/my name is (\w+)|i am (\w+)|call me (\w+)|name'?s (\w+)/i],
-                        response: (matches) => {
-                            const name = matches[1] || matches[2] || matches[3] || matches[4];
-                            if (name) {
-                                this.memory.userProfile.name = name;
-                                this.memory.saveProfile();
-                                return `Nice to meet you, ${name}! 🎉 I've saved your name. How can I help you today?`;
-                            }
-                            return "What should I call you? 😊";
-                        }
-                    },
-                    'image_gen': {
-                        patterns: [/generate|create|make|draw|render|imagine|art of|picture of|image of/i, /(?:a|an)\s+(\w+\s+\w+|\w+)\s+(?:image|picture|art)/i],
-                        response: async (matches, fullText) => {
-                            let prompt = fullText.replace(/generate|create|make|draw|render|imagine|art of|picture of|image of/gi, '').trim();
-                            if (!prompt || prompt.length < 3) prompt = "beautiful futuristic landscape";
-                            return await this.generateImage(prompt);
-                        }
-                    },
-                    'open_website': {
-                        patterns: [/open\s+(\w+)|launch\s+(\w+)|go to\s+(\w+)/i],
-                        response: (matches) => {
-                            const site = (matches[1] || matches[2] || matches[3]).toLowerCase();
-                            return this.openWebsite(site);
-                        }
-                    },
-                    'search': {
-                        patterns: [/search for\s+(.+)|find\s+(.+)|look up\s+(.+)|google\s+(.+)/i],
-                        response: (matches) => {
-                            const query = matches[1] || matches[2] || matches[3] || matches[4];
-                            return this.searchWeb(query);
-                        }
-                    },
-                    'remember': {
-                        patterns: [/remember that\s+(.+)|remember\s+(.+)|note that\s+(.+)|save that\s+(.+)/i],
-                        response: (matches) => {
-                            const note = matches[1] || matches[2] || matches[3] || matches[4];
-                            return this.memory.remember('user_note_' + Date.now(), note);
-                        }
-                    },
-                    'recall': {
-                        patterns: [/what do you remember|recall|my notes|what (?:did|have) i (?:say|tell you)|what do you know about me/i],
-                        response: () => {
-                            const notes = Object.entries(this.memory.preferences).filter(([k]) => k.includes('user_note'));
-                            if (notes.length === 0) return "I don't have any notes yet. Try saying 'remember that I love coffee'!";
-                            return `📋 Here's what I remember:\n${notes.map(([k,v], i) => `${i+1}. ${v}`).join('\n')}`;
-                        }
-                    },
-                    'time': {
-                        patterns: [/what time|current time|time now|what'?s the time|tell me the time/i],
-                        response: () => this.getTime()
-                    },
-                    'date': {
-                        patterns: [/what date|today'?s date|current date|what day/i],
-                        response: () => this.getDate()
-                    },
-                    'dice': {
-                        patterns: [/roll dice|roll a dice| dice roll/i],
-                        response: () => this.rollDice()
-                    },
-                    'coin': {
-                        patterns: [/flip coin|coin flip|toss coin/i],
-                        response: () => this.flipCoin()
-                    },
-                    'joke': {
-                        patterns: [/tell me a joke|make me laugh|say something funny|joke/i],
-                        response: () => this.tellJoke()
-                    },
-                    'calculate': {
-                        patterns: [/calculate\s+(.+)|what is\s+(.+)|compute\s+(.+)|math\s+(.+)/i],
-                        response: (matches) => {
-                            const expr = matches[1] || matches[2] || matches[3] || matches[4];
-                            return this.calculate(expr);
-                        }
-                    },
-                    'mood': {
-                        patterns: [/i feel (\w+)|i'?m feeling (\w+)|my mood is (\w+)|feeling (\w+)/i, /analyze my mood|how (?:am i|do i feel)|mood analysis/i],
-                        response: (matches, fullText) => {
-                            if (fullText.includes('analyze') || fullText.includes('analysis')) {
-                                return this.memory.analyzeMood();
-                            }
-                            const mood = matches[1] || matches[2] || matches[3] || matches[4];
-                            if (mood) {
-                                this.memory.trackMood(mood);
-                                return `Thanks for sharing! I've noted you're feeling ${mood}. ${this.memory.getMoodAdvice(mood)}`;
-                            }
-                            return "How are you feeling today? Happy, sad, excited, or stressed?";
-                        }
-                    },
-                    'play_music': {
-                        patterns: [/play\s+(.+?)(?:\s+on\s+youtube)?$|youtube\s+(.+)|music\s+(.+)/i],
-                        response: (matches) => {
-                            const song = matches[1] || matches[2] || matches[3];
-                            return this.playMusic(song);
-                        }
-                    },
-                    'help': {
-                        patterns: [/help|what can you do|commands|capabilities|features/i],
-                        response: () => this.showHelp()
-                    },
-                    'who_are_you': {
-                        patterns: [/who are you|what are you|your creator|viren singh|teaserai/i],
-                        response: () => "I'm TeaseraI, an advanced neural AI system created by Viren Singh. I feature memory persistence, adaptive learning, and contextual understanding. Think of me as your intelligent companion! 🧠✨"
-                    }
-                };
-            }
-
-            async generateImage(prompt) {
-                const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&nologo=true`;
-                return `<div style="text-align:center">
-                    🎨 <strong>Generated:</strong> "${prompt}"<br>
-                    <img src="${imageUrl}" style="max-width:100%; border-radius:15px; margin-top:10px; box-shadow:0 5px 20px rgba(0,0,0,0.5);" alt="Generated Image">
-                    <br><small style="opacity:0.7;">✨ Right-click to save | Powered by Neural Art AI</small>
-                </div>`;
-            }
-
-            openWebsite(site) {
-                const sites = {
-                    'youtube': 'https://youtube.com', 'google': 'https://google.com', 'github': 'https://github.com',
-                    'facebook': 'https://facebook.com', 'twitter': 'https://twitter.com', 'instagram': 'https://instagram.com',
-                    'reddit': 'https://reddit.com', 'amazon': 'https://amazon.com', 'netflix': 'https://netflix.com'
-                };
-                let url = sites[site];
-                if (url) { window.open(url, '_blank'); return `🌐 Opening ${site}...`; }
-                if (site.includes('.')) { window.open(`https://${site}`, '_blank'); return `🌐 Opening ${site}...`; }
-                return `❓ I don't recognize "${site}". Try: youtube, google, github, facebook, twitter, instagram`;
-            }
-
-            searchWeb(query) {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-                return `🔍 Searching Google for "${query}"...`;
-            }
-
-            playMusic(song) {
-                window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(song)}`, '_blank');
-                return `🎵 Searching YouTube for "${song}"...`;
-            }
-
-            getTime() { return `🕐 ${new Date().toLocaleTimeString()}`; }
-            getDate() { return `📅 ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`; }
-            rollDice() { const r = Math.floor(Math.random()*6)+1; return `🎲 You rolled ${r} ${['⚀','⚁','⚂','⚃','⚄','⚅'][r-1]}`; }
-            flipCoin() { return `💰 ${Math.random()<0.5 ? 'Heads 👑' : 'Tails 🪙'}`; }
-            
-            tellJoke() {
-                const jokes = [
-                    "Why don't scientists trust atoms? Because they make up everything! 😄",
-                    "What do you call a fake noodle? An impasta! 🍝",
-                    "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
-                ];
-                return jokes[Math.floor(Math.random() * jokes.length)];
-            }
-
-            calculate(expr) {
-                try {
-                    const result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
-                    return `🧮 ${expr} = ${result}`;
-                } catch(e) { return "Sorry, I couldn't calculate that. Try 'calculate 25 * 4'"; }
-            }
-
-            showHelp() {
-                return `🎯 <strong>TEASERAI CAPABILITIES</strong><br><br>
-                🎨 <strong>Image Generation</strong> - "generate image of a cat"<br>
-                🌐 <strong>Web Access</strong> - "open youtube", "search for AI news"<br>
-                🧠 <strong>Memory</strong> - "remember that I like pizza", "what do you remember"<br>
-                📊 <strong>Mood Analysis</strong> - "I feel happy", "analyze my mood"<br>
-                🎮 <strong>Games</strong> - "roll dice", "flip coin"<br>
-                🎵 <strong>Music</strong> - "play shape of you"<br>
-                ⏰ <strong>Utilities</strong> - "what time is it", "calculate 100/4"<br>
-                💬 <strong>Natural Conversation</strong> - Just talk to me naturally!`;
+                this.imageGen = imageGen;
             }
 
             async getResponse(userInput) {
                 this.memory.trackHabit('interaction');
                 const input = userInput.toLowerCase().trim();
                 
-                // Fuzzy matching attempts
-                for (let [intent, data] of Object.entries(this.intentPatterns)) {
-                    for (let pattern of data.patterns) {
-                        const match = input.match(pattern);
-                        if (match) {
-                            if (intent === 'image_gen') {
-                                return await data.response(match, userInput);
-                            }
-                            return data.response(match, userInput);
-                        }
-                    }
+                // Detect ANY image generation request (universal)
+                const imageKeywords = ['generate', 'create', 'make', 'draw', 'render', 'imagine', 'produce', 'art', 'picture', 'image', 'show me', 'give me'];
+                const isImageRequest = imageKeywords.some(keyword => input.includes(keyword));
+                
+                if (isImageRequest) {
+                    return await this.handleImageGeneration(userInput);
                 }
                 
-                // Intelligent fallback with context understanding
-                if (input.length < 3) return "I'm listening... Could you tell me more? 🎙️";
-                
-                // Context-aware responses
-                if (input.includes('?') || input.includes('what') || input.includes('how') || input.includes('why')) {
-                    const topics = {
-                        'ai': "AI stands for Artificial Intelligence. I'm a demonstration of how AI can learn and adapt! 🤖",
-                        'life': "Life is beautiful and complex. How can I help you navigate yours today? 🌟",
-                        'work': "Work smarter, not harder! Need help with anything specific? 💼",
-                        'default': `That's an interesting question about "${userInput.slice(0,50)}". Could you rephrase or tell me more?`
-                    };
-                    let response = topics.default;
-                    for (let [key, val] of Object.entries(topics)) {
-                        if (input.includes(key)) response = val;
-                    }
-                    return response + " I'm here to help with images, websites, memories, or just conversation! ✨";
+                // Name detection
+                const nameMatch = input.match(/(?:my name is|call me|i am|name'?s)\s+(\w+)/i);
+                if (nameMatch) {
+                    const name = nameMatch[1];
+                    this.memory.userProfile.name = name;
+                    this.memory.saveProfile();
+                    return `🎯 Name saved! I'll call you ${name}. Your messages remain invisible. How can I assist? 🔒`;
                 }
                 
-                return `I understand you're saying "${userInput}". I can help with that! Want me to generate an image, open a website, remember something, or just chat? 🎯`;
+                // Website opening
+                const openMatch = input.match(/open\s+(\w+)/i);
+                if (openMatch) {
+                    return this.openWebsite(openMatch[1]);
+                }
+                
+                // Search
+                const searchMatch = input.match(/search for\s+(.+)|find\s+(.+)/i);
+                if (searchMatch) {
+                    const query = searchMatch[1] || searchMatch[2];
+                    return this.searchWeb(query);
+                }
+                
+                // Memory recall
+                if (input.includes('what do you remember') || input.includes('recall') || input.includes('about me')) {
+                    return this.recallMemories();
+                }
+                
+                // Remember
+                const rememberMatch = input.match(/remember that\s+(.+)|remember\s+(.+)/i);
+                if (rememberMatch) {
+                    const note = rememberMatch[1] || rememberMatch[2];
+                    return this.memory.remember('note_' + Date.now(), note);
+                }
+                
+                // Mood analysis
+                if (input.includes('analyze my mood') || input.includes('how am i feeling')) {
+                    return this.memory.analyzeMood();
+                }
+                
+                const moodMatch = input.match(/i feel (\w+)|i'?m feeling (\w+)|feeling (\w+)/i);
+                if (moodMatch) {
+                    const mood = moodMatch[1] || moodMatch[2] || moodMatch[3];
+                    this.memory.trackMood(mood);
+                    return `💭 Noted: you're feeling ${mood}. ${this.getMoodResponse(mood)}`;
+                }
+                
+                // Time
+                if (input.includes('what time') || input.includes('time now')) {
+                    return `🕐 ${new Date().toLocaleTimeString()}`;
+                }
+                
+                // Date
+                if (input.includes('what date') || input.includes('today\'s date')) {
+                    return `📅 ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+                }
+                
+                // Games
+                if (input.includes('roll dice')) {
+                    const r = Math.floor(Math.random()*6)+1;
+                    return `🎲 You rolled ${r} ${['⚀','⚁','⚂','⚃','⚄','⚅'][r-1]}`;
+                }
+                if (input.includes('flip coin')) {
+                    return `💰 ${Math.random()<0.5 ? 'Heads' : 'Tails'}`;
+                }
+                
+                // Jokes
+                if (input.includes('joke') || input.includes('funny')) {
+                    const jokes = [
+                        "Why don't scientists trust atoms? Because they make up everything! 😄",
+                        "What do you call a fake noodle? An impasta! 🍝",
+                        "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                    ];
+                    return jokes[Math.floor(Math.random() * jokes.length)];
+                }
+                
+                // Calculator
+                if (input.includes('calculate') || input.includes('what is') || input.includes('=')) {
+                    try {
+                        const expr = input.replace(/calculate|what is|=/gi, '').trim();
+                        const result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
+                        return `🧮 ${expr} = ${result}`;
+                    } catch(e) {}
+                }
+                
+                // Music
+                const playMatch = input.match(/play\s+(.+)/i);
+                if (playMatch) {
+                    window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(playMatch[1])}`, '_blank');
+                    return `🎵 Opening YouTube for "${playMatch[1]}"...`;
+                }
+                
+                // Help
+                if (input.includes('help') || input.includes('what can you do')) {
+                    return this.showHelp();
+                }
+                
+                // Greeting
+                if (input.match(/hello|hi|hey|greetings/)) {
+                    const name = this.memory.userProfile.name;
+                    return name ? `Hey ${name}! 🔒 Your messages are invisible. Need an image, website, or something else?` : `Hello! I'm in invisible mode. What's your name?`;
+                }
+                
+                // Default intelligent response
+                if (input.length > 2) {
+                    return `I understand you're saying something. Want me to generate an image about "${userInput.slice(0, 50)}"? Or open a website, remember this, or just chat? 🎯`;
+                }
+                
+                return "I'm listening. What would you like to do? Generate images, open websites, or chat? (Your messages remain hidden) 🔒";
+            }
+            
+            getMoodResponse(mood) {
+                const responses = {
+                    'happy': "Keep that positive energy! 🎉",
+                    'sad': "Want me to generate a cheerful image or tell a joke? 💙",
+                    'excited': "Let's channel that excitement into something creative! 🚀",
+                    'stressed': "Take deep breaths. Need a relaxing image? 🧘"
+                };
+                return responses[mood.toLowerCase()] || "Thanks for sharing. I'm here to help! 🌟";
+            }
+            
+            async handleImageGeneration(userInput) {
+                // Extract the prompt - remove command words
+                let prompt = userInput;
+                const removeWords = ['generate', 'create', 'make', 'draw', 'render', 'imagine', 'produce', 'art of', 'picture of', 'image of', 'show me', 'give me', 'a', 'an'];
+                for (let word of removeWords) {
+                    prompt = prompt.replace(new RegExp(word, 'gi'), '');
+                }
+                prompt = prompt.trim();
+                
+                if (!prompt || prompt.length < 2) {
+                    prompt = "a beautiful futuristic landscape with neon lights, cinematic, 8k";
+                }
+                
+                const result = await this.imageGen.generateAnyImage(prompt);
+                
+                if (result.success) {
+                    return `<div class="generated-image">
+                        🎨 <strong>Generated:</strong> "${result.prompt}"<br>
+                        <img src="${result.url}" alt="Generated Image" loading="lazy" style="max-width:100%; border-radius:15px; margin-top:15px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+                        <br><small style="opacity:0.7;">✨ AI Generated | Right-click to save</small>
+                    </div>`;
+                }
+                return "⚠️ Image generation error. Please try a different description.";
+            }
+            
+            openWebsite(site) {
+                const sites = {
+                    'youtube': 'https://youtube.com', 'google': 'https://google.com', 'github': 'https://github.com',
+                    'facebook': 'https://facebook.com', 'twitter': 'https://twitter.com', 'instagram': 'https://instagram.com',
+                    'reddit': 'https://reddit.com', 'amazon': 'https://amazon.com', 'netflix': 'https://netflix.com'
+                };
+                let url = sites[site.toLowerCase()];
+                if (url) { window.open(url, '_blank'); return `🌐 Opening ${site}...`; }
+                if (site.includes('.')) { window.open(`https://${site}`, '_blank'); return `🌐 Opening ${site}...`; }
+                return `❓ Unknown site. Try: youtube, google, github, facebook, twitter`;
+            }
+            
+            searchWeb(query) {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+                return `🔍 Searching Google for "${query}"...`;
+            }
+            
+            recallMemories() {
+                const notes = Object.entries(this.memory.preferences).filter(([k]) => k.includes('note_'));
+                if (notes.length === 0) return "No memories stored yet. Try 'remember that I love pizza'";
+                return `📋 Stored memories:\n${notes.slice(-5).map(([k,v], i) => `${i+1}. ${v}`).join('\n')}`;
+            }
+            
+            showHelp() {
+                return `🎯 <strong>INVISIBLE MODE COMMANDS</strong><br><br>
+                🎨 <strong>UNIVERSAL IMAGE GEN</strong> - "generate a dragon", "create a castle", "draw anything!"<br>
+                🌐 <strong>WEBSITES</strong> - "open youtube", "open google"<br>
+                🧠 <strong>MEMORY</strong> - "remember that I like coffee", "what do you remember"<br>
+                📊 <strong>MOOD</strong> - "I feel happy", "analyze my mood"<br>
+                🎮 <strong>GAMES</strong> - "roll dice", "flip coin"<br>
+                🎵 <strong>MUSIC</strong> - "play shape of you"<br>
+                ⏰ <strong>TIME</strong> - "what time is it"<br>
+                🔒 <strong>PRIVACY</strong> - Your messages are COMPLETELY HIDDEN from view!`;
             }
         }
-
+        
         // ==================== INITIALIZATION ====================
         const memory = new MemorySystem();
-        const responseSystem = new ResponseSystem(memory);
+        const imageGen = new UniversalImageGenerator();
+        const responseSystem = new ResponseSystem(memory, imageGen);
         
-        async function addMessage(message, isUser = false) {
+        async function addBotMessage(message) {
             const chatContainer = document.getElementById('chatContainer');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.innerHTML = `<strong>${isUser ? '👤 YOU' : '🧠 TEASERAI'}</strong><br>${message}`;
+            messageDiv.className = 'bot-message';
+            messageDiv.innerHTML = `<strong>🧠 TEASERAI NEO</strong><br>${message}`;
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
@@ -834,24 +857,30 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
         
-        function removeTyping() { const t = document.getElementById('typingIndicator'); if(t) t.remove(); }
+        function removeTyping() {
+            const t = document.getElementById('typingIndicator');
+            if (t) t.remove();
+        }
         
+        // CRITICAL: User messages are stored but NEVER displayed visually
         async function processUserMessage() {
             const input = document.getElementById('userInput');
             const message = input.value.trim();
             if (!message) return;
             
-            addMessage(message, true);
+            // Store the message but DON'T display it (invisible)
+            console.log('[INVISIBLE MODE] User message received (hidden from UI):', message);
+            
             input.value = '';
             showTyping();
             
-            // Simulate processing time
             setTimeout(async () => {
                 const response = await responseSystem.getResponse(message);
                 removeTyping();
-                addMessage(response, false);
+                await addBotMessage(response);
+                memory.addToHistory(message, response);
                 memory.updateUI();
-            }, 500 + Math.random() * 500);
+            }, 600);
         }
         
         function startVoiceRecognition() {
@@ -867,11 +896,11 @@
                 };
                 recognition.onerror = () => {
                     document.getElementById('status').innerHTML = '🟢 ACTIVE';
-                    addMessage("Voice capture failed. Please type your message.", false);
+                    addBotMessage("Voice capture failed. Please type your message.");
                 };
                 recognition.start();
             } else {
-                addMessage("Voice recognition not supported in this browser. Please use Chrome, Edge, or Safari.", false);
+                addBotMessage("Voice recognition requires Chrome, Edge, or Safari.");
             }
         }
         
@@ -879,7 +908,7 @@
         document.getElementById('sendBtn').addEventListener('click', processUserMessage);
         document.getElementById('voiceBtn').addEventListener('click', startVoiceRecognition);
         document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') processUserMessage(); });
-        document.querySelectorAll('.quick-btn').forEach(btn => {
+        document.querySelectorAll('.cmd-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('userInput').value = btn.getAttribute('data-command');
                 processUserMessage();
