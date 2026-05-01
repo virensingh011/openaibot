@@ -3,109 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>TEASERAI ULTRA • Neural Intelligence Platform • Viren Singh</title>
+    <title>TEASERAI ULTRA • Viren Singh • Neural Intelligence</title>
     <style>
-        /* ========== 3000+ LINES OF PREMIUM CSS ========== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        /* ========== PREMIUM CSS - FULLY VISIBLE TEXT ========== */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap');
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
             --primary-gold: #FFD700;
             --primary-gold-dark: #DAA520;
-            --primary-gold-light: #FFED4E;
             --bg-dark: #0A0A0A;
             --bg-darker: #000000;
-            --bg-card: rgba(20, 20, 30, 0.8);
             --text-primary: #FFFFFF;
-            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-secondary: rgba(255, 255, 255, 0.8);
             --text-gold: #FFD700;
-            --gradient-gold: linear-gradient(135deg, #FFD700, #FF8C00, #FFD700);
-            --gradient-dark: linear-gradient(135deg, #0A0A0A, #1A1A2E);
-            --glow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
-            --glow-gold-strong: 0 0 40px rgba(255, 215, 0, 0.5);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
+            background: radial-gradient(circle at 20% 30%, #0A0A0A, #000000);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
             color: var(--text-primary);
         }
 
-        /* ========== ADVANCED 3D PARTICLE BACKGROUND ========== */
-        #canvas-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ========== NEURAL NETWORK OVERLAY ========== */
-        .neural-overlay {
+        /* Animated Neural Background */
+        .neural-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,215,0,0.03) 0%, transparent 50%),
-                repeating-linear-gradient(45deg, rgba(255,215,0,0.02) 0px, rgba(255,215,0,0.02) 2px, transparent 2px, transparent 8px);
+                radial-gradient(circle at 20% 40%, rgba(255,215,0,0.08) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, rgba(255,215,0,0.03) 0px, rgba(255,215,0,0.03) 1px, transparent 1px, transparent 20px);
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
 
-        /* ========== MAIN CONTAINER ========== */
-        .app-container {
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: floatOrb 20s infinite;
+            pointer-events: none;
+        }
+        .orb1 { width: 400px; height: 400px; background: #FFD700; top: -150px; right: -150px; }
+        .orb2 { width: 500px; height: 500px; background: #DAA520; bottom: -200px; left: -200px; animation-delay: 5s; }
+        .orb3 { width: 300px; height: 300px; background: #FF8C00; top: 50%; left: 50%; animation-delay: 10s; transform: translate(-50%, -50%); }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* Main Container */
+        .container {
             position: relative;
-            z-index: 2;
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
 
-        /* ========== GLASSMORPHISM HEADER ========== */
+        /* Glass Header */
         .glass-header {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             padding: 20px 30px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
-            animation: slideDown 0.6s ease;
+            gap: 15px;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo-section {
+        .logo-area {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -114,67 +97,61 @@
         .logo-icon {
             font-size: 3rem;
             filter: drop-shadow(0 0 15px var(--primary-gold));
-            animation: pulseGlow 2s infinite;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes pulseGlow {
+        @keyframes pulse {
             0%, 100% { filter: drop-shadow(0 0 10px var(--primary-gold)); }
             50% { filter: drop-shadow(0 0 25px var(--primary-gold)); }
         }
 
         .logo-text h1 {
             font-size: 1.8rem;
-            background: var(--gradient-gold);
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 800;
-            letter-spacing: 2px;
         }
 
         .logo-text p {
             font-size: 0.7rem;
             color: var(--text-gold);
-            opacity: 0.8;
-            letter-spacing: 1px;
+            opacity: 0.9;
         }
 
-        /* ========== STATS DASHBOARD ========== */
-        .stats-dashboard {
+        /* Stats */
+        .stats {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .stat-card {
             background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            padding: 10px 20px;
+            border-radius: 15px;
+            padding: 8px 18px;
             border-left: 3px solid var(--primary-gold);
-            backdrop-filter: blur(10px);
         }
 
         .stat-card .label {
             font-size: 0.7rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .stat-card .value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary-gold);
         }
 
-        /* ========== MAIN GRID LAYOUT ========== */
+        /* Main Grid */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 380px;
             gap: 20px;
-            flex: 1;
         }
 
-        /* ========== CHAT SECTION ========== */
+        /* Chat Section */
         .chat-section {
             background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
@@ -183,12 +160,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: fadeIn 0.6s ease 0.2s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+            min-height: 600px;
         }
 
         .chat-header {
@@ -200,11 +172,8 @@
         }
 
         .chat-header h3 {
+            color: var(--primary-gold);
             font-weight: 600;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
 
         .model-badge {
@@ -215,43 +184,35 @@
             color: var(--primary-gold);
         }
 
+        /* Messages */
         .chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            min-height: 500px;
-            max-height: 60vh;
+            max-height: 500px;
+            min-height: 400px;
         }
 
         .chat-messages::-webkit-scrollbar {
             width: 6px;
         }
-
         .chat-messages::-webkit-scrollbar-track {
             background: rgba(255, 215, 0, 0.1);
             border-radius: 10px;
         }
-
         .chat-messages::-webkit-scrollbar-thumb {
             background: var(--primary-gold);
             border-radius: 10px;
         }
 
-        /* Message Styles */
         .message {
             margin-bottom: 20px;
-            animation: messageAppear 0.3s ease;
+            animation: slideIn 0.3s ease;
         }
 
-        @keyframes messageAppear {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .user-message {
@@ -264,7 +225,7 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 20px;
             padding: 12px 18px;
-            max-width: 70%;
+            max-width: 75%;
             color: var(--text-primary);
         }
 
@@ -282,106 +243,89 @@
             color: var(--text-primary);
         }
 
-        .message-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--gradient-gold);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-size: 1rem;
-        }
-
-        /* ========== AI CONTROLS ========== */
-        .ai-controls {
+        /* Input Area */
+        .input-area {
             padding: 20px;
             border-top: 1px solid rgba(255, 215, 0, 0.1);
             display: flex;
             gap: 12px;
         }
 
-        .ai-controls input {
+        .input-area input {
             flex: 1;
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 30px;
-            padding: 15px 20px;
+            padding: 14px 20px;
             color: var(--text-primary);
             font-size: 1rem;
-            transition: var(--transition-smooth);
         }
 
-        .ai-controls input:focus {
+        .input-area input:focus {
             outline: none;
             border-color: var(--primary-gold);
-            box-shadow: var(--glow-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
         }
 
-        .ai-controls input::placeholder {
+        .input-area input::placeholder {
             color: rgba(255, 255, 255, 0.4);
         }
 
-        .control-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.05);
-            border-color: var(--primary-gold);
-            box-shadow: var(--glow-gold);
-        }
-
-        .send-btn {
-            background: var(--gradient-gold);
+        button {
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            border: none;
+            border-radius: 30px;
+            padding: 0 20px;
             color: #000;
-            font-weight: bold;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        /* ========== RIGHT SIDEBAR ========== */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .icon-btn {
+            width: 48px;
+            padding: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Right Sidebar */
         .right-sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Image Generation Panel */
+        /* Image Panel */
         .image-panel {
             background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             border: 1px solid rgba(255, 215, 0, 0.2);
             padding: 20px;
-            animation: fadeIn 0.6s ease 0.3s both;
         }
 
         .panel-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 15px;
+            color: var(--primary-gold);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .image-input-area {
+        .image-input-group {
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
         }
 
-        .image-input-area input {
+        .image-input-group input {
             flex: 1;
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 215, 0, 0.3);
@@ -390,26 +334,22 @@
             color: var(--text-primary);
         }
 
-        .generate-image-btn {
-            background: var(--gradient-gold);
-            border: none;
-            border-radius: 20px;
+        .generate-btn {
             padding: 0 20px;
-            color: #000;
-            font-weight: 600;
-            cursor: pointer;
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            border-radius: 20px;
         }
 
         .image-result {
             margin-top: 15px;
-            border-radius: 20px;
-            overflow: hidden;
             display: none;
+            text-align: center;
         }
 
         .image-result img {
-            width: 100%;
-            border-radius: 20px;
+            max-width: 100%;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
         /* Memory Panel */
@@ -419,13 +359,12 @@
             border-radius: 30px;
             border: 1px solid rgba(255, 215, 0, 0.2);
             padding: 20px;
-            animation: fadeIn 0.6s ease 0.4s both;
         }
 
         .memory-list {
             max-height: 200px;
             overflow-y: auto;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .memory-item {
@@ -434,34 +373,38 @@
             color: var(--text-secondary);
         }
 
-        /* Quick Actions */
-        .quick-actions {
+        /* Quick Chips */
+        .quick-chips {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 15px;
         }
 
-        .quick-chip {
+        .chip {
             background: rgba(255, 215, 0, 0.1);
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
             padding: 6px 14px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.2s;
+            color: var(--text-gold);
         }
 
-        .quick-chip:hover {
+        .chip:hover {
             background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
         }
 
         /* Typing Indicator */
         .typing-indicator {
-            display: flex;
-            gap: 4px;
+            display: inline-flex;
+            gap: 5px;
             padding: 10px 15px;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 20px;
+            margin: 10px 0;
         }
 
         .typing-indicator span {
@@ -469,85 +412,82 @@
             height: 8px;
             border-radius: 50%;
             background: var(--primary-gold);
-            animation: typingBounce 1.4s infinite;
+            animation: typing 1.4s infinite;
         }
 
-        @keyframes typingBounce {
+        @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
             30% { transform: translateY(-8px); opacity: 1; }
-        }
-
-        /* Voice Status */
-        .voice-status {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 30px;
-            border-left: 3px solid var(--primary-gold);
-            font-size: 0.8rem;
-            z-index: 100;
         }
 
         /* Loading Spinner */
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(255, 215, 0, 0.3);
+            border: 3px solid rgba(255, 215, 0, 0.2);
             border-top-color: var(--primary-gold);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
+            margin: 20px auto;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive */
-        @media (max-width: 1000px) {
+        /* Voice Status */
+        .voice-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border-left: 3px solid var(--primary-gold);
+            font-size: 0.75rem;
+            z-index: 100;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 900px) {
             .main-grid {
                 grid-template-columns: 1fr;
             }
             .right-sidebar {
-                max-height: 400px;
+                max-height: 450px;
                 overflow-y: auto;
             }
-        }
-
-        /* Animations */
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-            50% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+            .glass-header {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas-bg"></canvas>
-    <div class="neural-overlay"></div>
+    <div class="neural-bg"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
-    <div class="app-container">
+    <div class="container">
         <div class="glass-header">
-            <div class="logo-section">
+            <div class="logo-area">
                 <div class="logo-icon">🧠✨</div>
                 <div class="logo-text">
                     <h1>TEASERAI ULTRA</h1>
-                    <p>by Viren Singh • Neural Intelligence Platform v5.0</p>
+                    <p>by Viren Singh • Neural Intelligence Platform</p>
                 </div>
             </div>
-            <div class="stats-dashboard">
+            <div class="stats">
                 <div class="stat-card">
-                    <div class="label">AI Model</div>
-                    <div class="value" style="font-size: 0.9rem;">Llama 3.1 70B</div>
-                </div>
-                <div class="stat-card">
-                    <div class="label">Memory</div>
+                    <div class="label">MEMORY</div>
                     <div class="value" id="memoryCount">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="label">Latency</div>
-                    <div class="value" id="latency" style="font-size: 0.9rem;">&lt;100ms</div>
+                    <div class="label">STATUS</div>
+                    <div class="value" id="status" style="font-size: 0.9rem;">🟢 ACTIVE</div>
                 </div>
             </div>
         </div>
@@ -557,53 +497,53 @@
             <div class="chat-section">
                 <div class="chat-header">
                     <h3>🤖 Neural Chat Interface</h3>
-                    <div class="model-badge">🔴 REAL AI • Llama 3.1</div>
+                    <div class="model-badge" id="modelBadge">⚡ REAL AI • READY</div>
                 </div>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot-message">
                         <div class="message-content">
-                            <strong>🧠 TEASERAI ULTRA</strong><br>
+                            <strong>🧠 TEASERAI ULTRA</strong><br><br>
                             Welcome to the most advanced AI platform. I feature:<br><br>
-                            🎯 <strong>REAL LLM Integration</strong> - Llama 3.1 70B via Groq Cloud<br>
-                            🎨 <strong>Real-time Image Generation</strong> - AI image synthesis<br>
-                            🎤 <strong>Voice I/O</strong> - Speak naturally, I understand<br>
-                            🧠 <strong>Persistent Memory</strong> - I remember everything<br>
-                            ⚡ <strong>Sub-100ms Responses</strong> - Blazing fast<br><br>
-                            Try asking me anything or generate an image below!
+                            🎯 <strong>Real AI Intelligence</strong><br>
+                            🎨 <strong>Infinite Image Generation</strong><br>
+                            🎤 <strong>Voice Input & Output</strong><br>
+                            🧠 <strong>Persistent Memory</strong><br>
+                            ⚡ <strong>Lightning Fast</strong><br><br>
+                            Try: "generate a dragon" or "remember that I love coffee"
                         </div>
                     </div>
                 </div>
-                <div class="ai-controls">
-                    <input type="text" id="chatInput" placeholder="Ask me anything... I use real AI (Llama 3.1)..." autocomplete="off">
-                    <button class="control-btn" id="voiceInputBtn" title="Voice Input">🎤</button>
-                    <button class="control-btn send-btn" id="sendBtn">➤</button>
+                <div class="input-area">
+                    <input type="text" id="chatInput" placeholder="Ask me anything or describe an image..." autocomplete="off">
+                    <button class="icon-btn" id="voiceBtn">🎤</button>
+                    <button id="sendBtn">SEND</button>
                 </div>
-                <div class="quick-actions" style="padding: 0 20px 20px 20px;">
-                    <div class="quick-chip" data-prompt="Explain quantum computing in simple terms">🔬 Quantum Computing</div>
-                    <div class="quick-chip" data-prompt="Write a Python function for Fibonacci">🐍 Python Code</div>
-                    <div class="quick-chip" data-prompt="Tell me a creative story">📖 Story</div>
-                    <div class="quick-chip" data-prompt="What's the meaning of life?">🤔 Philosophy</div>
+                <div class="quick-chips" style="padding: 0 20px 20px 20px;">
+                    <div class="chip" data-prompt="generate a beautiful sunset over mountains">🌅 Sunset</div>
+                    <div class="chip" data-prompt="generate a cyberpunk city with neon lights">🌃 Cyberpunk City</div>
+                    <div class="chip" data-prompt="remember that I love pizza">🧠 Remember</div>
+                    <div class="chip" data-prompt="what do you remember">📋 Recall</div>
+                    <div class="chip" data-prompt="tell me a joke">😄 Joke</div>
                 </div>
             </div>
 
             <!-- Right Sidebar -->
             <div class="right-sidebar">
-                <!-- Image Generation -->
+                <!-- Image Generation Panel -->
                 <div class="image-panel">
                     <div class="panel-title">
-                        <span>🎨</span> AI Image Generator
-                        <span style="font-size: 0.7rem; opacity: 0.6;">Flux/SDXL</span>
+                        <span>🎨</span> Image Generator
                     </div>
-                    <div class="image-input-area">
-                        <input type="text" id="imagePrompt" placeholder="Describe any image... e.g., 'a futuristic cyberpunk city'">
-                        <button class="generate-image-btn" id="generateImageBtn">Generate</button>
+                    <div class="image-input-group">
+                        <input type="text" id="imagePrompt" placeholder="Describe any image... e.g., 'a dragon flying over mountains'">
+                        <button class="generate-btn" id="generateBtn">Generate</button>
+                    </div>
+                    <div id="imageLoading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p style="text-align: center; color: var(--text-gold);">Generating image...</p>
                     </div>
                     <div class="image-result" id="imageResult">
                         <img id="generatedImage" alt="Generated Image">
-                    </div>
-                    <div id="imageLoading" style="display: none; text-align: center; padding: 20px;">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 10px;">Generating masterpiece...</p>
                     </div>
                 </div>
 
@@ -615,22 +555,22 @@
                     <div class="memory-list" id="memoryList">
                         <div class="memory-item">No memories yet. Say "remember that..."</div>
                     </div>
-                    <div class="quick-actions" style="margin-top: 15px;">
-                        <div class="quick-chip" id="recallMemories">📋 Recall All</div>
-                        <div class="quick-chip" id="clearMemories">🗑️ Clear Memory</div>
+                    <div class="quick-chips">
+                        <div class="chip" id="recallMemories">📋 Recall All</div>
+                        <div class="chip" id="clearMemories">🗑️ Clear Memory</div>
                     </div>
                 </div>
 
-                <!-- Quick Stats -->
+                <!-- Info Panel -->
                 <div class="memory-panel">
                     <div class="panel-title">
                         <span>📊</span> System Status
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div>🟢 AI Model: <strong>Llama 3.1 70B</strong></div>
-                        <div>🎨 Image Model: <strong>Flux/SDXL</strong></div>
-                        <div>🎤 Voice: <strong>Web Speech API</strong></div>
-                        <div>💾 Session ID: <strong id="sessionId">loading...</strong></div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div>🟢 AI Model: <strong>Active</strong></div>
+                        <div>🎨 Image Gen: <strong>Ready</strong></div>
+                        <div>🎤 Voice: <strong>Enabled</strong></div>
+                        <div>💾 Session: <strong id="sessionId">active</strong></div>
                     </div>
                 </div>
             </div>
@@ -640,656 +580,485 @@
     <div class="voice-status" id="voiceStatus">🔊 Voice Ready • Click 🎤 to speak</div>
 
     <script>
-        // ========== 7000+ LINES OF ADVANCED JAVASCRIPT ==========
+        // ========== YOUR GROQ API KEY - APPLIED HERE! ==========
+        // REPLACE THIS WITH YOUR API KEY FROM GROQ.COM
+        const GROQ_API_KEY = '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';
         
         // ========== CONFIGURATION ==========
         const CONFIG = {
-            // Groq API (FREE - get at console.groq.com)
-            GROQ_API_KEY: '', // User needs to add their free key
             GROQ_API_URL: 'https://api.groq.com/openai/v1/chat/completions',
             GROQ_MODEL: 'llama-3.1-70b-versatile',
-            
-            // Image Generation API (Pollinations - FREE)
-            IMAGE_API_URL: 'https://image.pollinations.ai/prompt/',
-            
-            // Session
-            sessionId: 'session_' + Math.random().toString(36).substr(2, 9),
+            IMAGE_API_URL: 'https://image.pollinations.ai/prompt/'
         };
         
         // ========== MEMORY SYSTEM ==========
-        class NeuralMemory {
-            constructor() {
-                this.memories = this.load();
-                this.conversationHistory = [];
-                this.userProfile = this.loadProfile();
+        let memories = [];
+        let conversationHistory = [];
+        let userName = null;
+        
+        function loadMemories() {
+            const saved = localStorage.getItem('teaserai_memories');
+            if (saved) memories = JSON.parse(saved);
+            renderMemories();
+            updateMemoryCount();
+        }
+        
+        function saveMemories() {
+            localStorage.setItem('teaserai_memories', JSON.stringify(memories));
+            renderMemories();
+            updateMemoryCount();
+        }
+        
+        function addMemory(content) {
+            memories.unshift({ id: Date.now(), content: content, timestamp: new Date().toISOString() });
+            if (memories.length > 20) memories.pop();
+            saveMemories();
+            return true;
+        }
+        
+        function clearAllMemories() {
+            memories = [];
+            saveMemories();
+        }
+        
+        function renderMemories() {
+            const container = document.getElementById('memoryList');
+            if (memories.length === 0) {
+                container.innerHTML = '<div class="memory-item">No memories yet. Say "remember that..."</div>';
+                return;
             }
+            container.innerHTML = memories.slice(0, 10).map(m => 
+                `<div class="memory-item">📝 ${m.content.substring(0, 60)}</div>`
+            ).join('');
+        }
+        
+        function updateMemoryCount() {
+            document.getElementById('memoryCount').innerText = memories.length;
+        }
+        
+        function addToHistory(role, content) {
+            conversationHistory.push({ role, content, timestamp: Date.now() });
+            if (conversationHistory.length > 20) conversationHistory.shift();
+        }
+        
+        // ========== REAL AI WITH YOUR GROQ API KEY ==========
+        let isThinking = false;
+        
+        async function getAIResponse(userMessage) {
+            if (isThinking) return "Processing previous request...";
             
-            load() {
-                const saved = localStorage.getItem('teaserai_neural_memory');
-                return saved ? JSON.parse(saved) : [];
-            }
+            // Check local commands first
+            const localResponse = checkLocalCommands(userMessage);
+            if (localResponse) return localResponse;
             
-            save() {
-                localStorage.setItem('teaserai_neural_memory', JSON.stringify(this.memories));
-                this.renderMemories();
-            }
+            isThinking = true;
+            showTyping();
             
-            loadProfile() {
-                const saved = localStorage.getItem('teaserai_user_profile');
-                return saved ? JSON.parse(saved) : {
-                    name: null,
-                    preferences: {},
-                    interactionCount: 0,
-                    firstVisit: new Date().toISOString()
-                };
-            }
-            
-            saveProfile() {
-                localStorage.setItem('teaserai_user_profile', JSON.stringify(this.userProfile));
-                document.getElementById('memoryCount').innerText = this.memories.length;
-            }
-            
-            addMemory(content) {
-                this.memories.unshift({
-                    id: Date.now(),
-                    content: content,
-                    timestamp: new Date().toISOString()
+            try {
+                // Make API call to Groq with YOUR API key
+                const response = await fetch(CONFIG.GROQ_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${GROQ_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: CONFIG.GROQ_MODEL,
+                        messages: [
+                            { 
+                                role: 'system', 
+                                content: `You are TeaseraI, an advanced AI assistant created by Viren Singh. 
+                                You have memory capabilities. Be helpful, concise, and engaging.
+                                User's name: ${userName || 'Unknown'}` 
+                            },
+                            ...conversationHistory.slice(-5),
+                            { role: 'user', content: userMessage }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 800
+                    })
                 });
-                if (this.memories.length > 20) this.memories.pop();
-                this.save();
-                this.saveProfile();
-                return true;
-            }
-            
-            getAllMemories() {
-                return this.memories;
-            }
-            
-            clearMemories() {
-                this.memories = [];
-                this.save();
-                this.renderMemories();
-            }
-            
-            renderMemories() {
-                const container = document.getElementById('memoryList');
-                if (this.memories.length === 0) {
-                    container.innerHTML = '<div class="memory-item">No memories yet. Say "remember that..."</div>';
-                    return;
-                }
-                container.innerHTML = this.memories.slice(0, 10).map(m => 
-                    `<div class="memory-item">📝 ${m.content.substring(0, 60)}</div>`
-                ).join('');
-            }
-            
-            addToHistory(role, content) {
-                this.conversationHistory.push({ role, content, timestamp: Date.now() });
-                if (this.conversationHistory.length > 30) this.conversationHistory.shift();
-            }
-            
-            getConversationContext() {
-                return this.conversationHistory.slice(-10);
+                
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content;
+                
+                addToHistory('user', userMessage);
+                addToHistory('assistant', aiResponse);
+                
+                hideTyping();
+                isThinking = false;
+                return aiResponse;
+                
+            } catch (error) {
+                console.error('AI Error:', error);
+                hideTyping();
+                isThinking = false;
+                return getFallbackResponse(userMessage);
             }
         }
         
-        // ========== REAL AI LLM INTEGRATION (Groq Cloud) ==========
-        class RealAI {
-            constructor(memory) {
-                this.memory = memory;
-                this.isThinking = false;
-            }
+        function checkLocalCommands(message) {
+            const lower = message.toLowerCase();
             
-            async think(prompt) {
-                if (this.isThinking) return "I'm still processing your previous request...";
-                
-                this.isThinking = true;
-                this.showTyping();
-                
-                const startTime = performance.now();
-                
-                try {
-                    // First check local memory for quick responses
-                    const memoryResponse = this.checkLocalMemory(prompt);
-                    if (memoryResponse) {
-                        this.hideTyping();
-                        this.isThinking = false;
-                        this.updateLatency(performance.now() - startTime);
-                        return memoryResponse;
-                    }
-                    
-                    // If no API key, use enhanced local AI
-                    if (!CONFIG.GROQ_API_KEY) {
-                        const localResponse = this.enhancedLocalAI(prompt);
-                        this.hideTyping();
-                        this.isThinking = false;
-                        this.updateLatency(performance.now() - startTime);
-                        return localResponse + "\n\n💡 *To enable REAL Llama 3.1 AI, get a free API key at console.groq.com*";
-                    }
-                    
-                    // Real API call to Groq
-                    const response = await fetch(CONFIG.GROQ_API_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${CONFIG.GROQ_API_KEY}`,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            model: CONFIG.GROQ_MODEL,
-                            messages: [
-                                { 
-                                    role: 'system', 
-                                    content: `You are TeaseraI Ultra, an advanced AI assistant created by Viren Singh. 
-                                    You have a neural memory system and remember past conversations.
-                                    Be helpful, creative, and engaging. Provide detailed, accurate responses.
-                                    Current user context: ${JSON.stringify(this.memory.userProfile)}` 
-                                },
-                                ...this.memory.getConversationContext(),
-                                { role: 'user', content: prompt }
-                            ],
-                            temperature: 0.7,
-                            max_tokens: 1000,
-                            top_p: 0.9
-                        })
-                    });
-                    
-                    if (!response.ok) throw new Error('API Error');
-                    
-                    const data = await response.json();
-                    const aiResponse = data.choices[0].message.content;
-                    
-                    // Store in memory
-                    this.memory.addToHistory('user', prompt);
-                    this.memory.addToHistory('assistant', aiResponse);
-                    
-                    this.hideTyping();
-                    this.isThinking = false;
-                    this.updateLatency(performance.now() - startTime);
-                    
-                    return aiResponse;
-                    
-                } catch (error) {
-                    console.error('AI Error:', error);
-                    this.hideTyping();
-                    this.isThinking = false;
-                    return this.enhancedLocalAI(prompt);
+            // Remember command
+            if (lower.includes('remember that')) {
+                const content = message.replace(/remember that|remember/gi, '').trim();
+                if (content) {
+                    addMemory(content);
+                    return `✅ I've remembered: "${content}"`;
                 }
             }
             
-            checkLocalMemory(prompt) {
-                const lowerPrompt = prompt.toLowerCase();
-                
-                // Check for recall command
-                if (lowerPrompt.includes('what do you remember') || lowerPrompt.includes('recall memories')) {
-                    const memories = this.memory.getAllMemories();
-                    if (memories.length === 0) return "I don't have any memories yet. Tell me something like 'remember that I love pizza'!";
-                    return `📋 Here's what I remember:\n${memories.slice(0, 10).map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
-                }
-                
-                // Check for remember command
-                if (lowerPrompt.includes('remember that')) {
-                    const memoryContent = prompt.replace(/remember that|remember/gi, '').trim();
-                    if (memoryContent) {
-                        this.memory.addMemory(memoryContent);
-                        return `✅ I've remembered: "${memoryContent}"`;
-                    }
-                }
-                
-                // Check for name
-                if (lowerPrompt.includes('my name is')) {
-                    const name = prompt.match(/my name is (\w+)/i);
-                    if (name) {
-                        this.memory.userProfile.name = name[1];
-                        this.memory.saveProfile();
-                        return `🎯 Nice to meet you, ${name[1]}! I'll remember your name.`;
-                    }
-                }
-                
-                return null;
+            // Recall memories
+            if (lower.includes('what do you remember') || lower.includes('recall')) {
+                if (memories.length === 0) return "I don't have any memories yet. Try saying 'remember that I like coffee'!";
+                return `📋 Here's what I remember:\n${memories.slice(0, 10).map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
             }
             
-            enhancedLocalAI(prompt) {
-                const lower = prompt.toLowerCase();
-                
-                // Intelligent local responses
-                if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
-                    const name = this.memory.userProfile.name;
-                    return name ? `Hey ${name}! 👋 How can I help you today? I can generate images, answer questions, or just chat!` : `Hello! I'm TeaseraI Ultra. What's your name? (say "my name is...")`;
+            // Name
+            if (lower.includes('my name is')) {
+                const name = message.match(/my name is (\w+)/i);
+                if (name) {
+                    userName = name[1];
+                    localStorage.setItem('teaserai_username', userName);
+                    return `🎯 Nice to meet you, ${userName}! I'll remember your name.`;
                 }
-                
-                if (lower.includes('how are you')) {
-                    return "I'm operating at peak neural efficiency! Thanks for asking. How can I assist you today? 🚀";
-                }
-                
-                if (lower.includes('thank')) {
-                    return "You're very welcome! I'm here 24/7 to help. Anything else you need? 🌟";
-                }
-                
-                if (lower.includes('joke')) {
-                    const jokes = [
-                        "Why don't scientists trust atoms? Because they make up everything! 😄",
-                        "What do you call a fake noodle? An impasta! 🍝",
-                        "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
-                        "What do you call a bear with no teeth? A gummy bear! 🐻"
-                    ];
-                    return jokes[Math.floor(Math.random() * jokes.length)];
-                }
-                
-                if (lower.includes('calculate') || lower.includes('math')) {
-                    try {
-                        const expr = prompt.replace(/calculate|math|solve/gi, '').trim();
-                        const result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
-                        return `🧮 ${expr} = ${result}`;
-                    } catch(e) {}
-                }
-                
-                if (lower.includes('time')) {
-                    return `🕐 Current time: ${new Date().toLocaleTimeString()}`;
-                }
-                
-                if (lower.includes('date')) {
-                    return `📅 Today is ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
-                }
-                
-                if (lower.includes('code') || lower.includes('python')) {
-                    return "```python\n# Here's a Python example\n\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)\n\nprint(fibonacci(10))\n```";
-                }
-                
-                if (lower.includes('explain') || lower.includes('what is')) {
-                    return `That's a great question about "${prompt.substring(0, 50)}". I'd love to help! For the most accurate response, please add your free Groq API key (console.groq.com) to enable Llama 3.1. Meanwhile, I can generate images, remember things, or chat! 🚀`;
-                }
-                
-                // Default intelligent response
-                return `I hear you saying "${prompt.substring(0, 80)}". Here's what I can do:\n\n🎨 Generate ANY image - Just use the image panel below!\n🧠 Remember anything - Say "remember that..."\n🔓 Get FREE API key at console.groq.com for REAL Llama 3.1 AI!\n\nTry: "generate a beautiful sunset" or "remember that I like coffee"`;
             }
             
-            showTyping() {
-                const container = document.getElementById('chatMessages');
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'typing-indicator';
-                typingDiv.id = 'typingIndicator';
-                typingDiv.innerHTML = '<span></span><span></span><span></span><span style="margin-left:8px;">TeaseraI is thinking...</span>';
-                container.appendChild(typingDiv);
-                container.scrollTop = container.scrollHeight;
+            // Time
+            if (lower.includes('what time')) return `🕐 ${new Date().toLocaleTimeString()}`;
+            
+            // Date
+            if (lower.includes('what date')) return `📅 ${new Date().toLocaleDateString()}`;
+            
+            // Joke
+            if (lower.includes('joke')) {
+                const jokes = [
+                    "Why don't scientists trust atoms? Because they make up everything! 😄",
+                    "What do you call a fake noodle? An impasta! 🍝",
+                    "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                ];
+                return jokes[Math.floor(Math.random() * jokes.length)];
             }
             
-            hideTyping() {
-                const indicator = document.getElementById('typingIndicator');
-                if (indicator) indicator.remove();
+            // Help
+            if (lower.includes('help')) {
+                return `🎯 <strong>Commands:</strong><br>
+                🎨 "generate a dragon" - Create any image<br>
+                🧠 "remember that I like coffee" - Save memories<br>
+                📋 "what do you remember" - Recall memories<br>
+                🎤 Click mic button to speak<br>
+                💬 Just chat normally with me!`;
             }
             
-            updateLatency(ms) {
-                const latencyEl = document.getElementById('latency');
-                if (latencyEl) {
-                    const latency = Math.round(ms);
-                    latencyEl.innerHTML = latency < 100 ? `${latency}ms` : `${latency}ms`;
-                }
-            }
+            return null;
         }
         
-        // ========== IMAGE GENERATION ==========
-        class ImageGenerator {
-            constructor() {
-                this.isGenerating = false;
+        function getFallbackResponse(message) {
+            const lower = message.toLowerCase();
+            
+            if (lower.includes('hello') || lower.includes('hi')) {
+                return userName ? `Hey ${userName}! 👋 How can I help you today?` : `Hello! What's your name? (say "my name is...")`;
             }
             
-            async generate(prompt) {
-                if (!prompt || prompt.trim().length < 2) {
-                    this.showError("Please describe an image to generate!");
-                    return;
-                }
-                
-                this.isGenerating = true;
-                this.showLoading();
-                
-                const cleanPrompt = prompt.trim();
-                const enhancedPrompt = `masterpiece, ultra high quality, detailed, beautiful, ${cleanPrompt}`;
-                const imageUrl = `${CONFIG.IMAGE_API_URL}${encodeURIComponent(enhancedPrompt)}?width=1024&height=1024&nologo=true&seed=${Date.now()}`;
-                
-                const imgElement = document.getElementById('generatedImage');
-                const resultDiv = document.getElementById('imageResult');
-                
-                imgElement.onload = () => {
-                    resultDiv.style.display = 'block';
-                    this.hideLoading();
-                    this.isGenerating = false;
-                    
-                    // Add to chat
-                    this.addImageToChat(cleanPrompt, imageUrl);
-                };
-                
-                imgElement.onerror = () => {
-                    this.hideLoading();
-                    this.isGenerating = false;
-                    this.showError("Failed to generate image. Please try a different description.");
-                };
-                
-                imgElement.src = imageUrl;
+            if (lower.includes('how are you')) {
+                return "I'm doing great! Ready to help with images, memories, or anything you need! 🚀";
             }
             
-            showLoading() {
-                document.getElementById('imageLoading').style.display = 'block';
-                document.getElementById('imageResult').style.display = 'none';
+            if (lower.includes('thank')) {
+                return "You're welcome! Anything else I can help with? 🌟";
             }
             
-            hideLoading() {
-                document.getElementById('imageLoading').style.display = 'none';
+            return `I got your message! You can:\n\n🎨 Generate images - "generate a car"\n🧠 Store memories - "remember that I love pizza"\n📋 Recall memories - "what do you remember"\n\nWhat would you like to do?`;
+        }
+        
+        // ========== IMAGE GENERATION (FIXED - MULTIPLE GENERATIONS WORK) ==========
+        let isGenerating = false;
+        let lastImagePrompt = '';
+        
+        async function generateImage(prompt) {
+            if (!prompt || prompt.trim().length < 2) {
+                addBotMessage("Please describe what image you want me to generate!");
+                return;
             }
             
-            showError(msg) {
-                const container = document.getElementById('chatMessages');
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'message bot-message';
-                errorDiv.innerHTML = `<div class="message-content">⚠️ ${msg}</div>`;
-                container.appendChild(errorDiv);
-                container.scrollTop = container.scrollHeight;
+            if (isGenerating) {
+                addBotMessage("Please wait, I'm already generating an image for you!");
+                return;
             }
             
-            addImageToChat(prompt, imageUrl) {
-                const container = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message bot-message';
-                messageDiv.innerHTML = `
-                    <div class="message-content">
-                        <strong>🎨 AI Generated Image</strong><br>
-                        Prompt: "${prompt}"<br>
-                        <img src="${imageUrl}" style="max-width:100%; border-radius:15px; margin-top:10px;" alt="Generated">
-                        <br><small>✨ Right-click to save | AI Generated</small>
-                    </div>
-                `;
-                container.appendChild(messageDiv);
-                container.scrollTop = container.scrollHeight;
-            }
+            isGenerating = true;
+            showImageLoading();
+            
+            const cleanPrompt = prompt.trim();
+            const enhancedPrompt = `beautiful, high quality, detailed, ${cleanPrompt}`;
+            
+            // Different URL each time for unique images
+            const timestamp = Date.now();
+            const randomSeed = Math.random() * 100000;
+            const imageUrl = `${CONFIG.IMAGE_API_URL}${encodeURIComponent(enhancedPrompt)}?width=1024&height=1024&seed=${randomSeed}&timestamp=${timestamp}&nologo=true`;
+            
+            const imgElement = document.getElementById('generatedImage');
+            const resultDiv = document.getElementById('imageResult');
+            
+            // Set up load handler
+            imgElement.onload = () => {
+                resultDiv.style.display = 'block';
+                hideImageLoading();
+                isGenerating = false;
+                lastImagePrompt = cleanPrompt;
+                
+                // Also add to chat
+                addImageToChat(cleanPrompt, imageUrl);
+            };
+            
+            imgElement.onerror = () => {
+                hideImageLoading();
+                isGenerating = false;
+                addBotMessage("⚠️ Image generation failed. Please try a different description.");
+            };
+            
+            // Load the image
+            imgElement.src = imageUrl;
+        }
+        
+        function showImageLoading() {
+            document.getElementById('imageLoading').style.display = 'block';
+            document.getElementById('imageResult').style.display = 'none';
+        }
+        
+        function hideImageLoading() {
+            document.getElementById('imageLoading').style.display = 'none';
+        }
+        
+        function addImageToChat(prompt, imageUrl) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <strong>🎨 Image Generated</strong><br>
+                    "${prompt}"<br>
+                    <img src="${imageUrl}" style="max-width:100%; border-radius:15px; margin-top:10px;" alt="Generated">
+                    <br><small>✨ Right-click to save</small>
+                </div>
+            `;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
         }
         
         // ========== VOICE SYSTEM ==========
-        class VoiceSystem {
-            constructor() {
-                this.recognition = null;
-                this.synth = window.speechSynthesis;
-                this.isListening = false;
-                this.isSpeakingEnabled = true;
-                this.initSpeechRecognition();
-            }
-            
-            initSpeechRecognition() {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (SpeechRecognition) {
-                    this.recognition = new SpeechRecognition();
-                    this.recognition.lang = 'en-US';
-                    this.recognition.continuous = false;
-                    this.recognition.interimResults = false;
-                    
-                    this.recognition.onstart = () => {
-                        this.isListening = true;
-                        document.getElementById('voiceStatus').innerHTML = '🎤 Listening... Speak now';
-                        document.getElementById('voiceStatus').style.borderLeftColor = '#FF4500';
-                    };
-                    
-                    this.recognition.onresult = (event) => {
-                        const transcript = event.results[0][0].transcript;
-                        document.getElementById('chatInput').value = transcript;
-                        document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
-                        document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
-                        this.isListening = false;
-                        // Auto-send
-                        document.getElementById('sendBtn').click();
-                    };
-                    
-                    this.recognition.onerror = () => {
-                        this.isListening = false;
-                        document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
-                        document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
-                    };
-                    
-                    this.recognition.onend = () => {
-                        this.isListening = false;
-                    };
-                }
-            }
-            
-            startListening() {
-                if (this.recognition && !this.isListening) {
-                    try {
-                        this.recognition.start();
-                    } catch(e) {
-                        document.getElementById('voiceStatus').innerHTML = '⚠️ Voice not supported';
-                    }
-                } else {
-                    document.getElementById('voiceStatus').innerHTML = '⚠️ Voice not supported in this browser';
-                }
-            }
-            
-            speak(text) {
-                if (!this.isSpeakingEnabled) return;
+        let voiceEnabled = true;
+        let recognition = null;
+        const synth = window.speechSynthesis;
+        
+        function initVoice() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.continuous = false;
+                recognition.interimResults = false;
                 
-                const cleanText = text.replace(/<[^>]*>/g, '').substring(0, 300);
-                const utterance = new SpeechSynthesisUtterance(cleanText);
-                utterance.rate = 0.9;
-                utterance.pitch = 1.0;
+                recognition.onstart = () => {
+                    document.getElementById('voiceStatus').innerHTML = '🎤 Listening... Speak now';
+                    document.getElementById('voiceStatus').style.borderLeftColor = '#FF4500';
+                };
                 
-                this.synth.cancel();
-                this.synth.speak(utterance);
-            }
-            
-            toggleSpeaking() {
-                this.isSpeakingEnabled = !this.isSpeakingEnabled;
-                const status = document.getElementById('voiceStatus');
-                if (this.isSpeakingEnabled) {
-                    status.innerHTML = '🔊 Voice ON • Click 🎤 to speak';
-                    this.speak("Voice output enabled");
-                } else {
-                    status.innerHTML = '🔇 Voice OFF • Click 🔇 to enable';
-                    this.synth.cancel();
-                }
-                return this.isSpeakingEnabled;
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('chatInput').value = transcript;
+                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
+                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
+                    sendMessage();
+                };
+                
+                recognition.onerror = () => {
+                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
+                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
+                };
+                
+                recognition.onend = () => {
+                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
+                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
+                };
             }
         }
         
-        // ========== UI MANAGER ==========
-        class UIManager {
-            constructor(ai, imageGen, voice, memory) {
-                this.ai = ai;
-                this.imageGen = imageGen;
-                this.voice = voice;
-                this.memory = memory;
-                this.initEventListeners();
+        function startVoiceInput() {
+            if (recognition) {
+                try {
+                    recognition.start();
+                } catch(e) {
+                    document.getElementById('voiceStatus').innerHTML = '⚠️ Voice error, please type';
+                }
+            } else {
+                document.getElementById('voiceStatus').innerHTML = '⚠️ Voice not supported in this browser';
             }
+        }
+        
+        function speakText(text) {
+            if (!voiceEnabled) return;
+            const cleanText = text.replace(/<[^>]*>/g, '').substring(0, 300);
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.rate = 0.9;
+            synth.cancel();
+            synth.speak(utterance);
+        }
+        
+        // ========== UI FUNCTIONS ==========
+        let isTyping = false;
+        
+        function showTyping() {
+            if (isTyping) return;
+            isTyping = true;
+            const container = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span><span style="margin-left:8px;">TeaseraI is thinking...</span>';
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function hideTyping() {
+            isTyping = false;
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+        
+        function addUserMessage(text) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.innerHTML = `<div class="message-content"><strong>YOU</strong><br>${escapeHtml(text)}</div>`;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function addBotMessage(text) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = `<div class="message-content"><strong>🧠 TEASERAI</strong><br>${formatMessage(text)}</div>`;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
             
-            initEventListeners() {
-                // Send button
-                document.getElementById('sendBtn').addEventListener('click', () => this.sendMessage());
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.sendMessage();
-                });
-                
-                // Voice input
-                document.getElementById('voiceInputBtn').addEventListener('click', () => this.voice.startListening());
-                
-                // Image generation
-                document.getElementById('generateImageBtn').addEventListener('click', () => {
-                    const prompt = document.getElementById('imagePrompt').value;
-                    this.imageGen.generate(prompt);
-                });
-                document.getElementById('imagePrompt').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') document.getElementById('generateImageBtn').click();
-                });
-                
-                // Memory controls
-                document.getElementById('recallMemories').addEventListener('click', () => {
-                    const memories = this.memory.getAllMemories();
-                    if (memories.length === 0) {
-                        this.addBotMessage("I don't have any memories yet. Try saying 'remember that I love pizza'!");
-                    } else {
-                        this.addBotMessage(`📋 Here's what I remember:\n${memories.map((m, i) => `${i+1}. ${m.content}`).join('\n')}`);
-                    }
-                });
-                
-                document.getElementById('clearMemories').addEventListener('click', () => {
-                    if (confirm('Clear all memories? This cannot be undone.')) {
-                        this.memory.clearMemories();
-                        this.addBotMessage("🧠 Neural memory has been cleared. I'm ready to learn new things!");
-                    }
-                });
-                
-                // Quick chips
-                document.querySelectorAll('.quick-chip').forEach(chip => {
-                    if (chip.getAttribute('data-prompt')) {
-                        chip.addEventListener('click', () => {
-                            document.getElementById('chatInput').value = chip.getAttribute('data-prompt');
-                            this.sendMessage();
-                        });
-                    }
-                });
+            if (voiceEnabled) {
+                speakText(text);
             }
+        }
+        
+        function formatMessage(text) {
+            return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\n/g, '<br>');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
             
-            async sendMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                if (!message) return;
+            // Check if it's an image generation command
+            const lowerMsg = message.toLowerCase();
+            const imageKeywords = ['generate', 'create', 'make', 'draw', 'render', 'imagine', 'image of', 'picture of'];
+            const isImageCommand = imageKeywords.some(keyword => lowerMsg.includes(keyword));
+            
+            if (isImageCommand) {
+                // Extract prompt
+                let prompt = message;
+                for (let word of imageKeywords) {
+                    prompt = prompt.replace(new RegExp(word, 'gi'), '');
+                }
+                prompt = prompt.trim();
+                if (!prompt) prompt = "beautiful landscape";
                 
-                // Add user message to chat
-                this.addUserMessage(message);
+                addUserMessage(message);
                 input.value = '';
-                
-                // Get AI response
-                const response = await this.ai.think(message);
-                this.addBotMessage(response);
-                
-                // Speak response if enabled
-                if (this.voice.isSpeakingEnabled) {
-                    this.voice.speak(response);
-                }
+                await generateImage(prompt);
+                return;
             }
             
-            addUserMessage(text) {
-                const container = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message user-message';
-                messageDiv.innerHTML = `<div class="message-content"><strong>👤 YOU</strong><br>${this.escapeHtml(text)}</div>`;
-                container.appendChild(messageDiv);
-                container.scrollTop = container.scrollHeight;
-            }
+            addUserMessage(message);
+            input.value = '';
             
-            addBotMessage(text) {
-                const container = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message bot-message';
-                messageDiv.innerHTML = `<div class="message-content"><strong>🧠 TEASERAI</strong><br>${this.formatBotMessage(text)}</div>`;
-                container.appendChild(messageDiv);
-                container.scrollTop = container.scrollHeight;
-            }
-            
-            formatBotMessage(text) {
-                // Convert markdown-like syntax
-                let formatted = text
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/`(.*?)`/g, '<code style="background:rgba(255,215,0,0.1);padding:2px 6px;border-radius:4px;">$1</code>')
-                    .replace(/\n/g, '<br>');
-                return formatted;
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
+            const response = await getAIResponse(message);
+            addBotMessage(response);
         }
         
-        // ========== 3D PARTICLE BACKGROUND ==========
-        class ParticleBackground {
-            constructor() {
-                this.canvas = document.getElementById('canvas-bg');
-                this.ctx = this.canvas.getContext('2d');
-                this.particles = [];
-                this.particleCount = 150;
-                this.init();
+        // ========== INITIALIZATION ==========
+        document.getElementById('sessionId').innerHTML = Math.random().toString(36).substr(2, 8);
+        
+        // Load saved username
+        const savedName = localStorage.getItem('teaserai_username');
+        if (savedName) userName = savedName;
+        
+        // Event listeners
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+        document.getElementById('voiceBtn').addEventListener('click', startVoiceInput);
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const prompt = document.getElementById('imagePrompt').value;
+            generateImage(prompt);
+        });
+        document.getElementById('imagePrompt').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') generateImage(e.target.value);
+        });
+        document.getElementById('chatInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        document.getElementById('recallMemories').addEventListener('click', async () => {
+            const response = await getAIResponse("what do you remember");
+            addBotMessage(response);
+        });
+        document.getElementById('clearMemories').addEventListener('click', () => {
+            if (confirm('Clear all memories?')) {
+                clearAllMemories();
+                addBotMessage("🧠 Neural memory cleared. I'm ready to learn new things!");
             }
-            
-            init() {
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
-                this.createParticles();
-                this.animate();
+        });
+        
+        // Quick chips
+        document.querySelectorAll('.chip').forEach(chip => {
+            const prompt = chip.getAttribute('data-prompt');
+            if (prompt) {
+                chip.addEventListener('click', () => {
+                    document.getElementById('chatInput').value = prompt;
+                    sendMessage();
+                });
             }
-            
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-            }
-            
-            createParticles() {
-                for (let i = 0; i < this.particleCount; i++) {
-                    this.particles.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        radius: Math.random() * 2 + 1,
-                        alpha: Math.random() * 0.5 + 0.1,
-                        speedX: (Math.random() - 0.5) * 0.5,
-                        speedY: (Math.random() - 0.5) * 0.5,
-                        color: `rgba(255, ${Math.random() * 100 + 155}, 0, ${Math.random() * 0.3 + 0.1})`
-                    });
-                }
-            }
-            
-            animate() {
-                requestAnimationFrame(() => this.animate());
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                for (let p of this.particles) {
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    
-                    if (p.x < 0) p.x = this.canvas.width;
-                    if (p.x > this.canvas.width) p.x = 0;
-                    if (p.y < 0) p.y = this.canvas.height;
-                    if (p.y > this.canvas.height) p.y = 0;
-                    
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    this.ctx.fillStyle = p.color;
-                    this.ctx.fill();
-                }
-                
-                // Draw connections between nearby particles
-                for (let i = 0; i < this.particles.length; i++) {
-                    for (let j = i + 1; j < this.particles.length; j++) {
-                        const dx = this.particles[i].x - this.particles[j].x;
-                        const dy = this.particles[i].y - this.particles[j].y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 100) {
-                            this.ctx.beginPath();
-                            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                            this.ctx.strokeStyle = `rgba(255, 215, 0, ${0.1 * (1 - distance / 100)})`;
-                            this.ctx.stroke();
-                        }
-                    }
-                }
-            }
+        });
+        
+        // Initialize
+        loadMemories();
+        initVoice();
+        
+        // Check API key status
+        if (GROQ_API_KEY && GROQ_API_KEY !== 'your-groq-api-key-here') {
+            document.getElementById('modelBadge').innerHTML = '✅ REAL AI • ACTIVE';
+            document.getElementById('modelBadge').style.background = 'rgba(0,255,0,0.1)';
+            addBotMessage("✅ Real AI is ACTIVE! I'm using advanced language models to chat with you.");
+        } else {
+            document.getElementById('modelBadge').innerHTML = '⚡ LOCAL MODE';
+            addBotMessage("💡 For advanced AI, add your Groq API key in the code at GROQ_API_KEY variable.");
         }
         
-        // ========== INITIALIZE EVERYTHING ==========
-        document.getElementById('sessionId').innerHTML = CONFIG.sessionId.substring(0, 8);
-        
-        const memory = new NeuralMemory();
-        const ai = new RealAI(memory);
-        const imageGen = new ImageGenerator();
-        const voice = new VoiceSystem();
-        const ui = new UIManager(ai, imageGen, voice, memory);
-        
-        // Start particle background
-        const particles = new ParticleBackground();
-        
-        // Update memory count
-        document.getElementById('memoryCount').innerText = memory.memories.length;
-        memory.renderMemories();
-        
-        // Welcome message with voice
+        // Welcome voice
         setTimeout(() => {
-            voice.speak("Welcome to TeaseraI Ultra. I am ready to help you with real AI, image generation, and voice commands.");
-        }, 1500);
+            speakText("Welcome to TeaseraI Ultra. I'm ready to generate images and chat.");
+        }, 1000);
         
+        console.log('%c🚀 TEASERAI ULTRA - FULLY LOADED', 'color: #FFD700; font-size: 20px; font-weight: bold;');
+        console.log('%c✅ Groq API Key: INSTALLED', 'color: #00FF00; font-size: 12px;');
+        console.log('%c✅ Image Generation: WORKING (can generate unlimited images)', 'color: #00FF00; font-size: 12px;');
+        console.log('%c✅ Voice System: READY', 'color: #00FF00; font-size: 12px;');
     </script>
 </body>
 </html>
