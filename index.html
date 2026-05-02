@@ -603,12 +603,7 @@
         // Simulate sending email (in production, use actual email service)
         function sendEmail(email, code) {
             // Store code for verification
-            pendingVerification = { 
-            email: email, 
-            code: code, 
-            timestamp: Date.now(),
-            attempts: 0
-        };
+            pendingVerification = { email: email, code: code, timestamp: Date.now() };
             
             // Show code in console for demo (in real app, email would be sent)
             console.log(`📧 Email sent to ${email}: Verification code is ${code}`);
@@ -625,11 +620,6 @@
         
         // Send verification code
         document.getElementById('sendCodeBtn').addEventListener('click', () => {
-    const email = document.getElementById('loginEmail').value.trim();
-    if(!email) return alert("Enter email");
-
-    sendMagicLink(email);
-});
             const email = document.getElementById('loginEmail').value.trim();
             if(!email || !email.includes('@')) {
                 alert('Please enter a valid email address');
@@ -664,18 +654,10 @@
                 return;
             }
             
-           pendingVerification.attempts++;
-
-if(pendingVerification.attempts > 5) {
-    alert('Too many attempts. Please request a new code.');
-    pendingVerification = null;
-    return;
-}
-
-if(enteredCode !== pendingVerification.code) {
-    alert(`Invalid code. Attempts left: ${5 - pendingVerification.attempts}`);
-    return;
-}
+            if(enteredCode !== pendingVerification.code) {
+                alert('Invalid verification code. Please try again.');
+                return;
+            }
             
             // Check if code expired (10 minutes)
             if(Date.now() - pendingVerification.timestamp > 600000) {
@@ -1086,32 +1068,6 @@ if(enteredCode !== pendingVerification.code) {
                 currentLang = btn.dataset.lang;
             });
         });
-
-        window.addEventListener("beforeunload", () => {
-    if(currentUser) {
-        localStorage.setItem("last_active", Date.now());
-    }
-});
-        <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, sendSignInLinkToEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  window.sendMagicLink = async function(email) {
-    await sendSignInLinkToEmail(auth, email, {
-      url: window.location.href,
-      handleCodeInApp: true
-    });
-    alert("Magic link sent to email!");
-  };
-</script>
         
         // Initialize
         createParticles();
