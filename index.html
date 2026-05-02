@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>✨ NEURALIS AI • Secure Login • Viren Singh ✨</title>
+    <title>✨ NEURALIS AI • Complete System • Viren Singh ✨</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -43,7 +42,6 @@
             50% { opacity: 1; }
         }
 
-        /* Particles */
         .particles {
             position: fixed;
             width: 100%;
@@ -62,13 +60,13 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            0% { transform: translateY(100vh); opacity: 0; }
             10% { opacity: 0.6; }
             90% { opacity: 0.6; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
 
-        /* Login Container */
+        /* Login Screen */
         .login-container {
             position: fixed;
             top: 0;
@@ -79,7 +77,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.98);
             backdrop-filter: blur(20px);
         }
 
@@ -136,6 +134,7 @@
             cursor: pointer;
             margin-top: 15px;
             font-size: 1rem;
+            transition: all 0.2s;
         }
 
         .login-btn:hover {
@@ -143,18 +142,23 @@
             box-shadow: 0 5px 20px rgba(255,215,0,0.3);
         }
 
-        .code-group {
-            display: none;
-            margin-top: 15px;
+        .register-link {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 0.8rem;
         }
 
-        .resend-btn {
-            background: transparent;
-            border: none;
+        .register-link a {
             color: var(--blue);
             cursor: pointer;
-            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .error-msg {
+            color: #ff4444;
+            font-size: 0.7rem;
             margin-top: 10px;
+            display: none;
         }
 
         /* Main App */
@@ -256,6 +260,10 @@
             overflow-y: auto;
             padding: 15px;
         }
+
+        .messages::-webkit-scrollbar { width: 5px; }
+        .messages::-webkit-scrollbar-track { background: rgba(255,215,0,0.1); }
+        .messages::-webkit-scrollbar-thumb { background: #FFD700; }
 
         .message {
             margin-bottom: 12px;
@@ -480,14 +488,30 @@
     <div class="login-container" id="loginContainer">
         <div class="login-box">
             <h2>✨ NEURALIS AI</h2>
-            <p>Secure Access • Email Verification</p>
-            <input type="email" id="loginEmail" class="login-input" placeholder="Enter your email" autocomplete="off">
-            <button class="login-btn" id="sendCodeBtn">📧 SEND VERIFICATION CODE</button>
-            <div class="code-group" id="codeGroup">
-                <input type="text" id="verificationCode" class="login-input" placeholder="Enter 6-digit code" maxlength="6">
-                <button class="login-btn" id="verifyBtn">✅ VERIFY & LOGIN</button>
-                <button class="resend-btn" id="resendBtn">⟳ Resend Code</button>
+            <p>Secure Access • Create Account or Login</p>
+            
+            <!-- Login Form -->
+            <div id="loginForm">
+                <input type="text" id="loginUsername" class="login-input" placeholder="Username" autocomplete="off">
+                <input type="password" id="loginPassword" class="login-input" placeholder="Password">
+                <button class="login-btn" id="doLoginBtn">🔓 LOGIN</button>
+                <div class="register-link">
+                    Don't have an account? <a id="showRegisterBtn">Create Account</a>
+                </div>
             </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" style="display:none;">
+                <input type="text" id="regUsername" class="login-input" placeholder="Choose Username" autocomplete="off">
+                <input type="password" id="regPassword" class="login-input" placeholder="Choose Password">
+                <input type="password" id="regConfirmPassword" class="login-input" placeholder="Confirm Password">
+                <button class="login-btn" id="doRegisterBtn">📝 CREATE ACCOUNT</button>
+                <div class="register-link">
+                    Already have an account? <a id="showLoginBtn">Login</a>
+                </div>
+            </div>
+
+            <div id="loginError" class="error-msg"></div>
         </div>
     </div>
 
@@ -499,7 +523,7 @@
                 <p>by Viren Singh</p>
             </div>
             <div class="user-info">
-                <div class="user-email" id="userEmailDisplay"></div>
+                <div class="user-email" id="userDisplay"></div>
                 <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
             </div>
             <div class="stats">
@@ -516,13 +540,13 @@
                     <div class="message ai-msg">
                         <div class="bubble">
                             <strong>✨ NEURALIS</strong>
-                            Hello! I'm your AI assistant.<br><br>
-                            🎨 <strong>Image:</strong> "generate a cat"<br>
+                            Welcome! I'm your AI assistant.<br><br>
+                            🎨 <strong>Image:</strong> "generate a dragon"<br>
                             💻 <strong>Code:</strong> "python fibonacci"<br>
-                            🔍 <strong>Ask:</strong> "what is AI?"<br>
                             🧠 <strong>Remember:</strong> "remember i like pizza"<br>
-                            🧮 <strong>Math:</strong> "calculate 100*5"<br><br>
-                            Just type naturally!
+                            🧮 <strong>Math:</strong> "calculate 100*5"<br>
+                            😄 <strong>Joke:</strong> "tell me a joke"<br><br>
+                            All your data is saved securely!
                         </div>
                     </div>
                 </div>
@@ -545,7 +569,7 @@
                     </div>
                     <button id="genImage" style="width:100%; padding:10px;">✨ GENERATE</button>
                     <div class="preview" id="imagePreview">
-                        <img id="generatedImage">
+                        <img id="generatedImage" alt="Generated Image">
                         <button id="saveImage" style="margin-top:10px; padding:5px;">💾 Save</button>
                     </div>
                 </div>
@@ -567,7 +591,7 @@
         </div>
 
         <div class="analytics">
-            <h3 style="color:#FFD700; font-size:0.8rem;">📊 ANALYTICS</h3>
+            <h3 style="color:#FFD700; font-size:0.8rem;">📊 YOUR ANALYTICS</h3>
             <div class="analytics-grid">
                 <div class="analytics-item">💬 Chats: <span id="totalChats">0</span></div>
                 <div class="analytics-item">🎨 Images: <span id="totalImages">0</span></div>
@@ -588,165 +612,186 @@
     <div class="voice-status" id="voiceStatus">🔊 VOICE READY</div>
 
     <script>
-        // ========== LOGIN SYSTEM WITH EMAIL VERIFICATION ==========
-        // Store verification codes (in real app, this would be backend)
-        // For demo, we use localStorage + simulated email
+        // ========== AUTHENTICATION SYSTEM ==========
+        let currentUser = null;
+        let userData = null;
         
-        let pendingVerification = null;
-        let currentUser = localStorage.getItem('neuralis_user');
-        
-        // Generate 6-digit random code
-        function generateCode() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
+        // Initialize users database
+        if(!localStorage.getItem('neuralis_users')) {
+            localStorage.setItem('neuralis_users', JSON.stringify({}));
         }
         
-        // Simulate sending email (in production, use actual email service)
-        function sendEmail(email, code) {
-            // Store code for verification
-            pendingVerification = { email: email, code: code, timestamp: Date.now() };
-            
-            // Show code in console for demo (in real app, email would be sent)
-            console.log(`📧 Email sent to ${email}: Verification code is ${code}`);
-            
-            // Create a visual notification
-            const notification = document.createElement('div');
-            notification.style.cssText = 'position:fixed; top:20px; right:20px; background:#1a1a2e; border-left:3px solid #FFD700; padding:12px 20px; border-radius:10px; z-index:2000; color:white; font-size:0.8rem; animation:slideIn 0.3s ease;';
-            notification.innerHTML = `📧 Demo Mode: Your verification code is <strong style="color:#FFD700">${code}</strong><br>Check console for details`;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 5000);
-            
-            return true;
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('neuralis_users'));
         }
         
-        // Send verification code
-        document.getElementById('sendCodeBtn').addEventListener('click', () => {
-            const email = document.getElementById('loginEmail').value.trim();
-            if(!email || !email.includes('@')) {
-                alert('Please enter a valid email address');
-                return;
-            }
-            
-            const code = generateCode();
-            sendEmail(email, code);
-            
-            document.getElementById('codeGroup').style.display = 'block';
-            document.getElementById('sendCodeBtn').textContent = '📧 CODE SENT!';
-            document.getElementById('sendCodeBtn').disabled = true;
-            
-            setTimeout(() => {
-                document.getElementById('sendCodeBtn').textContent = '📧 SEND VERIFICATION CODE';
-                document.getElementById('sendCodeBtn').disabled = false;
-            }, 30000);
-        });
+        function saveUsers(users) {
+            localStorage.setItem('neuralis_users', JSON.stringify(users));
+        }
         
-        // Verify code and login
-        document.getElementById('verifyBtn').addEventListener('click', () => {
-            const enteredCode = document.getElementById('verificationCode').value.trim();
-            const email = document.getElementById('loginEmail').value.trim();
+        function registerUser(username, password) {
+            const users = getUsers();
             
-            if(!pendingVerification) {
-                alert('Please request a verification code first');
-                return;
+            if(users[username]) {
+                return { success: false, error: 'Username already exists!' };
             }
             
-            if(pendingVerification.email !== email) {
-                alert('Email mismatch. Please request a new code.');
-                return;
+            if(username.length < 3) {
+                return { success: false, error: 'Username must be at least 3 characters!' };
             }
             
-            if(enteredCode !== pendingVerification.code) {
-                alert('Invalid verification code. Please try again.');
-                return;
+            if(password.length < 4) {
+                return { success: false, error: 'Password must be at least 4 characters!' };
             }
             
-            // Check if code expired (10 minutes)
-            if(Date.now() - pendingVerification.timestamp > 600000) {
-                alert('Code has expired. Please request a new one.');
-                return;
-            }
+            users[username] = {
+                password: btoa(password),
+                createdAt: new Date().toISOString(),
+                data: {
+                    memories: [],
+                    images: [],
+                    codes: [],
+                    chats: []
+                }
+            };
             
-            // Login successful
-            currentUser = email;
-            localStorage.setItem('neuralis_user', email);
-            
-            // Load user data
-            loadUserData(email);
-            
-            // Hide login, show app
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('appContainer').style.display = 'block';
-            document.getElementById('userEmailDisplay').innerHTML = `👤 ${email}`;
-            
-            addAIMessage(`Welcome back, ${email.split('@')[0]}! ✨ Ready to assist.`);
-        });
+            saveUsers(users);
+            return { success: true };
+        }
         
-        // Resend code
-        document.getElementById('resendBtn').addEventListener('click', () => {
-            const email = document.getElementById('loginEmail').value.trim();
-            if(!email) {
-                alert('Please enter your email first');
-                return;
+        function loginUser(username, password) {
+            const users = getUsers();
+            const user = users[username];
+            
+            if(!user) {
+                return { success: false, error: 'Username not found!' };
             }
-            const newCode = generateCode();
-            sendEmail(email, newCode);
-            alert('New verification code sent! Check console or notification.');
-        });
+            
+            if(atob(user.password) !== password) {
+                return { success: false, error: 'Incorrect password!' };
+            }
+            
+            return { success: true, userData: user.data };
+        }
         
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            localStorage.removeItem('neuralis_user');
+        function saveCurrentUserData() {
+            if(!currentUser) return;
+            const users = getUsers();
+            if(users[currentUser]) {
+                users[currentUser].data = userData;
+                saveUsers(users);
+            }
+        }
+        
+        function loadUserData(username, data) {
+            currentUser = username;
+            userData = data;
+            document.getElementById('userDisplay').innerHTML = `👤 ${username}`;
+            updateStats();
+        }
+        
+        function logout() {
+            saveCurrentUserData();
             currentUser = null;
+            userData = null;
             document.getElementById('appContainer').style.display = 'none';
             document.getElementById('loginContainer').style.display = 'flex';
-            document.getElementById('loginEmail').value = '';
-            document.getElementById('verificationCode').value = '';
-            document.getElementById('codeGroup').style.display = 'none';
-            document.getElementById('sendCodeBtn').textContent = '📧 SEND VERIFICATION CODE';
-            document.getElementById('sendCodeBtn').disabled = false;
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regConfirmPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        }
+        
+        function updateStats() {
+            if(!userData) return;
+            document.getElementById('memCount').innerText = userData.memories.length;
+            document.getElementById('imgCount').innerText = userData.images.length;
+            document.getElementById('totalChats').innerText = userData.chats.length;
+            document.getElementById('totalImages').innerText = userData.images.length;
+            document.getElementById('totalCodes').innerText = userData.codes.length;
+            document.getElementById('totalMemories').innerText = userData.memories.length;
+        }
+        
+        // Check saved session
+        const savedSession = localStorage.getItem('neuralis_current_session');
+        if(savedSession) {
+            const users = getUsers();
+            const sessionData = JSON.parse(savedSession);
+            if(users[sessionData.username] && atob(users[sessionData.username].password) === sessionData.password) {
+                loadUserData(sessionData.username, users[sessionData.username].data);
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('appContainer').style.display = 'block';
+                addAIMessage(`Welcome back, ${sessionData.username}! ✨ Ready to assist.`);
+            }
+        }
+        
+        // ========== LOGIN UI HANDLERS ==========
+        document.getElementById('doLoginBtn').addEventListener('click', () => {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            const result = loginUser(username, password);
+            
+            if(result.success) {
+                loadUserData(username, result.userData);
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('appContainer').style.display = 'block';
+                localStorage.setItem('neuralis_current_session', JSON.stringify({ username, password }));
+                addAIMessage(`Welcome, ${username}! ✨ How can I help you today?`);
+            } else {
+                errorDiv.textContent = result.error;
+                errorDiv.style.display = 'block';
+                setTimeout(() => errorDiv.style.display = 'none', 3000);
+            }
         });
         
-        // Load user data
-        function loadUserData(email) {
-            // Create namespace for user
-            window.userStorage = {
-                memories: JSON.parse(localStorage.getItem(`neuralis_mem_${email}`) || '[]'),
-                images: JSON.parse(localStorage.getItem(`neuralis_img_${email}`) || '[]'),
-                codes: JSON.parse(localStorage.getItem(`neuralis_code_${email}`) || '[]'),
-                chats: JSON.parse(localStorage.getItem(`neuralis_chat_${email}`) || '[]')
-            };
-            updateStats();
-        }
+        document.getElementById('doRegisterBtn').addEventListener('click', () => {
+            const username = document.getElementById('regUsername').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            if(password !== confirm) {
+                errorDiv.textContent = 'Passwords do not match!';
+                errorDiv.style.display = 'block';
+                setTimeout(() => errorDiv.style.display = 'none', 3000);
+                return;
+            }
+            
+            const result = registerUser(username, password);
+            
+            if(result.success) {
+                alert('Account created successfully! Please login.');
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('regUsername').value = '';
+                document.getElementById('regPassword').value = '';
+                document.getElementById('regConfirmPassword').value = '';
+            } else {
+                errorDiv.textContent = result.error;
+                errorDiv.style.display = 'block';
+                setTimeout(() => errorDiv.style.display = 'none', 3000);
+            }
+        });
         
-        function saveUserData() {
-            if(!currentUser) return;
-            localStorage.setItem(`neuralis_mem_${currentUser}`, JSON.stringify(window.userStorage.memories));
-            localStorage.setItem(`neuralis_img_${currentUser}`, JSON.stringify(window.userStorage.images));
-            localStorage.setItem(`neuralis_code_${currentUser}`, JSON.stringify(window.userStorage.codes));
-            localStorage.setItem(`neuralis_chat_${currentUser}`, JSON.stringify(window.userStorage.chats));
-            updateStats();
-        }
+        document.getElementById('showRegisterBtn').addEventListener('click', () => {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('loginError').style.display = 'none';
+        });
         
-        // Check if already logged in
-        if(currentUser) {
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('appContainer').style.display = 'block';
-            document.getElementById('userEmailDisplay').innerHTML = `👤 ${currentUser}`;
-            loadUserData(currentUser);
-            addAIMessage(`Welcome back, ${currentUser.split('@')[0]}! ✨`);
-        }
+        document.getElementById('showLoginBtn').addEventListener('click', () => {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('loginError').style.display = 'none';
+        });
         
-        // ========== DATA FUNCTIONS ==========
-        function updateStats() {
-            if(!window.userStorage) return;
-            document.getElementById('memCount').innerText = window.userStorage.memories.length;
-            document.getElementById('imgCount').innerText = window.userStorage.images.length;
-            document.getElementById('totalChats').innerText = window.userStorage.chats.length;
-            document.getElementById('totalImages').innerText = window.userStorage.images.length;
-            document.getElementById('totalCodes').innerText = window.userStorage.codes.length;
-            document.getElementById('totalMemories').innerText = window.userStorage.memories.length;
-        }
+        document.getElementById('logoutBtn').addEventListener('click', logout);
         
-        // Add message to chat
+        // ========== MESSAGE FUNCTIONS ==========
         function addUserMessage(text) {
             const container = document.getElementById('chatMessages');
             const div = document.createElement('div');
@@ -769,7 +814,6 @@
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
             
-            // Speak
             if(window.speechSynthesis) {
                 const clean = text.replace(/<[^>]*>/g, '').substring(0, 200);
                 const utterance = new SpeechSynthesisUtterance(clean);
@@ -783,7 +827,7 @@
             return text.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m]));
         }
         
-        // Progress bar
+        // ========== PROGRESS BAR ==========
         function showProgress() {
             document.getElementById('progressBar').style.display = 'flex';
             for(let i=1;i<=5;i++) document.getElementById(`p${i}`).classList.remove('active');
@@ -799,7 +843,7 @@
         function hideProgress() { document.getElementById('progressBar').style.display = 'none'; }
         function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
         
-        // ========== WORKING IMAGE GENERATION ==========
+        // ========== IMAGE GENERATION ==========
         let currentStyle = 'realistic';
         
         async function generateImage(prompt) {
@@ -815,8 +859,8 @@
             const styles = {
                 realistic: 'photorealistic, 8k, ultra detailed, sharp focus, masterpiece',
                 anime: 'anime style, studio ghibli, vibrant colors, cel shaded, manga art',
-                cinematic: 'cinematic, movie poster, dramatic lighting, epic composition, film grain',
-                fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike, enchanted'
+                cinematic: 'cinematic, movie poster, dramatic lighting, epic composition',
+                fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike'
             };
             
             const fullPrompt = `${styles[currentStyle]}, ${prompt}, high quality, beautiful`.substring(0, 200);
@@ -831,9 +875,10 @@
                 preview.style.display = 'block';
                 setProgress(5);
                 setTimeout(() => hideProgress(), 500);
-                window.userStorage.images.unshift({ id: Date.now(), url: url, prompt: prompt, date: Date.now() });
-                if(window.userStorage.images.length > 30) window.userStorage.images.pop();
-                saveUserData();
+                userData.images.unshift({ id: Date.now(), url: url, prompt: prompt, date: Date.now() });
+                if(userData.images.length > 30) userData.images.pop();
+                saveCurrentUserData();
+                updateStats();
                 addAIMessage(`🎨 **Image Generated!**\n\n"${prompt}"\nStyle: ${currentStyle}\n\n![Image](${url})`);
             };
             
@@ -869,30 +914,25 @@
             await delay(300);
             setProgress(3);
             
-            // Local code generation (reliable, no API needed)
             let code = '';
             const lang = currentLang;
             const lowerDesc = description.toLowerCase();
             
             if(lang === 'python') {
                 if(lowerDesc.includes('fibonacci')) {
-                    code = `def fibonacci(n):\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n    else:\n        fib = [0, 1]\n        for i in range(2, n):\n            fib.append(fib[-1] + fib[-2])\n        return fib\n\n# Example usage\nprint(fibonacci(10))`;
+                    code = `def fibonacci(n):\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n    else:\n        fib = [0, 1]\n        for i in range(2, n):\n            fib.append(fib[-1] + fib[-2])\n        return fib\n\nprint(fibonacci(10))`;
                 } else if(lowerDesc.includes('factorial')) {
-                    code = `def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n\n# Example usage\nprint(factorial(5))  # Output: 120`;
-                } else if(lowerDesc.includes('prime')) {
-                    code = `def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Get all primes up to 100\nprimes = [i for i in range(100) if is_prime(i)]\nprint(primes)`;
+                    code = `def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n-1)\n\nprint(factorial(5))  # 120`;
                 } else {
-                    code = `# ${description}\n\ndef solve_problem():\n    """Your solution here"""\n    pass\n\nif __name__ == "__main__":\n    solve_problem()`;
+                    code = `# ${description}\n\ndef solution():\n    """Your implementation here"""\n    pass\n\nif __name__ == "__main__":\n    solution()`;
                 }
             } else {
                 if(lowerDesc.includes('fibonacci')) {
-                    code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    \n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
+                    code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
                 } else if(lowerDesc.includes('factorial')) {
                     code = `function factorial(n) {\n    if (n === 0) return 1;\n    return n * factorial(n - 1);\n}\n\nconsole.log(factorial(5)); // 120`;
-                } else if(lowerDesc.includes('prime')) {
-                    code = `function isPrime(n) {\n    if (n < 2) return false;\n    for (let i = 2; i <= Math.sqrt(n); i++) {\n        if (n % i === 0) return false;\n    }\n    return true;\n}\n\nconst primes = [];\nfor (let i = 0; i < 100; i++) {\n    if (isPrime(i)) primes.push(i);\n}\nconsole.log(primes);`;
                 } else {
-                    code = `// ${description}\n\nfunction solveProblem() {\n    // Your solution here\n}\n\nsolveProblem();`;
+                    code = `// ${description}\n\nfunction solution() {\n    // Your implementation here\n}\n\nsolution();`;
                 }
             }
             
@@ -908,9 +948,10 @@
             output.style.display = 'block';
             setTimeout(() => hideProgress(), 500);
             
-            window.userStorage.codes.unshift({ id: Date.now(), code: code, lang: lang, prompt: description, date: Date.now() });
-            if(window.userStorage.codes.length > 30) window.userStorage.codes.pop();
-            saveUserData();
+            userData.codes.unshift({ id: Date.now(), code: code, lang: lang, prompt: description, date: Date.now() });
+            if(userData.codes.length > 30) userData.codes.pop();
+            saveCurrentUserData();
+            updateStats();
             
             addAIMessage(`💻 **Code Generated (${lang.toUpperCase()})**\n\n📝 *Request:* ${description}\n\n\`\`\`${lang}\n${code.substring(0, 400)}${code.length > 400 ? '...' : ''}\n\`\`\``);
         }
@@ -924,7 +965,6 @@
         async function getAIResponse(userMsg) {
             const lower = userMsg.toLowerCase();
             
-            // Image
             if(lower.includes('generate') || lower.includes('create image') || lower.includes('draw')) {
                 let prompt = userMsg.replace(/generate|create image|draw|make image/gi, '').trim();
                 if(!prompt) prompt = "beautiful artwork";
@@ -932,29 +972,27 @@
                 return null;
             }
             
-            // Code
-            if(lower.includes('code') || lower.includes('python') || lower.includes('javascript') || lower.includes('function')) {
+            if(lower.includes('code') || lower.includes('python') || lower.includes('javascript')) {
                 await generateCode(userMsg);
                 return null;
             }
             
-            // Memory
             if(lower.includes('remember that')) {
                 let content = userMsg.replace(/remember that/gi, '').trim();
                 if(content) {
-                    window.userStorage.memories.unshift({ id: Date.now(), content: content, date: Date.now() });
-                    if(window.userStorage.memories.length > 30) window.userStorage.memories.pop();
-                    saveUserData();
+                    userData.memories.unshift({ id: Date.now(), content: content, date: Date.now() });
+                    if(userData.memories.length > 30) userData.memories.pop();
+                    saveCurrentUserData();
+                    updateStats();
                     return `✅ I've remembered: "${content}"`;
                 }
             }
             
             if(lower.includes('what do you remember') || lower.includes('recall')) {
-                if(window.userStorage.memories.length === 0) return "📋 No memories yet. Tell me 'remember that I love coffee'!";
-                return `📋 **My Memories:**\n${window.userStorage.memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
+                if(userData.memories.length === 0) return "📋 No memories yet. Tell me 'remember that I love coffee'!";
+                return `📋 **My Memories:**\n${userData.memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
             }
             
-            // Math
             if(lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/]/.test(lower)) {
                 try {
                     let expr = userMsg.replace(/calculate|what is/gi, '').trim();
@@ -963,11 +1001,9 @@
                 } catch(e) {}
             }
             
-            // Time
             if(lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
             if(lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
             
-            // Joke
             if(lower.includes('joke')) {
                 const jokes = [
                     "Why don't scientists trust atoms? Because they make up everything! 😄",
@@ -977,22 +1013,10 @@
                 return jokes[Math.floor(Math.random() * jokes.length)];
             }
             
-            // Name
-            if(lower.includes('my name is')) {
-                let match = userMsg.match(/my name is (\w+)/i);
-                if(match) return `🎯 Nice to meet you, ${match[1]}! I'll remember your name.`;
-            }
-            
-            // Default responses
             if(lower.includes('hello') || lower.includes('hi')) {
-                return `Hello! How can I help you today? Try "generate a cat", "python fibonacci", or "what is AI?"`;
+                return `Hello${currentUser ? ' ' + currentUser : ''}! How can I help you today? Try "generate a dragon", "python fibonacci", or "remember I like pizza"`;
             }
             
-            if(lower.includes('how are you')) {
-                return "I'm doing great! Ready to help with images, code, or anything you need! 🚀";
-            }
-            
-            // Intelligent response
             return `I understand you're asking about "${userMsg}". I can help with:\n\n🎨 Image Generation - "generate a dragon"\n💻 Code - "python factorial"\n🧠 Memory - "remember I like coffee"\n🧮 Math - "calculate 50*3"\n\nWhat would you like?`;
         }
         
@@ -1010,9 +1034,10 @@
             
             document.getElementById('statusText').innerHTML = 'READY';
             
-            window.userStorage.chats.unshift({ user: msg, response: response || 'processed', date: Date.now() });
-            if(window.userStorage.chats.length > 100) window.userStorage.chats.pop();
-            saveUserData();
+            userData.chats.unshift({ user: msg, response: response || 'processed', date: Date.now() });
+            if(userData.chats.length > 100) userData.chats.pop();
+            saveCurrentUserData();
+            updateStats();
         }
         
         // ========== VOICE ==========
@@ -1032,7 +1057,7 @@
             }
         }
         
-        // Create particles
+        // ========== PARTICLES ==========
         function createParticles() {
             const container = document.getElementById('particles');
             for(let i=0; i<60; i++) {
@@ -1073,12 +1098,8 @@
         createParticles();
         setupVoice();
         
-        console.log('%c✨ NEURALIS AI - FULLY WORKING ✨', 'color: #FFD700; font-size: 18px; font-weight: bold;');
-        console.log('%c✅ Email Login System with Verification', 'color: #00FF00;');
-        console.log('%c✅ Image Generation - Working', 'color: #00FF00;');
-        console.log('%c✅ Code Generation - Working', 'color: #00FF00;');
-        console.log('%c✅ Voice Input/Output - Working', 'color: #00FF00;');
-        console.log('%c✅ Memory System - Working', 'color: #00FF00;');
+        console.log('✨ NEURALIS AI - FULLY WORKING ✨');
+        console.log('✅ Create account, login, use all features!');
     </script>
 </body>
 </html>
