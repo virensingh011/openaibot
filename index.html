@@ -625,6 +625,11 @@
         
         // Send verification code
         document.getElementById('sendCodeBtn').addEventListener('click', () => {
+    const email = document.getElementById('loginEmail').value.trim();
+    if(!email) return alert("Enter email");
+
+    sendMagicLink(email);
+});
             const email = document.getElementById('loginEmail').value.trim();
             if(!email || !email.includes('@')) {
                 alert('Please enter a valid email address');
