@@ -603,7 +603,12 @@
         // Simulate sending email (in production, use actual email service)
         function sendEmail(email, code) {
             // Store code for verification
-            pendingVerification = { email: email, code: code, timestamp: Date.now() };
+            pendingVerification = { 
+            email: email, 
+            code: code, 
+            timestamp: Date.now(),
+            attempts: 0
+        };
             
             // Show code in console for demo (in real app, email would be sent)
             console.log(`📧 Email sent to ${email}: Verification code is ${code}`);
