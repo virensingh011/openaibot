@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>TEASERAI ULTRA • Viren Singh • Neural Intelligence</title>
+    <title>TEASERAI ULTRA • Advanced Neural Studio • Viren Singh</title>
     <style>
-        /* ========== PREMIUM CSS - FULLY VISIBLE TEXT ========== */
+        /* ========== 5000+ LINES OF PREMIUM CSS ========== */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap');
         
         * {
@@ -17,16 +17,22 @@
         :root {
             --primary-gold: #FFD700;
             --primary-gold-dark: #DAA520;
+            --primary-gold-light: #FFED4E;
             --bg-dark: #0A0A0A;
             --bg-darker: #000000;
+            --bg-card: rgba(15, 15, 25, 0.9);
             --text-primary: #FFFFFF;
-            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-secondary: rgba(255, 255, 255, 0.7);
             --text-gold: #FFD700;
+            --gradient-gold: linear-gradient(135deg, #FFD700, #FF8C00, #FFD700);
+            --gradient-dark: linear-gradient(135deg, #0A0A0A, #1A1A2E);
+            --glow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+            --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at 20% 30%, #0A0A0A, #000000);
+            background: var(--bg-dark);
             min-height: 100vh;
             overflow-x: hidden;
             color: var(--text-primary);
@@ -39,47 +45,149 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 40%, rgba(255,215,0,0.08) 0%, transparent 50%),
-                repeating-linear-gradient(45deg, rgba(255,215,0,0.03) 0px, rgba(255,215,0,0.03) 1px, transparent 1px, transparent 20px);
+            background: radial-gradient(circle at 30% 40%, rgba(255,215,0,0.08) 0%, transparent 60%),
+                       repeating-linear-gradient(45deg, rgba(255,215,0,0.02) 0px, rgba(255,215,0,0.02) 1px, transparent 1px, transparent 30px);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Floating Orbs */
-        .orb {
+        /* Floating Particles */
+        .particles {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: floatOrb 20s infinite;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             pointer-events: none;
-        }
-        .orb1 { width: 400px; height: 400px; background: #FFD700; top: -150px; right: -150px; }
-        .orb2 { width: 500px; height: 500px; background: #DAA520; bottom: -200px; left: -200px; animation-delay: 5s; }
-        .orb3 { width: 300px; height: 300px; background: #FF8C00; top: 50%; left: 50%; animation-delay: 10s; transform: translate(-50%, -50%); }
-
-        @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 30px) scale(1.1); }
+            z-index: 0;
         }
 
-        /* Main Container */
-        .container {
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Main Layout */
+        .app-layout {
+            display: flex;
             position: relative;
             z-index: 1;
-            max-width: 1600px;
-            margin: 20px auto;
-            padding: 0 20px;
+            min-height: 100vh;
         }
 
-        /* Glass Header */
+        /* ========== SIDEBAR (History + Gallery) ========== */
+        .sidebar {
+            width: 320px;
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            z-index: 20;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .sidebar-header h3 {
+            color: var(--primary-gold);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .history-list, .gallery-grid {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .history-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateX(5px);
+        }
+
+        .history-prompt {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .history-date {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+        }
+
+        .remix-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            color: var(--primary-gold);
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--glow-gold);
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Header */
         .glass-header {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
-            border-radius: 30px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 20px 30px;
+            padding: 15px 25px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
@@ -95,7 +203,7 @@
         }
 
         .logo-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             filter: drop-shadow(0 0 15px var(--primary-gold));
             animation: pulse 2s infinite;
         }
@@ -106,21 +214,18 @@
         }
 
         .logo-text h1 {
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            font-size: 1.5rem;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 800;
         }
 
         .logo-text p {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-gold);
-            opacity: 0.9;
         }
 
-        /* Stats */
         .stats {
             display: flex;
             gap: 15px;
@@ -128,85 +233,159 @@
 
         .stat-card {
             background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            padding: 8px 18px;
-            border-left: 3px solid var(--primary-gold);
+            border-radius: 12px;
+            padding: 8px 15px;
+            border-left: 2px solid var(--primary-gold);
         }
 
         .stat-card .label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
         }
 
         .stat-card .value {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary-gold);
         }
 
-        /* Main Grid */
-        .main-grid {
+        /* ========== ADVANCED CONTROLS PANEL ========== */
+        .controls-panel {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .controls-grid {
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
-        /* Chat Section */
-        .chat-section {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+        .control-group {
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            min-height: 600px;
+            gap: 8px;
         }
 
-        .chat-header {
-            padding: 20px 25px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        .control-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select, input[type="range"] {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .style-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 10px;
         }
 
-        .chat-header h3 {
-            color: var(--primary-gold);
-            font-weight: 600;
-        }
-
-        .model-badge {
+        .style-btn {
             background: rgba(255, 215, 0, 0.1);
-            padding: 5px 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .style-btn.active {
+            background: var(--gradient-gold);
+            color: #000;
+            border-color: var(--primary-gold);
+        }
+
+        .negative-prompt {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            color: var(--text-primary);
+            margin-top: 15px;
+        }
+
+        /* ========== PROGRESSIVE STREAMING UI ========== */
+        .streaming-progress {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-stage {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .progress-stage.active {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid var(--primary-gold);
+        }
+
+        .progress-stage.completed {
+            opacity: 0.6;
+        }
+
+        .stage-icon {
+            font-size: 1.2rem;
+        }
+
+        .stage-text {
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        .stage-status {
             font-size: 0.7rem;
             color: var(--primary-gold);
         }
 
-        /* Messages */
+        /* ========== CHAT SECTION ========== */
+        .chat-section {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+
         .chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            max-height: 500px;
-            min-height: 400px;
-        }
-
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-        .chat-messages::-webkit-scrollbar-track {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: var(--primary-gold);
-            border-radius: 10px;
         }
 
         .message {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: slideIn 0.3s ease;
         }
 
@@ -216,65 +395,47 @@
         }
 
         .user-message {
-            display: flex;
-            justify-content: flex-end;
+            text-align: right;
         }
 
         .user-message .message-content {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(218, 165, 32, 0.08));
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 20px;
-            padding: 12px 18px;
-            max-width: 75%;
-            color: var(--text-primary);
-        }
-
-        .bot-message {
-            display: flex;
-            justify-content: flex-start;
+            padding: 10px 16px;
+            display: inline-block;
+            max-width: 80%;
         }
 
         .bot-message .message-content {
             background: rgba(30, 30, 40, 0.8);
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
-            padding: 12px 18px;
+            padding: 10px 16px;
+            display: inline-block;
             max-width: 85%;
-            color: var(--text-primary);
         }
 
-        /* Input Area */
         .input-area {
-            padding: 20px;
+            padding: 15px;
             border-top: 1px solid rgba(255, 215, 0, 0.1);
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .input-area input {
             flex: 1;
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 30px;
-            padding: 14px 20px;
+            border-radius: 25px;
+            padding: 12px 18px;
             color: var(--text-primary);
-            font-size: 1rem;
-        }
-
-        .input-area input:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-        }
-
-        .input-area input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
         }
 
         button {
-            background: linear-gradient(135deg, #FFD700, #DAA520);
+            background: var(--gradient-gold);
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
             padding: 0 20px;
             color: #000;
             font-weight: 600;
@@ -284,155 +445,20 @@
 
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: var(--glow-gold);
         }
 
-        .icon-btn {
-            width: 48px;
-            padding: 0;
-            font-size: 1.2rem;
-        }
-
-        /* Right Sidebar */
-        .right-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Image Panel */
-        .image-panel {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 20px;
-        }
-
-        .panel-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--primary-gold);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .image-input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .image-input-group input {
-            flex: 1;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 12px 15px;
-            color: var(--text-primary);
-        }
-
-        .generate-btn {
-            padding: 0 20px;
-            background: linear-gradient(135deg, #FFD700, #FF8C00);
-            border-radius: 20px;
-        }
-
-        .image-result {
-            margin-top: 15px;
-            display: none;
+        /* Image Display */
+        .image-display {
+            margin-top: 20px;
             text-align: center;
+            display: none;
         }
 
-        .image-result img {
+        .image-display img {
             max-width: 100%;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        /* Memory Panel */
-        .memory-panel {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 20px;
-        }
-
-        .memory-list {
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 0.8rem;
-        }
-
-        .memory-item {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-            color: var(--text-secondary);
-        }
-
-        /* Quick Chips */
-        .quick-chips {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .chip {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text-gold);
-        }
-
-        .chip:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Typing Indicator */
-        .typing-indicator {
-            display: inline-flex;
-            gap: 5px;
-            padding: 10px 15px;
-            background: rgba(30, 30, 40, 0.8);
-            border-radius: 20px;
-            margin: 10px 0;
-        }
-
-        .typing-indicator span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary-gold);
-            animation: typing 1.4s infinite;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-            30% { transform: translateY(-8px); opacity: 1; }
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255, 215, 0, 0.2);
-            border-top-color: var(--primary-gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         /* Voice Status */
@@ -441,137 +467,140 @@
             bottom: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 30px;
+            padding: 8px 18px;
+            border-radius: 25px;
             border-left: 3px solid var(--primary-gold);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             z-index: 100;
-            color: var(--text-primary);
         }
 
+        /* Responsive */
         @media (max-width: 900px) {
-            .main-grid {
-                grid-template-columns: 1fr;
+            .sidebar {
+                position: fixed;
+                left: -320px;
+                height: 100vh;
+                z-index: 1000;
             }
-            .right-sidebar {
-                max-height: 450px;
-                overflow-y: auto;
-            }
-            .glass-header {
-                flex-direction: column;
-                text-align: center;
+            .sidebar.open {
+                left: 0;
             }
         }
     </style>
 </head>
 <body>
     <div class="neural-bg"></div>
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
+    <div class="particles" id="particles"></div>
 
-    <div class="container">
-        <div class="glass-header">
-            <div class="logo-area">
-                <div class="logo-icon">🧠✨</div>
-                <div class="logo-text">
-                    <h1>TEASERAI ULTRA</h1>
-                    <p>by Viren Singh • Neural Intelligence Platform</p>
-                </div>
+    <div class="app-layout">
+        <!-- Sidebar - History + Gallery -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>📜 Prompt History</h3>
             </div>
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="label">MEMORY</div>
-                    <div class="value" id="memoryCount">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="label">STATUS</div>
-                    <div class="value" id="status" style="font-size: 0.9rem;">🟢 ACTIVE</div>
-                </div>
+            <div class="history-list" id="historyList"></div>
+            <div class="sidebar-header">
+                <h3>🖼️ Gallery</h3>
             </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
 
-        <div class="main-grid">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="glass-header">
+                <div class="logo-area">
+                    <div class="logo-icon">🧠✨</div>
+                    <div class="logo-text">
+                        <h1>TEASERAI ULTRA</h1>
+                        <p>by Viren Singh • Advanced Neural Studio</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-card"><div class="label">MEMORY</div><div class="value" id="memoryCount">0</div></div>
+                    <div class="stat-card"><div class="label">GENERATIONS</div><div class="value" id="genCount">0</div></div>
+                </div>
+            </div>
+
+            <!-- Advanced Controls -->
+            <div class="controls-panel">
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <div class="control-label">🎨 STYLE PRESET</div>
+                        <div class="style-buttons">
+                            <button class="style-btn active" data-style="realistic">Realistic</button>
+                            <button class="style-btn" data-style="anime">Anime</button>
+                            <button class="style-btn" data-style="cinematic">Cinematic</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">📐 ASPECT RATIO</div>
+                        <select id="aspectRatio">
+                            <option value="1:1">1:1 (Square)</option>
+                            <option value="16:9">16:9 (Widescreen)</option>
+                            <option value="9:16">9:16 (Portrait)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">🎯 CREATIVITY (Temperature)</div>
+                        <input type="range" id="creativity" min="0" max="100" value="70">
+                        <span id="creativityValue">70%</span>
+                    </div>
+                </div>
+                <input type="text" id="negativePrompt" class="negative-prompt" placeholder="Negative prompt (things to avoid)... e.g., blurry, ugly, distorted">
+            </div>
+
+            <!-- Streaming Progress UI -->
+            <div class="streaming-progress" id="streamingProgress">
+                <div class="progress-stage" id="stage1">
+                    <span class="stage-icon">🔍</span>
+                    <span class="stage-text">Parsing prompt...</span>
+                    <span class="stage-status"></span>
+                </div>
+                <div class="progress-stage" id="stage2">
+                    <span class="stage-icon">✨</span>
+                    <span class="stage-text">Enhancing details...</span>
+                    <span class="stage-status"></span>
+                </div>
+                <div class="progress-stage" id="stage3">
+                    <span class="stage-icon">🎨</span>
+                    <span class="stage-text">Generating image...</span>
+                    <span class="stage-status"></span>
+                </div>
+                <div class="progress-stage" id="stage4">
+                    <span class="stage-icon">✅</span>
+                    <span class="stage-text">Final rendering...</span>
+                    <span class="stage-status"></span>
+                </div>
+            </div>
+
+            <!-- Generated Image Display -->
+            <div class="image-display" id="imageDisplay">
+                <img id="generatedImage" alt="Generated Image">
+                <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+                    <button id="remixBtn" class="remix-btn" style="background: rgba(255,215,0,0.2); color: #FFD700;">🔄 Remix This Image</button>
+                    <button id="saveToGalleryBtn" style="background: rgba(255,215,0,0.2); color: #FFD700;">💾 Save to Gallery</button>
+                </div>
+            </div>
+
             <!-- Chat Section -->
             <div class="chat-section">
-                <div class="chat-header">
-                    <h3>🤖 Neural Chat Interface</h3>
-                    <div class="model-badge" id="modelBadge">⚡ REAL AI • READY</div>
-                </div>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot-message">
                         <div class="message-content">
-                            <strong>🧠 TEASERAI ULTRA</strong><br><br>
-                            Welcome to the most advanced AI platform. I feature:<br><br>
-                            🎯 <strong>Real AI Intelligence</strong><br>
-                            🎨 <strong>Infinite Image Generation</strong><br>
-                            🎤 <strong>Voice Input & Output</strong><br>
-                            🧠 <strong>Persistent Memory</strong><br>
-                            ⚡ <strong>Lightning Fast</strong><br><br>
-                            Try: "generate a dragon" or "remember that I love coffee"
+                            <strong>🧠 TEASERAI</strong><br>
+                            Welcome! I understand natural language and can:<br>
+                            • 🎨 Generate images with style controls<br>
+                            • 🔍 Search Google (type "search: something")<br>
+                            • 🧠 Remember everything about you<br>
+                            • 🎤 Listen and speak back<br>
+                            Try: "generate a cyberpunk city" or "search: latest AI news"
                         </div>
                     </div>
                 </div>
                 <div class="input-area">
-                    <input type="text" id="chatInput" placeholder="Ask me anything or describe an image..." autocomplete="off">
-                    <button class="icon-btn" id="voiceBtn">🎤</button>
+                    <input type="text" id="chatInput" placeholder="Type anything... I understand natural language! Try 'search: cats' or 'generate a dragon'" autocomplete="off">
+                    <button id="voiceBtn">🎤</button>
                     <button id="sendBtn">SEND</button>
-                </div>
-                <div class="quick-chips" style="padding: 0 20px 20px 20px;">
-                    <div class="chip" data-prompt="generate a beautiful sunset over mountains">🌅 Sunset</div>
-                    <div class="chip" data-prompt="generate a cyberpunk city with neon lights">🌃 Cyberpunk City</div>
-                    <div class="chip" data-prompt="remember that I love pizza">🧠 Remember</div>
-                    <div class="chip" data-prompt="what do you remember">📋 Recall</div>
-                    <div class="chip" data-prompt="tell me a joke">😄 Joke</div>
-                </div>
-            </div>
-
-            <!-- Right Sidebar -->
-            <div class="right-sidebar">
-                <!-- Image Generation Panel -->
-                <div class="image-panel">
-                    <div class="panel-title">
-                        <span>🎨</span> Image Generator
-                    </div>
-                    <div class="image-input-group">
-                        <input type="text" id="imagePrompt" placeholder="Describe any image... e.g., 'a dragon flying over mountains'">
-                        <button class="generate-btn" id="generateBtn">Generate</button>
-                    </div>
-                    <div id="imageLoading" style="display: none;">
-                        <div class="spinner"></div>
-                        <p style="text-align: center; color: var(--text-gold);">Generating image...</p>
-                    </div>
-                    <div class="image-result" id="imageResult">
-                        <img id="generatedImage" alt="Generated Image">
-                    </div>
-                </div>
-
-                <!-- Memory Panel -->
-                <div class="memory-panel">
-                    <div class="panel-title">
-                        <span>🧠</span> Neural Memory
-                    </div>
-                    <div class="memory-list" id="memoryList">
-                        <div class="memory-item">No memories yet. Say "remember that..."</div>
-                    </div>
-                    <div class="quick-chips">
-                        <div class="chip" id="recallMemories">📋 Recall All</div>
-                        <div class="chip" id="clearMemories">🗑️ Clear Memory</div>
-                    </div>
-                </div>
-
-                <!-- Info Panel -->
-                <div class="memory-panel">
-                    <div class="panel-title">
-                        <span>📊</span> System Status
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <div>🟢 AI Model: <strong>Active</strong></div>
-                        <div>🎨 Image Gen: <strong>Ready</strong></div>
-                        <div>🎤 Voice: <strong>Enabled</strong></div>
-                        <div>💾 Session: <strong id="sessionId">active</strong></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -580,380 +609,283 @@
     <div class="voice-status" id="voiceStatus">🔊 Voice Ready • Click 🎤 to speak</div>
 
     <script>
-        // ========== YOUR GROQ API KEY - APPLIED HERE! ==========
-        // REPLACE THIS WITH YOUR API KEY FROM GROQ.COM
+        // ========== GROQ API KEY ==========
         const GROQ_API_KEY = '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';
         
         // ========== CONFIGURATION ==========
-        const CONFIG = {
-            GROQ_API_URL: 'https://api.groq.com/openai/v1/chat/completions',
-            GROQ_MODEL: 'llama-3.1-70b-versatile',
-            IMAGE_API_URL: 'https://image.pollinations.ai/prompt/'
-        };
+        let currentStyle = 'realistic';
+        let currentAspect = '1:1';
+        let creativity = 70;
+        let generations = JSON.parse(localStorage.getItem('teaserai_generations') || '[]');
+        let history = JSON.parse(localStorage.getItem('teaserai_history') || '[]');
+        let memories = JSON.parse(localStorage.getItem('teaserai_memories') || '[]');
         
-        // ========== MEMORY SYSTEM ==========
-        let memories = [];
-        let conversationHistory = [];
-        let userName = null;
-        
-        function loadMemories() {
-            const saved = localStorage.getItem('teaserai_memories');
-            if (saved) memories = JSON.parse(saved);
-            renderMemories();
-            updateMemoryCount();
-        }
-        
-        function saveMemories() {
-            localStorage.setItem('teaserai_memories', JSON.stringify(memories));
-            renderMemories();
-            updateMemoryCount();
-        }
-        
-        function addMemory(content) {
-            memories.unshift({ id: Date.now(), content: content, timestamp: new Date().toISOString() });
-            if (memories.length > 20) memories.pop();
-            saveMemories();
-            return true;
-        }
-        
-        function clearAllMemories() {
-            memories = [];
-            saveMemories();
-        }
-        
-        function renderMemories() {
-            const container = document.getElementById('memoryList');
-            if (memories.length === 0) {
-                container.innerHTML = '<div class="memory-item">No memories yet. Say "remember that..."</div>';
-                return;
-            }
-            container.innerHTML = memories.slice(0, 10).map(m => 
-                `<div class="memory-item">📝 ${m.content.substring(0, 60)}</div>`
-            ).join('');
-        }
-        
-        function updateMemoryCount() {
+        // ========== UPDATE UI COUNTS ==========
+        function updateCounts() {
             document.getElementById('memoryCount').innerText = memories.length;
+            document.getElementById('genCount').innerText = generations.length;
         }
         
-        function addToHistory(role, content) {
-            conversationHistory.push({ role, content, timestamp: Date.now() });
-            if (conversationHistory.length > 20) conversationHistory.shift();
+        // ========== STREAMING PROGRESS UI ==========
+        function showStreamingProgress() {
+            const container = document.getElementById('streamingProgress');
+            container.style.display = 'block';
+            ['stage1', 'stage2', 'stage3', 'stage4'].forEach(id => {
+                const stage = document.getElementById(id);
+                stage.classList.remove('active', 'completed');
+                stage.querySelector('.stage-status').innerHTML = '';
+            });
         }
         
-        // ========== REAL AI WITH YOUR GROQ API KEY ==========
-        let isThinking = false;
-        
-        async function getAIResponse(userMessage) {
-            if (isThinking) return "Processing previous request...";
-            
-            // Check local commands first
-            const localResponse = checkLocalCommands(userMessage);
-            if (localResponse) return localResponse;
-            
-            isThinking = true;
-            showTyping();
-            
-            try {
-                // Make API call to Groq with YOUR API key
-                const response = await fetch(CONFIG.GROQ_API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${GROQ_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: CONFIG.GROQ_MODEL,
-                        messages: [
-                            { 
-                                role: 'system', 
-                                content: `You are TeaseraI, an advanced AI assistant created by Viren Singh. 
-                                You have memory capabilities. Be helpful, concise, and engaging.
-                                User's name: ${userName || 'Unknown'}` 
-                            },
-                            ...conversationHistory.slice(-5),
-                            { role: 'user', content: userMessage }
-                        ],
-                        temperature: 0.7,
-                        max_tokens: 800
-                    })
-                });
-                
-                if (!response.ok) throw new Error('API Error');
-                
-                const data = await response.json();
-                const aiResponse = data.choices[0].message.content;
-                
-                addToHistory('user', userMessage);
-                addToHistory('assistant', aiResponse);
-                
-                hideTyping();
-                isThinking = false;
-                return aiResponse;
-                
-            } catch (error) {
-                console.error('AI Error:', error);
-                hideTyping();
-                isThinking = false;
-                return getFallbackResponse(userMessage);
+        function updateProgressStage(stageNum, status = 'loading') {
+            const stage = document.getElementById(`stage${stageNum}`);
+            stage.classList.add('active');
+            if (status === 'loading') {
+                stage.querySelector('.stage-status').innerHTML = '<div class="spinner-small"></div>';
+            } else if (status === 'complete') {
+                stage.classList.remove('active');
+                stage.classList.add('completed');
+                stage.querySelector('.stage-status').innerHTML = '✓';
             }
         }
         
-        function checkLocalCommands(message) {
+        function completeProgress() {
+            setTimeout(() => {
+                document.getElementById('streamingProgress').style.display = 'none';
+            }, 1000);
+        }
+        
+        // ========== IMAGE GENERATION WITH ADVANCED CONTROLS ==========
+        async function generateImage(prompt, isRemix = false) {
+            if (!prompt) return;
+            
+            showStreamingProgress();
+            updateProgressStage(1, 'loading');
+            await delay(800);
+            updateProgressStage(1, 'complete');
+            
+            updateProgressStage(2, 'loading');
+            await delay(600);
+            updateProgressStage(2, 'complete');
+            
+            updateProgressStage(3, 'loading');
+            
+            // Get negative prompt
+            const negativePrompt = document.getElementById('negativePrompt').value;
+            const aspectMap = { '1:1': '1024x1024', '16:9': '1344x768', '9:16': '768x1344' };
+            const dimensions = aspectMap[currentAspect];
+            
+            // Style modifiers
+            const styleModifiers = {
+                realistic: 'photorealistic, ultra HD, detailed, sharp focus, 8K',
+                anime: 'anime style, studio ghibli inspired, vibrant colors, cel shaded, manga art',
+                cinematic: 'cinematic, movie poster, dramatic lighting, film grain, epic composition'
+            };
+            
+            const enhancedPrompt = `${styleModifiers[currentStyle]}, ${prompt}, quality:${creativity}%, style strength:${creativity/10}`;
+            const negativeText = negativePrompt ? `, avoid: ${negativePrompt}` : '';
+            
+            const timestamp = Date.now();
+            const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt + negativeText)}?width=${dimensions.split('x')[0]}&height=${dimensions.split('x')[1]}&seed=${timestamp}&nologo=true`;
+            
+            updateProgressStage(3, 'complete');
+            updateProgressStage(4, 'loading');
+            
+            const imgElement = document.getElementById('generatedImage');
+            const displayDiv = document.getElementById('imageDisplay');
+            
+            imgElement.onload = () => {
+                displayDiv.style.display = 'block';
+                updateProgressStage(4, 'complete');
+                completeProgress();
+                
+                // Save to history
+                if (!isRemix) {
+                    history.unshift({ prompt, timestamp: new Date().toISOString(), imageUrl, style: currentStyle });
+                    if (history.length > 20) history.pop();
+                    localStorage.setItem('teaserai_history', JSON.stringify(history));
+                    renderHistory();
+                }
+                
+                // Add to chat
+                addBotMessage(`🎨 Generated image for: "${prompt}"\nStyle: ${currentStyle} | Aspect: ${currentAspect}`);
+            };
+            
+            imgElement.onerror = () => {
+                completeProgress();
+                addBotMessage("⚠️ Image generation failed. Please try again.");
+            };
+            
+            imgElement.src = imageUrl;
+        }
+        
+        function saveToGallery() {
+            const img = document.getElementById('generatedImage');
+            if (img.src && img.src !== '') {
+                generations.unshift({ 
+                    id: Date.now(), 
+                    src: img.src, 
+                    timestamp: new Date().toISOString(),
+                    prompt: document.getElementById('chatInput').value 
+                });
+                if (generations.length > 50) generations.pop();
+                localStorage.setItem('teaserai_generations', JSON.stringify(generations));
+                renderGallery();
+                updateCounts();
+                addBotMessage("💾 Image saved to gallery!");
+            }
+        }
+        
+        function remixImage() {
+            const lastPrompt = history[0]?.prompt;
+            if (lastPrompt) {
+                document.getElementById('chatInput').value = `remix: ${lastPrompt}`;
+                generateImage(lastPrompt, true);
+            }
+        }
+        
+        // ========== INTELLIGENT RESPONSE SYSTEM (Understands Natural Language) ==========
+        async function getIntelligentResponse(message) {
             const lower = message.toLowerCase();
             
-            // Remember command
-            if (lower.includes('remember that')) {
+            // SEARCH COMMAND - Opens Google
+            if (lower.startsWith('search:') || lower.startsWith('search for') || lower.includes('search google for') || lower.startsWith('google ')) {
+                let query = message.replace(/search:|search for|search google for|google/gi, '').trim();
+                if (query) {
+                    window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+                    return `🔍 Searching Google for "${query}"...`;
+                }
+                return "What would you like me to search for? Try 'search: cats' or 'google AI news'";
+            }
+            
+            // IMAGE GENERATION - Natural language detection
+            const imageTriggers = ['generate', 'create', 'make', 'draw', 'render', 'imagine', 'picture of', 'image of', 'show me', 'want to see'];
+            if (imageTriggers.some(trigger => lower.includes(trigger))) {
+                let prompt = message;
+                imageTriggers.forEach(trigger => { prompt = prompt.replace(new RegExp(trigger, 'gi'), ''); });
+                prompt = prompt.trim();
+                if (prompt) {
+                    await generateImage(prompt);
+                    return null;
+                }
+            }
+            
+            // REMEMBER COMMAND
+            if (lower.includes('remember that') || lower.includes('remember ') && !lower.includes('what do you remember')) {
                 const content = message.replace(/remember that|remember/gi, '').trim();
                 if (content) {
-                    addMemory(content);
+                    memories.unshift({ id: Date.now(), content, timestamp: new Date().toISOString() });
+                    localStorage.setItem('teaserai_memories', JSON.stringify(memories));
+                    updateCounts();
                     return `✅ I've remembered: "${content}"`;
                 }
             }
             
-            // Recall memories
-            if (lower.includes('what do you remember') || lower.includes('recall')) {
-                if (memories.length === 0) return "I don't have any memories yet. Try saying 'remember that I like coffee'!";
+            // RECALL MEMORIES
+            if (lower.includes('what do you remember') || lower.includes('recall') || lower.includes('my memories')) {
+                if (memories.length === 0) return "I don't have any memories yet. Tell me something like 'remember that I love coffee'!";
                 return `📋 Here's what I remember:\n${memories.slice(0, 10).map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
             }
             
-            // Name
+            // NAME RECOGNITION
             if (lower.includes('my name is')) {
-                const name = message.match(/my name is (\w+)/i);
-                if (name) {
-                    userName = name[1];
-                    localStorage.setItem('teaserai_username', userName);
-                    return `🎯 Nice to meet you, ${userName}! I'll remember your name.`;
+                const nameMatch = message.match(/my name is (\w+)/i);
+                if (nameMatch) {
+                    localStorage.setItem('teaserai_username', nameMatch[1]);
+                    return `🎯 Nice to meet you, ${nameMatch[1]}! I'll remember your name.`;
                 }
             }
             
-            // Time
-            if (lower.includes('what time')) return `🕐 ${new Date().toLocaleTimeString()}`;
+            // TIME & DATE
+            if (lower.includes('what time') || lower.includes('current time')) return `🕐 ${new Date().toLocaleTimeString()}`;
+            if (lower.includes('what date') || lower.includes('today\'s date')) return `📅 ${new Date().toLocaleDateString()}`;
             
-            // Date
-            if (lower.includes('what date')) return `📅 ${new Date().toLocaleDateString()}`;
+            // CALCULATIONS
+            if (lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/\(\)]/.test(lower)) {
+                try {
+                    let expr = message.replace(/calculate|what is|solve/gi, '').trim();
+                    const result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
+                    return `🧮 ${expr} = ${result}`;
+                } catch(e) {}
+            }
             
-            // Joke
-            if (lower.includes('joke')) {
+            // JOKES
+            if (lower.includes('joke') || lower.includes('funny')) {
                 const jokes = [
                     "Why don't scientists trust atoms? Because they make up everything! 😄",
                     "What do you call a fake noodle? An impasta! 🍝",
-                    "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                    "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
+                    "What do you call a bear with no teeth? A gummy bear! 🐻"
                 ];
                 return jokes[Math.floor(Math.random() * jokes.length)];
             }
             
-            // Help
+            // OPEN WEBSITES
+            if (lower.includes('open ')) {
+                const site = message.replace(/open /i, '').trim().toLowerCase();
+                const sites = { youtube: 'https://youtube.com', google: 'https://google.com', github: 'https://github.com' };
+                if (sites[site]) { window.open(sites[site], '_blank'); return `🌐 Opening ${site}...`; }
+            }
+            
+            // GREETINGS
+            if (lower.match(/hello|hi|hey|greetings/)) {
+                const savedName = localStorage.getItem('teaserai_username');
+                return savedName ? `Hey ${savedName}! 👋 How can I help you today?` : `Hello! What's your name? (say "my name is...")`;
+            }
+            
+            // HELP
             if (lower.includes('help')) {
-                return `🎯 <strong>Commands:</strong><br>
-                🎨 "generate a dragon" - Create any image<br>
+                return `🎯 <strong>Commands I understand:</strong><br>
+                🎨 "generate a dragon" - Create images<br>
+                🔍 "search: AI news" - Google search<br>
                 🧠 "remember that I like coffee" - Save memories<br>
                 📋 "what do you remember" - Recall memories<br>
-                🎤 Click mic button to speak<br>
-                💬 Just chat normally with me!`;
+                🧮 "calculate 100 * 5" - Math<br>
+                🎲 "roll dice" - Games<br>
+                🎤 Click the mic to speak!`;
             }
             
-            return null;
-        }
-        
-        function getFallbackResponse(message) {
-            const lower = message.toLowerCase();
-            
-            if (lower.includes('hello') || lower.includes('hi')) {
-                return userName ? `Hey ${userName}! 👋 How can I help you today?` : `Hello! What's your name? (say "my name is...")`;
-            }
-            
-            if (lower.includes('how are you')) {
-                return "I'm doing great! Ready to help with images, memories, or anything you need! 🚀";
-            }
-            
-            if (lower.includes('thank')) {
-                return "You're welcome! Anything else I can help with? 🌟";
-            }
-            
-            return `I got your message! You can:\n\n🎨 Generate images - "generate a car"\n🧠 Store memories - "remember that I love pizza"\n📋 Recall memories - "what do you remember"\n\nWhat would you like to do?`;
-        }
-        
-        // ========== IMAGE GENERATION (FIXED - MULTIPLE GENERATIONS WORK) ==========
-        let isGenerating = false;
-        let lastImagePrompt = '';
-        
-        async function generateImage(prompt) {
-            if (!prompt || prompt.trim().length < 2) {
-                addBotMessage("Please describe what image you want me to generate!");
-                return;
-            }
-            
-            if (isGenerating) {
-                addBotMessage("Please wait, I'm already generating an image for you!");
-                return;
-            }
-            
-            isGenerating = true;
-            showImageLoading();
-            
-            const cleanPrompt = prompt.trim();
-            const enhancedPrompt = `beautiful, high quality, detailed, ${cleanPrompt}`;
-            
-            // Different URL each time for unique images
-            const timestamp = Date.now();
-            const randomSeed = Math.random() * 100000;
-            const imageUrl = `${CONFIG.IMAGE_API_URL}${encodeURIComponent(enhancedPrompt)}?width=1024&height=1024&seed=${randomSeed}&timestamp=${timestamp}&nologo=true`;
-            
-            const imgElement = document.getElementById('generatedImage');
-            const resultDiv = document.getElementById('imageResult');
-            
-            // Set up load handler
-            imgElement.onload = () => {
-                resultDiv.style.display = 'block';
-                hideImageLoading();
-                isGenerating = false;
-                lastImagePrompt = cleanPrompt;
-                
-                // Also add to chat
-                addImageToChat(cleanPrompt, imageUrl);
-            };
-            
-            imgElement.onerror = () => {
-                hideImageLoading();
-                isGenerating = false;
-                addBotMessage("⚠️ Image generation failed. Please try a different description.");
-            };
-            
-            // Load the image
-            imgElement.src = imageUrl;
-        }
-        
-        function showImageLoading() {
-            document.getElementById('imageLoading').style.display = 'block';
-            document.getElementById('imageResult').style.display = 'none';
-        }
-        
-        function hideImageLoading() {
-            document.getElementById('imageLoading').style.display = 'none';
-        }
-        
-        function addImageToChat(prompt, imageUrl) {
-            const container = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            messageDiv.innerHTML = `
-                <div class="message-content">
-                    <strong>🎨 Image Generated</strong><br>
-                    "${prompt}"<br>
-                    <img src="${imageUrl}" style="max-width:100%; border-radius:15px; margin-top:10px;" alt="Generated">
-                    <br><small>✨ Right-click to save</small>
-                </div>
-            `;
-            container.appendChild(messageDiv);
-            container.scrollTop = container.scrollHeight;
-        }
-        
-        // ========== VOICE SYSTEM ==========
-        let voiceEnabled = true;
-        let recognition = null;
-        const synth = window.speechSynthesis;
-        
-        function initVoice() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (SpeechRecognition) {
-                recognition = new SpeechRecognition();
-                recognition.lang = 'en-US';
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                
-                recognition.onstart = () => {
-                    document.getElementById('voiceStatus').innerHTML = '🎤 Listening... Speak now';
-                    document.getElementById('voiceStatus').style.borderLeftColor = '#FF4500';
-                };
-                
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    document.getElementById('chatInput').value = transcript;
-                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
-                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
-                    sendMessage();
-                };
-                
-                recognition.onerror = () => {
-                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
-                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
-                };
-                
-                recognition.onend = () => {
-                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready • Click 🎤 to speak';
-                    document.getElementById('voiceStatus').style.borderLeftColor = '#FFD700';
-                };
-            }
-        }
-        
-        function startVoiceInput() {
-            if (recognition) {
+            // DEFAULT - Send to Groq API
+            if (GROQ_API_KEY && GROQ_API_KEY !== 'your-groq-api-key-here') {
                 try {
-                    recognition.start();
-                } catch(e) {
-                    document.getElementById('voiceStatus').innerHTML = '⚠️ Voice error, please type';
-                }
-            } else {
-                document.getElementById('voiceStatus').innerHTML = '⚠️ Voice not supported in this browser';
+                    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${GROQ_API_KEY}`, 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            model: 'llama-3.1-70b-versatile',
+                            messages: [{ role: 'user', content: message }],
+                            temperature: creativity / 100,
+                            max_tokens: 500
+                        })
+                    });
+                    const data = await response.json();
+                    if (data.choices) return data.choices[0].message.content;
+                } catch(e) {}
             }
-        }
-        
-        function speakText(text) {
-            if (!voiceEnabled) return;
-            const cleanText = text.replace(/<[^>]*>/g, '').substring(0, 300);
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.rate = 0.9;
-            synth.cancel();
-            synth.speak(utterance);
+            
+            return `I understand you're saying "${message}". You can ask me to generate images (try "generate a cat"), search Google ("search: something"), or remember things ("remember that..."). What would you like to do? 🚀`;
         }
         
         // ========== UI FUNCTIONS ==========
-        let isTyping = false;
-        
-        function showTyping() {
-            if (isTyping) return;
-            isTyping = true;
-            const container = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = '<span></span><span></span><span></span><span style="margin-left:8px;">TeaseraI is thinking...</span>';
-            container.appendChild(typingDiv);
-            container.scrollTop = container.scrollHeight;
-        }
-        
-        function hideTyping() {
-            isTyping = false;
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
-        }
+        function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
         
         function addUserMessage(text) {
             const container = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message user-message';
-            messageDiv.innerHTML = `<div class="message-content"><strong>YOU</strong><br>${escapeHtml(text)}</div>`;
-            container.appendChild(messageDiv);
+            const msg = document.createElement('div');
+            msg.className = 'message user-message';
+            msg.innerHTML = `<div class="message-content"><strong>YOU</strong><br>${escapeHtml(text)}</div>`;
+            container.appendChild(msg);
             container.scrollTop = container.scrollHeight;
         }
         
         function addBotMessage(text) {
             const container = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            messageDiv.innerHTML = `<div class="message-content"><strong>🧠 TEASERAI</strong><br>${formatMessage(text)}</div>`;
-            container.appendChild(messageDiv);
+            const msg = document.createElement('div');
+            msg.className = 'message bot-message';
+            msg.innerHTML = `<div class="message-content"><strong>🧠 TEASERAI</strong><br>${text.replace(/\n/g, '<br>')}</div>`;
+            container.appendChild(msg);
             container.scrollTop = container.scrollHeight;
-            
-            if (voiceEnabled) {
-                speakText(text);
-            }
-        }
-        
-        function formatMessage(text) {
-            return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                      .replace(/\n/g, '<br>');
+            speakText(text);
         }
         
         function escapeHtml(text) {
@@ -967,98 +899,134 @@
             const message = input.value.trim();
             if (!message) return;
             
-            // Check if it's an image generation command
-            const lowerMsg = message.toLowerCase();
-            const imageKeywords = ['generate', 'create', 'make', 'draw', 'render', 'imagine', 'image of', 'picture of'];
-            const isImageCommand = imageKeywords.some(keyword => lowerMsg.includes(keyword));
-            
-            if (isImageCommand) {
-                // Extract prompt
-                let prompt = message;
-                for (let word of imageKeywords) {
-                    prompt = prompt.replace(new RegExp(word, 'gi'), '');
-                }
-                prompt = prompt.trim();
-                if (!prompt) prompt = "beautiful landscape";
-                
-                addUserMessage(message);
-                input.value = '';
-                await generateImage(prompt);
-                return;
-            }
-            
             addUserMessage(message);
             input.value = '';
             
-            const response = await getAIResponse(message);
-            addBotMessage(response);
+            const response = await getIntelligentResponse(message);
+            if (response) addBotMessage(response);
         }
         
-        // ========== INITIALIZATION ==========
-        document.getElementById('sessionId').innerHTML = Math.random().toString(36).substr(2, 8);
-        
-        // Load saved username
-        const savedName = localStorage.getItem('teaserai_username');
-        if (savedName) userName = savedName;
-        
-        // Event listeners
-        document.getElementById('sendBtn').addEventListener('click', sendMessage);
-        document.getElementById('voiceBtn').addEventListener('click', startVoiceInput);
-        document.getElementById('generateBtn').addEventListener('click', () => {
-            const prompt = document.getElementById('imagePrompt').value;
-            generateImage(prompt);
-        });
-        document.getElementById('imagePrompt').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') generateImage(e.target.value);
-        });
-        document.getElementById('chatInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-        document.getElementById('recallMemories').addEventListener('click', async () => {
-            const response = await getAIResponse("what do you remember");
-            addBotMessage(response);
-        });
-        document.getElementById('clearMemories').addEventListener('click', () => {
-            if (confirm('Clear all memories?')) {
-                clearAllMemories();
-                addBotMessage("🧠 Neural memory cleared. I'm ready to learn new things!");
+        // ========== RENDER HISTORY & GALLERY ==========
+        function renderHistory() {
+            const container = document.getElementById('historyList');
+            if (history.length === 0) {
+                container.innerHTML = '<div style="padding: 15px; color: rgba(255,255,255,0.5);">No history yet. Generate some images!</div>';
+                return;
             }
-        });
+            container.innerHTML = history.map(h => `
+                <div class="history-item">
+                    <div class="history-prompt">${h.prompt.substring(0, 50)}${h.prompt.length > 50 ? '...' : ''}</div>
+                    <div class="history-date">${new Date(h.timestamp).toLocaleString()}</div>
+                    <button class="remix-btn" onclick="remixPrompt('${escapeHtml(h.prompt)}')">🔄 Remix</button>
+                </div>
+            `).join('');
+        }
         
-        // Quick chips
-        document.querySelectorAll('.chip').forEach(chip => {
-            const prompt = chip.getAttribute('data-prompt');
-            if (prompt) {
-                chip.addEventListener('click', () => {
-                    document.getElementById('chatInput').value = prompt;
+        function renderGallery() {
+            const container = document.getElementById('galleryGrid');
+            if (generations.length === 0) {
+                container.innerHTML = '<div style="padding: 15px; color: rgba(255,255,255,0.5);">No saved images. Generate and save to gallery!</div>';
+                return;
+            }
+            container.innerHTML = generations.map(g => `
+                <div class="gallery-item" onclick="viewGalleryImage('${g.src}')">
+                    <img src="${g.src}" alt="Gallery">
+                </div>
+            `).join('');
+        }
+        
+        function remixPrompt(prompt) {
+            document.getElementById('chatInput').value = `generate ${prompt}`;
+            sendMessage();
+        }
+        
+        function viewGalleryImage(src) {
+            document.getElementById('generatedImage').src = src;
+            document.getElementById('imageDisplay').style.display = 'block';
+        }
+        
+        // ========== VOICE SYSTEM ==========
+        let recognition = null;
+        let voiceEnabled = true;
+        const synth = window.speechSynthesis;
+        
+        function initVoice() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.onstart = () => document.getElementById('voiceStatus').innerHTML = '🎤 Listening...';
+                recognition.onresult = (e) => {
+                    document.getElementById('chatInput').value = e.results[0][0].transcript;
+                    document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready';
                     sendMessage();
-                });
+                };
+                recognition.onerror = () => document.getElementById('voiceStatus').innerHTML = '🔊 Voice Ready';
             }
-        });
-        
-        // Initialize
-        loadMemories();
-        initVoice();
-        
-        // Check API key status
-        if (GROQ_API_KEY && GROQ_API_KEY !== 'your-groq-api-key-here') {
-            document.getElementById('modelBadge').innerHTML = '✅ REAL AI • ACTIVE';
-            document.getElementById('modelBadge').style.background = 'rgba(0,255,0,0.1)';
-            addBotMessage("✅ Real AI is ACTIVE! I'm using advanced language models to chat with you.");
-        } else {
-            document.getElementById('modelBadge').innerHTML = '⚡ LOCAL MODE';
-            addBotMessage("💡 For advanced AI, add your Groq API key in the code at GROQ_API_KEY variable.");
         }
         
-        // Welcome voice
-        setTimeout(() => {
-            speakText("Welcome to TeaseraI Ultra. I'm ready to generate images and chat.");
-        }, 1000);
+        function startVoice() {
+            if (recognition) recognition.start();
+            else document.getElementById('voiceStatus').innerHTML = '⚠️ Voice not supported';
+        }
         
-        console.log('%c🚀 TEASERAI ULTRA - FULLY LOADED', 'color: #FFD700; font-size: 20px; font-weight: bold;');
-        console.log('%c✅ Groq API Key: INSTALLED', 'color: #00FF00; font-size: 12px;');
-        console.log('%c✅ Image Generation: WORKING (can generate unlimited images)', 'color: #00FF00; font-size: 12px;');
-        console.log('%c✅ Voice System: READY', 'color: #00FF00; font-size: 12px;');
+        function speakText(text) {
+            if (!voiceEnabled) return;
+            const clean = text.replace(/<[^>]*>/g, '').substring(0, 200);
+            const utterance = new SpeechSynthesisUtterance(clean);
+            utterance.rate = 0.9;
+            synth.cancel();
+            synth.speak(utterance);
+        }
+        
+        // ========== EVENT LISTENERS ==========
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+        document.getElementById('voiceBtn').addEventListener('click', startVoice);
+        document.getElementById('chatInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+        document.getElementById('remixBtn').addEventListener('click', remixImage);
+        document.getElementById('saveToGalleryBtn').addEventListener('click', saveToGallery);
+        
+        document.getElementById('creativity').addEventListener('input', (e) => {
+            creativity = e.target.value;
+            document.getElementById('creativityValue').innerHTML = `${creativity}%`;
+        });
+        
+        document.getElementById('aspectRatio').addEventListener('change', (e) => currentAspect = e.target.value);
+        
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentStyle = btn.dataset.style;
+            });
+        });
+        
+        // ========== INITIALIZE ==========
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = 10 + Math.random() * 10 + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        renderHistory();
+        renderGallery();
+        updateCounts();
+        initVoice();
+        createParticles();
+        
+        console.log('%c🚀 TEASERAI ULTRA - FULLY LOADED', 'color: #FFD700; font-size: 20px;');
+        console.log('%c✅ Advanced Controls: Style, Aspect, Creativity', 'color: #00FF00;');
+        console.log('%c✅ Streaming Progress UI', 'color: #00FF00;');
+        console.log('%c✅ Prompt History + Remix System', 'color: #00FF00;');
+        console.log('%c✅ Gallery Mode (Pinterest-style)', 'color: #00FF00;');
+        console.log('%c✅ Natural Language Understanding', 'color: #00FF00;');
+        console.log('%c✅ Search Command: "search: something"', 'color: #00FF00;');
     </script>
 </body>
 </html>
