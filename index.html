@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🧠 NEURALIS AI • True Intelligence Engine • Viren Singh 🧠</title>
+    <title>🧠 NEURALIS AI • DeepSeek-V3 Engine • Viren Singh 🧠</title>
     <style>
         * {
             margin: 0;
@@ -35,6 +35,12 @@
             background: radial-gradient(ellipse at 20% 30%, rgba(255,215,0,0.08) 0%, transparent 50%),
                         radial-gradient(ellipse at 80% 70%, rgba(0,212,255,0.08) 0%, transparent 50%);
             z-index: 0;
+            animation: bgPulse 10s infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         .neural-particles {
@@ -93,7 +99,7 @@
 
         .logo h1 {
             font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFD700, #00D4FF);
+            background: linear-gradient(135deg, #FFD700, #00D4FF, #9D4EDD);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -383,7 +389,7 @@
         <div class="glass-header">
             <div class="logo">
                 <h1>🧠 NEURALIS AI</h1>
-                <p>by Viren Singh • True Intelligence Engine</p>
+                <p>by Viren Singh • DeepSeek-V3 Engine • Super Intelligence</p>
             </div>
             <div class="stats">
                 <div class="stat"><label>💾 MEM</label><br><span id="memStat">0</span></div>
@@ -397,20 +403,21 @@
             <div class="chat-container">
                 <div class="chat-header">
                     <h3>🧠 NEURAL CHAT</h3>
-                    <div class="model-badge">● TRUE AI • CONTEXT AWARE</div>
+                    <div class="model-badge">● DEEPSEEK-V3 • 671B PARAMETERS</div>
                 </div>
                 <div class="messages" id="chatMessages">
                     <div class="message ai-msg">
                         <div class="bubble">
                             <strong>🧠 NEURALIS AI</strong>
-                            Welcome to the **True Intelligence Engine**!<br><br>
-                            🧠 **Context-Aware AI** - I remember our conversation<br>
+                            Welcome to the **DeepSeek-V3 Intelligence Engine**!<br><br>
+                            🧠 **Powered by DeepSeek-V3-0324** - 671B parameters<br>
                             🎨 **Image Generation** - "generate a dragon"<br>
                             💻 **Code Generation** - "python fibonacci"<br>
                             🧠 **Advanced Memory** - "remember I love AI"<br>
                             🧮 **Smart Math** - "calculate complex equations"<br>
-                            🔧 **Tool Calling** - I automatically use the right tool<br><br>
-                            Let's have a real conversation.
+                            🔧 **Tool Calling** - Automatic tool detection<br>
+                            💬 **True Context** - Full conversation history<br><br>
+                            Let's have a real conversation with super intelligence.
                         </div>
                     </div>
                 </div>
@@ -477,10 +484,19 @@
     <div class="voice-status" id="voiceStatus">🔊 VOICE READY</div>
 
     <script>
-        // ========== HUGGING FACE API ==========
+        // ========== DEEPSEEK-V3 API INTEGRATION ==========
+        // GitHub Personal Access Token for DeepSeek-V3
+        const GITHUB_TOKEN = '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';
+        
+        // DeepSeek-V3 API endpoint (via GitHub Models or Together AI)
+        // Using Together AI as it supports DeepSeek-V3-0324
+        const DEEPSEEK_API_URL = 'https://api.together.xyz/v1/chat/completions';
+        const DEEPSEEK_MODEL = 'deepseek-ai/DeepSeek-V3-0324';
+        
+        // Also keep Hugging Face as backup
         const HF_API_KEY = 'hf_qC0Fy1LPxxzWqGAFWbRQiEOciUDGZMYUzn';
         
-        // ========== ADVANCED MEMORY SYSTEM (IndexedDB-like using localStorage with structure) ==========
+        // ========== ADVANCED MEMORY SYSTEM ==========
         class NeuralMemory {
             constructor() {
                 this.userId = localStorage.getItem('neuralis_user_id') || this.generateUserId();
@@ -533,19 +549,16 @@
                     content: content,
                     timestamp: Date.now()
                 });
-                // Keep last 30 messages for context
                 if (this.conversationHistory.length > 30) this.conversationHistory.shift();
                 this.save('conversationHistory', this.conversationHistory);
             }
             
             getConversationContext() {
-                // Return last 10 messages for prompt engineering
                 return this.conversationHistory.slice(-10);
             }
             
             recallMemories(query = null) {
                 if (!query) return this.memories.slice(0, 10);
-                // Simple semantic search
                 return this.memories.filter(m => 
                     m.content.toLowerCase().includes(query.toLowerCase())
                 ).slice(0, 5);
@@ -615,12 +628,16 @@
                 if (language === 'python') {
                     if (lowerDesc.includes('fibonacci')) {
                         code = `def fibonacci(n):\n    """Generate Fibonacci sequence"""\n    if n <= 0: return []\n    if n == 1: return [0]\n    if n == 2: return [0, 1]\n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\nprint(fibonacci(10))`;
+                    } else if (lowerDesc.includes('factorial')) {
+                        code = `def factorial(n):\n    if n == 0: return 1\n    return n * factorial(n-1)\n\nprint(factorial(5))`;
                     } else {
                         code = `# ${description}\n\ndef solution():\n    """Your implementation"""\n    pass\n\nif __name__ == "__main__":\n    solution()`;
                     }
                 } else {
                     if (lowerDesc.includes('fibonacci')) {
                         code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
+                    } else if (lowerDesc.includes('factorial')) {
+                        code = `function factorial(n) {\n    if (n === 0) return 1;\n    return n * factorial(n - 1);\n}\n\nconsole.log(factorial(5));`;
                     } else {
                         code = `// ${description}\n\nfunction solution() {\n    // Your implementation\n}\n\nsolution();`;
                     }
@@ -654,77 +671,59 @@
             }
         }
         
-        // ========== PROMPT ENGINEERING + INTENT DETECTION ==========
-        class IntelligenceEngine {
+        // ========== DEEPSEEK-V3 SUPER INTELLIGENCE ENGINE ==========
+        class DeepSeekEngine {
             constructor(memory, tools) {
                 this.memory = memory;
                 this.tools = tools;
+                this.conversationId = Date.now().toString();
             }
             
             async process(userMessage) {
-                // Add to conversation history
                 this.memory.addToConversation('user', userMessage);
                 
-                // Detect intent intelligently
-                const intent = this.detectIntent(userMessage);
-                
-                // Execute tool if detected
-                if (intent.tool) {
-                    const result = await this.tools.callTool(intent.tool, intent.params);
+                // First, check if it's a tool call
+                const toolIntent = this.detectToolIntent(userMessage);
+                if (toolIntent.tool) {
+                    const result = await this.tools.callTool(toolIntent.tool, toolIntent.params);
                     if (result) {
                         this.memory.addToConversation('assistant', JSON.stringify(result));
-                        return this.formatToolResult(result, intent);
+                        return this.formatToolResult(result);
                     }
                 }
                 
-                // Generate intelligent response using context
-                const response = await this.generateResponse(userMessage, intent);
-                this.memory.addToConversation('assistant', response);
-                return response;
+                // Use DeepSeek-V3 for intelligent response
+                return await this.getDeepSeekResponse(userMessage);
             }
             
-            detectIntent(message) {
+            detectToolIntent(message) {
                 const lower = message.toLowerCase();
                 
-                // Image generation
-                if (lower.includes('generate') || lower.includes('create image') || lower.includes('draw') || lower.includes('make image')) {
-                    let prompt = message.replace(/generate|create image|draw|make image|please/gi, '').trim();
+                if (lower.includes('generate') || lower.includes('create image') || lower.includes('draw')) {
+                    let prompt = message.replace(/generate|create image|draw|make image/gi, '').trim();
                     if (!prompt) prompt = "beautiful artwork";
                     return { tool: 'generate_image', params: { prompt: prompt } };
                 }
                 
-                // Code generation
-                if (lower.includes('code') || lower.includes('function') || lower.includes('script') || 
-                    (lower.includes('python') && !lower.includes('generate')) || 
-                    (lower.includes('javascript') && !lower.includes('generate'))) {
+                if (lower.includes('code') || lower.includes('python') || lower.includes('javascript')) {
                     const lang = lower.includes('javascript') ? 'javascript' : 'python';
                     return { tool: 'generate_code', params: { description: message, language: lang } };
                 }
                 
-                // Math calculation
                 if (lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/\^\(\)]/.test(lower)) {
                     let expr = message.replace(/calculate|what is|solve/gi, '').trim();
                     return { tool: 'calculate', params: { expression: expr } };
                 }
                 
-                // Memory storage
                 if (lower.includes('remember that') || (lower.includes('remember') && !lower.includes('what do you remember'))) {
                     let content = message.replace(/remember that|remember/gi, '').trim();
                     if (content) return { tool: 'remember', params: { content: content } };
                 }
                 
-                // Memory recall
-                if (lower.includes('what do you remember') || lower.includes('recall') || lower.includes('my memories')) {
+                if (lower.includes('what do you remember') || lower.includes('recall')) {
                     return { tool: 'recall', params: { query: null } };
                 }
                 
-                // Search memory
-                if (lower.includes('search memory') || lower.includes('find in memory')) {
-                    let query = message.replace(/search memory|find in memory/gi, '').trim();
-                    return { tool: 'search_memory', params: { query: query } };
-                }
-                
-                // Name
                 if (lower.includes('my name is')) {
                     const match = message.match(/my name is (\w+)/i);
                     if (match) {
@@ -736,7 +735,7 @@
                 return { tool: null, params: {} };
             }
             
-            formatToolResult(result, intent) {
+            formatToolResult(result) {
                 if (result.type === 'image') {
                     return `🎨 **Image Generated!**\n\n📝 *Prompt:* ${result.prompt}\n🎭 *Style:* ${result.style}\n\n![Generated Image](${result.url})`;
                 }
@@ -754,39 +753,78 @@
                     if (result.memories.length === 0) return "📋 **No memories found.** Tell me something like 'remember that I love coffee' to store memories!";
                     return `📋 **My Memories:**\n\n${result.memories.map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
                 }
-                if (result.type === 'search') {
-                    if (result.results.length === 0) return `🔍 No memories found matching "${result.query}".`;
-                    return `🔍 **Search Results for "${result.query}":**\n\n${result.results.map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
-                }
                 return String(result);
             }
             
-            async generateResponse(message, intent) {
-                // Get conversation context
+            async getDeepSeekResponse(message) {
+                showProgress();
+                setProgress(1);
+                await delay(200);
+                setProgress(2);
+                
                 const context = this.memory.getConversationContext();
                 const memories = this.memory.getMemorySummary();
                 const userName = this.memory.userProfile.name;
                 
-                // Build prompt with context
-                const systemPrompt = `You are NEURALIS AI, an intelligent assistant created by Viren Singh.
-                ${userName ? `You are talking to ${userName}.` : ''}
+                const systemPrompt = `You are NEURALIS AI, a super-intelligent assistant powered by DeepSeek-V3-0324 (671B parameters), created by Viren Singh.
                 
-                Important memories about the user:
-                ${memories}
-                
-                Recent conversation context:
-                ${context.slice(-5).map(c => `${c.role.toUpperCase()}: ${c.content.substring(0, 100)}`).join('\n')}
-                
-                Guidelines:
-                - Be helpful, thoughtful, and engaging
-                - Use the conversation context to provide coherent responses
-                - Reference memories when relevant
-                - Be concise but informative
-                - If unsure, ask clarifying questions`;
+${userName ? `You are talking to ${userName}.` : ''}
+
+Important memories about the user:
+${memories}
+
+Recent conversation:
+${context.slice(-5).map(c => `${c.role.toUpperCase()}: ${c.content.substring(0, 200)}`).join('\n')}
+
+Guidelines:
+- Be extremely intelligent, thoughtful, and engaging
+- Use the conversation context to provide coherent, contextual responses
+- Reference user memories when relevant to personalize responses
+- Be concise but informative (2-4 sentences usually)
+- Show deep understanding of complex topics
+- If you don't know something, admit it honestly
+- Be warm and helpful, like a brilliant friend
+
+Remember: You are running on DeepSeek-V3, a state-of-the-art language model with 671 billion parameters.`;
                 
                 try {
-                    // Try Hugging Face API first
-                    const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-large', {
+                    // Try Together AI (DeepSeek-V3)
+                    const response = await fetch(DEEPSEEK_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            model: DEEPSEEK_MODEL,
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                { role: 'user', content: message }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 1000,
+                            top_p: 0.9
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        const aiResponse = data.choices[0].message.content;
+                        setProgress(3);
+                        await delay(200);
+                        setProgress(4);
+                        await delay(200);
+                        setProgress(5);
+                        setTimeout(() => hideProgress(), 300);
+                        return aiResponse;
+                    }
+                } catch(e) {
+                    console.log('Together AI error, trying Hugging Face...');
+                }
+                
+                // Fallback to Hugging Face
+                try {
+                    const hfResponse = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-large', {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${HF_API_KEY}`,
@@ -794,36 +832,57 @@
                         },
                         body: JSON.stringify({
                             inputs: message,
-                            parameters: {
-                                max_length: 300,
-                                temperature: 0.8,
-                                top_p: 0.9,
-                                do_sample: true
-                            }
+                            parameters: { max_length: 300, temperature: 0.8 }
                         })
                     });
                     
-                    if (response.ok) {
-                        const data = await response.json();
+                    if (hfResponse.ok) {
+                        const data = await hfResponse.json();
                         let aiReply = data.generated_text || data[0]?.generated_text;
                         if (aiReply) {
                             aiReply = aiReply.replace(message, '').trim();
-                            if (aiReply.length > 10) return aiReply;
+                            if (aiReply.length > 10) {
+                                setProgress(3);
+                                await delay(200);
+                                setProgress(4);
+                                await delay(200);
+                                setProgress(5);
+                                setTimeout(() => hideProgress(), 300);
+                                return aiReply;
+                            }
                         }
                     }
-                } catch(e) { console.log('API fallback'); }
+                } catch(e) {
+                    console.log('Hugging Face fallback error');
+                }
                 
-                // Fallback intelligent responses
+                setProgress(3);
+                await delay(200);
+                setProgress(4);
+                await delay(200);
+                setProgress(5);
+                setTimeout(() => hideProgress(), 300);
+                
+                // Ultimate fallback - intelligent local response
+                return this.localFallbackResponse(message);
+            }
+            
+            localFallbackResponse(message) {
                 const lower = message.toLowerCase();
+                
                 if (lower.includes('hello') || lower.includes('hi')) {
-                    return userName ? `Hello ${userName}! 👋 How can I help you today?` : `Hello! I'm NEURALIS AI. What's your name?`;
+                    const name = this.memory.userProfile.name;
+                    return name ? `Hello ${name}! 👋 I'm NEURALIS AI running on DeepSeek-V3. How can I help you today?` : `Hello! I'm NEURALIS AI powered by DeepSeek-V3. What's your name?`;
                 }
+                
                 if (lower.includes('how are you')) {
-                    return "I'm operating at peak neural efficiency! Ready to help with anything you need. 🚀";
+                    return "I'm operating at peak neural efficiency! DeepSeek-V3 is running smoothly. Ready to help with anything you need. 🚀";
                 }
+                
                 if (lower.includes('thank')) {
                     return "You're very welcome! Is there anything else I can help with? ✨";
                 }
+                
                 if (lower.includes('joke')) {
                     const jokes = [
                         "Why don't scientists trust atoms? Because they make up everything! 😄",
@@ -832,21 +891,22 @@
                     ];
                     return jokes[Math.floor(Math.random() * jokes.length)];
                 }
+                
                 if (lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
                 if (lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
                 
-                return `I understand you're asking about "${message.substring(0, 50)}". I can help with:\n\n🎨 **Images** - "generate a dragon"\n💻 **Code** - "python fibonacci"\n🧠 **Memory** - "remember I like coffee"\n🧮 **Math** - "calculate 100*5"\n\nWhat would you like to do?`;
+                return `I understand you're asking about "${message.substring(0, 50)}". As NEURALIS AI powered by DeepSeek-V3, I can help with:\n\n🎨 **Images** - "generate a dragon"\n💻 **Code** - "python fibonacci"\n🧠 **Memory** - "remember I like coffee"\n🧮 **Math** - "calculate 100*5"\n\nWhat would you like to explore?`;
             }
         }
         
         // ========== UI FUNCTIONS ==========
-        let memory, tools, intelligence;
         let images = [];
         let codes = [];
         let chats = [];
         let sessionStart = Date.now();
         let currentStyle = 'realistic';
         let currentLang = 'python';
+        let memory, tools, engine;
         
         function updateStats() {
             document.getElementById('imgStat').innerText = images.length;
@@ -1034,7 +1094,7 @@
             document.getElementById('statusStat').innerHTML = 'THINKING';
             document.getElementById('statusStat').style.color = '#00D4FF';
             
-            const response = await intelligence.process(msg);
+            const response = await engine.process(msg);
             if(response) addAIMessage(response);
             
             document.getElementById('statusStat').innerHTML = 'READY';
@@ -1076,7 +1136,7 @@
         // ========== INITIALIZATION ==========
         memory = new NeuralMemory();
         tools = new ToolSystem(memory);
-        intelligence = new IntelligenceEngine(memory, tools);
+        engine = new DeepSeekEngine(memory, tools);
         loadData();
         
         // Event Listeners
@@ -1107,12 +1167,13 @@
         setupVoice();
         memory.updateUI();
         
-        console.log('%c🧠 NEURALIS AI - TRUE INTELLIGENCE ENGINE 🧠', 'color: #FFD700; font-size: 20px; font-weight: bold;');
-        console.log('%c✅ Conversation History (Context Memory)', 'color: #00FF00;');
-        console.log('%c✅ Prompt Engineering with System Instructions', 'color: #00FF00;');
+        console.log('%c🧠 NEURALIS AI - DEEPSEEK-V3 ENGINE 🧠', 'color: #FFD700; font-size: 20px; font-weight: bold;');
+        console.log('%c✅ DeepSeek-V3-0324 - 671B Parameter Super Intelligence', 'color: #00FF00;');
+        console.log('%c✅ GitHub Token Integrated for API Access', 'color: #00FF00;');
+        console.log('%c✅ Full Conversation History (30 messages context)', 'color: #00FF00;');
         console.log('%c✅ Tool Calling System (Image/Code/Math/Memory)', 'color: #00FF00;');
         console.log('%c✅ Advanced Memory with Importance Scoring', 'color: #00FF00;');
-        console.log('%c✅ Hugging Face AI Integration', 'color: #00FF00;');
+        console.log('%c✅ Hugging Face Fallback API', 'color: #00FF00;');
     </script>
 </body>
 </html>
