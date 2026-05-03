@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🧠 NEURALIS AI • Premium Suite • Notes • History • Viren Singh 🧠</title>
+    <title>🧠 NEURALIS AI • Premium Suite • Viren Singh 🧠</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,9 @@
             --purple: #9D4EDD;
             --pink: #FF6B6B;
             --green: #00FF88;
-            --text: #FFFFFF;
+            --text-white: #FFFFFF;
+            --text-light: rgba(255,255,255,0.9);
+            --text-dim: rgba(255,255,255,0.7);
         }
 
         body {
@@ -27,6 +29,7 @@
             background: var(--bg);
             min-height: 100vh;
             overflow-x: hidden;
+            color: var(--text-white);
         }
 
         .cinematic-bg {
@@ -81,6 +84,15 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
+        .premium-modal h2, .premium-modal p, .premium-modal li {
+            color: var(--text-white);
+        }
+
+        .premium-modal ul {
+            text-align: left;
+            margin: 15px 0;
+        }
+
         .premium-btn {
             background: linear-gradient(135deg, #FFD700, #FF8C00);
             border: none;
@@ -90,6 +102,7 @@
             cursor: pointer;
             margin-top: 15px;
             width: 100%;
+            color: #000;
         }
 
         /* Login Container */
@@ -123,6 +136,10 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        .login-box h2, .login-box p {
+            color: var(--text-white);
+        }
+
         .login-input {
             width: 100%;
             padding: 14px 18px;
@@ -130,7 +147,17 @@
             background: rgba(0,0,0,0.6);
             border: 1px solid rgba(255,215,0,0.3);
             border-radius: 30px;
-            color: white;
+            color: var(--text-white);
+            font-size: 0.9rem;
+        }
+
+        .login-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--blue);
         }
 
         .login-btn {
@@ -142,6 +169,7 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            color: #000;
         }
 
         .human-verify {
@@ -153,11 +181,20 @@
             display: none;
         }
 
+        .human-verify p {
+            color: var(--text-white);
+        }
+
         .verify-code {
             font-size: 1.5rem;
             letter-spacing: 8px;
             font-weight: bold;
             color: var(--blue);
+        }
+
+        .toggle-link a {
+            color: var(--blue);
+            cursor: pointer;
         }
 
         .app-container {
@@ -191,6 +228,11 @@
             color: transparent;
         }
 
+        .logo p {
+            color: var(--text-dim);
+            font-size: 0.7rem;
+        }
+
         .stats {
             display: flex;
             gap: 12px;
@@ -203,7 +245,7 @@
             border-left: 2px solid var(--gold);
         }
 
-        .stat label { font-size: 0.6rem; color: #aaa; }
+        .stat label { font-size: 0.6rem; color: var(--text-dim); }
         .stat span { font-size: 1rem; font-weight: bold; color: var(--gold); }
 
         /* 3 Column Grid */
@@ -245,18 +287,12 @@
             padding: 12px;
             margin-bottom: 10px;
             transition: all 0.3s;
-            animation: noteSlide 0.3s ease;
-        }
-
-        @keyframes noteSlide {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         .note-item:hover { background: rgba(0,212,255,0.1); transform: translateX(5px); }
         .note-title { font-weight: bold; color: var(--gold); margin-bottom: 5px; }
-        .note-date { font-size: 0.6rem; color: #aaa; margin-top: 5px; }
-        .note-content { color: white; font-size: 0.8rem; }
+        .note-date { font-size: 0.6rem; color: var(--text-dim); margin-top: 5px; }
+        .note-content { color: var(--text-white); font-size: 0.8rem; }
         .delete-note { float: right; cursor: pointer; color: #ff4444; }
 
         /* Chat Section */
@@ -277,6 +313,8 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .chat-header h3 { color: var(--gold); }
 
         .messages {
             flex: 1;
@@ -302,19 +340,24 @@
             padding: 8px 15px;
             border-radius: 18px;
             max-width: 80%;
+            color: var(--text-white) !important;
         }
 
         .user-msg .bubble {
             background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,51,102,0.08));
             border: 1px solid rgba(255,215,0,0.4);
-            color: white;
+            color: var(--text-white);
         }
 
         .ai-msg .bubble {
             background: rgba(30,30,50,0.9);
             border: 1px solid rgba(0,212,255,0.3);
-            color: white;
+            color: var(--text-white);
         }
+
+        .bubble strong { display: block; font-size: 0.7rem; margin-bottom: 5px; }
+        .user-msg .bubble strong { color: var(--gold); }
+        .ai-msg .bubble strong { color: var(--blue); }
 
         .input-area {
             padding: 12px 15px;
@@ -329,7 +372,11 @@
             border: 1px solid rgba(255,215,0,0.3);
             border-radius: 30px;
             padding: 10px 18px;
-            color: white;
+            color: var(--text-white);
+        }
+
+        .ai-input::placeholder {
+            color: rgba(255,255,255,0.5);
         }
 
         .btn {
@@ -339,6 +386,7 @@
             padding: 0 20px;
             font-weight: bold;
             cursor: pointer;
+            color: #000;
         }
 
         /* History Section */
@@ -391,7 +439,7 @@
 
         .history-item:hover { background: rgba(157,78,221,0.2); transform: translateX(-5px); }
         .history-user { color: var(--gold); font-size: 0.7rem; }
-        .history-message { color: white; font-size: 0.8rem; margin-top: 3px; }
+        .history-message { color: var(--text-white); font-size: 0.8rem; margin-top: 3px; }
 
         /* Style Grid */
         .style-grid-10 {
@@ -414,7 +462,7 @@
 
         .style-10.active {
             background: linear-gradient(135deg, #00D4FF, #0099FF);
-            color: black;
+            color: #000;
         }
 
         .preview {
@@ -450,6 +498,7 @@
             z-index: 100;
             cursor: pointer;
             animation: cartoonBounce 1s infinite;
+            color: white;
         }
 
         @keyframes cartoonBounce {
@@ -529,7 +578,7 @@
                     <input type="text" id="verifyCodeInput" class="login-input" placeholder="Enter code" maxlength="6">
                 </div>
                 <button class="login-btn" id="loginBtn">🔓 LOGIN</button>
-                <div class="toggle-link" style="margin-top:15px; color:#aaa;">
+                <div class="toggle-link" style="margin-top:15px; color:var(--text-dim);">
                     <a id="showRegister" style="color:#00D4FF; cursor:pointer;">Create Account</a>
                 </div>
             </div>
@@ -544,7 +593,7 @@
                     <input type="text" id="regVerifyCodeInput" class="login-input" placeholder="Enter code" maxlength="6">
                 </div>
                 <button class="login-btn" id="registerBtn">📝 CREATE ACCOUNT</button>
-                <div class="toggle-link" style="margin-top:15px; color:#aaa;">
+                <div class="toggle-link" style="margin-top:15px; color:var(--text-dim);">
                     <a id="showLogin" style="color:#00D4FF; cursor:pointer;">Back to Login</a>
                 </div>
             </div>
@@ -554,9 +603,9 @@
 
     <!-- Premium Modal -->
     <div class="premium-modal" id="premiumModal">
-        <h2 style="color:#FFD700;">✨ UPGRADE TO PREMIUM ✨</h2>
-        <p style="margin:15px 0; color:white;">Get unlimited access to:</p>
-        <ul style="text-align:left; color:#aaa; margin:15px 0;">
+        <h2>✨ UPGRADE TO PREMIUM ✨</h2>
+        <p style="margin:15px 0;">Get unlimited access to:</p>
+        <ul>
             <li>🚀 Unlimited Image Generation</li>
             <li>💻 Unlimited Code Generation</li>
             <li>🧠 Advanced AI Intelligence</li>
@@ -565,7 +614,7 @@
             <li>💾 Full Chat History</li>
         </ul>
         <button class="premium-btn" id="upgradePremiumBtn">✨ UPGRADE NOW - $9.99/mo ✨</button>
-        <button class="premium-btn" id="closePremiumBtn" style="background:#333; margin-top:10px;">Close</button>
+        <button class="premium-btn" id="closePremiumBtn" style="background:#333; margin-top:10px; color:white;">Close</button>
     </div>
 
     <!-- Main App -->
@@ -601,7 +650,7 @@
                     <textarea id="noteContent" rows="3" class="ai-input" placeholder="Write your note here..." style="resize:none;"></textarea>
                     <div style="display:flex; gap:10px; margin-top:8px;">
                         <button id="saveNoteBtn" class="btn" style="padding:8px;">SAVE</button>
-                        <button id="cancelNoteBtn" class="btn" style="background:#333; padding:8px;">CANCEL</button>
+                        <button id="cancelNoteBtn" class="btn" style="background:#333; padding:8px; color:white;">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -610,7 +659,7 @@
             <div class="chat-section">
                 <div class="chat-header">
                     <h3>🧠 NEURAL CHAT</h3>
-                    <span id="premiumIndicator" class="premium-badge" style="background:#333;">FREE TIER</span>
+                    <span id="premiumIndicator" class="premium-badge" style="background:#333; color:#aaa;">FREE TIER</span>
                 </div>
                 <div class="messages" id="chatMessages">
                     <div class="message ai-msg">
@@ -629,7 +678,7 @@
                 <div class="input-area">
                     <input type="text" id="userInput" class="ai-input" placeholder="Ask me anything..." autocomplete="off">
                     <button id="sendBtn" class="btn">⚡ SEND</button>
-                    <button id="voiceBtn" class="btn" style="background: linear-gradient(135deg, #FF6B6B, #FF8C00);">🎤</button>
+                    <button id="voiceBtn" class="btn" style="background: linear-gradient(135deg, #FF6B6B, #FF8C00); color:white;">🎤</button>
                 </div>
             </div>
 
@@ -637,7 +686,7 @@
             <div class="history-section">
                 <div class="history-header">
                     <h3>📜 CHAT HISTORY</h3>
-                    <button id="clearHistoryBtn" class="btn" style="padding:5px 15px; background:#333;">CLEAR</button>
+                    <button id="clearHistoryBtn" class="btn" style="padding:5px 15px; background:#333; color:white;">CLEAR</button>
                 </div>
                 <div class="history-list" id="historyList"></div>
             </div>
@@ -661,7 +710,7 @@
         <div class="progress-step" id="step5">✅</div>
     </div>
 
-    <div id="voiceStatus" style="position:fixed; bottom:20px; right:100px; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:30px; border-left:3px solid #FFD700; font-size:0.65rem; z-index:100;">🔊 VOICE READY</div>
+    <div id="voiceStatus" style="position:fixed; bottom:20px; right:100px; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:30px; border-left:3px solid #FFD700; font-size:0.65rem; z-index:100; color:white;">🔊 VOICE READY</div>
 
     <script>
         // ========== PREMIUM SYSTEM ==========
@@ -916,7 +965,7 @@
         function renderNotes() {
             const container = document.getElementById('notesList');
             if(notes.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No notes yet. Click + ADD NOTE</div>';
+                container.innerHTML = '<div style="text-align:center; color:rgba(255,255,255,0.5); padding:20px;">No notes yet. Click + ADD NOTE</div>';
                 return;
             }
             container.innerHTML = notes.map((note, idx) => `
@@ -959,11 +1008,10 @@
         function renderHistory() {
             const container = document.getElementById('historyList');
             if(chats.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No chat history yet.</div>';
+                container.innerHTML = '<div style="text-align:center; color:rgba(255,255,255,0.5); padding:20px;">No chat history yet.</div>';
                 return;
             }
             
-            // Group by date
             const groups = {};
             chats.forEach(chat => {
                 const date = new Date(chat.date).toDateString();
@@ -1250,6 +1298,45 @@
         document.getElementById('sendBtn').addEventListener('click', sendMessage);
         document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
         
+        // Create image preview elements
+        if(!document.getElementById('generatedImage')) {
+            const imgSection = document.querySelector('.image-studio');
+            if(imgSection) {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'preview';
+                imgDiv.id = 'imagePreview';
+                imgDiv.innerHTML = '<img id="generatedImage" style="max-width:100%; border-radius:12px;"><button id="saveImageBtn" style="margin-top:10px; width:100%; background:linear-gradient(135deg,#00D4FF,#0099FF); border:none; border-radius:30px; padding:8px; color:white;">💾 SAVE</button>';
+                imgSection.appendChild(imgDiv);
+            }
+        }
+        
+        if(!document.getElementById('codeOutput')) {
+            const codeSection = document.querySelector('.code-studio');
+            if(codeSection) {
+                const codeDiv = document.createElement('div');
+                codeDiv.className = 'code-output';
+                codeDiv.id = 'codeOutput';
+                codeDiv.innerHTML = '<pre id="generatedCode" style="color:#0f0;"></pre><button id="copyCodeBtn" style="margin-top:8px; background:rgba(157,78,221,0.3); border:none; border-radius:20px; padding:4px 12px; color:white;">📋 Copy</button>';
+                codeSection.appendChild(codeDiv);
+            }
+        }
+        
+        document.getElementById('saveImageBtn')?.addEventListener('click', () => {
+            const img = document.getElementById('generatedImage');
+            if(img?.src) {
+                const a = document.createElement('a');
+                a.download = `neuralis_${Date.now()}.png`;
+                a.href = img.src;
+                a.click();
+                addAIMessage("💾 Image saved!");
+            }
+        });
+        
+        document.getElementById('copyCodeBtn')?.addEventListener('click', () => {
+            const code = document.getElementById('generatedCode')?.textContent;
+            if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied!"); }
+        });
+        
         document.querySelectorAll('.style-10').forEach(btn => {
             if(btn.dataset.style) {
                 btn.addEventListener('click', () => {
@@ -1267,47 +1354,14 @@
             }
         });
         
-        // Create image preview elements if not exist
-        if(!document.getElementById('generatedImage')) {
-            const imgDiv = document.createElement('div');
-            imgDiv.className = 'preview';
-            imgDiv.id = 'imagePreview';
-            imgDiv.innerHTML = '<img id="generatedImage"><button id="saveImageBtn" style="margin-top:10px; width:100%; background:linear-gradient(135deg,#00D4FF,#0099FF); border:none; border-radius:30px; padding:8px;">💾 SAVE</button>';
-            document.querySelector('.image-studio')?.appendChild(imgDiv);
-        }
-        
-        if(!document.getElementById('codeOutput')) {
-            const codeDiv = document.createElement('div');
-            codeDiv.className = 'code-output';
-            codeDiv.id = 'codeOutput';
-            codeDiv.innerHTML = '<pre id="generatedCode"></pre><button id="copyCodeBtn" style="margin-top:8px; background:rgba(157,78,221,0.3); border:none; border-radius:20px; padding:4px 12px;">📋 Copy</button>';
-            document.querySelector('.code-studio')?.appendChild(codeDiv);
-        }
-        
-        document.getElementById('saveImageBtn')?.addEventListener('click', () => {
-            const img = document.getElementById('generatedImage');
-            if(img?.src) {
-                const a = document.createElement('a');
-                a.download = `neuralis_${Date.now()}.png`;
-                a.href = img.src;
-                a.click();
-            }
-        });
-        
-        document.getElementById('copyCodeBtn')?.addEventListener('click', () => {
-            const code = document.getElementById('generatedCode')?.textContent;
-            if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied!"); }
-        });
-        
         setupVoiceInput();
         
-        console.log('%c🧠 NEURALIS AI - COMPLETE PREMIUM SUITE 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
+        console.log('%c🧠 NEURALIS AI - TEXT FULLY VISIBLE 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
+        console.log('%c✅ All text now WHITE/GOLD on dark background', 'color: #00FF00;');
         console.log('%c✅ Self Notes System', 'color: #00FF00;');
         console.log('%c✅ Chat History with Date Groups', 'color: #00FF00;');
         console.log('%c✅ Premium Tier (Unlimited Access)', 'color: #FFD700;');
         console.log('%c✅ 10 Image Styles', 'color: #00FF00;');
-        console.log('%c✅ Cartoon Voice', 'color: #FF6B6B;');
-        console.log('%c✅ Login + Human Verification', 'color: #00FF00;');
     </script>
 </body>
 </html>
