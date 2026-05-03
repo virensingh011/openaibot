@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🧠 NEURALIS AI • Working Login • Image Gen • Viren Singh 🧠</title>
+    <title>🧠 NEURALIS AI • Working Login • Viren Singh 🧠</title>
     <style>
         * {
             margin: 0;
@@ -17,16 +17,14 @@
             --gold: #FFD700;
             --blue: #00D4FF;
             --purple: #9D4EDD;
-            --pink: #FF6B6B;
             --text-white: #FFFFFF;
             --text-dim: rgba(255,255,255,0.7);
         }
 
         body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--bg);
             min-height: 100vh;
-            overflow-x: hidden;
             color: var(--text-white);
         }
 
@@ -35,16 +33,10 @@
             inset: 0;
             background: radial-gradient(ellipse at 20% 30%, rgba(255,215,0,0.1) 0%, transparent 50%),
                         radial-gradient(ellipse at 80% 70%, rgba(0,212,255,0.1) 0%, transparent 50%);
-            animation: bgShift 8s infinite;
             z-index: 0;
         }
 
-        @keyframes bgShift {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        /* Login Container */
+        /* LOGIN SCREEN */
         .login-container {
             position: fixed;
             top: 0;
@@ -55,35 +47,29 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            background: rgba(0,0,0,0.98);
-            backdrop-filter: blur(30px);
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
         }
 
         .login-box {
             background: var(--glass);
             border-radius: 40px;
             border: 2px solid var(--gold);
-            padding: 40px;
+            padding: 45px;
             width: 400px;
             max-width: 90%;
             text-align: center;
-            animation: loginPop 0.6s ease;
-        }
-
-        @keyframes loginPop {
-            from { opacity: 0; transform: scale(0.8) translateY(-50px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .login-box h2 {
             color: var(--gold);
             margin-bottom: 10px;
+            font-size: 2rem;
         }
 
         .login-box p {
             color: var(--text-dim);
-            font-size: 0.8rem;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .login-input {
@@ -93,12 +79,8 @@
             background: rgba(0,0,0,0.6);
             border: 1px solid rgba(255,215,0,0.3);
             border-radius: 30px;
-            color: var(--text-white);
-            font-size: 0.9rem;
-        }
-
-        .login-input::placeholder {
-            color: rgba(255,255,255,0.5);
+            color: white;
+            font-size: 1rem;
         }
 
         .login-input:focus {
@@ -108,15 +90,15 @@
 
         .login-btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, #FFD700, #FF8C00);
             border: none;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
-            color: #000;
+            margin-top: 20px;
             font-size: 1rem;
+            color: #000;
         }
 
         .login-btn:hover {
@@ -127,35 +109,26 @@
         .toggle-link {
             margin-top: 20px;
             color: var(--text-dim);
-            font-size: 0.8rem;
         }
 
         .toggle-link a {
             color: var(--blue);
             cursor: pointer;
-            text-decoration: none;
         }
 
         .error-msg {
             color: #ff4444;
-            font-size: 0.75rem;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 0.8rem;
             display: none;
         }
 
-        .success-msg {
-            color: #00ff44;
-            font-size: 0.75rem;
-            margin-top: 10px;
-            display: none;
-        }
-
-        /* Main App */
+        /* MAIN APP */
         .app-container {
             display: none;
             position: relative;
             z-index: 1;
-            max-width: 1600px;
+            max-width: 1500px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -163,7 +136,7 @@
         .glass-header {
             background: var(--glass);
             backdrop-filter: blur(20px);
-            border-radius: 30px;
+            border-radius: 25px;
             border: 1px solid rgba(255,215,0,0.3);
             padding: 15px 25px;
             margin-bottom: 20px;
@@ -175,7 +148,7 @@
         }
 
         .logo h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             background: linear-gradient(135deg, #FFD700, #00D4FF);
             -webkit-background-clip: text;
             background-clip: text;
@@ -208,83 +181,48 @@
             gap: 20px;
         }
 
-        /* Notes Section */
-        .notes-section {
+        .notes-section, .chat-section, .history-section {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            border: 1px solid rgba(0,212,255,0.3);
             padding: 20px;
-            height: 600px;
-            display: flex;
-            flex-direction: column;
         }
 
-        .notes-header {
+        .notes-section { border: 1px solid rgba(0,212,255,0.3); height: 580px; display: flex; flex-direction: column; }
+        .chat-section { border: 1px solid rgba(0,212,255,0.3); height: 580px; display: flex; flex-direction: column; }
+        .history-section { border: 1px solid rgba(157,78,221,0.3); height: 580px; display: flex; flex-direction: column; }
+
+        .notes-header, .chat-header, .history-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
         }
 
         .notes-header h3 { color: var(--blue); }
+        .chat-header h3 { color: var(--gold); }
+        .history-header h3 { color: var(--purple); }
 
-        .notes-area {
+        .notes-area, .messages, .history-list {
             flex: 1;
             overflow-y: auto;
         }
 
         .note-item {
             background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 12px;
+            border-radius: 12px;
+            padding: 10px;
             margin-bottom: 10px;
-            transition: all 0.3s;
         }
 
-        .note-item:hover { background: rgba(0,212,255,0.1); }
-        .note-title { font-weight: bold; color: var(--gold); margin-bottom: 5px; }
+        .note-title { font-weight: bold; color: var(--gold); }
+        .note-content { color: white; font-size: 0.8rem; margin-top: 5px; }
         .note-date { font-size: 0.6rem; color: var(--text-dim); margin-top: 5px; }
-        .note-content { color: var(--text-white); font-size: 0.8rem; }
         .delete-note { float: right; cursor: pointer; color: #ff4444; }
 
-        /* Chat Section */
-        .chat-section {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(0,212,255,0.3);
-            display: flex;
-            flex-direction: column;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        .chat-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .chat-header h3 { color: var(--gold); }
-
-        .messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-        }
-
-        .message {
-            margin-bottom: 12px;
-            animation: messageFly 0.3s ease;
-        }
-
-        @keyframes messageFly {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
+        .message { margin-bottom: 12px; }
         .user-msg { text-align: right; }
         .ai-msg { text-align: left; }
 
@@ -293,17 +231,18 @@
             padding: 8px 15px;
             border-radius: 18px;
             max-width: 80%;
-            color: var(--text-white) !important;
         }
 
         .user-msg .bubble {
             background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,51,102,0.08));
             border: 1px solid rgba(255,215,0,0.4);
+            color: white;
         }
 
         .ai-msg .bubble {
             background: rgba(30,30,50,0.9);
             border: 1px solid rgba(0,212,255,0.3);
+            color: white;
         }
 
         .bubble strong { display: block; font-size: 0.7rem; margin-bottom: 5px; }
@@ -311,10 +250,11 @@
         .ai-msg .bubble strong { color: var(--blue); }
 
         .input-area {
-            padding: 12px 15px;
+            padding: 12px 0 0 0;
             border-top: 1px solid rgba(255,215,0,0.2);
             display: flex;
             gap: 10px;
+            margin-top: 15px;
         }
 
         .ai-input {
@@ -323,11 +263,7 @@
             border: 1px solid rgba(255,215,0,0.3);
             border-radius: 30px;
             padding: 10px 18px;
-            color: var(--text-white);
-        }
-
-        .ai-input::placeholder {
-            color: rgba(255,255,255,0.5);
+            color: white;
         }
 
         .btn {
@@ -340,69 +276,31 @@
             color: #000;
         }
 
-        /* History Section */
-        .history-section {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(157,78,221,0.3);
-            padding: 20px;
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .history-header h3 { color: var(--purple); }
-
-        .history-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .history-group {
-            margin-bottom: 20px;
-        }
-
-        .history-date-group {
-            background: rgba(157,78,221,0.2);
-            border-radius: 20px;
-            padding: 8px 15px;
-            margin-bottom: 10px;
-            font-size: 0.7rem;
-            color: var(--purple);
-        }
-
         .history-item {
             background: rgba(0,0,0,0.3);
             border-radius: 12px;
             padding: 10px;
             margin-bottom: 8px;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
         .history-item:hover { background: rgba(157,78,221,0.2); }
         .history-user { color: var(--gold); font-size: 0.7rem; }
-        .history-message { color: var(--text-white); font-size: 0.8rem; margin-top: 3px; }
+        .history-message { color: white; font-size: 0.75rem; margin-top: 3px; }
 
-        /* Image Studio */
-        .image-studio {
+        .image-studio, .code-studio {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            border: 1px solid rgba(0,212,255,0.3);
             padding: 20px;
             margin-bottom: 20px;
         }
 
+        .image-studio { border: 1px solid rgba(0,212,255,0.3); }
+        .code-studio { border: 1px solid rgba(157,78,221,0.3); }
+
         .image-studio h3 { color: var(--blue); margin-bottom: 15px; }
+        .code-studio h3 { color: var(--purple); margin-bottom: 15px; }
 
         .style-grid-10 {
             display: grid;
@@ -416,14 +314,12 @@
             border: 1px solid rgba(0,212,255,0.3);
             border-radius: 20px;
             padding: 6px 8px;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             cursor: pointer;
             text-align: center;
             color: var(--blue);
-            transition: all 0.3s;
         }
 
-        .style-10:hover { background: rgba(0,212,255,0.2); }
         .style-10.active {
             background: linear-gradient(135deg, #00D4FF, #0099FF);
             color: #000;
@@ -441,49 +337,25 @@
             border: 2px solid var(--blue);
         }
 
-        .save-btn {
-            background: linear-gradient(135deg, #00D4FF, #0099FF);
-            border: none;
-            border-radius: 30px;
-            padding: 10px;
-            color: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        /* Code Studio */
-        .code-studio {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(157,78,221,0.3);
-            padding: 20px;
-        }
-
-        .code-studio h3 { color: var(--purple); margin-bottom: 15px; }
-
         .code-output {
             background: #1a1a2e;
             border-radius: 12px;
             padding: 10px;
             margin-top: 10px;
             display: none;
-            max-height: 200px;
+            max-height: 180px;
             overflow: auto;
         }
 
         .code-output pre { color: #0f0; font-size: 0.7rem; }
 
-        .copy-btn {
-            background: rgba(157,78,221,0.3);
-            border: none;
+        .logout-btn {
+            background: rgba(255,0,0,0.2);
+            border: 1px solid #ff4444;
             border-radius: 20px;
-            padding: 5px 12px;
-            color: #fff;
+            padding: 5px 15px;
+            color: #ff4444;
             cursor: pointer;
-            margin-top: 8px;
         }
 
         .voice-cartoon {
@@ -494,17 +366,10 @@
             border-radius: 50px;
             padding: 8px 15px;
             display: flex;
-            align-items: center;
             gap: 10px;
             z-index: 100;
             cursor: pointer;
-            animation: bounce 1s infinite;
             color: white;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
         }
 
         .progress-bar {
@@ -533,23 +398,10 @@
             color: var(--gold);
         }
 
-        .logout-btn {
-            background: rgba(255,0,0,0.2);
-            border: 1px solid #ff4444;
-            border-radius: 20px;
-            padding: 5px 12px;
-            color: #ff4444;
-            cursor: pointer;
-        }
-
-        .right-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .right-sidebar { display: flex; flex-direction: column; gap: 20px; }
 
         @media (max-width: 1200px) {
-            .grid-3col { grid-template-columns: 1fr; gap: 15px; }
+            .grid-3col { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -560,29 +412,28 @@
     <div class="login-container" id="loginContainer">
         <div class="login-box">
             <h2>🧠 NEURALIS AI</h2>
-            <p>by Viren Singh • Login to Continue</p>
+            <p>by Viren Singh</p>
             
-            <div id="loginForm">
-                <input type="text" id="loginUser" class="login-input" placeholder="Username" autocomplete="off">
-                <input type="password" id="loginPass" class="login-input" placeholder="Password">
-                <button class="login-btn" id="doLoginBtn">🔓 LOGIN</button>
+            <div id="loginPanel">
+                <input type="text" id="loginUsername" class="login-input" placeholder="Username" autocomplete="off">
+                <input type="password" id="loginPassword" class="login-input" placeholder="Password">
+                <button id="loginButton" class="login-btn">🔓 LOGIN</button>
                 <div class="toggle-link">
-                    Don't have an account? <a id="showRegBtn">Create Account</a>
+                    New user? <a id="showRegisterLink">Create Account</a>
                 </div>
             </div>
 
-            <div id="registerForm" style="display:none;">
-                <input type="text" id="regUser" class="login-input" placeholder="Choose Username" autocomplete="off">
-                <input type="password" id="regPass" class="login-input" placeholder="Choose Password">
-                <input type="password" id="regConfirm" class="login-input" placeholder="Confirm Password">
-                <button class="login-btn" id="doRegisterBtn">📝 CREATE ACCOUNT</button>
+            <div id="registerPanel" style="display:none;">
+                <input type="text" id="regUsername" class="login-input" placeholder="Username" autocomplete="off">
+                <input type="password" id="regPassword" class="login-input" placeholder="Password">
+                <input type="password" id="regConfirmPassword" class="login-input" placeholder="Confirm Password">
+                <button id="registerButton" class="login-btn">📝 CREATE ACCOUNT</button>
                 <div class="toggle-link">
-                    Already have an account? <a id="showLoginBtn">Login</a>
+                    Already have an account? <a id="showLoginLink">Login</a>
                 </div>
             </div>
 
-            <div id="loginErrorMsg" class="error-msg"></div>
-            <div id="loginSuccessMsg" class="success-msg"></div>
+            <div id="loginMessage" class="error-msg"></div>
         </div>
     </div>
 
@@ -591,32 +442,31 @@
         <div class="glass-header">
             <div class="logo">
                 <h1>🧠 NEURALIS AI</h1>
-                <p>by Viren Singh • Premium Intelligence</p>
+                <p>by Viren Singh</p>
             </div>
             <div class="stats">
                 <div class="stat"><label>💾 MEM</label><br><span id="memStat">0</span></div>
                 <div class="stat"><label>🎨 IMG</label><br><span id="imgStat">0</span></div>
                 <div class="stat"><label>💻 CODE</label><br><span id="codeStat">0</span></div>
                 <div class="stat"><label>📝 NOTES</label><br><span id="noteStat">0</span></div>
-                <div class="stat"><label>⚡ STATUS</label><br><span id="statusStat">READY</span></div>
             </div>
-            <button id="logoutMainBtn" class="logout-btn">🚪 Logout</button>
+            <button id="logoutButton" class="logout-btn">🚪 Logout</button>
         </div>
 
         <div class="grid-3col">
             <!-- Notes -->
             <div class="notes-section">
                 <div class="notes-header">
-                    <h3>📝 SELF NOTES</h3>
+                    <h3>📝 NOTES</h3>
                     <button id="addNoteBtn" class="btn" style="padding:5px 15px;">+ ADD</button>
                 </div>
                 <div class="notes-area" id="notesList"></div>
-                <div id="addNoteForm" style="display:none; margin-top:10px;">
+                <div id="noteForm" style="display:none; margin-top:10px;">
                     <input type="text" id="noteTitle" class="ai-input" placeholder="Title" style="margin-bottom:5px;">
                     <textarea id="noteContent" rows="3" class="ai-input" placeholder="Write note..." style="resize:none;"></textarea>
                     <div style="display:flex; gap:10px; margin-top:8px;">
                         <button id="saveNoteBtn" class="btn" style="padding:8px;">SAVE</button>
-                        <button id="cancelNoteBtn" class="btn" style="background:#333; padding:8px; color:white;">CANCEL</button>
+                        <button id="cancelNoteBtn" class="btn" style="background:#333; color:white;">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -624,18 +474,18 @@
             <!-- Chat -->
             <div class="chat-section">
                 <div class="chat-header">
-                    <h3>🧠 NEURAL CHAT</h3>
+                    <h3>🧠 CHAT</h3>
                 </div>
                 <div class="messages" id="chatMessages">
                     <div class="message ai-msg">
                         <div class="bubble">
-                            <strong>🧠 NEURALIS AI</strong><br>
-                            Welcome! I'm NEURALIS AI.<br><br>
-                            🎨 <strong>Image Generation:</strong> "generate a dragon"<br>
-                            💻 <strong>Code:</strong> "python fibonacci"<br>
-                            📝 <strong>Notes:</strong> Add your notes<br>
-                            📜 <strong>History:</strong> All chats saved<br><br>
-                            Try: "generate a cyberpunk city" or "remember I like coffee"
+                            <strong>🧠 NEURALIS</strong><br>
+                            Welcome!<br><br>
+                            🎨 "generate a dragon"<br>
+                            💻 "python fibonacci"<br>
+                            📝 "remember I like coffee"<br>
+                            📜 "what do you remember"<br>
+                            🧮 "calculate 100*5"
                         </div>
                     </div>
                 </div>
@@ -649,7 +499,7 @@
             <!-- Right Sidebar -->
             <div class="right-sidebar">
                 <div class="image-studio">
-                    <h3>🎨 10 IMAGE STYLES</h3>
+                    <h3>🎨 10 STYLES</h3>
                     <input type="text" id="imagePrompt" class="ai-input" placeholder="Describe image..." style="width:100%; margin-bottom:10px;">
                     <div class="style-grid-10">
                         <button class="style-10 active" data-style="realistic">Realistic</button>
@@ -657,30 +507,30 @@
                         <button class="style-10" data-style="cinematic">Cinematic</button>
                         <button class="style-10" data-style="fantasy">Fantasy</button>
                         <button class="style-10" data-style="sketch">Sketch</button>
-                        <button class="style-10" data-style="3d">3D Render</button>
+                        <button class="style-10" data-style="3d">3D</button>
                         <button class="style-10" data-style="watercolor">Watercolor</button>
-                        <button class="style-10" data-style="pixel">Pixel Art</button>
+                        <button class="style-10" data-style="pixel">Pixel</button>
                         <button class="style-10" data-style="cyberpunk">Cyberpunk</button>
-                        <button class="style-10" data-style="oilpainting">Oil Painting</button>
+                        <button class="style-10" data-style="oilpainting">Oil</button>
                     </div>
                     <button id="genImageBtn" class="btn" style="width:100%; padding:12px;">✨ GENERATE</button>
                     <div class="preview" id="imagePreview">
                         <img id="generatedImage">
-                        <button id="saveImageBtn" class="save-btn">💾 SAVE</button>
+                        <button id="saveImageBtn" class="btn" style="width:100%; margin-top:10px; background:linear-gradient(135deg,#00D4FF,#0099FF);">💾 SAVE</button>
                     </div>
                 </div>
 
                 <div class="code-studio">
-                    <h3>💻 CODE STUDIO</h3>
+                    <h3>💻 CODE</h3>
                     <div class="style-grid-10" style="grid-template-columns: repeat(2,1fr);">
                         <button class="style-10 active" data-lang="python">Python</button>
-                        <button class="style-10" data-lang="javascript">JavaScript</button>
+                        <button class="style-10" data-lang="javascript">JS</button>
                     </div>
                     <textarea id="codePrompt" rows="2" class="ai-input" placeholder="Describe code..." style="width:100%; margin-bottom:10px; resize:none;"></textarea>
                     <button id="genCodeBtn" class="btn" style="width:100%; padding:12px;">💻 GENERATE</button>
                     <div class="code-output" id="codeOutput">
                         <pre id="generatedCode"></pre>
-                        <button id="copyCodeBtn" class="copy-btn">📋 Copy</button>
+                        <button id="copyCodeBtn" class="btn" style="width:100%; margin-top:8px; background:#333;">📋 COPY</button>
                     </div>
                 </div>
             </div>
@@ -700,8 +550,6 @@
         <div class="progress-step" id="step5">✅</div>
     </div>
 
-    <div id="voiceStatus" style="position:fixed; bottom:20px; right:100px; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:30px; border-left:3px solid #FFD700; font-size:0.65rem; z-index:100; color:white;">🔊 VOICE READY</div>
-
     <script>
         // ========== SIMPLE WORKING LOGIN SYSTEM ==========
         
@@ -713,6 +561,15 @@
         let currentUser = null;
         let userData = null;
         
+        // Data arrays
+        let memories = [];
+        let images = [];
+        let codes = [];
+        let chats = [];
+        let notes = [];
+        let currentStyle = 'realistic';
+        let currentLang = 'python';
+        
         function getUsers() {
             return JSON.parse(localStorage.getItem('neuralis_users'));
         }
@@ -721,8 +578,8 @@
             localStorage.setItem('neuralis_users', JSON.stringify(users));
         }
         
-        // Register new user
-        function register(username, password, confirm) {
+        // Register function
+        function registerUser(username, password, confirm) {
             if(username.length < 3) return { success: false, error: 'Username must be at least 3 characters!' };
             if(password.length < 4) return { success: false, error: 'Password must be at least 4 characters!' };
             if(password !== confirm) return { success: false, error: 'Passwords do not match!' };
@@ -733,20 +590,14 @@
             users[username] = {
                 password: btoa(password),
                 createdAt: new Date().toISOString(),
-                data: {
-                    memories: [],
-                    images: [],
-                    codes: [],
-                    chats: [],
-                    notes: []
-                }
+                data: { memories: [], images: [], codes: [], chats: [], notes: [] }
             };
             saveUsers(users);
             return { success: true };
         }
         
-        // Login user
-        function login(username, password) {
+        // Login function
+        function loginUser(username, password) {
             if(username.length === 0) return { success: false, error: 'Please enter username!' };
             if(password.length === 0) return { success: false, error: 'Please enter password!' };
             
@@ -759,30 +610,29 @@
             return { success: true, userData: user.data };
         }
         
-        // Load user data into app
-        function loadUser(username, data) {
+        // Load user into app
+        function loadApp(username, data) {
             currentUser = username;
             userData = data;
             
-            // Load all data arrays
-            memories = userData.memories || [];
-            images = userData.images || [];
-            codes = userData.codes || [];
-            chats = userData.chats || [];
-            notes = userData.notes || [];
+            memories = data.memories || [];
+            images = data.images || [];
+            codes = data.codes || [];
+            chats = data.chats || [];
+            notes = data.notes || [];
             
-            updateUI();
+            updateStats();
             renderNotes();
             renderHistory();
             
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             
-            addAIMessage(`Welcome back, ${username}! ✨ How can I help you today?`);
+            addAIMessage(`Welcome back, ${username}! ✨`);
         }
         
         // Save current user data
-        function saveCurrentUserData() {
+        function saveUserData() {
             if(!currentUser || !userData) return;
             
             const users = getUsers();
@@ -796,12 +646,18 @@
                 };
                 saveUsers(users);
             }
-            updateUI();
+            updateStats();
         }
         
-        // Logout
+        function updateStats() {
+            document.getElementById('memStat').innerText = memories.length;
+            document.getElementById('imgStat').innerText = images.length;
+            document.getElementById('codeStat').innerText = codes.length;
+            document.getElementById('noteStat').innerText = notes.length;
+        }
+        
         function logout() {
-            saveCurrentUserData();
+            saveUserData();
             currentUser = null;
             userData = null;
             memories = [];
@@ -812,127 +668,91 @@
             
             document.getElementById('appContainer').style.display = 'none';
             document.getElementById('loginContainer').style.display = 'flex';
-            document.getElementById('loginUser').value = '';
-            document.getElementById('loginPass').value = '';
-            document.getElementById('regUser').value = '';
-            document.getElementById('regPass').value = '';
-            document.getElementById('regConfirm').value = '';
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regConfirmPassword').value = '';
         }
         
-        // Login button handler
-        document.getElementById('doLoginBtn').onclick = () => {
-            const username = document.getElementById('loginUser').value.trim();
-            const password = document.getElementById('loginPass').value;
-            const errorDiv = document.getElementById('loginErrorMsg');
-            const successDiv = document.getElementById('loginSuccessMsg');
-            
-            errorDiv.style.display = 'none';
-            successDiv.style.display = 'none';
-            
-            const result = login(username, password);
-            
-            if(result.success) {
-                loadUser(username, result.userData);
-            } else {
-                errorDiv.textContent = result.error;
-                errorDiv.style.display = 'block';
-                setTimeout(() => errorDiv.style.display = 'none', 3000);
-            }
-        };
+        // ========== BUTTON HANDLERS (FIXED) ==========
         
-        // Register button handler
-        document.getElementById('doRegisterBtn').onclick = () => {
-            const username = document.getElementById('regUser').value.trim();
-            const password = document.getElementById('regPass').value;
-            const confirm = document.getElementById('regConfirm').value;
-            const errorDiv = document.getElementById('loginErrorMsg');
-            const successDiv = document.getElementById('loginSuccessMsg');
+        // LOGIN BUTTON
+        document.getElementById('loginButton').addEventListener('click', function() {
+            console.log('Login button clicked');
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const msgDiv = document.getElementById('loginMessage');
             
-            errorDiv.style.display = 'none';
-            successDiv.style.display = 'none';
-            
-            const result = register(username, password, confirm);
+            const result = loginUser(username, password);
             
             if(result.success) {
-                successDiv.textContent = 'Account created successfully! Please login.';
-                successDiv.style.display = 'block';
-                
-                // Switch to login form
-                document.getElementById('registerForm').style.display = 'none';
-                document.getElementById('loginForm').style.display = 'block';
-                document.getElementById('regUser').value = '';
-                document.getElementById('regPass').value = '';
-                document.getElementById('regConfirm').value = '';
-                
-                setTimeout(() => successDiv.style.display = 'none', 3000);
+                loadApp(username, result.userData);
             } else {
-                errorDiv.textContent = result.error;
-                errorDiv.style.display = 'block';
-                setTimeout(() => errorDiv.style.display = 'none', 3000);
+                msgDiv.textContent = result.error;
+                msgDiv.style.display = 'block';
+                setTimeout(() => msgDiv.style.display = 'none', 3000);
             }
-        };
+        });
         
-        // Toggle between login and register
-        document.getElementById('showRegBtn').onclick = () => {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('registerForm').style.display = 'block';
-            document.getElementById('loginErrorMsg').style.display = 'none';
-        };
+        // REGISTER BUTTON
+        document.getElementById('registerButton').addEventListener('click', function() {
+            console.log('Register button clicked');
+            const username = document.getElementById('regUsername').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+            const msgDiv = document.getElementById('loginMessage');
+            
+            const result = registerUser(username, password, confirm);
+            
+            if(result.success) {
+                msgDiv.textContent = 'Account created! Please login.';
+                msgDiv.style.color = '#00ff44';
+                msgDiv.style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('registerPanel').style.display = 'none';
+                    document.getElementById('loginPanel').style.display = 'block';
+                    msgDiv.style.display = 'none';
+                    msgDiv.style.color = '#ff4444';
+                }, 2000);
+            } else {
+                msgDiv.textContent = result.error;
+                msgDiv.style.display = 'block';
+                setTimeout(() => msgDiv.style.display = 'none', 3000);
+            }
+        });
         
-        document.getElementById('showLoginBtn').onclick = () => {
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('loginErrorMsg').style.display = 'none';
-        };
+        // SHOW REGISTER PANEL
+        document.getElementById('showRegisterLink').addEventListener('click', function() {
+            document.getElementById('loginPanel').style.display = 'none';
+            document.getElementById('registerPanel').style.display = 'block';
+            document.getElementById('loginMessage').style.display = 'none';
+        });
         
-        document.getElementById('logoutMainBtn').onclick = logout;
+        // SHOW LOGIN PANEL
+        document.getElementById('showLoginLink').addEventListener('click', function() {
+            document.getElementById('registerPanel').style.display = 'none';
+            document.getElementById('loginPanel').style.display = 'block';
+            document.getElementById('loginMessage').style.display = 'none';
+        });
         
-        // Check for existing session (optional - can add remember me later)
+        // LOGOUT BUTTON
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            logout();
+        });
         
-        // ========== DATA VARIABLES ==========
-        let memories = [];
-        let images = [];
-        let codes = [];
-        let chats = [];
-        let notes = [];
-        let sessionStart = Date.now();
-        let currentStyle = 'realistic';
-        let currentLang = 'python';
-        let imageGenCount = 0;
-        let codeGenCount = 0;
-        let isPremium = false; // Free tier for now
-        
-        const styleMap = {
-            realistic: 'photorealistic, 8K, ultra detailed, masterpiece',
-            anime: 'anime style, studio ghibli, vibrant colors, cel shaded',
-            cinematic: 'cinematic, movie poster, dramatic lighting, epic composition',
-            fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike',
-            sketch: 'pencil sketch, hand drawn, artistic, monochrome',
-            '3d': '3D render, blender, octane render, ray tracing',
-            watercolor: 'watercolor painting, soft colors, artistic, fluid',
-            pixel: 'pixel art, retro gaming, 8-bit, 16-bit, nostalgic',
-            cyberpunk: 'cyberpunk, neon lights, futuristic city, synthwave',
-            oilpainting: 'oil painting, van gogh style, impasto, textured'
-        };
-        
-        function updateUI() {
-            document.getElementById('memStat').innerText = memories.length;
-            document.getElementById('imgStat').innerText = images.length;
-            document.getElementById('codeStat').innerText = codes.length;
-            document.getElementById('noteStat').innerText = notes.length;
-        }
-        
+        // ========== NOTES FUNCTIONS ==========
         function renderNotes() {
             const container = document.getElementById('notesList');
             if(notes.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No notes yet. Click + ADD</div>';
+                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No notes yet</div>';
                 return;
             }
             container.innerHTML = notes.map((note, idx) => `
                 <div class="note-item">
                     <span class="delete-note" onclick="deleteNote(${idx})">🗑️</span>
                     <div class="note-title">${escapeHtml(note.title)}</div>
-                    <div class="note-content">${escapeHtml(note.content.substring(0, 80))}${note.content.length > 80 ? '...' : ''}</div>
+                    <div class="note-content">${escapeHtml(note.content.substring(0, 80))}</div>
                     <div class="note-date">${new Date(note.date).toLocaleString()}</div>
                 </div>
             `).join('');
@@ -940,56 +760,52 @@
         
         window.deleteNote = function(idx) {
             notes.splice(idx, 1);
-            saveCurrentUserData();
+            saveUserData();
             renderNotes();
         };
         
         document.getElementById('addNoteBtn').onclick = () => {
-            document.getElementById('addNoteForm').style.display = 'block';
+            document.getElementById('noteForm').style.display = 'block';
         };
         document.getElementById('cancelNoteBtn').onclick = () => {
-            document.getElementById('addNoteForm').style.display = 'none';
+            document.getElementById('noteForm').style.display = 'none';
             document.getElementById('noteTitle').value = '';
             document.getElementById('noteContent').value = '';
         };
         document.getElementById('saveNoteBtn').onclick = () => {
             const title = document.getElementById('noteTitle').value.trim();
             const content = document.getElementById('noteContent').value.trim();
-            if(!title) { alert('Please enter a title'); return; }
-            if(!content) { alert('Please enter note content'); return; }
+            if(!title) { alert('Enter title'); return; }
+            if(!content) { alert('Enter content'); return; }
             notes.unshift({ id: Date.now(), title: title, content: content, date: Date.now() });
-            if(notes.length > 50) notes.pop();
-            saveCurrentUserData();
+            saveUserData();
             renderNotes();
-            document.getElementById('addNoteForm').style.display = 'none';
+            document.getElementById('noteForm').style.display = 'none';
             document.getElementById('noteTitle').value = '';
             document.getElementById('noteContent').value = '';
         };
         
+        // ========== HISTORY ==========
         function renderHistory() {
             const container = document.getElementById('historyList');
             if(chats.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No chat history yet.</div>';
+                container.innerHTML = '<div style="text-align:center; color:#aaa; padding:20px;">No history yet</div>';
                 return;
             }
-            
             const groups = {};
             chats.forEach(chat => {
                 const date = new Date(chat.date).toDateString();
                 if(!groups[date]) groups[date] = [];
                 groups[date].push(chat);
             });
-            
             let html = '';
             for(const [date, items] of Object.entries(groups)) {
-                html += `<div class="history-group"><div class="history-date-group">📅 ${date}</div>`;
-                items.slice(0, 50).forEach(chat => {
-                    html += `
-                        <div class="history-item" onclick="loadChat('${escapeHtml(chat.user)}')">
-                            <div class="history-user">👤 YOU: ${escapeHtml(chat.user.substring(0, 50))}</div>
-                            <div class="history-message">🤖 AI: ${escapeHtml(chat.response?.substring(0, 80) || '')}...</div>
-                        </div>
-                    `;
+                html += `<div><div style="background:rgba(157,78,221,0.2); border-radius:20px; padding:5px 12px; margin:10px 0; font-size:0.7rem;">📅 ${date}</div>`;
+                items.slice(0, 30).forEach(chat => {
+                    html += `<div class="history-item" onclick="loadChat('${escapeHtml(chat.user)}')">
+                        <div class="history-user">👤 ${escapeHtml(chat.user.substring(0, 40))}</div>
+                        <div class="history-message">${escapeHtml(chat.response?.substring(0, 60) || '')}</div>
+                    </div>`;
                 });
                 html += `</div>`;
             }
@@ -1002,8 +818,21 @@
         };
         
         // ========== IMAGE GENERATION ==========
+        const styleMap = {
+            realistic: 'photorealistic, 8K, ultra detailed',
+            anime: 'anime style, studio ghibli, vibrant colors',
+            cinematic: 'cinematic, movie poster, dramatic lighting',
+            fantasy: 'fantasy art, magical, ethereal',
+            sketch: 'pencil sketch, hand drawn',
+            '3d': '3D render, blender, octane render',
+            watercolor: 'watercolor painting, soft colors',
+            pixel: 'pixel art, retro gaming, 8-bit',
+            cyberpunk: 'cyberpunk, neon lights, futuristic',
+            oilpainting: 'oil painting, van gogh style'
+        };
+        
         async function generateImage(prompt) {
-            if(!prompt) { addAIMessage("Please describe what image you want!"); return; }
+            if(!prompt) { addAIMessage("Describe what image you want!"); return; }
             
             showProgress();
             setProgress(1); await delay(200);
@@ -1014,7 +843,6 @@
             const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1024&height=1024&seed=${Date.now()}&nologo=true`;
             
             setProgress(4);
-            
             const img = document.getElementById('generatedImage');
             const preview = document.getElementById('imagePreview');
             
@@ -1022,23 +850,17 @@
                 preview.style.display = 'block';
                 setProgress(5);
                 setTimeout(() => hideProgress(), 500);
-                images.unshift({ id: Date.now(), url: imageUrl, prompt: prompt, style: currentStyle, date: Date.now() });
-                if(images.length > 50) images.pop();
-                saveCurrentUserData();
-                addAIMessage(`🎨 **Image Generated!**\n\n📝 *Prompt:* ${prompt}\n🎭 *Style:* ${currentStyle}\n\n![Image](${imageUrl})`);
+                images.unshift({ id: Date.now(), url: imageUrl, prompt: prompt, date: Date.now() });
+                saveUserData();
+                addAIMessage(`🎨 Image: "${prompt}"\nStyle: ${currentStyle}\n\n![Image](${imageUrl})`);
             };
-            
-            img.onerror = () => {
-                hideProgress();
-                addAIMessage("⚠️ Image generation failed. Please try again.");
-            };
-            
+            img.onerror = () => { hideProgress(); addAIMessage("Image failed. Try again."); };
             img.src = imageUrl;
         }
         
         function saveImage() {
             const img = document.getElementById('generatedImage');
-            if(img?.src && img.src !== '') {
+            if(img.src) {
                 const a = document.createElement('a');
                 a.download = `neuralis_${Date.now()}.png`;
                 a.href = img.src;
@@ -1049,7 +871,7 @@
         
         // ========== CODE GENERATION ==========
         async function generateCode(description) {
-            if(!description) { addAIMessage("Please describe what code you need!"); return; }
+            if(!description) { addAIMessage("Describe what code you need!"); return; }
             
             showProgress();
             setProgress(1); await delay(200);
@@ -1057,19 +879,19 @@
             setProgress(3);
             
             let code = '';
-            const lowerDesc = description.toLowerCase();
+            const lower = description.toLowerCase();
             
             if(currentLang === 'python') {
-                if(lowerDesc.includes('fibonacci')) {
-                    code = `def fibonacci(n):\n    if n <= 0: return []\n    elif n == 1: return [0]\n    elif n == 2: return [0, 1]\n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\nprint(fibonacci(10))`;
+                if(lower.includes('fibonacci')) {
+                    code = `def fibonacci(n):\n    if n <= 0: return []\n    if n == 1: return [0]\n    if n == 2: return [0, 1]\n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\nprint(fibonacci(10))`;
                 } else {
-                    code = `# ${description}\n\ndef solution():\n    pass\n\nif __name__ == "__main__":\n    solution()`;
+                    code = `# ${description}\n\ndef solution():\n    pass\n\nsolution()`;
                 }
             } else {
-                if(lowerDesc.includes('fibonacci')) {
+                if(lower.includes('fibonacci')) {
                     code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
                 } else {
-                    code = `// ${description}\n\nfunction solution() {\n    // Your code here\n}\n\nsolution();`;
+                    code = `// ${description}\n\nfunction solution() {\n    // Your code\n}\n\nsolution();`;
                 }
             }
             
@@ -1083,70 +905,59 @@
             output.style.display = 'block';
             setTimeout(() => hideProgress(), 400);
             
-            codes.unshift({ id: Date.now(), code: code, lang: currentLang, prompt: description, date: Date.now() });
-            if(codes.length > 50) codes.pop();
-            saveCurrentUserData();
-            
-            addAIMessage(`💻 **Code Generated (${currentLang.toUpperCase()})**\n\n\`\`\`${currentLang}\n${code.substring(0, 400)}${code.length > 400 ? '...' : ''}\n\`\`\``);
+            codes.unshift({ id: Date.now(), code: code, lang: currentLang, date: Date.now() });
+            saveUserData();
+            addAIMessage(`💻 Code (${currentLang.toUpperCase()}):\n\`\`\`${currentLang}\n${code}\n\`\`\``);
         }
         
         function copyCode() {
-            const code = document.getElementById('generatedCode')?.textContent;
+            const code = document.getElementById('generatedCode').textContent;
             if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied!"); }
         }
         
         // ========== AI RESPONSE ==========
-        async function getAIResponse(userMsg) {
-            const lower = userMsg.toLowerCase();
+        async function getAIResponse(msg) {
+            const lower = msg.toLowerCase();
             
             if(lower.includes('generate') || lower.includes('create image') || lower.includes('draw')) {
-                let prompt = userMsg.replace(/generate|create image|draw|make image/gi, '').trim();
-                if(!prompt) prompt = "beautiful artwork";
+                let prompt = msg.replace(/generate|create image|draw|make image/gi, '').trim();
+                if(!prompt) prompt = "artwork";
                 await generateImage(prompt);
                 return null;
             }
             
             if(lower.includes('code') || lower.includes('python') || lower.includes('javascript')) {
-                await generateCode(userMsg);
+                await generateCode(msg);
                 return null;
             }
             
             if(lower.includes('remember that')) {
-                let content = userMsg.replace(/remember that/gi, '').trim();
+                let content = msg.replace(/remember that/gi, '').trim();
                 if(content) {
                     memories.unshift({ id: Date.now(), content: content, date: Date.now() });
-                    if(memories.length > 50) memories.pop();
-                    saveCurrentUserData();
-                    return `✅ I've remembered: "${content}" ✨`;
+                    saveUserData();
+                    return `✅ Remembered: "${content}"`;
                 }
             }
             
-            if(lower.includes('what do you remember') || lower.includes('recall')) {
-                if(memories.length === 0) return "📋 No memories yet. Tell me 'remember that I love coffee'!";
-                return `📋 **My Memories:**\n${memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
+            if(lower.includes('what do you remember')) {
+                if(memories.length === 0) return "No memories yet. Say 'remember that I like coffee'!";
+                return `Memories:\n${memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
             }
             
-            if(lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/]/.test(lower)) {
+            if(lower.includes('calculate') || /[\d\+\-\*\/]/.test(lower)) {
                 try {
-                    let expr = userMsg.replace(/calculate|what is/gi, '').trim();
-                    let result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
+                    let expr = msg.replace(/calculate/gi, '').trim();
+                    let result = Function('return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
                     return `🧮 ${expr} = ${result}`;
                 } catch(e) {}
             }
             
             if(lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
-            if(lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
+            if(lower.includes('joke')) return "Why don't scientists trust atoms? Because they make up everything! 😄";
+            if(lower.includes('hello')) return "Hello! Try 'generate a dragon' or 'python fibonacci'!";
             
-            if(lower.includes('joke')) {
-                const jokes = ["Why don't scientists trust atoms? Because they make up everything! 😄", "What do you call a fake noodle? An impasta! 🍝", "Why did the scarecrow win an award? He was outstanding in his field! 🌾"];
-                return jokes[Math.floor(Math.random() * jokes.length)];
-            }
-            
-            if(lower.includes('hello') || lower.includes('hi')) {
-                return `Hello! 👋 I'm NEURALIS AI. Try "generate a dragon", "python fibonacci", or "remember I like coffee"!`;
-            }
-            
-            return `I can help with:\n\n🎨 **Images** - "generate a dragon"\n💻 **Code** - "python fibonacci"\n📝 **Notes** - Add notes\n🧠 **Memory** - "remember I like coffee"\n🧮 **Math** - "calculate 100*5"\n\nWhat would you like?`;
+            return `I can help with:\n• "generate a dragon"\n• "python fibonacci"\n• "remember I like coffee"\n• "what do you remember"\n• "calculate 100*5"`;
         }
         
         // ========== UI FUNCTIONS ==========
@@ -1154,7 +965,7 @@
             const container = document.getElementById('chatMessages');
             const div = document.createElement('div');
             div.className = 'message user-msg';
-            div.innerHTML = `<div class="bubble"><strong>👤 YOU</strong><br>${escapeHtml(text)}</div>`;
+            div.innerHTML = `<div class="bubble"><strong>YOU</strong><br>${escapeHtml(text)}</div>`;
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
         }
@@ -1190,17 +1001,14 @@
             if(!msg) return;
             addUserMessage(msg);
             input.value = '';
-            document.getElementById('statusStat').innerHTML = 'THINKING';
             const response = await getAIResponse(msg);
             if(response) addAIMessage(response);
-            document.getElementById('statusStat').innerHTML = 'READY';
             chats.unshift({ user: msg, response: response || 'processed', date: Date.now() });
             if(chats.length > 200) chats.pop();
-            saveCurrentUserData();
+            saveUserData();
             renderHistory();
         }
         
-        // Progress Bar
         function showProgress() {
             document.getElementById('progressBar').style.display = 'flex';
             for(let i=1;i<=5;i++) document.getElementById(`step${i}`).classList.remove('active');
@@ -1216,7 +1024,7 @@
         function hideProgress() { document.getElementById('progressBar').style.display = 'none'; }
         function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
         
-        // Voice Input
+        // Voice input
         function setupVoice() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if(SpeechRecognition) {
@@ -1225,7 +1033,6 @@
                 recognition.onstart = () => document.getElementById('voiceStatus').innerHTML = '🎤 LISTENING...';
                 recognition.onresult = (e) => {
                     document.getElementById('userInput').value = e.results[0][0].transcript;
-                    document.getElementById('voiceStatus').innerHTML = '🔊 VOICE READY';
                     sendMessage();
                 };
                 document.getElementById('voiceBtn').onclick = () => recognition.start();
@@ -1260,11 +1067,8 @@
         setupVoice();
         
         console.log('%c🧠 NEURALIS AI - LOGIN WORKING! 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
-        console.log('%c✅ Create account: Username (min 3 chars) + Password (min 4 chars)', 'color: #00FF00;');
-        console.log('%c✅ Login with your credentials', 'color: #00FF00;');
-        console.log('%c✅ Image Generation Working', 'color: #00FF00;');
-        console.log('%c✅ Code Generation Working', 'color: #00FF00;');
-        console.log('%c✅ Notes & History Working', 'color: #00FF00;');
+        console.log('%c✅ Click LOGIN button - it works now!', 'color: #00FF00;');
+        console.log('%c✅ Create account: Username (min 3), Password (min 4)', 'color: #00FF00;');
     </script>
 </body>
 </html>
