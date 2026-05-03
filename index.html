@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🧠 NEURALIS AI • Premium Suite • Viren Singh 🧠</title>
+    <title>🧠 NEURALIS AI • Image Gen • Notes • History • Viren Singh 🧠</title>
     <style>
         * {
             margin: 0;
@@ -251,7 +251,7 @@
         /* 3 Column Grid */
         .grid-3col {
             display: grid;
-            grid-template-columns: 320px 1fr 320px;
+            grid-template-columns: 300px 1fr 320px;
             gap: 20px;
         }
 
@@ -441,7 +441,7 @@
         .history-user { color: var(--gold); font-size: 0.7rem; }
         .history-message { color: var(--text-white); font-size: 0.8rem; margin-top: 3px; }
 
-        /* Image Studio */
+        /* Image Studio - RIGHT SIDEBAR */
         .image-studio {
             background: var(--glass);
             backdrop-filter: blur(20px);
@@ -451,7 +451,7 @@
             margin-bottom: 20px;
         }
 
-        .image-studio h3 { color: var(--blue); margin-bottom: 15px; }
+        .image-studio h3 { color: var(--blue); margin-bottom: 15px; font-size: 1rem; }
 
         .style-grid-10 {
             display: grid;
@@ -464,37 +464,45 @@
             background: rgba(0,212,255,0.1);
             border: 1px solid rgba(0,212,255,0.3);
             border-radius: 20px;
-            padding: 5px 8px;
-            font-size: 0.65rem;
+            padding: 6px 8px;
+            font-size: 0.7rem;
             cursor: pointer;
             text-align: center;
             color: var(--blue);
+            transition: all 0.3s;
         }
 
+        .style-10:hover { background: rgba(0,212,255,0.2); transform: translateY(-2px); }
         .style-10.active {
             background: linear-gradient(135deg, #00D4FF, #0099FF);
             color: #000;
+            border-color: var(--blue);
         }
 
         .preview {
-            margin-top: 10px;
+            margin-top: 15px;
             text-align: center;
             display: none;
         }
 
-        .preview img { max-width: 100%; border-radius: 12px; }
-
-        .code-output {
-            background: #1a1a2e;
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 10px;
-            display: none;
-            max-height: 180px;
-            overflow: auto;
+        .preview img { 
+            max-width: 100%; 
+            border-radius: 15px; 
+            border: 2px solid var(--blue);
+            box-shadow: 0 0 15px rgba(0,212,255,0.3);
         }
 
-        .code-output pre { color: #0f0; font-size: 0.65rem; }
+        .save-btn {
+            background: linear-gradient(135deg, #00D4FF, #0099FF);
+            border: none;
+            border-radius: 30px;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
 
         /* Code Studio */
         .code-studio {
@@ -506,6 +514,28 @@
         }
 
         .code-studio h3 { color: var(--purple); margin-bottom: 15px; }
+
+        .code-output {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .code-output pre { color: #0f0; font-size: 0.7rem; white-space: pre-wrap; }
+
+        .copy-btn {
+            background: rgba(157,78,221,0.3);
+            border: none;
+            border-radius: 20px;
+            padding: 5px 12px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 8px;
+        }
 
         .voice-cartoon {
             position: fixed;
@@ -576,33 +606,10 @@
             cursor: pointer;
         }
 
-        /* Right Sidebar */
         .right-sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
-        }
-
-        .save-btn {
-            background: linear-gradient(135deg, #00D4FF, #0099FF);
-            border: none;
-            border-radius: 30px;
-            padding: 8px;
-            color: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .copy-btn {
-            background: rgba(157,78,221,0.3);
-            border: none;
-            border-radius: 20px;
-            padding: 4px 12px;
-            color: #fff;
-            cursor: pointer;
-            margin-top: 8px;
         }
 
         @media (max-width: 1200px) {
@@ -717,17 +724,17 @@
                         <div class="bubble">
                             <strong>🧠 NEURALIS AI</strong><br>
                             Welcome! I'm NEURALIS AI by Viren Singh.<br><br>
-                            🎨 <strong>10 Image Styles</strong><br>
-                            💻 <strong>Code Generation</strong><br>
-                            📝 <strong>Self Notes</strong><br>
-                            📜 <strong>Chat History</strong><br>
-                            ✨ <strong>Premium Upgrade</strong> for unlimited access!<br><br>
-                            Try: "generate a dragon" or "remember I like pizza"
+                            🎨 <strong>10 Image Styles</strong> - Try: "generate a dragon" or use the panel on right<br>
+                            💻 <strong>Code Generation</strong> - "python fibonacci"<br>
+                            📝 <strong>Self Notes</strong> - Save your thoughts<br>
+                            📜 <strong>Chat History</strong> - All chats saved by date<br>
+                            ✨ <strong>Premium</strong> - Unlimited access!<br><br>
+                            <span style="color:#00D4FF;">👉 LOOK RIGHT 👈 Use the IMAGE GENERATOR panel!</span>
                         </div>
                     </div>
                 </div>
                 <div class="input-area">
-                    <input type="text" id="userInput" class="ai-input" placeholder="Ask me anything..." autocomplete="off">
+                    <input type="text" id="userInput" class="ai-input" placeholder="Type 'generate a dragon' or ask anything..." autocomplete="off">
                     <button id="sendBtn" class="btn">⚡ SEND</button>
                     <button id="voiceBtn" class="btn" style="background: linear-gradient(135deg, #FF6B6B, #FF8C00); color:white;">🎤</button>
                 </div>
@@ -735,10 +742,10 @@
 
             <!-- Right Sidebar - Image + Code -->
             <div class="right-sidebar">
-                <!-- Image Studio -->
+                <!-- Image Studio - VISIBLE AND USABLE -->
                 <div class="image-studio">
                     <h3>🎨 10 IMAGE STYLES</h3>
-                    <input type="text" id="imagePrompt" class="ai-input" placeholder="Describe any image..." style="width:100%; margin-bottom:10px;">
+                    <input type="text" id="imagePrompt" class="ai-input" placeholder="Describe any image... e.g., 'dragon in space'" style="width:100%; margin-bottom:10px;">
                     <div class="style-grid-10" id="styleGrid">
                         <button class="style-10 active" data-style="realistic">🌍 Realistic</button>
                         <button class="style-10" data-style="anime">🇯🇵 Anime</button>
@@ -751,7 +758,7 @@
                         <button class="style-10" data-style="cyberpunk">🌃 Cyberpunk</button>
                         <button class="style-10" data-style="oilpainting">🖼️ Oil Painting</button>
                     </div>
-                    <button id="genImageBtn" class="btn" style="width:100%; padding:12px;">✨ GENERATE</button>
+                    <button id="genImageBtn" class="btn" style="width:100%; padding:12px;">✨ GENERATE IMAGE</button>
                     <div class="preview" id="imagePreview">
                         <img id="generatedImage">
                         <button id="saveImageBtn" class="save-btn">💾 SAVE IMAGE</button>
@@ -766,7 +773,7 @@
                         <button class="style-10" data-lang="javascript">🌐 JavaScript</button>
                     </div>
                     <textarea id="codePrompt" rows="2" class="ai-input" placeholder="Describe code you need..." style="width:100%; margin-bottom:10px; resize:none;"></textarea>
-                    <button id="genCodeBtn" class="btn" style="width:100%; padding:12px;">💻 GENERATE</button>
+                    <button id="genCodeBtn" class="btn" style="width:100%; padding:12px;">💻 GENERATE CODE</button>
                     <div class="code-output" id="codeOutput">
                         <pre id="generatedCode"></pre>
                         <button id="copyCodeBtn" class="copy-btn">📋 COPY CODE</button>
@@ -1140,7 +1147,7 @@
                 return;
             }
             
-            if(!prompt) { addAIMessage("Please describe what image you want!"); return; }
+            if(!prompt) { addAIMessage("Please describe what image you want! Example: 'dragon flying over mountains'"); return; }
             
             showProgress();
             setProgress(1); await delay(200);
@@ -1244,8 +1251,8 @@
         async function getAIResponse(userMsg) {
             const lower = userMsg.toLowerCase();
             
-            if(lower.includes('generate') || lower.includes('create image') || lower.includes('draw')) {
-                let prompt = userMsg.replace(/generate|create image|draw|make image/gi, '').trim();
+            if(lower.includes('generate') || lower.includes('create image') || lower.includes('draw') || lower.includes('make image')) {
+                let prompt = userMsg.replace(/generate|create image|draw|make image|please/gi, '').trim();
                 if(!prompt) prompt = "beautiful artwork";
                 await generateImage(prompt);
                 return null;
@@ -1292,10 +1299,10 @@
             }
             
             if(lower.includes('hello') || lower.includes('hi')) {
-                return `Hello! 👋 I'm NEURALIS AI by Viren Singh. ${isPremium ? '✨ You have PREMIUM access! ✨' : 'Upgrade to PREMIUM for unlimited image generation, code generation, and more!'}`;
+                return `Hello! 👋 I'm NEURALIS AI by Viren Singh. ${isPremium ? '✨ You have PREMIUM access! ✨' : 'Upgrade to PREMIUM for unlimited image generation! Try "generate a dragon" or use the panel on the right!'}`;
             }
             
-            return `I'm NEURALIS AI by Viren Singh. I can help with:\n\n🎨 **10 Image Styles** - "generate a dragon in cyberpunk"\n💻 **Code** - "python fibonacci"\n📝 **Notes** - Add your own notes!\n📜 **History** - All chats saved!\n🧠 **Memory** - "remember I like coffee"\n\n${!isPremium ? '✨ Upgrade to PREMIUM for unlimited access!' : '✨ Premium active - unlimited everything!'}`;
+            return `I'm NEURALIS AI by Viren Singh. I can help with:\n\n🎨 **10 Image Styles** - Try: "generate a dragon" or use the panel on the RIGHT\n💻 **Code** - "python fibonacci"\n📝 **Notes** - Add your own notes!\n📜 **History** - All chats saved!\n🧠 **Memory** - "remember I like coffee"\n\n${!isPremium ? '✨ Upgrade to PREMIUM for unlimited access!' : '✨ Premium active - unlimited everything!'}`;
         }
         
         // ========== UI FUNCTIONS ==========
@@ -1417,13 +1424,13 @@
         
         setupVoiceInput();
         
-        console.log('%c🧠 NEURALIS AI - TEXT FULLY VISIBLE 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
-        console.log('%c✅ All text now WHITE/GOLD on dark background', 'color: #00FF00;');
-        console.log('%c✅ "by Viren Singh" text is now GOLD/WHITE', 'color: #00FF00;');
+        console.log('%c🧠 NEURALIS AI - FULLY WORKING 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
+        console.log('%c✅ Image Generation - Use the panel on the RIGHT or type "generate a dragon"', 'color: #00FF00;');
+        console.log('%c✅ 10 Image Styles Available', 'color: #00FF00;');
+        console.log('%c✅ All text is WHITE/GOLD - Fully visible', 'color: #00FF00;');
         console.log('%c✅ Self Notes System', 'color: #00FF00;');
         console.log('%c✅ Chat History with Date Groups', 'color: #00FF00;');
         console.log('%c✅ Premium Tier (Unlimited Access)', 'color: #FFD700;');
-        console.log('%c✅ 10 Image Styles', 'color: #00FF00;');
     </script>
 </body>
 </html>
