@@ -441,7 +441,18 @@
         .history-user { color: var(--gold); font-size: 0.7rem; }
         .history-message { color: var(--text-white); font-size: 0.8rem; margin-top: 3px; }
 
-        /* Style Grid */
+        /* Image Studio */
+        .image-studio {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(0,212,255,0.3);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .image-studio h3 { color: var(--blue); margin-bottom: 15px; }
+
         .style-grid-10 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -484,6 +495,17 @@
         }
 
         .code-output pre { color: #0f0; font-size: 0.65rem; }
+
+        /* Code Studio */
+        .code-studio {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(157,78,221,0.3);
+            padding: 20px;
+        }
+
+        .code-studio h3 { color: var(--purple); margin-bottom: 15px; }
 
         .voice-cartoon {
             position: fixed;
@@ -552,6 +574,35 @@
             padding: 5px 12px;
             color: #ff4444;
             cursor: pointer;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #00D4FF, #0099FF);
+            border: none;
+            border-radius: 30px;
+            padding: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: rgba(157,78,221,0.3);
+            border: none;
+            border-radius: 20px;
+            padding: 4px 12px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 8px;
         }
 
         @media (max-width: 1200px) {
@@ -682,13 +733,45 @@
                 </div>
             </div>
 
-            <!-- History Section -->
-            <div class="history-section">
-                <div class="history-header">
-                    <h3>📜 CHAT HISTORY</h3>
-                    <button id="clearHistoryBtn" class="btn" style="padding:5px 15px; background:#333; color:white;">CLEAR</button>
+            <!-- Right Sidebar - Image + Code -->
+            <div class="right-sidebar">
+                <!-- Image Studio -->
+                <div class="image-studio">
+                    <h3>🎨 10 IMAGE STYLES</h3>
+                    <input type="text" id="imagePrompt" class="ai-input" placeholder="Describe any image..." style="width:100%; margin-bottom:10px;">
+                    <div class="style-grid-10" id="styleGrid">
+                        <button class="style-10 active" data-style="realistic">🌍 Realistic</button>
+                        <button class="style-10" data-style="anime">🇯🇵 Anime</button>
+                        <button class="style-10" data-style="cinematic">🎬 Cinematic</button>
+                        <button class="style-10" data-style="fantasy">🧚 Fantasy</button>
+                        <button class="style-10" data-style="sketch">✏️ Sketch</button>
+                        <button class="style-10" data-style="3d">💎 3D Render</button>
+                        <button class="style-10" data-style="watercolor">🎨 Watercolor</button>
+                        <button class="style-10" data-style="pixel">👾 Pixel Art</button>
+                        <button class="style-10" data-style="cyberpunk">🌃 Cyberpunk</button>
+                        <button class="style-10" data-style="oilpainting">🖼️ Oil Painting</button>
+                    </div>
+                    <button id="genImageBtn" class="btn" style="width:100%; padding:12px;">✨ GENERATE</button>
+                    <div class="preview" id="imagePreview">
+                        <img id="generatedImage">
+                        <button id="saveImageBtn" class="save-btn">💾 SAVE IMAGE</button>
+                    </div>
                 </div>
-                <div class="history-list" id="historyList"></div>
+
+                <!-- Code Studio -->
+                <div class="code-studio">
+                    <h3>💻 CODE STUDIO</h3>
+                    <div class="style-grid-10" style="grid-template-columns: repeat(2,1fr);">
+                        <button class="style-10 active" data-lang="python">🐍 Python</button>
+                        <button class="style-10" data-lang="javascript">🌐 JavaScript</button>
+                    </div>
+                    <textarea id="codePrompt" rows="2" class="ai-input" placeholder="Describe code you need..." style="width:100%; margin-bottom:10px; resize:none;"></textarea>
+                    <button id="genCodeBtn" class="btn" style="width:100%; padding:12px;">💻 GENERATE</button>
+                    <div class="code-output" id="codeOutput">
+                        <pre id="generatedCode"></pre>
+                        <button id="copyCodeBtn" class="copy-btn">📋 COPY CODE</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1040,14 +1123,14 @@
             sendMessage();
         };
         
-        document.getElementById('clearHistoryBtn').onclick = () => {
+        document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
             if(confirm('Clear all chat history?')) {
                 chats = [];
                 saveData();
                 renderHistory();
                 addAIMessage("📜 Chat history cleared!");
             }
-        };
+        });
         
         // ========== IMAGE GENERATION ==========
         async function generateImage(prompt) {
@@ -1071,7 +1154,6 @@
             
             const img = document.getElementById('generatedImage');
             const preview = document.getElementById('imagePreview');
-            if(!preview) return;
             
             img.onload = () => {
                 preview.style.display = 'block';
@@ -1090,6 +1172,17 @@
             };
             
             img.src = imageUrl;
+        }
+        
+        function saveImage() {
+            const img = document.getElementById('generatedImage');
+            if(img?.src && img.src !== '') {
+                const a = document.createElement('a');
+                a.download = `neuralis_${Date.now()}.png`;
+                a.href = img.src;
+                a.click();
+                addAIMessage("💾 Image saved to your device!");
+            }
         }
         
         // ========== CODE GENERATION ==========
@@ -1130,10 +1223,8 @@
             
             const output = document.getElementById('codeOutput');
             const pre = document.getElementById('generatedCode');
-            if(output && pre) {
-                pre.textContent = code;
-                output.style.display = 'block';
-            }
+            pre.textContent = code;
+            output.style.display = 'block';
             setTimeout(() => hideProgress(), 400);
             
             if(!isPremium) codeGenCount++;
@@ -1142,6 +1233,11 @@
             saveData();
             
             addAIMessage(`💻 **Code Generated (${currentLang.toUpperCase()})**\n\n\`\`\`${currentLang}\n${code.substring(0, 400)}${code.length > 400 ? '...' : ''}\n\`\`\`\n${!isPremium ? `\n⚠️ Free tier: ${5-codeGenCount}/5 remaining. Upgrade for unlimited!` : ''}`);
+        }
+        
+        function copyCode() {
+            const code = document.getElementById('generatedCode')?.textContent;
+            if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied to clipboard!"); }
         }
         
         // ========== AI RESPONSE ==========
@@ -1297,45 +1393,10 @@
         // ========== EVENT LISTENERS ==========
         document.getElementById('sendBtn').addEventListener('click', sendMessage);
         document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
-        
-        // Create image preview elements
-        if(!document.getElementById('generatedImage')) {
-            const imgSection = document.querySelector('.image-studio');
-            if(imgSection) {
-                const imgDiv = document.createElement('div');
-                imgDiv.className = 'preview';
-                imgDiv.id = 'imagePreview';
-                imgDiv.innerHTML = '<img id="generatedImage" style="max-width:100%; border-radius:12px;"><button id="saveImageBtn" style="margin-top:10px; width:100%; background:linear-gradient(135deg,#00D4FF,#0099FF); border:none; border-radius:30px; padding:8px; color:white;">💾 SAVE</button>';
-                imgSection.appendChild(imgDiv);
-            }
-        }
-        
-        if(!document.getElementById('codeOutput')) {
-            const codeSection = document.querySelector('.code-studio');
-            if(codeSection) {
-                const codeDiv = document.createElement('div');
-                codeDiv.className = 'code-output';
-                codeDiv.id = 'codeOutput';
-                codeDiv.innerHTML = '<pre id="generatedCode" style="color:#0f0;"></pre><button id="copyCodeBtn" style="margin-top:8px; background:rgba(157,78,221,0.3); border:none; border-radius:20px; padding:4px 12px; color:white;">📋 Copy</button>';
-                codeSection.appendChild(codeDiv);
-            }
-        }
-        
-        document.getElementById('saveImageBtn')?.addEventListener('click', () => {
-            const img = document.getElementById('generatedImage');
-            if(img?.src) {
-                const a = document.createElement('a');
-                a.download = `neuralis_${Date.now()}.png`;
-                a.href = img.src;
-                a.click();
-                addAIMessage("💾 Image saved!");
-            }
-        });
-        
-        document.getElementById('copyCodeBtn')?.addEventListener('click', () => {
-            const code = document.getElementById('generatedCode')?.textContent;
-            if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied!"); }
-        });
+        document.getElementById('genImageBtn').addEventListener('click', () => { const p = document.getElementById('imagePrompt').value; if(p) generateImage(p); });
+        document.getElementById('genCodeBtn').addEventListener('click', () => { const p = document.getElementById('codePrompt').value; if(p) generateCode(p); });
+        document.getElementById('saveImageBtn').addEventListener('click', saveImage);
+        document.getElementById('copyCodeBtn').addEventListener('click', copyCode);
         
         document.querySelectorAll('.style-10').forEach(btn => {
             if(btn.dataset.style) {
@@ -1358,6 +1419,7 @@
         
         console.log('%c🧠 NEURALIS AI - TEXT FULLY VISIBLE 🧠', 'color: #FFD700; font-size: 18px; font-weight: bold;');
         console.log('%c✅ All text now WHITE/GOLD on dark background', 'color: #00FF00;');
+        console.log('%c✅ "by Viren Singh" text is now GOLD/WHITE', 'color: #00FF00;');
         console.log('%c✅ Self Notes System', 'color: #00FF00;');
         console.log('%c✅ Chat History with Date Groups', 'color: #00FF00;');
         console.log('%c✅ Premium Tier (Unlimited Access)', 'color: #FFD700;');
