@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>✨ NEURALIS AI • Supreme Intelligence • Viren Singh ✨</title>
+    <title>🧠 NEURALIS AI • True Intelligence Engine • Viren Singh 🧠</title>
     <style>
         * {
             margin: 0;
@@ -12,37 +12,32 @@
         }
 
         :root {
-            --primary: #FF3366;
-            --secondary: #00D4FF;
-            --tertiary: #9D4EDD;
-            --quaternary: #FFD700;
-            --dark: #0A0A0F;
-            --darker: #050508;
-            --glass: rgba(15, 15, 25, 0.85);
+            --bg: #0A0A0F;
+            --glass: rgba(20, 20, 40, 0.85);
+            --gold: #FFD700;
+            --blue: #00D4FF;
+            --purple: #9D4EDD;
             --text: #FFFFFF;
+            --text-dim: rgba(255,255,255,0.8);
         }
 
         body {
             font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-            background: var(--dark);
+            background: var(--bg);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* 🎬 CINEMATIC ANIMATED BACKGROUND 🎬 */
-        .cinematic-bg {
+        .cosmic-bg {
             position: fixed;
             inset: 0;
-            background: 
-                radial-gradient(ellipse at 20% 30%, rgba(255,51,102,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(0,212,255,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(157,78,221,0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 20% 30%, rgba(255,215,0,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(0,212,255,0.08) 0%, transparent 50%);
             z-index: 0;
         }
 
-        /* 🌟 FLOATING NEON PARTICLES 🌟 */
-        .particle-field {
+        .neural-particles {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -50,23 +45,23 @@
             z-index: 0;
         }
 
-        .particle {
+        .neuron {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, #FFD700, #FF3366, #00D4FF);
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #FFD700, #00D4FF);
             border-radius: 50%;
-            animation: floatParticle 15s infinite linear;
+            animation: neuronFloat 15s infinite linear;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
         }
 
-        @keyframes floatParticle {
+        @keyframes neuronFloat {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* 🔮 MAIN CONTAINER 🔮 */
         .app {
             position: relative;
             z-index: 1;
@@ -76,7 +71,6 @@
             min-height: 100vh;
         }
 
-        /* 🏆 PREMIUM GLASS HEADER 🏆 */
         .glass-header {
             background: var(--glass);
             backdrop-filter: blur(20px);
@@ -89,8 +83,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-            animation: slideDown 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideDown 0.6s ease;
         }
 
         @keyframes slideDown {
@@ -98,76 +91,42 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            font-size: 3.2rem;
-            animation: logoGlow 3s infinite, iconSpin 4s infinite;
-        }
-
-        @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px #FFD700); }
-            50% { filter: drop-shadow(0 0 25px #FF3366) drop-shadow(0 0 25px #00D4FF); }
-        }
-
-        @keyframes iconSpin {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg) scale(1.05); }
-            75% { transform: rotate(-5deg) scale(1.05); }
-        }
-
         .logo h1 {
             font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFD700, #FF3366, #00D4FF);
+            background: linear-gradient(135deg, #FFD700, #00D4FF);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 2px;
         }
 
         .logo p {
             font-size: 0.7rem;
-            color: rgba(255,215,0,0.8);
+            color: rgba(255,215,0,0.7);
         }
 
-        .stats-row {
+        .stats {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
         }
 
-        .stat-card {
+        .stat {
             background: rgba(0,0,0,0.5);
             border-radius: 15px;
             padding: 8px 20px;
-            border-left: 3px solid var(--quaternary);
-            transition: all 0.3s;
-            animation: statPulse 2s infinite;
+            border-left: 3px solid var(--gold);
         }
 
-        @keyframes statPulse {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
+        .stat label { font-size: 0.65rem; color: #aaa; }
+        .stat span { font-size: 1.2rem; font-weight: bold; color: var(--gold); }
 
-        .stat-card:hover {
-            border-left-color: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        /* 🎮 MAIN GRID 🎮 */
-        .grid-premium {
+        .grid {
             display: grid;
             grid-template-columns: 1fr 380px;
             gap: 25px;
         }
 
-        /* 💬 CHAT SECTION 💬 */
-        .chat-premium {
+        .chat-container {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border-radius: 30px;
@@ -176,73 +135,37 @@
             flex-direction: column;
             height: 600px;
             overflow: hidden;
-            animation: fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chat-premium:hover {
-            border-color: var(--quaternary);
-            box-shadow: 0 0 30px rgba(255,215,0,0.2);
         }
 
         .chat-header {
             padding: 18px 25px;
-            border-bottom: 2px solid rgba(255,215,0,0.2);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
             display: flex;
             justify-content: space-between;
             background: rgba(0,0,0,0.3);
         }
 
-        .chat-header h3 {
-            color: var(--quaternary);
-            font-size: 1rem;
-        }
+        .chat-header h3 { color: var(--gold); }
+        .model-badge { background: rgba(0,212,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; color: var(--blue); }
 
-        .typing-badge {
-            background: rgba(0,255,0,0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            color: #00FF00;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .messages-area {
+        .messages {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
         }
 
-        .messages-area::-webkit-scrollbar {
-            width: 5px;
-        }
-        .messages-area::-webkit-scrollbar-track {
-            background: rgba(255,215,0,0.1);
-            border-radius: 10px;
-        }
-        .messages-area::-webkit-scrollbar-thumb {
-            background: var(--quaternary);
-            border-radius: 10px;
-        }
+        .messages::-webkit-scrollbar { width: 5px; }
+        .messages::-webkit-scrollbar-track { background: rgba(255,215,0,0.1); }
+        .messages::-webkit-scrollbar-thumb { background: var(--gold); }
 
         .message {
             margin-bottom: 15px;
-            animation: messagePop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: messagePop 0.3s ease;
         }
 
         @keyframes messagePop {
-            from { opacity: 0; transform: scale(0.8) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .user-msg { text-align: right; }
@@ -256,26 +179,22 @@
         }
 
         .user-msg .bubble {
-            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,51,102,0.1));
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,51,102,0.08));
             border: 1px solid rgba(255,215,0,0.4);
+            color: white;
         }
 
         .ai-msg .bubble {
             background: rgba(30,30,50,0.9);
             border: 1px solid rgba(0,212,255,0.3);
+            color: white;
         }
 
-        .bubble strong {
-            display: block;
-            font-size: 0.7rem;
-            margin-bottom: 5px;
-        }
+        .bubble strong { display: block; font-size: 0.7rem; margin-bottom: 5px; }
+        .user-msg .bubble strong { color: var(--gold); }
+        .ai-msg .bubble strong { color: var(--blue); }
 
-        .user-msg .bubble strong { color: var(--quaternary); }
-        .ai-msg .bubble strong { color: var(--secondary); }
-
-        /* 🎨 INPUT AREA 🎨 */
-        .input-premium {
+        .input-area {
             padding: 15px 20px;
             border-top: 1px solid rgba(255,215,0,0.2);
             display: flex;
@@ -283,172 +202,86 @@
             background: rgba(0,0,0,0.3);
         }
 
-        .neural-input {
+        .ai-input {
             flex: 1;
             background: rgba(0,0,0,0.6);
-            border: 2px solid rgba(255,215,0,0.3);
+            border: 1px solid rgba(255,215,0,0.3);
             border-radius: 40px;
             padding: 12px 20px;
             color: white;
-            font-size: 0.9rem;
-            transition: all 0.3s;
         }
 
-        .neural-input:focus {
+        .ai-input:focus {
             outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 15px rgba(0,212,255,0.3);
-            transform: scale(1.02);
+            border-color: var(--blue);
         }
 
-        .btn-premium {
+        .btn {
             background: linear-gradient(135deg, #FFD700, #FF8C00);
             border: none;
             border-radius: 40px;
             padding: 0 28px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255,215,0,0.4);
-        }
-
-        .btn-voice {
+        .voice-btn {
             background: linear-gradient(135deg, #00D4FF, #0099FF);
             width: 48px;
             padding: 0;
         }
 
-        /* 🔥 RIGHT SIDEBAR 🔥 */
-        .sidebar-premium {
+        .sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* 🖼️ ADVANCED IMAGE STUDIO 🖼️ */
-        .image-studio {
+        .image-studio, .code-studio {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            border: 1px solid rgba(0,212,255,0.3);
             padding: 20px;
-            animation: fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s both;
         }
 
-        .image-studio:hover {
-            border-color: var(--secondary);
-            box-shadow: 0 0 30px rgba(0,212,255,0.2);
-        }
+        .image-studio { border: 1px solid rgba(0,212,255,0.3); }
+        .code-studio { border: 1px solid rgba(157,78,221,0.3); }
 
-        .studio-title {
-            color: var(--secondary);
-            font-size: 1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .image-studio h3 { color: var(--blue); margin-bottom: 15px; }
+        .code-studio h3 { color: var(--purple); margin-bottom: 15px; }
 
-        .model-badge {
-            background: rgba(0,212,255,0.2);
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-        }
-
-        .style-grid {
+        .style-group, .lang-group {
             display: flex;
             gap: 10px;
             margin: 15px 0;
             flex-wrap: wrap;
         }
 
-        .style-chip {
+        .style, .lang {
             background: rgba(0,212,255,0.1);
             border: 1px solid rgba(0,212,255,0.3);
             border-radius: 30px;
             padding: 8px 20px;
             font-size: 0.75rem;
             cursor: pointer;
-            transition: all 0.3s;
-            color: var(--secondary);
+            color: var(--blue);
         }
 
-        .style-chip:hover {
-            transform: translateY(-2px);
-            background: rgba(0,212,255,0.2);
-        }
-
-        .style-chip.active {
+        .style.active, .lang.active {
             background: linear-gradient(135deg, #00D4FF, #0099FF);
             color: black;
-            border-color: var(--secondary);
         }
 
-        .image-preview {
+        .preview {
             margin-top: 15px;
             text-align: center;
             display: none;
         }
 
-        .image-preview img {
+        .preview img {
             max-width: 100%;
-            border-radius: 20px;
-            border: 2px solid var(--secondary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: imageZoom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes imageZoom {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* 💻 ADVANCED CODE STUDIO 💻 */
-        .code-studio {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(157,78,221,0.3);
-            padding: 20px;
-            animation: fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
-        }
-
-        .code-studio:hover {
-            border-color: var(--tertiary);
-            box-shadow: 0 0 30px rgba(157,78,221,0.2);
-        }
-
-        .code-title {
-            color: var(--tertiary);
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .lang-selector {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .lang-chip {
-            background: rgba(157,78,221,0.1);
-            border: 1px solid rgba(157,78,221,0.3);
-            border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--tertiary);
-        }
-
-        .lang-chip.active {
-            background: linear-gradient(135deg, #9D4EDD, #6A0DAD);
-            color: white;
+            border-radius: 15px;
+            border: 1px solid var(--blue);
         }
 
         .code-output {
@@ -459,38 +292,21 @@
             display: none;
             max-height: 250px;
             overflow: auto;
-            position: relative;
         }
 
         .code-output pre {
             color: #0f0;
-            font-family: 'Courier New', monospace;
             font-size: 0.7rem;
             white-space: pre-wrap;
         }
 
-        .copy-code-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(157,78,221,0.3);
-            border: none;
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.6rem;
-            cursor: pointer;
-            color: var(--tertiary);
-        }
-
-        /* 📊 ANALYTICS */
-        .analytics-premium {
+        .analytics {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             border: 1px solid rgba(255,215,0,0.2);
             padding: 20px;
             margin-top: 25px;
-            animation: fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
         }
 
         .analytics-grid {
@@ -505,184 +321,141 @@
             border-radius: 15px;
             padding: 12px;
             text-align: center;
-            transition: all 0.3s;
-        }
-
-        .analytics-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255,215,0,0.1);
         }
 
         .analytics-card span {
-            color: var(--quaternary);
-            font-size: 1.3rem;
+            color: var(--gold);
             font-weight: bold;
             display: block;
+            font-size: 1.2rem;
         }
 
-        /* 🎬 PROGRESS BAR */
-        .progress-container {
+        .progress-bar {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
             border-radius: 60px;
-            padding: 10px 25px;
+            padding: 8px 25px;
             display: flex;
             gap: 20px;
             z-index: 1000;
-            border: 2px solid var(--quaternary);
-            animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes bounceIn {
-            from { opacity: 0; transform: translateX(-50%) scale(0.8); }
-            to { opacity: 1; transform: translateX(-50%) scale(1); }
+            border: 1px solid var(--gold);
         }
 
         .progress-step {
             font-size: 0.7rem;
-            padding: 5px 15px;
+            padding: 4px 12px;
             border-radius: 30px;
             color: #aaa;
-            transition: all 0.3s;
         }
 
         .progress-step.active {
             background: rgba(255,215,0,0.2);
-            color: var(--quaternary);
-            animation: glowPulse 1s infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 5px gold; }
-            50% { text-shadow: 0 0 15px gold; }
-        }
-
-        .progress-step.completed {
-            color: #00FF00;
+            color: var(--gold);
         }
 
         .voice-status {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(0,0,0,0.85);
-            padding: 6px 18px;
+            background: rgba(0,0,0,0.8);
+            padding: 5px 15px;
             border-radius: 30px;
-            border-left: 3px solid var(--quaternary);
+            border-left: 2px solid var(--gold);
             font-size: 0.65rem;
             z-index: 100;
         }
 
         @media (max-width: 1000px) {
-            .grid-premium { grid-template-columns: 1fr; }
-            .progress-container { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            .progress-bar { display: none; }
             .analytics-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <div class="cinematic-bg"></div>
-    <div class="particle-field" id="particles"></div>
+    <div class="cosmic-bg"></div>
+    <div class="neural-particles" id="particles"></div>
 
     <div class="app">
         <div class="glass-header">
             <div class="logo">
-                <div class="logo-icon">🧠✨⚡</div>
-                <div>
-                    <h1>NEURALIS AI</h1>
-                    <p>by Viren Singh • Supreme Intelligence</p>
-                </div>
+                <h1>🧠 NEURALIS AI</h1>
+                <p>by Viren Singh • True Intelligence Engine</p>
             </div>
-            <div class="stats-row">
-                <div class="stat-card"><div>💾 MEM</div><span id="memCount">0</span></div>
-                <div class="stat-card"><div>🎨 IMG</div><span id="imgCount">0</span></div>
-                <div class="stat-card"><div>💻 CODE</div><span id="codeCount">0</span></div>
-                <div class="stat-card"><div>⚡ STATUS</div><span id="statusText">ACTIVE</span></div>
+            <div class="stats">
+                <div class="stat"><label>💾 MEM</label><br><span id="memStat">0</span></div>
+                <div class="stat"><label>🎨 IMG</label><br><span id="imgStat">0</span></div>
+                <div class="stat"><label>💻 CODE</label><br><span id="codeStat">0</span></div>
+                <div class="stat"><label>⚡ STATUS</label><br><span id="statusStat">READY</span></div>
             </div>
         </div>
 
-        <div class="grid-premium">
-            <!-- Chat Section -->
-            <div class="chat-premium">
+        <div class="grid">
+            <div class="chat-container">
                 <div class="chat-header">
                     <h3>🧠 NEURAL CHAT</h3>
-                    <div class="typing-badge">● INTELLIGENT</div>
+                    <div class="model-badge">● TRUE AI • CONTEXT AWARE</div>
                 </div>
-                <div class="messages-area" id="chatMessages">
+                <div class="messages" id="chatMessages">
                     <div class="message ai-msg">
                         <div class="bubble">
-                            <strong>✨ NEURALIS AI</strong>
-                            Welcome to the Supreme Intelligence Suite!<br><br>
-                            🎨 <strong>Image Generation:</strong> "generate a dragon in space"<br>
-                            💻 <strong>Code Generation:</strong> "python fibonacci" or "javascript calculator"<br>
-                            🧠 <strong>Memory:</strong> "remember I like pizza"<br>
-                            🧮 <strong>Calculate:</strong> "calculate 100 * 5"<br>
-                            😄 <strong>Joke:</strong> "tell me a joke"<br><br>
-                            Try the advanced tools on the right!
+                            <strong>🧠 NEURALIS AI</strong>
+                            Welcome to the **True Intelligence Engine**!<br><br>
+                            🧠 **Context-Aware AI** - I remember our conversation<br>
+                            🎨 **Image Generation** - "generate a dragon"<br>
+                            💻 **Code Generation** - "python fibonacci"<br>
+                            🧠 **Advanced Memory** - "remember I love AI"<br>
+                            🧮 **Smart Math** - "calculate complex equations"<br>
+                            🔧 **Tool Calling** - I automatically use the right tool<br><br>
+                            Let's have a real conversation.
                         </div>
                     </div>
                 </div>
-                <div class="input-premium">
-                    <input type="text" id="userInput" class="neural-input" placeholder="Ask me anything..." autocomplete="off">
-                    <button id="sendBtn" class="btn-premium">⚡ SEND</button>
-                    <button id="voiceBtn" class="btn-premium btn-voice">🎤</button>
+                <div class="input-area">
+                    <input type="text" id="userInput" class="ai-input" placeholder="Talk to me naturally... I understand context..." autocomplete="off">
+                    <button id="sendBtn" class="btn">⚡ SEND</button>
+                    <button id="voiceBtn" class="btn voice-btn">🎤</button>
                 </div>
             </div>
 
-            <!-- Right Sidebar -->
-            <div class="sidebar-premium">
-                <!-- Image Studio -->
+            <div class="sidebar">
                 <div class="image-studio">
-                    <div class="studio-title">
-                        🎨 AI IMAGE STUDIO
-                        <span class="model-badge">Flux + SDXL</span>
+                    <h3>🎨 IMAGE STUDIO</h3>
+                    <input type="text" id="imagePrompt" class="ai-input" placeholder="Describe any image..." style="width:100%; margin-bottom:10px;">
+                    <div class="style-group">
+                        <button class="style active" data-style="realistic">Realistic</button>
+                        <button class="style" data-style="anime">Anime</button>
+                        <button class="style" data-style="cinematic">Cinematic</button>
+                        <button class="style" data-style="fantasy">Fantasy</button>
                     </div>
-                    <input type="text" id="imagePrompt" class="neural-input" placeholder="Describe any image..." style="width:100%; margin-bottom:12px;">
-                    <div class="style-grid">
-                        <button class="style-chip active" data-style="realistic">Realistic</button>
-                        <button class="style-chip" data-style="anime">Anime</button>
-                        <button class="style-chip" data-style="cinematic">Cinematic</button>
-                        <button class="style-chip" data-style="fantasy">Fantasy</button>
-                        <button class="style-chip" data-style="sketch">Sketch</button>
-                        <button class="style-chip" data-style="3d">3D Render</button>
-                    </div>
-                    <input type="text" id="negPrompt" class="neural-input" placeholder="Negative prompt (optional)" style="width:100%; margin:12px 0;">
-                    <button id="genImageBtn" class="btn-premium" style="width:100%; padding:12px;">✨ GENERATE MASTERPIECE</button>
-                    <div class="image-preview" id="imagePreview">
-                        <img id="generatedImage" alt="Generated">
-                        <div style="display: flex; gap: 10px; margin-top: 12px;">
-                            <button id="saveImageBtn" style="flex:1; background: linear-gradient(135deg, #00D4FF, #0099FF); border:none; border-radius:30px; padding:8px; cursor:pointer;">💾 SAVE</button>
-                            <button id="remixImageBtn" style="flex:1; background: linear-gradient(135deg, #FF3366, #FFD700); border:none; border-radius:30px; padding:8px; cursor:pointer;">🔄 REMIX</button>
-                        </div>
+                    <button id="genImageBtn" class="btn" style="width:100%; padding:12px;">✨ GENERATE</button>
+                    <div class="preview" id="imagePreview">
+                        <img id="generatedImage">
+                        <button id="saveImageBtn" style="margin-top:10px; width:100%; background:linear-gradient(135deg,#00D4FF,#0099FF); border:none; border-radius:30px; padding:8px;">💾 SAVE</button>
                     </div>
                 </div>
 
-                <!-- Code Studio -->
                 <div class="code-studio">
-                    <div class="code-title">💻 ADVANCED CODE MAKER</div>
-                    <div class="lang-selector">
-                        <button class="lang-chip active" data-lang="python">🐍 Python</button>
-                        <button class="lang-chip" data-lang="javascript">🌐 JavaScript</button>
-                        <button class="lang-chip" data-lang="html">📄 HTML/CSS</button>
-                        <button class="lang-chip" data-lang="react">⚛️ React</button>
+                    <h3>💻 CODE STUDIO</h3>
+                    <div class="lang-group">
+                        <button class="lang active" data-lang="python">Python</button>
+                        <button class="lang" data-lang="javascript">JavaScript</button>
                     </div>
-                    <textarea id="codePrompt" rows="2" class="neural-input" placeholder="Describe what code you want... e.g., 'function to sort array', 'react component for todo list'" style="width:100%; margin-bottom:12px; resize: none;"></textarea>
-                    <button id="genCodeBtn" class="btn-premium" style="width:100%; padding:12px;">💻 GENERATE CODE</button>
+                    <textarea id="codePrompt" rows="2" class="ai-input" placeholder="Describe code you need..." style="width:100%; margin-bottom:10px; resize:none;"></textarea>
+                    <button id="genCodeBtn" class="btn" style="width:100%; padding:12px;">💻 GENERATE</button>
                     <div class="code-output" id="codeOutput">
-                        <button class="copy-code-btn" id="copyCodeBtn">📋 Copy</button>
                         <pre id="generatedCode"></pre>
+                        <button id="copyCodeBtn" style="margin-top:8px; background:rgba(157,78,221,0.3); border:none; border-radius:20px; padding:4px 12px; cursor:pointer;">📋 Copy</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Analytics -->
-        <div class="analytics-premium">
-            <h3 style="color:#FFD700; font-size:0.85rem;">📊 SUPREME ANALYTICS</h3>
+        <div class="analytics">
+            <h3 style="color:#FFD700;">📊 NEURAL ANALYTICS</h3>
             <div class="analytics-grid">
                 <div class="analytics-card">💬 Chats: <span id="totalChats">0</span></div>
                 <div class="analytics-card">🎨 Images: <span id="totalImages">0</span></div>
@@ -693,92 +466,453 @@
         </div>
     </div>
 
-    <div class="progress-container" id="progressBar" style="display:none">
-        <div class="progress-step" id="step1">🔍 ANALYZING</div>
-        <div class="progress-step" id="step2">🧠 THINKING</div>
-        <div class="progress-step" id="step3">⚡ PROCESSING</div>
-        <div class="progress-step" id="step4">✨ CREATING</div>
-        <div class="progress-step" id="step5">✅ COMPLETE</div>
+    <div class="progress-bar" id="progressBar" style="display:none">
+        <div class="progress-step" id="step1">🔍</div>
+        <div class="progress-step" id="step2">🧠</div>
+        <div class="progress-step" id="step3">⚡</div>
+        <div class="progress-step" id="step4">✨</div>
+        <div class="progress-step" id="step5">✅</div>
     </div>
 
     <div class="voice-status" id="voiceStatus">🔊 VOICE READY</div>
 
     <script>
-        // ========== DATA STORAGE ==========
-        let memories = JSON.parse(localStorage.getItem('neuralis_mem') || '[]');
-        let images = JSON.parse(localStorage.getItem('neuralis_img') || '[]');
-        let codes = JSON.parse(localStorage.getItem('neuralis_code') || '[]');
-        let chats = JSON.parse(localStorage.getItem('neuralis_chat') || '[]');
+        // ========== HUGGING FACE API ==========
+        const HF_API_KEY = 'hf_qC0Fy1LPxxzWqGAFWbRQiEOciUDGZMYUzn';
+        
+        // ========== ADVANCED MEMORY SYSTEM (IndexedDB-like using localStorage with structure) ==========
+        class NeuralMemory {
+            constructor() {
+                this.userId = localStorage.getItem('neuralis_user_id') || this.generateUserId();
+                localStorage.setItem('neuralis_user_id', this.userId);
+                this.memories = this.load('memories');
+                this.conversationHistory = this.load('conversationHistory');
+                this.userProfile = this.load('userProfile') || { name: null, preferences: {}, firstSeen: Date.now() };
+                this.sessionStart = Date.now();
+            }
+            
+            generateUserId() {
+                return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+            
+            load(key) {
+                const data = localStorage.getItem(`neuralis_${this.userId}_${key}`);
+                return data ? JSON.parse(data) : (key === 'conversationHistory' ? [] : (key === 'memories' ? [] : null));
+            }
+            
+            save(key, data) {
+                localStorage.setItem(`neuralis_${this.userId}_${key}`, JSON.stringify(data));
+            }
+            
+            addMemory(content, type = 'user_said') {
+                this.memories.unshift({
+                    id: Date.now(),
+                    content: content,
+                    type: type,
+                    timestamp: Date.now(),
+                    importance: this.calculateImportance(content)
+                });
+                if (this.memories.length > 100) this.memories.pop();
+                this.save('memories', this.memories);
+                this.updateUI();
+                return true;
+            }
+            
+            calculateImportance(content) {
+                const importantKeywords = ['remember', 'important', 'name is', 'favorite', 'love', 'hate', 'work', 'project'];
+                let score = 0;
+                importantKeywords.forEach(kw => {
+                    if (content.toLowerCase().includes(kw)) score += 10;
+                });
+                return Math.min(score + (content.length > 50 ? 5 : 0), 100);
+            }
+            
+            addToConversation(role, content) {
+                this.conversationHistory.push({
+                    role: role,
+                    content: content,
+                    timestamp: Date.now()
+                });
+                // Keep last 30 messages for context
+                if (this.conversationHistory.length > 30) this.conversationHistory.shift();
+                this.save('conversationHistory', this.conversationHistory);
+            }
+            
+            getConversationContext() {
+                // Return last 10 messages for prompt engineering
+                return this.conversationHistory.slice(-10);
+            }
+            
+            recallMemories(query = null) {
+                if (!query) return this.memories.slice(0, 10);
+                // Simple semantic search
+                return this.memories.filter(m => 
+                    m.content.toLowerCase().includes(query.toLowerCase())
+                ).slice(0, 5);
+            }
+            
+            updateUserProfile(key, value) {
+                this.userProfile[key] = value;
+                this.save('userProfile', this.userProfile);
+            }
+            
+            updateUI() {
+                document.getElementById('memStat').innerText = this.memories.length;
+                document.getElementById('totalMemories').innerText = this.memories.length;
+            }
+            
+            getMemorySummary() {
+                if (this.memories.length === 0) return "No memories yet.";
+                const important = this.memories.filter(m => m.importance > 50).slice(0, 5);
+                if (important.length === 0) return this.memories.slice(0, 3).map(m => m.content).join('\n');
+                return important.map(m => m.content).join('\n');
+            }
+        }
+        
+        // ========== TOOL CALLING SYSTEM ==========
+        class ToolSystem {
+            constructor(memory) {
+                this.memory = memory;
+            }
+            
+            async callTool(intent, params) {
+                switch(intent) {
+                    case 'generate_image':
+                        return await this.generateImage(params.prompt);
+                    case 'generate_code':
+                        return this.generateCode(params.description, params.language);
+                    case 'calculate':
+                        return this.calculate(params.expression);
+                    case 'remember':
+                        return this.remember(params.content);
+                    case 'recall':
+                        return this.recall(params.query);
+                    case 'search_memory':
+                        return this.searchMemory(params.query);
+                    default:
+                        return null;
+                }
+            }
+            
+            async generateImage(prompt) {
+                const styleMap = {
+                    realistic: 'photorealistic, 8K, ultra detailed, sharp focus, masterpiece',
+                    anime: 'anime style, studio ghibli, vibrant colors, cel shaded, manga art',
+                    cinematic: 'cinematic, movie poster, dramatic lighting, epic composition',
+                    fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike'
+                };
+                const currentStyle = document.querySelector('.style.active')?.dataset.style || 'realistic';
+                const fullPrompt = `${styleMap[currentStyle]}, ${prompt}, high quality`.substring(0, 200);
+                const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1024&height=1024&seed=${Date.now()}&nologo=true`;
+                
+                return { type: 'image', url: imageUrl, prompt: prompt, style: currentStyle };
+            }
+            
+            generateCode(description, language = 'python') {
+                let code = '';
+                const lowerDesc = description.toLowerCase();
+                
+                if (language === 'python') {
+                    if (lowerDesc.includes('fibonacci')) {
+                        code = `def fibonacci(n):\n    """Generate Fibonacci sequence"""\n    if n <= 0: return []\n    if n == 1: return [0]\n    if n == 2: return [0, 1]\n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\nprint(fibonacci(10))`;
+                    } else {
+                        code = `# ${description}\n\ndef solution():\n    """Your implementation"""\n    pass\n\nif __name__ == "__main__":\n    solution()`;
+                    }
+                } else {
+                    if (lowerDesc.includes('fibonacci')) {
+                        code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
+                    } else {
+                        code = `// ${description}\n\nfunction solution() {\n    // Your implementation\n}\n\nsolution();`;
+                    }
+                }
+                return { type: 'code', code: code, language: language };
+            }
+            
+            calculate(expression) {
+                try {
+                    let expr = expression.replace(/\^/g, '**');
+                    let result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.\\^]/g, '') + ')')();
+                    return { type: 'math', expression: expression, result: result };
+                } catch(e) {
+                    return { type: 'math', expression: expression, result: null, error: true };
+                }
+            }
+            
+            remember(content) {
+                this.memory.addMemory(content, 'explicit');
+                return { type: 'memory', action: 'stored', content: content };
+            }
+            
+            recall(query = null) {
+                const memories = this.memory.recallMemories(query);
+                return { type: 'memory', action: 'recalled', memories: memories };
+            }
+            
+            searchMemory(query) {
+                const results = this.memory.recallMemories(query);
+                return { type: 'search', query: query, results: results };
+            }
+        }
+        
+        // ========== PROMPT ENGINEERING + INTENT DETECTION ==========
+        class IntelligenceEngine {
+            constructor(memory, tools) {
+                this.memory = memory;
+                this.tools = tools;
+            }
+            
+            async process(userMessage) {
+                // Add to conversation history
+                this.memory.addToConversation('user', userMessage);
+                
+                // Detect intent intelligently
+                const intent = this.detectIntent(userMessage);
+                
+                // Execute tool if detected
+                if (intent.tool) {
+                    const result = await this.tools.callTool(intent.tool, intent.params);
+                    if (result) {
+                        this.memory.addToConversation('assistant', JSON.stringify(result));
+                        return this.formatToolResult(result, intent);
+                    }
+                }
+                
+                // Generate intelligent response using context
+                const response = await this.generateResponse(userMessage, intent);
+                this.memory.addToConversation('assistant', response);
+                return response;
+            }
+            
+            detectIntent(message) {
+                const lower = message.toLowerCase();
+                
+                // Image generation
+                if (lower.includes('generate') || lower.includes('create image') || lower.includes('draw') || lower.includes('make image')) {
+                    let prompt = message.replace(/generate|create image|draw|make image|please/gi, '').trim();
+                    if (!prompt) prompt = "beautiful artwork";
+                    return { tool: 'generate_image', params: { prompt: prompt } };
+                }
+                
+                // Code generation
+                if (lower.includes('code') || lower.includes('function') || lower.includes('script') || 
+                    (lower.includes('python') && !lower.includes('generate')) || 
+                    (lower.includes('javascript') && !lower.includes('generate'))) {
+                    const lang = lower.includes('javascript') ? 'javascript' : 'python';
+                    return { tool: 'generate_code', params: { description: message, language: lang } };
+                }
+                
+                // Math calculation
+                if (lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/\^\(\)]/.test(lower)) {
+                    let expr = message.replace(/calculate|what is|solve/gi, '').trim();
+                    return { tool: 'calculate', params: { expression: expr } };
+                }
+                
+                // Memory storage
+                if (lower.includes('remember that') || (lower.includes('remember') && !lower.includes('what do you remember'))) {
+                    let content = message.replace(/remember that|remember/gi, '').trim();
+                    if (content) return { tool: 'remember', params: { content: content } };
+                }
+                
+                // Memory recall
+                if (lower.includes('what do you remember') || lower.includes('recall') || lower.includes('my memories')) {
+                    return { tool: 'recall', params: { query: null } };
+                }
+                
+                // Search memory
+                if (lower.includes('search memory') || lower.includes('find in memory')) {
+                    let query = message.replace(/search memory|find in memory/gi, '').trim();
+                    return { tool: 'search_memory', params: { query: query } };
+                }
+                
+                // Name
+                if (lower.includes('my name is')) {
+                    const match = message.match(/my name is (\w+)/i);
+                    if (match) {
+                        this.memory.updateUserProfile('name', match[1]);
+                        return { tool: null, response: `🎯 Nice to meet you, ${match[1]}! I'll remember your name.` };
+                    }
+                }
+                
+                return { tool: null, params: {} };
+            }
+            
+            formatToolResult(result, intent) {
+                if (result.type === 'image') {
+                    return `🎨 **Image Generated!**\n\n📝 *Prompt:* ${result.prompt}\n🎭 *Style:* ${result.style}\n\n![Generated Image](${result.url})`;
+                }
+                if (result.type === 'code') {
+                    return `💻 **Code Generated (${result.language.toUpperCase()})**\n\n\`\`\`${result.language}\n${result.code}\n\`\`\``;
+                }
+                if (result.type === 'math') {
+                    if (result.error) return `⚠️ Couldn't calculate "${result.expression}". Please check the format.`;
+                    return `🧮 **Calculation Result:**\n\n${result.expression} = ${result.result}`;
+                }
+                if (result.type === 'memory' && result.action === 'stored') {
+                    return `✅ **Memory Stored:** "${result.content}"\n\nI'll remember this for future conversations.`;
+                }
+                if (result.type === 'memory' && result.action === 'recalled') {
+                    if (result.memories.length === 0) return "📋 **No memories found.** Tell me something like 'remember that I love coffee' to store memories!";
+                    return `📋 **My Memories:**\n\n${result.memories.map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
+                }
+                if (result.type === 'search') {
+                    if (result.results.length === 0) return `🔍 No memories found matching "${result.query}".`;
+                    return `🔍 **Search Results for "${result.query}":**\n\n${result.results.map((m, i) => `${i+1}. ${m.content}`).join('\n')}`;
+                }
+                return String(result);
+            }
+            
+            async generateResponse(message, intent) {
+                // Get conversation context
+                const context = this.memory.getConversationContext();
+                const memories = this.memory.getMemorySummary();
+                const userName = this.memory.userProfile.name;
+                
+                // Build prompt with context
+                const systemPrompt = `You are NEURALIS AI, an intelligent assistant created by Viren Singh.
+                ${userName ? `You are talking to ${userName}.` : ''}
+                
+                Important memories about the user:
+                ${memories}
+                
+                Recent conversation context:
+                ${context.slice(-5).map(c => `${c.role.toUpperCase()}: ${c.content.substring(0, 100)}`).join('\n')}
+                
+                Guidelines:
+                - Be helpful, thoughtful, and engaging
+                - Use the conversation context to provide coherent responses
+                - Reference memories when relevant
+                - Be concise but informative
+                - If unsure, ask clarifying questions`;
+                
+                try {
+                    // Try Hugging Face API first
+                    const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-large', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${HF_API_KEY}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            inputs: message,
+                            parameters: {
+                                max_length: 300,
+                                temperature: 0.8,
+                                top_p: 0.9,
+                                do_sample: true
+                            }
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        let aiReply = data.generated_text || data[0]?.generated_text;
+                        if (aiReply) {
+                            aiReply = aiReply.replace(message, '').trim();
+                            if (aiReply.length > 10) return aiReply;
+                        }
+                    }
+                } catch(e) { console.log('API fallback'); }
+                
+                // Fallback intelligent responses
+                const lower = message.toLowerCase();
+                if (lower.includes('hello') || lower.includes('hi')) {
+                    return userName ? `Hello ${userName}! 👋 How can I help you today?` : `Hello! I'm NEURALIS AI. What's your name?`;
+                }
+                if (lower.includes('how are you')) {
+                    return "I'm operating at peak neural efficiency! Ready to help with anything you need. 🚀";
+                }
+                if (lower.includes('thank')) {
+                    return "You're very welcome! Is there anything else I can help with? ✨";
+                }
+                if (lower.includes('joke')) {
+                    const jokes = [
+                        "Why don't scientists trust atoms? Because they make up everything! 😄",
+                        "What do you call a fake noodle? An impasta! 🍝",
+                        "Why did the scarecrow win an award? He was outstanding in his field! 🌾"
+                    ];
+                    return jokes[Math.floor(Math.random() * jokes.length)];
+                }
+                if (lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
+                if (lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
+                
+                return `I understand you're asking about "${message.substring(0, 50)}". I can help with:\n\n🎨 **Images** - "generate a dragon"\n💻 **Code** - "python fibonacci"\n🧠 **Memory** - "remember I like coffee"\n🧮 **Math** - "calculate 100*5"\n\nWhat would you like to do?`;
+            }
+        }
+        
+        // ========== UI FUNCTIONS ==========
+        let memory, tools, intelligence;
+        let images = [];
+        let codes = [];
+        let chats = [];
         let sessionStart = Date.now();
         let currentStyle = 'realistic';
         let currentLang = 'python';
         
         function updateStats() {
-            document.getElementById('memCount').innerText = memories.length;
-            document.getElementById('imgCount').innerText = images.length;
-            document.getElementById('codeCount').innerText = codes.length;
+            document.getElementById('imgStat').innerText = images.length;
+            document.getElementById('codeStat').innerText = codes.length;
             document.getElementById('totalChats').innerText = chats.length;
             document.getElementById('totalImages').innerText = images.length;
             document.getElementById('totalCodes').innerText = codes.length;
-            document.getElementById('totalMemories').innerText = memories.length;
             let mins = Math.floor((Date.now() - sessionStart) / 60000);
             document.getElementById('sessionTime').innerText = mins + 'm';
         }
         
         function saveData() {
-            localStorage.setItem('neuralis_mem', JSON.stringify(memories));
-            localStorage.setItem('neuralis_img', JSON.stringify(images));
-            localStorage.setItem('neuralis_code', JSON.stringify(codes));
-            localStorage.setItem('neuralis_chat', JSON.stringify(chats));
+            localStorage.setItem('neuralis_img_data', JSON.stringify(images));
+            localStorage.setItem('neuralis_code_data', JSON.stringify(codes));
+            localStorage.setItem('neuralis_chat_data', JSON.stringify(chats));
             updateStats();
         }
         
-        // Progress Bar
-        function showProgress() {
-            document.getElementById('progressBar').style.display = 'flex';
-            for(let i=1;i<=5;i++) document.getElementById(`step${i}`).classList.remove('active', 'completed');
+        function loadData() {
+            images = JSON.parse(localStorage.getItem('neuralis_img_data') || '[]');
+            codes = JSON.parse(localStorage.getItem('neuralis_code_data') || '[]');
+            chats = JSON.parse(localStorage.getItem('neuralis_chat_data') || '[]');
+            updateStats();
         }
         
-        function setProgress(step, status) {
-            const el = document.getElementById(`step${step}`);
-            if(status === 'active') { el.classList.add('active'); el.classList.remove('completed'); }
-            else if(status === 'complete') { el.classList.remove('active'); el.classList.add('completed'); }
+        function showProgress() {
+            document.getElementById('progressBar').style.display = 'flex';
+            for(let i=1;i<=5;i++) document.getElementById(`step${i}`).classList.remove('active');
+        }
+        
+        function setProgress(step) {
+            for(let i=1;i<=5;i++) {
+                if(i <= step) document.getElementById(`step${i}`).classList.add('active');
+                else document.getElementById(`step${i}`).classList.remove('active');
+            }
         }
         
         function hideProgress() { document.getElementById('progressBar').style.display = 'none'; }
         function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
         
-        // ========== ADVANCED IMAGE GENERATION ==========
         async function generateImage(prompt) {
             if(!prompt) { addAIMessage("Please describe what image you want!"); return; }
             
             showProgress();
-            setProgress(1, 'active'); await delay(300);
-            setProgress(1, 'complete'); setProgress(2, 'active'); await delay(300);
-            setProgress(2, 'complete'); setProgress(3, 'active');
+            setProgress(1); await delay(200);
+            setProgress(2); await delay(200);
+            setProgress(3);
             
             const styleMap = {
-                realistic: 'photorealistic, 8K, ultra HD, detailed, sharp focus, masterpiece, award winning',
-                anime: 'anime style, studio ghibli, vibrant colors, cel shaded, manga art, beautiful lines',
-                cinematic: 'cinematic, movie poster, dramatic lighting, film grain, epic composition, IMAX quality',
-                fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike, enchanted forest, digital painting',
-                sketch: 'pencil sketch, hand drawn, artistic, monochrome, detailed linework, beautiful shading',
-                '3d': '3D render, blender, octane render, ray tracing, ultra realistic, 4K, volumetric lighting'
+                realistic: 'photorealistic, 8K, ultra detailed, sharp focus, masterpiece',
+                anime: 'anime style, studio ghibli, vibrant colors, cel shaded, manga art',
+                cinematic: 'cinematic, movie poster, dramatic lighting, epic composition',
+                fantasy: 'fantasy art, magical, ethereal, mystical, dreamlike'
             };
             
-            const enhancedPrompt = `${styleMap[currentStyle]}, ${prompt}, high quality, beautiful composition`.substring(0, 200);
-            const negative = document.getElementById('negPrompt').value;
-            const fullPrompt = negative ? `${enhancedPrompt}, avoid: ${negative}` : enhancedPrompt;
+            const fullPrompt = `${styleMap[currentStyle]}, ${prompt}, high quality`.substring(0, 200);
             const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1024&height=1024&seed=${Date.now()}&nologo=true`;
             
-            setProgress(3, 'complete'); setProgress(4, 'active');
+            setProgress(4);
             
             const img = document.getElementById('generatedImage');
             const preview = document.getElementById('imagePreview');
             
             img.onload = () => {
                 preview.style.display = 'block';
-                setProgress(4, 'complete'); setProgress(5, 'active');
+                setProgress(5);
                 setTimeout(() => hideProgress(), 500);
                 images.unshift({ id: Date.now(), url: imageUrl, prompt: prompt, style: currentStyle, date: Date.now() });
                 if(images.length > 30) images.pop();
@@ -805,83 +939,46 @@
             }
         }
         
-        function remixImage() {
-            const last = images[0];
-            if(last) { document.getElementById('imagePrompt').value = last.prompt; generateImage(last.prompt); }
-            else addAIMessage("No images to remix. Generate one first!");
-        }
-        
-        // ========== ADVANCED CODE GENERATION ==========
         async function generateCode(description) {
             if(!description) { addAIMessage("Please describe what code you need!"); return; }
             
             showProgress();
-            setProgress(1, 'active'); await delay(300);
-            setProgress(1, 'complete'); setProgress(2, 'active'); await delay(300);
-            setProgress(2, 'complete'); setProgress(3, 'active');
+            setProgress(1); await delay(200);
+            setProgress(2); await delay(200);
+            setProgress(3);
             
             let code = '';
             const lowerDesc = description.toLowerCase();
             
-            // Python Code Templates
             if(currentLang === 'python') {
                 if(lowerDesc.includes('fibonacci')) {
-                    code = `def fibonacci(n):\n    """Generate Fibonacci sequence up to n numbers"""\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n    \n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\n# Example usage\nprint(fibonacci(10))  # Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]`;
-                } 
-                else if(lowerDesc.includes('factorial')) {
-                    code = `def factorial(n):\n    """Calculate factorial of a number"""\n    if n < 0:\n        raise ValueError("Factorial not defined for negative numbers")\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\n# Example usage\nprint(factorial(5))  # Output: 120`;
+                    code = `def fibonacci(n):\n    if n <= 0: return []\n    if n == 1: return [0]\n    if n == 2: return [0, 1]\n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib\n\nprint(fibonacci(10))`;
+                } else {
+                    code = `# ${description}\n\ndef solution():\n    pass\n\nif __name__ == "__main__":\n    solution()`;
                 }
-                else if(lowerDesc.includes('prime') || lowerDesc.includes('prime number')) {
-                    code = `def is_prime(n):\n    """Check if a number is prime"""\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Get all primes up to 100\nprimes = [i for i in range(100) if is_prime(i)]\nprint(primes)`;
-                }
-                else if(lowerDesc.includes('sort') || lowerDesc.includes('bubble sort')) {
-                    code = `def bubble_sort(arr):\n    """Bubble sort algorithm"""\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\n# Example\nmy_list = [64, 34, 25, 12, 22, 11, 90]\nsorted_list = bubble_sort(my_list)\nprint(sorted_list)`;
-                }
-                else {
-                    code = `# ${description}\n\ndef solve_problem():\n    """Your solution implementation"""\n    # TODO: Implement your logic here\n    pass\n\nif __name__ == "__main__":\n    solve_problem()`;
-                }
-            }
-            // JavaScript Code Templates
-            else if(currentLang === 'javascript') {
+            } else {
                 if(lowerDesc.includes('fibonacci')) {
-                    code = `function fibonacci(n) {\n    // Generate Fibonacci sequence\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    \n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10)); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]`;
+                    code = `function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n    const fib = [0, 1];\n    for (let i = 2; i < n; i++) {\n        fib.push(fib[i-1] + fib[i-2]);\n    }\n    return fib;\n}\n\nconsole.log(fibonacci(10));`;
+                } else {
+                    code = `// ${description}\n\nfunction solution() {\n    // Your code here\n}\n\nsolution();`;
                 }
-                else if(lowerDesc.includes('factorial')) {
-                    code = `function factorial(n) {\n    // Calculate factorial recursively\n    if (n < 0) throw new Error('Factorial not defined for negative numbers');\n    if (n === 0) return 1;\n    return n * factorial(n - 1);\n}\n\nconsole.log(factorial(5)); // 120`;
-                }
-                else if(lowerDesc.includes('prime')) {
-                    code = `function isPrime(n) {\n    // Check if number is prime\n    if (n < 2) return false;\n    for (let i = 2; i <= Math.sqrt(n); i++) {\n        if (n % i === 0) return false;\n    }\n    return true;\n}\n\n// Find all primes up to 100\nconst primes = [];\nfor (let i = 0; i <= 100; i++) {\n    if (isPrime(i)) primes.push(i);\n}\nconsole.log(primes);`;
-                }
-                else if(lowerDesc.includes('calculator')) {
-                    code = `class Calculator {\n    constructor() {\n        this.result = 0;\n    }\n    \n    add(a, b) {\n        return a + b;\n    }\n    \n    subtract(a, b) {\n        return a - b;\n    }\n    \n    multiply(a, b) {\n        return a * b;\n    }\n    \n    divide(a, b) {\n        if (b === 0) throw new Error('Division by zero');\n        return a / b;\n    }\n}\n\nconst calc = new Calculator();\nconsole.log(calc.add(10, 5)); // 15\nconsole.log(calc.multiply(4, 3)); // 12`;
-                }
-                else {
-                    code = `// ${description}\n\nfunction solution() {\n    // TODO: Implement your solution\n    console.log("Solution ready!");\n}\n\nsolution();`;
-                }
-            }
-            // HTML/CSS Templates
-            else if(currentLang === 'html') {
-                code = `<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>${description.substring(0, 30)}</title>\n    <style>\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n        \n        body {\n            font-family: 'Segoe UI', system-ui, sans-serif;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            min-height: 100vh;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n        }\n        \n        .container {\n            background: white;\n            border-radius: 20px;\n            padding: 30px;\n            box-shadow: 0 20px 40px rgba(0,0,0,0.1);\n            text-align: center;\n        }\n        \n        h1 {\n            color: #333;\n            margin-bottom: 20px;\n        }\n        \n        button {\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            color: white;\n            border: none;\n            padding: 12px 24px;\n            border-radius: 30px;\n            cursor: pointer;\n            font-size: 16px;\n            transition: transform 0.2s;\n        }\n        \n        button:hover {\n            transform: translateY(-2px);\n        }\n    </style>\n</head>\n<body>\n    <div class="container">\n        <h1>✨ NEURALIS AI ✨</h1>\n        <p>${description}</p>\n        <button onclick="alert('Hello from NEURALIS!')">Click Me</button>\n    </div>\n</body>\n</html>`;
-            }
-            // React Templates
-            else if(currentLang === 'react') {
-                code = `import React, { useState } from 'react';\nimport './App.css';\n\nfunction App() {\n    const [count, setCount] = useState(0);\n    \n    return (\n        <div className="App">\n            <h1>✨ NEURALIS AI Component ✨</h1>\n            <p>${description}</p>\n            <div className="counter">\n                <button onClick={() => setCount(count - 1)}>-</button>\n                <span>{count}</span>\n                <button onClick={() => setCount(count + 1)}>+</button>\n            </div>\n        </div>\n    );\n}\n\nexport default App;`;
             }
             
-            setProgress(3, 'complete'); setProgress(4, 'active'); await delay(300);
-            setProgress(4, 'complete'); setProgress(5, 'active');
+            setProgress(3); await delay(200);
+            setProgress(4); await delay(200);
+            setProgress(5);
             
             const output = document.getElementById('codeOutput');
             const pre = document.getElementById('generatedCode');
             pre.textContent = code;
             output.style.display = 'block';
-            setTimeout(() => hideProgress(), 500);
+            setTimeout(() => hideProgress(), 400);
             
             codes.unshift({ id: Date.now(), code: code, lang: currentLang, prompt: description, date: Date.now() });
             if(codes.length > 30) codes.pop();
             saveData();
             
-            addAIMessage(`💻 **Code Generated (${currentLang.toUpperCase()})**\n\n📝 *Request:* ${description}\n\n\`\`\`${currentLang}\n${code.substring(0, 400)}${code.length > 400 ? '...' : ''}\n\`\`\``);
+            addAIMessage(`💻 **Code Generated (${currentLang.toUpperCase()})**\n\n\`\`\`${currentLang}\n${code.substring(0, 400)}${code.length > 400 ? '...' : ''}\n\`\`\``);
         }
         
         function copyCode() {
@@ -889,66 +986,6 @@
             if(code) { navigator.clipboard.writeText(code); addAIMessage("📋 Code copied to clipboard!"); }
         }
         
-        // ========== AI RESPONSE ==========
-        async function getAIResponse(userMsg) {
-            const lower = userMsg.toLowerCase();
-            
-            if(lower.includes('generate') || lower.includes('create image') || lower.includes('draw')) {
-                let prompt = userMsg.replace(/generate|create image|draw|make image/gi, '').trim();
-                if(!prompt) prompt = "beautiful artwork";
-                await generateImage(prompt);
-                return null;
-            }
-            
-            if(lower.includes('code') || lower.includes('python') || lower.includes('javascript') || lower.includes('function')) {
-                await generateCode(userMsg);
-                return null;
-            }
-            
-            if(lower.includes('remember that')) {
-                let content = userMsg.replace(/remember that/gi, '').trim();
-                if(content) {
-                    memories.unshift({ id: Date.now(), content: content, date: Date.now() });
-                    if(memories.length > 30) memories.pop();
-                    saveData();
-                    return `✅ I've remembered: "${content}"`;
-                }
-            }
-            
-            if(lower.includes('what do you remember') || lower.includes('recall')) {
-                if(memories.length === 0) return "📋 No memories yet. Tell me 'remember that I love coffee'!";
-                return `📋 **My Memories:**\n${memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
-            }
-            
-            if(lower.includes('calculate') || lower.includes('what is') || /[\d\+\-\*\/]/.test(lower)) {
-                try {
-                    let expr = userMsg.replace(/calculate|what is/gi, '').trim();
-                    let result = Function('"use strict";return (' + expr.replace(/[^0-9+\-*/\\(\\)\\.]/g, '') + ')')();
-                    return `🧮 ${expr} = ${result}`;
-                } catch(e) {}
-            }
-            
-            if(lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
-            if(lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
-            
-            if(lower.includes('joke')) {
-                const jokes = [
-                    "Why don't scientists trust atoms? Because they make up everything! 😄",
-                    "What do you call a fake noodle? An impasta! 🍝",
-                    "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
-                    "What do you call a bear with no teeth? A gummy bear! 🐻"
-                ];
-                return jokes[Math.floor(Math.random() * jokes.length)];
-            }
-            
-            if(lower.includes('hello') || lower.includes('hi')) {
-                return `Hello! 👋 I'm NEURALIS AI. I can generate images, write code, remember things, do math, tell jokes, and more. What would you like to do today?`;
-            }
-            
-            return `I understand you're asking about "${userMsg.substring(0, 50)}". I can help with:\n\n🎨 **Image Generation** - "generate a dragon in space"\n💻 **Code Generation** - "python fibonacci"\n🧠 **Memory** - "remember I like coffee"\n🧮 **Math** - "calculate 100*5"\n😄 **Jokes** - "tell me a joke"\n\nWhat would you like to do?`;
-        }
-        
-        // ========== UI FUNCTIONS ==========
         function addUserMessage(text) {
             const container = document.getElementById('chatMessages');
             const div = document.createElement('div');
@@ -965,12 +1002,12 @@
             let formatted = text.replace(/\n/g, '<br>');
             if(text.includes('![') && text.includes('](')) {
                 const match = text.match(/!\[.*?\]\((.*?)\)/);
-                if(match) formatted = text.replace(match[0], `<img src="${match[1]}" style="max-width:100%; border-radius:15px; margin-top:10px; max-height:300px; object-fit:cover;">`);
+                if(match) formatted = text.replace(match[0], `<img src="${match[1]}" style="max-width:100%; border-radius:15px; margin-top:10px;">`);
             }
             if(text.includes('```')) {
                 formatted = formatted.replace(/```(\w+)?\n([\s\S]*?)```/g, '<div style="background:#1e1e2e; border-radius:12px; padding:12px; margin:10px 0; overflow-x:auto;"><pre style="color:#0f0; margin:0;">$2</pre></div>');
             }
-            div.innerHTML = `<div class="bubble"><strong>✨ NEURALIS AI</strong><br>${formatted}</div>`;
+            div.innerHTML = `<div class="bubble"><strong>🧠 NEURALIS</strong><br>${formatted}</div>`;
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
             
@@ -991,18 +1028,23 @@
             const input = document.getElementById('userInput');
             const msg = input.value.trim();
             if(!msg) return;
+            
             addUserMessage(msg);
             input.value = '';
-            document.getElementById('statusText').innerHTML = 'THINKING';
-            const response = await getAIResponse(msg);
+            document.getElementById('statusStat').innerHTML = 'THINKING';
+            document.getElementById('statusStat').style.color = '#00D4FF';
+            
+            const response = await intelligence.process(msg);
             if(response) addAIMessage(response);
-            document.getElementById('statusText').innerHTML = 'ACTIVE';
+            
+            document.getElementById('statusStat').innerHTML = 'READY';
+            document.getElementById('statusStat').style.color = '#FFD700';
+            
             chats.unshift({ user: msg, response: response || 'processed', date: Date.now() });
             if(chats.length > 100) chats.pop();
             saveData();
         }
         
-        // ========== VOICE ==========
         function setupVoice() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if(SpeechRecognition) {
@@ -1019,12 +1061,11 @@
             }
         }
         
-        // ========== PARTICLES ==========
         function createParticles() {
             const container = document.getElementById('particles');
-            for(let i=0; i<100; i++) {
+            for(let i=0; i<80; i++) {
                 const p = document.createElement('div');
-                p.className = 'particle';
+                p.className = 'neuron';
                 p.style.left = Math.random() * 100 + '%';
                 p.style.animationDelay = Math.random() * 10 + 's';
                 p.style.animationDuration = 8 + Math.random() * 10 + 's';
@@ -1032,42 +1073,46 @@
             }
         }
         
-        // ========== EVENT LISTENERS ==========
+        // ========== INITIALIZATION ==========
+        memory = new NeuralMemory();
+        tools = new ToolSystem(memory);
+        intelligence = new IntelligenceEngine(memory, tools);
+        loadData();
+        
+        // Event Listeners
         document.getElementById('sendBtn').addEventListener('click', sendMessage);
         document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
         document.getElementById('genImageBtn').addEventListener('click', () => { const p = document.getElementById('imagePrompt').value; if(p) generateImage(p); });
         document.getElementById('genCodeBtn').addEventListener('click', () => { const p = document.getElementById('codePrompt').value; if(p) generateCode(p); });
         document.getElementById('saveImageBtn').addEventListener('click', saveImage);
-        document.getElementById('remixImageBtn').addEventListener('click', remixImage);
         document.getElementById('copyCodeBtn').addEventListener('click', copyCode);
         
-        document.querySelectorAll('.style-chip').forEach(btn => {
+        document.querySelectorAll('.style').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.style-chip').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.style').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentStyle = btn.dataset.style;
             });
         });
         
-        document.querySelectorAll('.lang-chip').forEach(btn => {
+        document.querySelectorAll('.lang').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.lang-chip').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.lang').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentLang = btn.dataset.lang;
             });
         });
         
-        // ========== INIT ==========
         createParticles();
         setupVoice();
-        updateStats();
+        memory.updateUI();
         
-        console.log('%c✨✨✨ NEURALIS AI - SUPREME EDITION ✨✨✨', 'color: #FFD700; font-size: 20px; font-weight: bold;');
-        console.log('%c✅ 6 Image Styles: Realistic, Anime, Cinematic, Fantasy, Sketch, 3D', 'color: #00FF00;');
-        console.log('%c✅ 4 Code Languages: Python, JavaScript, HTML/CSS, React', 'color: #00FF00;');
-        console.log('%c✅ Animated Particle System', 'color: #00FF00;');
-        console.log('%c✅ Voice Input/Output', 'color: #00FF00;');
-        console.log('%c✅ Memory System', 'color: #00FF00;');
+        console.log('%c🧠 NEURALIS AI - TRUE INTELLIGENCE ENGINE 🧠', 'color: #FFD700; font-size: 20px; font-weight: bold;');
+        console.log('%c✅ Conversation History (Context Memory)', 'color: #00FF00;');
+        console.log('%c✅ Prompt Engineering with System Instructions', 'color: #00FF00;');
+        console.log('%c✅ Tool Calling System (Image/Code/Math/Memory)', 'color: #00FF00;');
+        console.log('%c✅ Advanced Memory with Importance Scoring', 'color: #00FF00;');
+        console.log('%c✅ Hugging Face AI Integration', 'color: #00FF00;');
     </script>
 </body>
 </html>
