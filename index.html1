@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuralis AI</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070d;
+      --panel: rgba(13, 18, 31, 0.78);
+      --panel-solid: #0d121f;
+      --panel-strong: #11182a;
+      --line: rgba(180, 196, 255, 0.13);
+      --line-strong: rgba(190, 207, 255, 0.22);
+      --text: #eef4ff;
+      --muted: #9aa7bc;
+      --faint: #667085;
+      --cyan: #34d6ff;
+      --mint: #4dffb5;
+      --violet: #9d7cff;
+      --rose: #ff5fa2;
+      --gold: #ffd166;
+      --danger: #ff6b81;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(52, 214, 255, 0.18), transparent 25%),
+        radial-gradient(circle at 78% 14%, rgba(157, 124, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(77, 255, 181, 0.10), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 0 42%, transparent 78%);
+      animation: gridFloat 18s linear infinite;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      pointer-events: none;
+      background:
+        conic-gradient(from 150deg at 45% 45%, transparent, rgba(52, 214, 255, 0.14), transparent, rgba(255, 95, 162, 0.10), transparent);
+      filter: blur(80px);
+      opacity: 0.7;
+      animation: aurora 14s ease-in-out infinite alternate;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app-shell {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      height: 100vh;
+      padding: 16px;
+      gap: 16px;
+    }
+
+    .sidebar,
+    .main,
+    .login-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17, 24, 42, 0.88), rgba(8, 12, 22, 0.78));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .sidebar {
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .brand {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #031017;
+      font-weight: 900;
+      letter-spacing: 0;
+      background:
+        linear-gradient(135deg, var(--cyan), var(--mint) 46%, var(--violet));
+      box-shadow: 0 0 26px rgba(52, 214, 255, 0.42);
+      animation: logoPulse 2.6s ease-in-out infinite;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .new-chat {
+      margin: 18px 20px 0;
+      border: 0;
+      border-radius: var(--radius);
+      color: #041018;
+      background: linear-gradient(135deg, var(--cyan), var(--mint));
+      padding: 12px 14px;
+      font-weight: 800;
+      box-shadow: 0 14px 34px rgba(52, 214, 255, 0.24);
+      transition: transform 180ms ease, filter 180ms ease;
+    }
+
+    .new-chat:hover,
+    .primary:hover,
+    .send:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    .nav-title {
+      color: var(--faint);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin: 22px 20px 10px;
+    }
+
+    .mode-list {
+      display: grid;
+      gap: 8px;
+      padding: 0 14px;
+    }
+
+    .mode-btn {
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px;
+      text-align: left;
+      transition: background 160ms ease, border 160ms ease, color 160ms ease;
+    }
+
+    .mode-btn span:first-child {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mode-btn.active,
+    .mode-btn:hover {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.075);
+    }
+
+    .premium {
+      margin: auto 14px 14px;
+      border: 1px solid rgba(255, 209, 102, 0.24);
+      border-radius: var(--radius);
+      padding: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(255, 95, 162, 0.08)),
+        rgba(255, 255, 255, 0.035);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .premium::before {
+      content: "";
+      position: absolute;
+      inset: -80% -40%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transform: rotate(18deg);
+      animation: shimmer 4.5s ease-in-out infinite;
+    }
+
+    .premium > * {
+      position: relative;
+    }
+
+    .premium strong {
+      display: block;
+      font-size: 0.94rem;
+    }
+
+    .premium small {
+      display: block;
+      color: #d6c48a;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .main {
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .orb {
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      background: var(--mint);
+      box-shadow: 0 0 18px var(--mint);
+      animation: online 1.5s ease-in-out infinite;
+      flex: 0 0 auto;
+    }
+
+    .status h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .status p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 11px;
+      min-width: 0;
+    }
+
+    .logout {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 11px;
+    }
+
+    .conversation {
+      overflow-y: auto;
+      padding: 24px;
+      scroll-behavior: smooth;
+    }
+
+    .message {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 780px);
+      gap: 12px;
+      margin: 0 auto 18px;
+      max-width: 920px;
+      animation: messageIn 280ms ease both;
+    }
+
+    .message.user {
+      grid-template-columns: minmax(0, 780px) 36px;
+      justify-content: end;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: var(--cyan);
+    }
+
+    .user .avatar {
+      grid-column: 2;
+      grid-row: 1;
+      color: var(--gold);
+    }
+
+    .bubble {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 15px;
+      background: rgba(255, 255, 255, 0.055);
+      line-height: 1.58;
+      color: #e7eefb;
+      min-width: 0;
+    }
+
+    .user .bubble {
+      grid-column: 1;
+      grid-row: 1;
+      background: linear-gradient(135deg, rgba(52, 214, 255, 0.16), rgba(77, 255, 181, 0.10));
+      border-color: rgba(52, 214, 255, 0.28);
+    }
+
+    .bubble p {
+      margin: 0 0 10px;
+    }
+
+    .bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .code-block {
+      position: relative;
+      border: 1px solid rgba(52, 214, 255, 0.18);
+      border-radius: var(--radius);
+      background: #060a12;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .code-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .copy {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      padding: 5px 9px;
+      font-size: 0.78rem;
+    }
+
+    pre {
+      margin: 0;
+      padding: 14px;
+      overflow-x: auto;
+      color: #d7f7ff;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .image-result {
+      margin-top: 12px;
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.78), transparent 3%),
+        radial-gradient(circle at 68% 35%, rgba(77, 255, 181, 0.86), transparent 11%),
+        radial-gradient(circle at 24% 72%, rgba(52, 214, 255, 0.86), transparent 17%),
+        radial-gradient(circle at 80% 76%, rgba(255, 95, 162, 0.78), transparent 16%),
+        linear-gradient(135deg, #08111f, #151a38 52%, #08121a);
+      position: relative;
+    }
+
+    .image-result::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0 36%, rgba(255, 255, 255, 0.18) 45%, transparent 56%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 18px);
+      mix-blend-mode: screen;
+      animation: scan 3s linear infinite;
+    }
+
+    .image-result::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      color: white;
+      font-weight: 800;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+      overflow-wrap: anywhere;
+    }
+
+    .composer {
+      border-top: 1px solid var(--line);
+      padding: 16px 20px 20px;
+      background: rgba(5, 7, 13, 0.42);
+    }
+
+    .quick-prompts {
+      display: flex;
+      gap: 8px;
+      max-width: 920px;
+      margin: 0 auto 12px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 11px;
+      white-space: nowrap;
+      transition: color 160ms ease, border 160ms ease;
+    }
+
+    .chip:hover {
+      color: var(--text);
+      border-color: var(--line-strong);
+    }
+
+    .input-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: end;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.055);
+      padding: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      max-height: 150px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 11px 8px;
+      line-height: 1.45;
+    }
+
+    .send {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--cyan), var(--mint));
+      color: #021118;
+      font-size: 1.2rem;
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(52, 214, 255, 0.22);
+    }
+
+    .login-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(52, 214, 255, 0.20), transparent 30%),
+        rgba(5, 7, 13, 0.82);
+      backdrop-filter: blur(20px);
+      transition: opacity 260ms ease, visibility 260ms ease;
+    }
+
+    .login-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .login-card {
+      width: min(440px, 100%);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      animation: cardIn 560ms ease both;
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(52, 214, 255, 0.14), transparent 38%, rgba(77, 255, 181, 0.10));
+      pointer-events: none;
+    }
+
+    .login-card > * {
+      position: relative;
+    }
+
+    .login-card h2 {
+      margin: 18px 0 8px;
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .login-card p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .field input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      outline: 0;
+      padding: 13px 14px;
+      transition: border 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input:focus {
+      border-color: rgba(52, 214, 255, 0.55);
+      box-shadow: 0 0 0 4px rgba(52, 214, 255, 0.10);
+    }
+
+    .primary {
+      width: 100%;
+      border: 0;
+      border-radius: var(--radius);
+      margin-top: 8px;
+      padding: 13px 16px;
+      color: #031118;
+      background: linear-gradient(135deg, var(--cyan), var(--mint));
+      font-weight: 900;
+      box-shadow: 0 18px 42px rgba(52, 214, 255, 0.22);
+    }
+
+    .hint {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      color: var(--faint);
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .error {
+      min-height: 20px;
+      color: var(--danger);
+      font-size: 0.84rem;
+      margin-top: 10px;
+    }
+
+    .typing {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .typing i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: bounce 900ms ease-in-out infinite;
+    }
+
+    .typing i:nth-child(2) {
+      animation-delay: 130ms;
+      background: var(--mint);
+    }
+
+    .typing i:nth-child(3) {
+      animation-delay: 260ms;
+      background: var(--violet);
+    }
+
+    @keyframes gridFloat {
+      to {
+        background-position: 44px 44px;
+      }
+    }
+
+    @keyframes aurora {
+      from {
+        transform: rotate(0deg) scale(1);
+      }
+      to {
+        transform: rotate(9deg) scale(1.1);
+      }
+    }
+
+    @keyframes logoPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 24px rgba(52, 214, 255, 0.38);
+      }
+      50% {
+        transform: scale(1.045);
+        box-shadow: 0 0 38px rgba(77, 255, 181, 0.44);
+      }
+    }
+
+    @keyframes online {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.28);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shimmer {
+      0%, 38% {
+        transform: translateX(-80%) rotate(18deg);
+      }
+      70%, 100% {
+        transform: translateX(95%) rotate(18deg);
+      }
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.45;
+      }
+      50% {
+        transform: translateY(-7px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scan {
+      from {
+        transform: translateX(-30%);
+      }
+      to {
+        transform: translateX(30%);
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        overflow: auto;
+      }
+
+      .app-shell {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        min-height: auto;
+      }
+
+      .mode-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .premium {
+        margin-top: 16px;
+      }
+
+      .main {
+        min-height: 680px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app-shell {
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .brand,
+      .topbar,
+      .conversation,
+      .composer {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .mode-list {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .message,
+      .message.user {
+        grid-template-columns: 32px minmax(0, 1fr);
+      }
+
+      .message.user .avatar {
+        grid-column: 1;
+      }
+
+      .message.user .bubble {
+        grid-column: 2;
+      }
+
+      .input-wrap {
+        grid-template-columns: minmax(0, 1fr) 44px;
+      }
+
+      .send {
+        width: 44px;
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="login-screen" id="loginScreen" aria-label="Login">
+    <form class="login-card" id="loginForm">
+      <div class="logo" aria-hidden="true">N</div>
+      <h2>Neuralis AI</h2>
+      <p>Made by Viren Singh. Premium tools are free during the beta version.</p>
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" placeholder="Enter username" required />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required />
+      </div>
+      <button class="primary" type="submit">Enter Neuralis</button>
+      <div class="hint">
+        <span>Demo username: <strong>viren</strong></span>
+        <span>Password: <strong>neuralis</strong></span>
+      </div>
+      <div class="error" id="loginError" role="alert"></div>
+    </form>
+  </section>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Neuralis navigation">
+      <div class="brand">
+        <div class="brand-row">
+          <div class="logo" aria-hidden="true">N</div>
+          <div>
+            <h1>Neuralis AI</h1>
+            <p>Creator: Viren Singh</p>
+          </div>
+        </div>
+      </div>
+      <button class="new-chat" id="newChat">+ New Chat</button>
+      <div class="nav-title">Modes</div>
+      <nav class="mode-list" aria-label="AI modes">
+        <button class="mode-btn active" data-mode="chat" type="button"><span>&#10022;</span><span>Talk</span></button>
+        <button class="mode-btn" data-mode="image" type="button"><span>&#9635;</span><span>Image</span></button>
+        <button class="mode-btn" data-mode="code" type="button"><span>&lt;/&gt;</span><span>Code</span></button>
+      </nav>
+      <div class="nav-title">Beta Access</div>
+      <div class="premium">
+        <strong>Premium Beta: Free</strong>
+        <small>Image generation, code generation, deep chat, fast replies, and creative mode are unlocked for everyone right now.</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="status">
+          <span class="orb" aria-hidden="true"></span>
+          <div>
+            <h2 id="modeTitle">Neuralis Talk Mode</h2>
+            <p id="modeSubtitle">Ask anything and get a clean, helpful response.</p>
+          </div>
+        </div>
+        <div class="user-pill">
+          <span id="userBadge">Guest</span>
+          <button class="logout" id="logout" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section class="conversation" id="conversation" aria-live="polite">
+        <article class="message ai">
+          <div class="avatar">N</div>
+          <div class="bubble">
+            <p>Hello, I am Neuralis AI. I can talk with you, draft code, and create animated image concepts in this beta build.</p>
+            <p>Choose a mode or type your request below.</p>
+          </div>
+        </article>
+      </section>
+
+      <footer class="composer">
+        <div class="quick-prompts">
+          <button class="chip" type="button" data-prompt="Explain artificial intelligence in simple words">Explain AI</button>
+          <button class="chip" type="button" data-prompt="Generate an image of a futuristic neon city with Neuralis AI style">Neon city image</button>
+          <button class="chip" type="button" data-prompt="Write a responsive HTML button with glowing animation">Glowing button code</button>
+          <button class="chip" type="button" data-prompt="Make a study plan for learning JavaScript">Study plan</button>
+        </div>
+        <form class="input-wrap" id="chatForm">
+          <textarea id="prompt" placeholder="Message Neuralis AI..." rows="1" required></textarea>
+          <button class="send" type="submit" aria-label="Send">&rarr;</button>
+        </form>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const loginScreen = document.getElementById("loginScreen");
+    const loginForm = document.getElementById("loginForm");
+    const loginError = document.getElementById("loginError");
+    const userBadge = document.getElementById("userBadge");
+    const logout = document.getElementById("logout");
+    const conversation = document.getElementById("conversation");
+    const chatForm = document.getElementById("chatForm");
+    const promptInput = document.getElementById("prompt");
+    const newChat = document.getElementById("newChat");
+    const modeButtons = document.querySelectorAll(".mode-btn");
+    const chips = document.querySelectorAll(".chip");
+    const modeTitle = document.getElementById("modeTitle");
+    const modeSubtitle = document.getElementById("modeSubtitle");
+
+    let activeMode = "chat";
+
+    const modeCopy = {
+      chat: {
+        title: "Neuralis Talk Mode",
+        subtitle: "Ask anything and get a clean, helpful response."
+      },
+      image: {
+        title: "Neuralis Image Mode",
+        subtitle: "Describe an image and Neuralis creates a beta visual concept."
+      },
+      code: {
+        title: "Neuralis Code Mode",
+        subtitle: "Describe what you want to build and get starter code."
+      }
+    };
+
+    const savedUser = localStorage.getItem("neuralis-user");
+    if (savedUser) {
+      unlock(savedUser);
+    }
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!username || !password) {
+        loginError.textContent = "Please enter a username and password.";
+        return;
+      }
+
+      if (username.toLowerCase() === "viren" && password === "neuralis") {
+        localStorage.setItem("neuralis-user", username);
+        unlock(username);
+        return;
+      }
+
+      loginError.textContent = "Wrong login. Use viren / neuralis for this beta demo.";
+    });
+
+    logout.addEventListener("click", () => {
+      localStorage.removeItem("neuralis-user");
+      loginScreen.classList.remove("hidden");
+      userBadge.textContent = "Guest";
+    });
+
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setMode(button.dataset.mode);
+      });
+    });
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        promptInput.value = chip.dataset.prompt;
+        promptInput.focus();
+        autoResize();
+      });
+    });
+
+    newChat.addEventListener("click", () => {
+      conversation.innerHTML = "";
+      addMessage("ai", "Fresh chat started. What should we create with Neuralis AI?");
+      promptInput.focus();
+    });
+
+    chatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const prompt = promptInput.value.trim();
+      if (!prompt) return;
+
+      addMessage("user", escapeHtml(prompt));
+      promptInput.value = "";
+      autoResize();
+      showTyping();
+
+      window.setTimeout(() => {
+        removeTyping();
+        respond(prompt);
+      }, 850 + Math.min(prompt.length * 8, 900));
+    });
+
+    promptInput.addEventListener("input", autoResize);
+    promptInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        chatForm.requestSubmit();
+      }
+    });
+
+    function unlock(username) {
+      userBadge.textContent = username;
+      loginScreen.classList.add("hidden");
+      loginError.textContent = "";
+      promptInput.focus();
+    }
+
+    function setMode(mode) {
+      activeMode = mode;
+      modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
+      modeTitle.textContent = modeCopy[mode].title;
+      modeSubtitle.textContent = modeCopy[mode].subtitle;
+
+      const placeholders = {
+        chat: "Message Neuralis AI...",
+        image: "Describe the image you want Neuralis to generate...",
+        code: "Describe the code you want Neuralis to write..."
+      };
+      promptInput.placeholder = placeholders[mode];
+    }
+
+    function respond(prompt) {
+      const lower = prompt.toLowerCase();
+      if (activeMode === "image" || lower.includes("generate an image") || lower.includes("make image") || lower.includes("create image")) {
+        addImageResponse(prompt);
+        return;
+      }
+
+      if (activeMode === "code" || lower.includes("code") || lower.includes("html") || lower.includes("javascript") || lower.includes("css")) {
+        addCodeResponse(prompt);
+        return;
+      }
+
+      addMessage("ai", makeChatResponse(prompt));
+    }
+
+    function makeChatResponse(prompt) {
+      return `
+        <p><strong>Neuralis AI:</strong> I hear you. Here is a clear answer for: "${escapeHtml(prompt)}"</p>
+        <p>This beta version works as a stylish front-end chatbot. It can guide ideas, draft text, help plan projects, and switch into code or image mode. For true live AI replies, connect this interface to an API endpoint that protects your secret key on a server.</p>
+        <p>Premium is currently free in beta, so all modes stay unlocked.</p>
+      `;
+    }
+
+    function addCodeResponse(prompt) {
+      const code = buildCode(prompt);
+      addMessage("ai", `
+        <p>I generated starter code for: <strong>${escapeHtml(prompt)}</strong></p>
+        <div class="code-block">
+          <div class="code-head">
+            <span>starter-code.html</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+          <pre><code>${escapeHtml(code)}</code></pre>
+        </div>
+      `);
+      wireCopyButtons();
+    }
+
+    function buildCode(prompt) {
+      return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neuralis Component</title>
+  <style>
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      background: #080c14;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .neuralis-button {
+      border: 0;
+      border-radius: 8px;
+      padding: 14px 22px;
+      color: #031018;
+      background: linear-gradient(135deg, #34d6ff, #4dffb5);
+      font-weight: 800;
+      box-shadow: 0 0 28px rgba(52, 214, 255, 0.45);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% { transform: translateY(-2px); filter: brightness(1.12); }
+    }
+  </style>
+</head>
+<body>
+  <button class="neuralis-button">Built with Neuralis AI</button>
+</body>
+</html>`;
+    }
+
+    function addImageResponse(prompt) {
+      const title = prompt.replace(/\s+/g, " ").slice(0, 90);
+      addMessage("ai", `
+        <p>Image concept generated for: <strong>${escapeHtml(prompt)}</strong></p>
+        <div class="image-result" data-title="${escapeAttribute(title)}"></div>
+        <p>This static beta creates a browser-rendered concept preview. Connect a real image API later for downloadable generated artwork.</p>
+      `);
+    }
+
+    function showTyping() {
+      const wrapper = document.createElement("article");
+      wrapper.className = "message ai";
+      wrapper.id = "typingMessage";
+      wrapper.innerHTML = `
+        <div class="avatar">N</div>
+        <div class="bubble">
+          <span class="typing" aria-label="Neuralis is typing">
+            <i></i><i></i><i></i>
+          </span>
+        </div>
+      `;
+      conversation.appendChild(wrapper);
+      scrollToBottom();
+    }
+
+    function removeTyping() {
+      const typing = document.getElementById("typingMessage");
+      if (typing) typing.remove();
+    }
+
+    function addMessage(author, html) {
+      const wrapper = document.createElement("article");
+      wrapper.className = `message ${author}`;
+      wrapper.innerHTML = `
+        <div class="avatar">${author === "user" ? "U" : "N"}</div>
+        <div class="bubble">${html}</div>
+      `;
+      conversation.appendChild(wrapper);
+      scrollToBottom();
+    }
+
+    function wireCopyButtons() {
+      document.querySelectorAll(".copy").forEach((button) => {
+        if (button.dataset.ready) return;
+        button.dataset.ready = "true";
+        button.addEventListener("click", async () => {
+          const code = button.closest(".code-block").querySelector("code").textContent;
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(code);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = code;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            temp.remove();
+          }
+          button.textContent = "Copied";
+          window.setTimeout(() => button.textContent = "Copy", 1200);
+        });
+      });
+    }
+
+    function scrollToBottom() {
+      conversation.scrollTop = conversation.scrollHeight;
+    }
+
+    function autoResize() {
+      promptInput.style.height = "auto";
+      promptInput.style.height = `${Math.min(promptInput.scrollHeight, 150)}px`;
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#096;");
+    }
+  </script>
+</body>
+</html>
