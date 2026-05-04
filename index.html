@@ -191,32 +191,6 @@
             color: var(--text-secondary);
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .user-name {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .logout-btn {
-            padding: 6px 14px;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid #ef4444;
-            border-radius: 8px;
-            color: #ef4444;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .logout-btn:hover {
-            background: rgba(239, 68, 68, 0.2);
-        }
-
         /* Messages Area */
         .messages-area {
             flex: 1;
@@ -460,103 +434,6 @@
             font-weight: 600;
         }
 
-        /* Login Modal */
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .login-modal {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 40px;
-            width: 440px;
-            max-width: 90%;
-            animation: modalPop 0.3s ease;
-        }
-
-        @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .login-modal h2 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-green-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .login-modal p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 24px;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-
-        .login-input:focus {
-            outline: none;
-            border-color: var(--accent-green);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--accent-green);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .switch-link {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .switch-link a {
-            color: var(--accent-green);
-            cursor: pointer;
-        }
-
-        .error-msg {
-            color: #ef4444;
-            font-size: 12px;
-            text-align: center;
-            margin-top: 12px;
-            display: none;
-        }
-
         @media (max-width: 1000px) {
             .sidebar-left {
                 display: none;
@@ -571,39 +448,8 @@
     <div class="animated-bg"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Login Overlay -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-modal">
-            <h2>NEURALIS AI</h2>
-            <p>by Viren Singh • Secure Access</p>
-
-            <div id="loginPanel">
-                <input type="text" id="loginEmail" class="login-input" placeholder="Email or Username">
-                <input type="password" id="loginPassword" class="login-input" placeholder="Password">
-                <button class="login-btn" id="loginBtn">Sign In</button>
-                <div class="switch-link">
-                    New user? <a id="showRegisterLink">Create account</a>
-                </div>
-            </div>
-
-            <div id="registerPanel" style="display:none;">
-                <input type="text" id="regName" class="login-input" placeholder="Full Name">
-                <input type="email" id="regEmail" class="login-input" placeholder="Email">
-                <input type="text" id="regUsername" class="login-input" placeholder="Username">
-                <input type="password" id="regPassword" class="login-input" placeholder="Password">
-                <input type="password" id="regConfirm" class="login-input" placeholder="Confirm Password">
-                <button class="login-btn" id="registerBtn">Create Account</button>
-                <div class="switch-link">
-                    Already have an account? <a id="showLoginLink">Sign in</a>
-                </div>
-            </div>
-
-            <div id="loginError" class="error-msg"></div>
-        </div>
-    </div>
-
-    <!-- Main App -->
-    <div class="app-layout" id="appLayout" style="display:none;">
+    <!-- Main App - No Login Required -->
+    <div class="app-layout" id="appLayout">
         <!-- LEFT SIDEBAR - History -->
         <div class="sidebar-left">
             <div class="sidebar-header">
@@ -619,10 +465,6 @@
                 <div class="logo">
                     <h1>NEURALIS AI</h1>
                     <p>Advanced Intelligence Platform</p>
-                </div>
-                <div class="user-info">
-                    <span class="user-name" id="userNameDisplay"></span>
-                    <button class="logout-btn" id="logoutBtn">Sign Out</button>
                 </div>
             </div>
 
@@ -705,104 +547,23 @@
     </div>
 
     <script>
-        // ========== AUTHENTICATION SYSTEM ==========
-        let currentUser = null;
-        let userData = null;
+        // ========== DATA STORAGE (LocalStorage - persists between sessions) ==========
+        let memories = JSON.parse(localStorage.getItem('neuralis_memories') || '[]');
+        let images = JSON.parse(localStorage.getItem('neuralis_images') || '[]');
+        let codes = JSON.parse(localStorage.getItem('neuralis_codes') || '[]');
+        let chats = JSON.parse(localStorage.getItem('neuralis_chats') || '[]');
+        let notes = JSON.parse(localStorage.getItem('neuralis_notes') || '[]');
         
-        // Data stores
-        let memories = [];
-        let images = [];
-        let codes = [];
-        let chats = [];
-        let notes = [];
         let currentStyle = 'realistic';
         let currentLang = 'python';
         
-        // Initialize users
-        if(!localStorage.getItem('neuralis_users')) {
-            localStorage.setItem('neuralis_users', JSON.stringify([]));
-        }
-        
-        function getUsers() {
-            return JSON.parse(localStorage.getItem('neuralis_users'));
-        }
-        
-        function saveUsers(users) {
-            localStorage.setItem('neuralis_users', JSON.stringify(users));
-        }
-        
-        // Register
-        function registerUser(name, email, username, password, confirm) {
-            if(!name || name.length < 2) return { success: false, error: 'Name required' };
-            if(!email || !email.includes('@')) return { success: false, error: 'Valid email required' };
-            if(!username || username.length < 3) return { success: false, error: 'Username min 3 chars' };
-            if(!password || password.length < 6) return { success: false, error: 'Password min 6 chars' };
-            if(password !== confirm) return { success: false, error: 'Passwords do not match' };
-            
-            const users = getUsers();
-            if(users.find(u => u.email === email)) return { success: false, error: 'Email already registered' };
-            if(users.find(u => u.username === username)) return { success: false, error: 'Username taken' };
-            
-            users.push({
-                id: Date.now().toString(),
-                name, email, username,
-                password: btoa(password),
-                createdAt: new Date().toISOString(),
-                data: { memories: [], images: [], codes: [], chats: [], notes: [] }
-            });
-            saveUsers(users);
-            return { success: true };
-        }
-        
-        // Login
-        function loginUser(emailOrUser, password) {
-            if(!emailOrUser) return { success: false, error: 'Email or username required' };
-            if(!password) return { success: false, error: 'Password required' };
-            
-            const users = getUsers();
-            const user = users.find(u => u.email === emailOrUser || u.username === emailOrUser);
-            if(!user) return { success: false, error: 'User not found' };
-            if(atob(user.password) !== password) return { success: false, error: 'Incorrect password' };
-            
-            return { success: true, user };
-        }
-        
-        function loadApp(user) {
-            currentUser = user;
-            userData = user.data;
-            memories = userData.memories || [];
-            images = userData.images || [];
-            codes = userData.codes || [];
-            chats = userData.chats || [];
-            notes = userData.notes || [];
-            
-            document.getElementById('userNameDisplay').innerHTML = user.name;
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('appLayout').style.display = 'flex';
-            
+        function saveAllData() {
+            localStorage.setItem('neuralis_memories', JSON.stringify(memories));
+            localStorage.setItem('neuralis_images', JSON.stringify(images));
+            localStorage.setItem('neuralis_codes', JSON.stringify(codes));
+            localStorage.setItem('neuralis_chats', JSON.stringify(chats));
+            localStorage.setItem('neuralis_notes', JSON.stringify(notes));
             updateStats();
-            renderHistory();
-            renderNotesList();
-            addAIMessage(`Welcome back, ${user.name}! Ready to create?`);
-        }
-        
-        function saveUserData() {
-            if(!currentUser) return;
-            const users = getUsers();
-            const index = users.findIndex(u => u.id === currentUser.id);
-            if(index !== -1) {
-                users[index].data = { memories, images, codes, chats, notes };
-                saveUsers(users);
-            }
-            updateStats();
-        }
-        
-        function logout() {
-            saveUserData();
-            currentUser = null;
-            userData = null;
-            document.getElementById('appLayout').style.display = 'none';
-            document.getElementById('loginOverlay').style.display = 'flex';
         }
         
         function updateStats() {
@@ -871,7 +632,8 @@
             img.onload = () => {
                 preview.style.display = 'block';
                 images.unshift({ id: Date.now(), url: imageUrl, prompt, style: currentStyle, date: Date.now() });
-                saveUserData();
+                if(images.length > 50) images.pop();
+                saveAllData();
                 addAIMessage(`🎨 Image: "${prompt}"\nStyle: ${currentStyle}\n\n![Image](${imageUrl})`);
             };
             img.onerror = () => addAIMessage("Image generation failed. Try again.");
@@ -912,7 +674,8 @@
             pre.textContent = code;
             output.style.display = 'block';
             codes.unshift({ id: Date.now(), code, lang: currentLang, prompt: description, date: Date.now() });
-            saveUserData();
+            if(codes.length > 50) codes.pop();
+            saveAllData();
             addAIMessage(`💻 Code (${currentLang.toUpperCase()}):\n\`\`\`${currentLang}\n${code}\n\`\`\``);
         }
         
@@ -941,14 +704,15 @@
                 let content = msg.replace(/remember that/gi, '').trim();
                 if(content) {
                     memories.unshift({ id: Date.now(), content, date: Date.now() });
-                    saveUserData();
+                    if(memories.length > 100) memories.pop();
+                    saveAllData();
                     return `✅ Remembered: "${content}"`;
                 }
             }
             
             if(lower.includes('what do you remember')) {
                 if(!memories.length) return "No memories yet. Say 'remember that I like coffee'!";
-                return `Memories:\n${memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
+                return `📋 Memories:\n${memories.slice(0, 10).map((m,i) => `${i+1}. ${m.content}`).join('\n')}`;
             }
             
             if(lower.includes('calculate') || /[\d\+\-\*\/]/.test(lower)) {
@@ -960,6 +724,7 @@
             }
             
             if(lower.includes('time')) return `🕐 ${new Date().toLocaleTimeString()}`;
+            if(lower.includes('date')) return `📅 ${new Date().toLocaleDateString()}`;
             if(lower.includes('joke')) return "Why don't scientists trust atoms? Because they make up everything! 😄";
             if(lower.includes('hello')) return "Hello! Try 'generate a dragon' or 'remember I like coffee'!";
             
@@ -1011,7 +776,8 @@
             const response = await getAIResponse(msg);
             if(response) addAIMessage(response);
             chats.unshift({ user: msg, response: response || 'processed', date: Date.now() });
-            saveUserData();
+            if(chats.length > 200) chats.pop();
+            saveAllData();
             renderHistory();
         }
         
@@ -1029,59 +795,6 @@
         }
         
         // ========== EVENT LISTENERS ==========
-        // Login
-        document.getElementById('loginBtn').onclick = () => {
-            const emailOrUser = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const result = loginUser(emailOrUser, password);
-            if(result.success) {
-                loadApp(result.user);
-            } else {
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = result.error;
-                errorDiv.style.display = 'block';
-                setTimeout(() => errorDiv.style.display = 'none', 3000);
-            }
-        };
-        
-        document.getElementById('registerBtn').onclick = () => {
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const username = document.getElementById('regUsername').value.trim();
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-            const result = registerUser(name, email, username, password, confirm);
-            if(result.success) {
-                document.getElementById('registerPanel').style.display = 'none';
-                document.getElementById('loginPanel').style.display = 'block';
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = 'Account created! Please sign in.';
-                errorDiv.style.color = '#10b981';
-                errorDiv.style.display = 'block';
-                setTimeout(() => errorDiv.style.display = 'none', 3000);
-            } else {
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = result.error;
-                errorDiv.style.display = 'block';
-                setTimeout(() => errorDiv.style.display = 'none', 3000);
-            }
-        };
-        
-        document.getElementById('showRegisterLink').onclick = () => {
-            document.getElementById('loginPanel').style.display = 'none';
-            document.getElementById('registerPanel').style.display = 'block';
-            document.getElementById('loginError').style.display = 'none';
-        };
-        
-        document.getElementById('showLoginLink').onclick = () => {
-            document.getElementById('registerPanel').style.display = 'none';
-            document.getElementById('loginPanel').style.display = 'block';
-            document.getElementById('loginError').style.display = 'none';
-        };
-        
-        document.getElementById('logoutBtn').onclick = logout;
-        
-        // App Buttons
         document.getElementById('sendBtn').onclick = sendMessage;
         document.getElementById('userInput').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
         document.getElementById('genImageBtn').onclick = () => { const p = document.getElementById('imagePrompt').value; if(p) generateImage(p); };
@@ -1096,7 +809,8 @@
             if(!title) { alert("Enter title"); return; }
             if(!content) { alert("Enter content"); return; }
             notes.unshift({ id: Date.now(), title, content, date: Date.now() });
-            saveUserData();
+            if(notes.length > 50) notes.pop();
+            saveAllData();
             renderNotesList();
             document.getElementById('noteTitle').value = '';
             document.getElementById('noteContent').value = '';
@@ -1120,7 +834,13 @@
         });
         
         createParticles();
-        console.log('%c✨ NEURALIS AI - Professional Platform Ready ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
+        renderHistory();
+        renderNotesList();
+        updateStats();
+        
+        console.log('%c✨ NEURALIS AI - Professional Platform Ready (No Login) ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
+        console.log('%c✅ No login required - All features available immediately', 'color: #10b981;');
+        console.log('%c✅ Try: "generate a dragon" or "python fibonacci"', 'color: #10b981;');
     </script>
 </body>
 </html>
