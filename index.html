@@ -32,6 +32,7 @@
             color: var(--text-primary);
             overflow: hidden;
             height: 100vh;
+            font-size: 16px;
         }
 
         /* Animated Background */
@@ -64,11 +65,11 @@
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 3px;
+            height: 3px;
             background: var(--accent-green);
             border-radius: 50%;
-            opacity: 0.3;
+            opacity: 0.4;
             animation: float 15s infinite linear;
         }
 
@@ -89,7 +90,7 @@
 
         /* LEFT SIDEBAR - History */
         .sidebar-left {
-            width: 280px;
+            width: 320px;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border);
             display: flex;
@@ -99,13 +100,13 @@
         }
 
         .sidebar-header {
-            padding: 20px;
+            padding: 24px;
             border-bottom: 1px solid var(--border);
         }
 
         .sidebar-header h2 {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 700;
             background: linear-gradient(135deg, var(--accent-green), var(--accent-green-light));
             -webkit-background-clip: text;
             background-clip: text;
@@ -113,24 +114,24 @@
         }
 
         .sidebar-header p {
-            font-size: 11px;
+            font-size: 14px;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .history-list {
             flex: 1;
             overflow-y: auto;
-            padding: 12px;
+            padding: 16px;
         }
 
         .history-item {
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 8px;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.2s;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid transparent;
         }
 
@@ -141,14 +142,14 @@
         }
 
         .history-user {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             color: var(--accent-green);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .history-message {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-secondary);
             overflow: hidden;
             text-overflow: ellipsis;
@@ -156,9 +157,9 @@
         }
 
         .history-date {
-            font-size: 10px;
+            font-size: 12px;
             color: var(--text-secondary);
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         /* MAIN CHAT AREA */
@@ -170,7 +171,7 @@
         }
 
         .chat-header {
-            padding: 16px 24px;
+            padding: 20px 28px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -178,7 +179,7 @@
         }
 
         .logo h1 {
-            font-size: 20px;
+            font-size: 26px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--accent-green), var(--accent-green-light));
             -webkit-background-clip: text;
@@ -187,19 +188,20 @@
         }
 
         .logo p {
-            font-size: 10px;
+            font-size: 13px;
             color: var(--text-secondary);
+            margin-top: 4px;
         }
 
         /* Messages Area */
         .messages-area {
             flex: 1;
             overflow-y: auto;
-            padding: 24px;
+            padding: 28px;
         }
 
         .message {
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             animation: fadeInUp 0.3s ease;
         }
 
@@ -221,51 +223,51 @@
 
         .message-user .message-bubble {
             background: linear-gradient(135deg, var(--accent-green), var(--accent-green-dark));
-            padding: 12px 18px;
-            border-radius: 20px;
-            max-width: 70%;
-            font-size: 14px;
+            padding: 14px 22px;
+            border-radius: 24px;
+            max-width: 75%;
+            font-size: 16px;
             line-height: 1.5;
         }
 
         .message-ai .message-bubble {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 12px 18px;
-            border-radius: 20px;
+            padding: 14px 22px;
+            border-radius: 24px;
             max-width: 85%;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.5;
         }
 
         .message-bubble img {
             max-width: 100%;
-            border-radius: 12px;
-            margin-top: 8px;
+            border-radius: 16px;
+            margin-top: 12px;
         }
 
         .message-bubble pre {
             background: #0a0a0a;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 16px;
             overflow-x: auto;
-            font-size: 12px;
-            margin-top: 8px;
+            font-size: 14px;
+            margin-top: 12px;
         }
 
         /* Input Area */
         .input-area {
-            padding: 20px 24px;
+            padding: 24px 28px;
             border-top: 1px solid var(--border);
             background: var(--bg-primary);
         }
 
         .input-wrapper {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             background: var(--bg-tertiary);
-            border-radius: 16px;
-            padding: 4px;
+            border-radius: 20px;
+            padding: 6px;
             border: 1px solid var(--border);
             transition: all 0.2s;
         }
@@ -279,19 +281,20 @@
             flex: 1;
             background: transparent;
             border: none;
-            padding: 14px 18px;
+            padding: 16px 22px;
             color: var(--text-primary);
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
         }
 
         .input-wrapper button {
             background: var(--accent-green);
             border: none;
-            padding: 0 20px;
-            border-radius: 12px;
+            padding: 0 28px;
+            border-radius: 16px;
             color: white;
             font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -303,7 +306,7 @@
 
         /* RIGHT SIDEBAR - Tools */
         .sidebar-right {
-            width: 320px;
+            width: 360px;
             background: var(--sidebar-bg);
             border-left: 1px solid var(--border);
             display: flex;
@@ -313,33 +316,33 @@
         }
 
         .tool-section {
-            padding: 20px;
+            padding: 24px;
             border-bottom: 1px solid var(--border);
         }
 
         .tool-section h3 {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--accent-green);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .style-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 12px 0;
+            gap: 12px;
+            margin: 16px 0;
         }
 
         .style-chip {
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 8px 10px;
-            font-size: 11px;
+            border-radius: 14px;
+            padding: 12px 10px;
+            font-size: 14px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -359,13 +362,13 @@
 
         .tool-input {
             width: 100%;
-            padding: 10px 12px;
+            padding: 14px 16px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 14px;
             color: var(--text-primary);
-            font-size: 13px;
-            margin-bottom: 12px;
+            font-size: 15px;
+            margin-bottom: 16px;
         }
 
         .tool-input:focus {
@@ -375,12 +378,13 @@
 
         .tool-btn {
             width: 100%;
-            padding: 10px;
+            padding: 14px;
             background: var(--accent-green);
             border: none;
-            border-radius: 10px;
+            border-radius: 14px;
             color: white;
             font-weight: 600;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -390,33 +394,33 @@
         }
 
         .preview {
-            margin-top: 16px;
+            margin-top: 20px;
             display: none;
         }
 
         .preview img {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .code-output {
-            margin-top: 12px;
+            margin-top: 16px;
             display: none;
         }
 
         .code-output pre {
             background: #0a0a0a;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 11px;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 13px;
             overflow-x: auto;
         }
 
         /* Stats */
         .stats-bar {
             display: flex;
-            gap: 16px;
-            padding: 12px 24px;
+            gap: 24px;
+            padding: 16px 28px;
             background: var(--bg-tertiary);
             border-bottom: 1px solid var(--border);
         }
@@ -424,22 +428,29 @@
         .stat-item {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 12px;
+            gap: 8px;
+            font-size: 15px;
             color: var(--text-secondary);
         }
 
         .stat-value {
             color: var(--accent-green);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 18px;
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1200px) {
             .sidebar-left {
                 display: none;
             }
             .sidebar-right {
-                width: 280px;
+                width: 320px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .sidebar-right {
+                display: none;
             }
         }
     </style>
@@ -478,7 +489,7 @@
             <div class="messages-area" id="messagesArea">
                 <div class="message message-ai">
                     <div class="message-bubble">
-                        Welcome to NEURALIS AI.<br><br>
+                        <strong>Welcome to NEURALIS AI.</strong><br><br>
                         I can help you with:<br>
                         • 🎨 Generate images - "generate a dragon"<br>
                         • 💻 Write code - "python fibonacci"<br>
@@ -518,13 +529,13 @@
                 <button class="tool-btn" id="genImageBtn">Generate Image</button>
                 <div class="preview" id="imagePreview">
                     <img id="generatedImage">
-                    <button class="tool-btn" id="saveImageBtn" style="margin-top:8px; background:#059669;">Save Image</button>
+                    <button class="tool-btn" id="saveImageBtn" style="margin-top:12px; background:#059669;">Save Image</button>
                 </div>
             </div>
 
             <div class="tool-section">
                 <h3>💻 Code Builder</h3>
-                <div class="style-grid" style="margin-bottom:12px;">
+                <div class="style-grid" style="margin-bottom:16px;">
                     <div class="style-chip active" data-lang="python">Python</div>
                     <div class="style-chip" data-lang="javascript">JavaScript</div>
                 </div>
@@ -532,7 +543,7 @@
                 <button class="tool-btn" id="genCodeBtn">Generate Code</button>
                 <div class="code-output" id="codeOutput">
                     <pre id="generatedCode"></pre>
-                    <button class="tool-btn" id="copyCodeBtn" style="margin-top:8px; background:#059669;">Copy Code</button>
+                    <button class="tool-btn" id="copyCodeBtn" style="margin-top:12px; background:#059669;">Copy Code</button>
                 </div>
             </div>
 
@@ -541,7 +552,7 @@
                 <input type="text" id="noteTitle" class="tool-input" placeholder="Note title">
                 <textarea id="noteContent" class="tool-input" rows="2" placeholder="Write your note..."></textarea>
                 <button class="tool-btn" id="addNoteBtn">Add Note</button>
-                <div id="notesList" style="margin-top:12px;"></div>
+                <div id="notesList" style="margin-top:16px;"></div>
             </div>
         </div>
     </div>
@@ -577,13 +588,13 @@
         function renderHistory() {
             const container = document.getElementById('historyList');
             if(!chats.length) {
-                container.innerHTML = '<div style="padding:12px; color:#666; text-align:center;">No chat history</div>';
+                container.innerHTML = '<div style="padding:20px; color:#666; text-align:center; font-size:15px;">No chat history</div>';
                 return;
             }
             container.innerHTML = chats.slice().reverse().map(chat => `
                 <div class="history-item" onclick="loadChat('${escapeHtml(chat.user)}')">
                     <div class="history-user">👤 You</div>
-                    <div class="history-message">${escapeHtml(chat.user.substring(0, 50))}</div>
+                    <div class="history-message">${escapeHtml(chat.user.substring(0, 60))}</div>
                     <div class="history-date">${new Date(chat.date).toLocaleString()}</div>
                 </div>
             `).join('');
@@ -598,13 +609,13 @@
         function renderNotesList() {
             const container = document.getElementById('notesList');
             if(!notes.length) {
-                container.innerHTML = '<div style="color:#666; text-align:center;">No notes</div>';
+                container.innerHTML = '<div style="color:#666; text-align:center; padding:12px; font-size:14px;">No notes</div>';
                 return;
             }
             container.innerHTML = notes.slice(0, 5).map(note => `
-                <div style="background:#1a1a1a; border-radius:8px; padding:8px; margin-bottom:8px;">
-                    <div style="color:#10b981; font-size:12px; font-weight:600;">${escapeHtml(note.title)}</div>
-                    <div style="color:#aaa; font-size:11px; margin-top:4px;">${escapeHtml(note.content.substring(0, 50))}</div>
+                <div style="background:#1a1a1a; border-radius:12px; padding:12px; margin-bottom:12px;">
+                    <div style="color:#10b981; font-size:14px; font-weight:600;">${escapeHtml(note.title)}</div>
+                    <div style="color:#aaa; font-size:13px; margin-top:6px;">${escapeHtml(note.content.substring(0, 60))}</div>
                 </div>
             `).join('');
         }
@@ -747,7 +758,7 @@
             let formatted = text.replace(/\n/g, '<br>');
             if(text.includes('![') && text.includes('](')) {
                 const match = text.match(/!\[.*?\]\((.*?)\)/);
-                if(match) formatted = text.replace(match[0], `<img src="${match[1]}" style="max-width:100%; border-radius:12px;">`);
+                if(match) formatted = text.replace(match[0], `<img src="${match[1]}" style="max-width:100%; border-radius:16px;">`);
             }
             if(text.includes('```')) {
                 formatted = formatted.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre>$2</pre>');
@@ -757,8 +768,8 @@
             container.scrollTop = container.scrollHeight;
             
             const utterance = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, '').substring(0, 200));
-            utterance.rate = 1.0;
-            utterance.pitch = 1.1;
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(utterance);
         }
@@ -838,10 +849,9 @@
         renderNotesList();
         updateStats();
         
-        console.log('%c✨ NEURALIS AI - Professional Platform Ready ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
-        console.log('%c✅ No Login - Direct Access', 'color: #10b981;');
-        console.log('%c✅ All features available immediately', 'color: #10b981;');
-        console.log('%c✅ Try: "generate a dragon" or "python fibonacci"', 'color: #10b981;');
+        console.log('%c✨ NEURALIS AI - Professional Platform Ready ✨', 'color: #10b981; font-size: 18px; font-weight: bold;');
+        console.log('%c✅ Large text - No zoom needed', 'color: #10b981;');
+        console.log('%c✅ All fonts increased for better readability', 'color: #10b981;');
     </script>
 </body>
 </html>
